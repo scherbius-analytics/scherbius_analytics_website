@@ -8,6 +8,12 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../css/reveal.css">
+  <style>
+    @media (max-width: 768px) {
+      .step-row { grid-template-columns: 1fr !important; }
+      .step-content { padding-left: 0 !important; }
+    }
+  </style>
   <script>try{var _m=localStorage.getItem('sa_mode');if(_m)document.documentElement.setAttribute('data-mode',_m);}catch(e){}</script>
 </head>
 <body class="page-content">
@@ -178,12 +184,12 @@
     <div style="display:flex;flex-direction:column;gap:0;" data-reveal>
 
       <!-- Schritt 1 -->
-      <div style="display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.07);padding:40px 0;">
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.07);padding:40px 0;" class="step-row">
         <div style="display:flex;flex-direction:column;align-items:center;padding-top:4px;">
           <div style="width:40px;height:40px;border:1px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--accent);">1</div>
           <div style="width:1px;flex:1;background:rgba(255,255,255,0.06);margin-top:16px;"></div>
         </div>
-        <div style="padding-left:32px;">
+        <div class="step-content" style="padding-left:32px;">
           <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Täglich morgens</p>
           <h3 style="font-family:'EB Garamond',serif;font-size:24px;font-weight:600;color:#fff;margin-bottom:12px;">Update öffnen &amp; Performance prüfen</h3>
           <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.8;max-width:680px;">
@@ -236,12 +242,12 @@
       </div>
 
       <!-- Schritt 2 -->
-      <div style="display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.07);padding:40px 0;">
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.07);padding:40px 0;" class="step-row">
         <div style="display:flex;flex-direction:column;align-items:center;padding-top:4px;">
           <div style="width:40px;height:40px;border:1px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--accent);">2</div>
           <div style="width:1px;flex:1;background:rgba(255,255,255,0.06);margin-top:16px;"></div>
         </div>
-        <div style="padding-left:32px;">
+        <div class="step-content" style="padding-left:32px;">
           <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Handlungsrelevant</p>
           <h3 style="font-family:'EB Garamond',serif;font-size:24px;font-weight:600;color:#fff;margin-bottom:12px;">Neue Signale identifizieren</h3>
           <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.8;max-width:680px;margin-bottom:20px;">
@@ -322,12 +328,12 @@
       </div>
 
       <!-- Schritt 3 — RETAIL -->
-      <div data-show="retail" style="display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.07);padding:40px 0;">
+      <div data-show="retail" style="display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.07);padding:40px 0;" class="step-row">
         <div style="display:flex;flex-direction:column;align-items:center;padding-top:4px;">
           <div style="width:40px;height:40px;border:1px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--accent);">3</div>
           <div style="width:1px;flex:1;background:rgba(255,255,255,0.06);margin-top:16px;"></div>
         </div>
-        <div style="padding-left:32px;">
+        <div class="step-content" style="padding-left:32px;">
           <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Nur Privatanleger</p>
           <h3 style="font-family:'EB Garamond',serif;font-size:24px;font-weight:600;color:#fff;margin-bottom:12px;">Richtiges Derivat auswählen</h3>
           <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.8;max-width:680px;margin-bottom:20px;">
@@ -393,12 +399,12 @@
       </div>
 
       <!-- Schritt 3 — INSTITUTIONAL -->
-      <div data-show="institutional" style="display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.07);padding:40px 0;">
+      <div data-show="institutional" style="display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.07);padding:40px 0;" class="step-row">
         <div style="display:flex;flex-direction:column;align-items:center;padding-top:4px;">
           <div style="width:40px;height:40px;border:1px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--accent);">3</div>
           <div style="width:1px;flex:1;background:rgba(255,255,255,0.06);margin-top:16px;"></div>
         </div>
-        <div style="padding-left:32px;">
+        <div class="step-content" style="padding-left:32px;">
           <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Institutionell</p>
           <h3 style="font-family:'EB Garamond',serif;font-size:24px;font-weight:600;color:#fff;margin-bottom:12px;">Aktie identifizieren</h3>
           <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.8;max-width:680px;">
@@ -436,12 +442,12 @@
       </div>
 
       <!-- Schritt 4 -->
-      <div style="display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.07);padding:40px 0;">
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.07);padding:40px 0;" class="step-row">
         <div style="display:flex;flex-direction:column;align-items:center;padding-top:4px;">
           <div style="width:40px;height:40px;border:1px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--accent);">4</div>
           <div style="width:1px;flex:1;background:rgba(255,255,255,0.06);margin-top:16px;"></div>
         </div>
-        <div style="padding-left:32px;">
+        <div class="step-content" style="padding-left:32px;">
           <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Rechnen</p>
           <h3 style="font-family:'EB Garamond',serif;font-size:24px;font-weight:600;color:#fff;margin-bottom:12px;">Positionsgröße berechnen</h3>
           <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.8;max-width:680px;margin-bottom:20px;">
@@ -512,12 +518,12 @@
       </div>
 
       <!-- Schritt 5 -->
-      <div style="display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.07);padding:40px 0;">
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.07);padding:40px 0;" class="step-row">
         <div style="display:flex;flex-direction:column;align-items:center;padding-top:4px;">
           <div style="width:40px;height:40px;border:1px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--accent);">5</div>
           <div style="width:1px;flex:1;background:rgba(255,255,255,0.06);margin-top:16px;"></div>
         </div>
-        <div style="padding-left:32px;">
+        <div class="step-content" style="padding-left:32px;">
           <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Ausführung</p>
           <h3 style="font-family:'EB Garamond',serif;font-size:24px;font-weight:600;color:#fff;margin-bottom:12px;">Trade ausführen</h3>
           <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.8;max-width:680px;margin-bottom:16px;">
@@ -559,11 +565,11 @@
       </div>
 
       <!-- Schritt 6 -->
-      <div style="display:grid;grid-template-columns:64px 1fr;gap:0;padding:40px 0;">
+      <div class="step-row" style="display:grid;grid-template-columns:64px 1fr;gap:0;padding:40px 0;">
         <div style="display:flex;flex-direction:column;align-items:center;padding-top:4px;">
           <div style="width:40px;height:40px;border:1px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--accent);">6</div>
         </div>
-        <div style="padding-left:32px;">
+        <div class="step-content" style="padding-left:32px;">
           <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Abschluss</p>
           <h3 style="font-family:'EB Garamond',serif;font-size:24px;font-weight:600;color:#fff;margin-bottom:12px;">Portfolio abgleichen</h3>
           <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.8;max-width:680px;">
