@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="institutional">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Scherbius Analytics</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/index.css">
+  <script>try{var _m=localStorage.getItem('sa_mode');if(_m)document.documentElement.setAttribute('data-mode',_m);}catch(e){}</script>
+  <style>
+    body { background: var(--bg); }
+
+    /* ── Dashboard layout ─────────────────────────────────────── */
+    .dash-wrap { max-width:var(--max-width); margin:0 auto; padding:32px var(--px) 80px; }
+
+    /* ── Header ──────────────────────────────────────────────── */
+    .dash-header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; margin-bottom: 40px;
+      padding-bottom: 28px; border-bottom: 1px solid var(--border);
+    }
+    .dash-greeting { font-family:'EB Garamond',serif; font-size:26px; font-weight:500; color:var(--dark); }
+    .dash-email    { font-size:12px; color:var(--text-muted); margin-top:4px; }
+    .sub-badge {
+      display: inline-flex; align-items: center; padding: 4px 12px;
+      border-radius: 2px; font-size: 9px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+    }
+    .sub-badge-active   { background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3); color:#16a34a; }
+    .sub-badge-inactive { background:rgba(185,28,28,0.08); border:1px solid rgba(185,28,28,0.2); color:var(--accent); }
+    .dash-header-right { display:flex; flex-direction:column; align-items:flex-end; gap:8px; text-align:right; }
+    .sub-detail { font-size:11px; color:var(--text-dim); }
+
+    /* ── Tabs ──────────────────────────────────────────────────── */
+    .member-tab-nav {
+      display: flex; border-bottom: 1px solid var(--border); margin-bottom: 36px; gap: 0;
+    }
+    .member-tab {
+      padding: 12px 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.3px;
+      color: var(--text-muted); border: none; background: none; cursor: pointer;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: color 0.15s, border-color 0.15s; white-space: nowrap;
+    }
+    .member-tab:hover  { color: var(--dark); }
+    .member-tab.active { color: var(--dark); border-bottom-color: var(--accent); }
+
+    /* ── Archive table (reuse from archive.html) ─────────────── */
+    .archive-table { width:100%; border-collapse:collapse; }
+    .archive-table th, .archive-table td { padding:14px 20px; font-size:12px; border-bottom:1px solid var(--border-light); text-align:left; }
+    .archive-table thead th { background:#F7F5F2; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); }
+    .archive-table tbody tr:hover { background:#F7F5F2; }
+    .archive-table td:last-child { text-align:right; }
+
+    /* ── Fact sheet cards ────────────────────────────────────── */
+    .fs-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; max-width:680px; }
+
+    /* ── Subscription panel ──────────────────────────────────── */
+    .sub-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0; border-bottom: 1px solid var(--border-light); gap: 24px;
+    }
+    .sub-row:last-child { border-bottom: none; }
+    .sub-row-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+    .sub-row-value { font-size: 14px; color: var(--dark); font-weight: 500; }
+
+    /* ── Access gate ─────────────────────────────────────────── */
+    .access-gate { padding:40px 0; text-align:center; }
+
+    /* ── Welcome banner ──────────────────────────────────────── */
+    .welcome-banner { background:#F0FDF4; border:1px solid #BBF7D0; border-radius:4px; padding:14px 20px; font-size:13px; color:#14532D; margin-bottom:24px; display:none; }
+    .welcome-banner.visible { display:block; }
+
+    /* ── Performance embed ───────────────────────────────────── */
+    .perf-embed { max-width:900px; }
+
+    @media (max-width:600px) {
+      .dash-header { flex-direction:column; align-items:flex-start; }
+      .dash-header-right { align-items:flex-start; text-align:left; }
+      .member-tab { padding:10px 12px; font-size:11px; }
+    }
+  </style>
+</head>
+<body class="page-content">
+
+<nav class="nav" id="main-nav">
+  <a href="../../index.html" class="nav-logo">
+    <img src="../../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="32">
+  </a>
+  <ul class="nav-links">
+    <li><a href="../methodik.html">Methodik</a></li>
+    <li><a href="../performance.html">Performance</a></li>
+    <li><a href="../anleitung.html">Anleitung</a></li>
+    <li><a href="../archive.html">Archiv</a></li>
+    <li><a href="../pricing.html">Preise</a></li>
+    <li><a href="../about.html">Über uns</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="mode-toggle">
+      <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+      <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+    </div>
+    <div id="nav-auth-out" class="nav-auth">
+      <a href="login.html" class="nav-login-link">Login</a>
+      <a href="register.html" class="btn btn-primary nav-cta">Konto erstellen</a>
+    </div>
+    <div id="nav-auth-in" class="nav-auth" style="display:none;">
+      <span id="nav-user-name" style="font-size:11px;color:rgba(255,255,255,0.45);"></span>
+      <a href="dashboard.html" class="btn nav-cta">Dashboard</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav-mobile">
+  <a href="../methodik.html">Methodik</a>
+  <a href="../performance.html">Performance</a>
+  <a href="../anleitung.html">Anleitung</a>
+  <a href="../archive.html">Archiv</a>
+  <a href="../pricing.html">Preise</a>
+  <a href="../about.html">Über uns</a>
+  <a href="../contact.html">Kontakt</a>
+  <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
+    <a href="login.html" style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);">Login</a>
+    <a data-action="signout" href="#" style="font-size:13px;font-weight:600;color:var(--accent);">Abmelden</a>
+  </div>
+  <div class="mode-toggle" style="margin-top:16px;width:100%;">
+    <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+    <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+  </div>
+</nav>
+
+<!-- ── Dashboard ───────────────────────────────────────────────────────────── -->
+<div style="padding-top:80px;">
+<div class="dash-wrap">
+
+  <!-- Welcome banner (shown after registration) -->
+  <div class="welcome-banner" id="welcome-banner">
+    Willkommen bei Scherbius Analytics. Ihr Konto wurde erfolgreich erstellt.
+  </div>
+
+  <!-- Header -->
+  <div class="dash-header">
+    <div>
+      <div class="dash-greeting">Guten Morgen, <span id="dash-greeting-name">…</span></div>
+      <div class="dash-email" id="dash-user-email"></div>
+    </div>
+    <div class="dash-header-right">
+      <span class="sub-badge sub-badge-inactive" id="sub-status-badge">Lädt…</span>
+      <span class="sub-detail" id="sub-status-detail"></span>
+      <a href="#" data-action="signout" class="btn btn-secondary" style="font-size:11px;padding:6px 14px;">Abmelden</a>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="member-tab-nav">
+    <button class="member-tab active" data-tab="updates">Portfolio-Updates</button>
+    <button class="member-tab" data-tab="factsheets">Fact Sheets</button>
+    <button class="member-tab" data-tab="performance">Performance</button>
+    <button class="member-tab" data-tab="subscription">Mein Abonnement</button>
+  </div>
+
+  <!-- ── Panel: Updates ──────────────────────────────────────────────────── -->
+  <div class="member-panel" data-panel="updates">
+    <div id="updates-list">
+      <p style="font-size:13px;color:var(--text-muted);">Lade Updates…</p>
+    </div>
+  </div>
+
+  <!-- ── Panel: Fact Sheets ─────────────────────────────────────────────── -->
+  <div class="member-panel" data-panel="factsheets" style="display:none;">
+    <div class="fs-grid">
+      <!-- Institutional -->
+      <div data-show="institutional" style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:24px 28px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <span style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);">Scherbius Inst 1.0</span>
+          <span style="display:inline-flex;align-items:center;padding:3px 10px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:2px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#16a34a;">Aktuell</span>
+        </div>
+        <h3 style="font-family:'EB Garamond',serif;font-size:18px;font-weight:600;color:var(--dark);margin-bottom:6px;">Fact Sheet — Institutionell</h3>
+        <p style="font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">Strategie-Beschreibung, Performance-Kennzahlen, Risikoparameter und Produktübersicht.</p>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border-light);">
+          <span style="font-size:11px;color:var(--text-dim);">März 2026 · Version 1.0</span>
+          <a href="#" class="btn btn-secondary" style="padding:6px 14px;font-size:10px;">PDF herunterladen</a>
+        </div>
+      </div>
+      <!-- Retail current -->
+      <div data-show="retail" style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:24px 28px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <span style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);">Privatanleger 1.1</span>
+          <span style="display:inline-flex;align-items:center;padding:3px 10px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:2px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#16a34a;">Aktuell</span>
+        </div>
+        <h3 style="font-family:'EB Garamond',serif;font-size:18px;font-weight:600;color:var(--dark);margin-bottom:6px;">Fact Sheet — Privatanleger</h3>
+        <p style="font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">Strategie, Performance-Kennzahlen und Zertifikate-Informationen für Privatanleger.</p>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border-light);">
+          <span style="font-size:11px;color:var(--text-dim);">März 2026 · Version 1.1</span>
+          <a href="#" class="btn btn-secondary" style="padding:6px 14px;font-size:10px;">PDF herunterladen</a>
+        </div>
+      </div>
+      <!-- Retail historical -->
+      <div data-show="retail" style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:24px 28px;opacity:0.65;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <span style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);">Privatanleger 1.0</span>
+          <span style="font-size:9px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;">Vorgänger</span>
+        </div>
+        <h3 style="font-family:'EB Garamond',serif;font-size:18px;font-weight:600;color:var(--dark);margin-bottom:6px;">Fact Sheet — Privatanleger</h3>
+        <p style="font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">Erste Produktversion. Abgelöst durch Version 1.1.</p>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border-light);">
+          <span style="font-size:11px;color:var(--text-dim);">Dez 2025 · Version 1.0</span>
+          <a href="#" class="btn btn-secondary" style="padding:6px 14px;font-size:10px;">PDF herunterladen</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Panel: Performance ─────────────────────────────────────────────── -->
+  <div class="member-panel perf-embed" data-panel="performance" style="display:none;">
+    <div style="margin-bottom:32px;">
+      <p class="section-label" style="margin-bottom:8px;">Track Record</p>
+      <h2 style="font-family:'EB Garamond',serif;font-size:24px;font-weight:500;color:var(--dark);margin-bottom:4px;">
+        <span data-show="institutional">Scherbius Inst 1.0 — Institutionell</span>
+        <span data-show="retail">Scherbius 1.0 Privatanleger</span>
+      </h2>
+      <p style="font-size:12px;color:var(--text-dim);">Backtest Jan 2015 – Dez 2025 + Live-Daten ab 15.12.2025. Alle Angaben netto nach Kosten.</p>
+    </div>
+
+    <!-- KPI mini-grid -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px;margin-bottom:32px;">
+      <div data-show="institutional">
+        <div style="display:contents;">
+          <div class="kpi-card"><p class="kpi-label">CAGR (netto)</p><div class="kpi-value text-green">14,9 %</div><p class="kpi-sub">NDX: 17,3 %</p></div>
+          <div class="kpi-card"><p class="kpi-label">Sharpe Ratio</p><div class="kpi-value text-green">1,68</div><p class="kpi-sub">2,1× besser als NDX</p></div>
+          <div class="kpi-card"><p class="kpi-label">Max. Drawdown</p><div class="kpi-value">−7,88 %</div><p class="kpi-sub">NDX: −35,56 %</p></div>
+          <div class="kpi-card"><p class="kpi-label">Jensen Alpha p.a.</p><div class="kpi-value text-green">+10,71 %</div><p class="kpi-sub">p &lt; 0,0001</p></div>
+        </div>
+      </div>
+      <div data-show="retail">
+        <div style="display:contents;">
+          <div class="kpi-card"><p class="kpi-label">CAGR (netto)</p><div class="kpi-value text-green">27,8 %</div><p class="kpi-sub">NDX: 17,5 %</p></div>
+          <div class="kpi-card"><p class="kpi-label">Gesamtrendite</p><div class="kpi-value text-green">+1.445 %</div><p class="kpi-sub">NDX: +490 %</p></div>
+          <div class="kpi-card"><p class="kpi-label">Sharpe Ratio</p><div class="kpi-value text-green">0,97</div><p class="kpi-sub">NDX: 0,80</p></div>
+          <div class="kpi-card"><p class="kpi-label">Max. Drawdown</p><div class="kpi-value">−36,84 %</div><p class="kpi-sub">NDX: −35,6 %</p></div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:16px;"><a href="../performance.html" class="btn btn-secondary">Vollständige Performance-Analyse →</a></p>
+  </div>
+
+  <!-- ── Panel: Subscription ────────────────────────────────────────────── -->
+  <div class="member-panel" data-panel="subscription" style="display:none;">
+    <div style="max-width:560px;">
+
+      <!-- ── RETAIL ─────────────────────────────────────────────── -->
+      <div data-show="retail">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:32px 36px;margin-bottom:24px;">
+          <p style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:24px;">Abonnement-Details</p>
+
+          <div class="sub-row">
+            <div><div class="sub-row-label">Status</div></div>
+            <span class="sub-badge sub-badge-inactive" id="sub-status-badge-2">Lädt…</span>
+          </div>
+          <div class="sub-row">
+            <div><div class="sub-row-label">Plan</div><div class="sub-row-value">Scherbius Analytics Privatanleger</div></div>
+            <div style="font-size:13px;color:var(--text-muted);">€ 39,99 / Monat</div>
+          </div>
+          <div class="sub-row">
+            <div><div class="sub-row-label">Abrechnungsdetails</div><div class="sub-row-value" id="sub-status-detail-2" style="font-size:13px;color:var(--text-muted);">—</div></div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <a href="#" class="btn btn-secondary" id="stripe-portal-btn" style="display:none;justify-content:center;">
+            Abonnement verwalten (Stripe Portal)
+          </a>
+          <a href="../pricing.html" class="btn btn-secondary" style="justify-content:center;" id="upgrade-btn">
+            Abonnement aktivieren
+          </a>
+          <p style="font-size:11px;color:var(--text-dim);line-height:1.6;">
+            Im Stripe Customer Portal kannst du deine Zahlungsmethode ändern, Rechnungen herunterladen und dein Abonnement monatlich kündigen.
+            Bei Fragen: <a href="mailto:kaya@scherbius.de" style="color:var(--text-muted);">kaya@scherbius.de</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- ── INSTITUTIONAL ──────────────────────────────────────── -->
+      <div data-show="institutional">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:32px 36px;margin-bottom:24px;">
+          <p style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:24px;">Vertragsdetails</p>
+
+          <div class="sub-row">
+            <div><div class="sub-row-label">Status</div></div>
+            <span class="sub-badge sub-badge-active">Aktiver Vertrag</span>
+          </div>
+          <div class="sub-row">
+            <div><div class="sub-row-label">Plan</div><div class="sub-row-value">Scherbius Analytics Institutionell</div></div>
+            <div style="font-size:13px;color:var(--text-muted);">Individuell vereinbart</div>
+          </div>
+          <div class="sub-row">
+            <div><div class="sub-row-label">Konditionen</div><div class="sub-row-value" style="font-size:13px;color:var(--text-muted);">Gemäß individuellem Vertrag</div></div>
+          </div>
+        </div>
+
+        <div style="background:#F7F5F2;border-radius:4px;padding:24px 28px;">
+          <p style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Vertragsänderungen &amp; Betreuung</p>
+          <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">
+            Ihr Abonnement basiert auf einem individuellen Vertrag mit Scherbius Analytics. Für Änderungen, Fragen zu Konditionen, Reporting-Anforderungen oder Due-Diligence-Unterlagen wenden Sie sich bitte direkt an uns.
+          </p>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;">
+            <a href="mailto:kaya@scherbius.de" class="btn btn-primary" style="font-size:12px;padding:10px 20px;">kaya@scherbius.de</a>
+            <a href="tel:+4915208755758" class="btn btn-secondary" style="font-size:12px;padding:10px 20px;">+49 152 08755758</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="../../js/config.js"></script>
+<script src="../../js/auth.js"></script>
+<script src="../../js/member.js"></script>
+<script src="../../js/main.js"></script>
+<script>
+// Welcome banner
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('welcome') === '1') {
+    var banner = document.getElementById('welcome-banner');
+    if (banner) {
+      banner.classList.add('visible');
+      if (params.get('institutional') === '1') {
+        banner.textContent = 'Willkommen bei Scherbius Analytics. Ihr Konto wurde erstellt. Bitte nehmen Sie über den Tab „Mein Abonnement" Kontakt auf — wir melden uns innerhalb von 24 Stunden.';
+      } else if (params.get('confirm') === '1') {
+        banner.textContent = 'Konto erstellt! Bitte bestätige deine E-Mail-Adresse, um vollen Zugang zu erhalten.';
+      }
+    }
+  }
+  // Auto-switch to subscription tab for institutional registrations
+  if (params.get('institutional') === '1') {
+    var tabs = document.querySelectorAll('.member-tab');
+    var panels = document.querySelectorAll('.member-panel');
+    tabs.forEach(function(t) { t.classList.remove('active'); });
+    panels.forEach(function(p) { p.style.display = 'none'; });
+    var subTab = document.querySelector('.member-tab[data-tab="subscription"]');
+    var subPanel = document.querySelector('.member-panel[data-panel="subscription"]');
+    if (subTab)   subTab.classList.add('active');
+    if (subPanel) subPanel.style.display = '';
+  }
+  // Mirror sub-badge and detail to subscription panel
+  var badge2  = document.getElementById('sub-status-badge-2');
+  var detail2 = document.getElementById('sub-status-detail-2');
+  var badge1  = document.getElementById('sub-status-badge');
+  var detail1 = document.getElementById('sub-status-detail');
+  if (badge2 && badge1) {
+    var obs = new MutationObserver(function () {
+      badge2.textContent  = badge1.textContent;
+      badge2.className    = badge1.className;
+      if (detail2 && detail1) detail2.textContent = detail1.textContent;
+    });
+    obs.observe(badge1, { characterData: true, childList: true, subtree: true, attributes: true });
+  }
+})();
+</script>
+</body>
+</html>

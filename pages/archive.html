@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="institutional">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio-Archiv — Scherbius Analytics</title>
+  <meta name="description" content="Öffentliches Archiv der Scherbius Analytics Portfolio-Updates — mit 5 Werktagen Verzögerung.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/reveal.css">
+  <style>
+    .archive-table { width:100%; border-collapse:collapse; }
+    .archive-table th, .archive-table td { padding:14px 20px; font-size:12px; border-bottom:1px solid var(--border-light); text-align:left; }
+    .archive-table thead th { background:#F7F5F2; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); }
+    .archive-table tbody tr:hover { background:#F7F5F2; }
+    .archive-table td:last-child { text-align:right; }
+    .delay-badge { display:inline-flex; align-items:center; padding:3px 10px; background:rgba(185,28,28,0.08); border:1px solid rgba(185,28,28,0.2); border-radius:2px; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--accent); }
+  </style>
+  <script>try{var _m=localStorage.getItem('sa_mode');if(_m)document.documentElement.setAttribute('data-mode',_m);}catch(e){}</script>
+</head>
+<body class="page-content">
+
+<nav class="nav" id="main-nav">
+  <a href="../index.html" class="nav-logo">
+    <img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="32">
+  </a>
+  <ul class="nav-links">
+    <li><a href="methodik.html">Methodik</a></li>
+    <li><a href="performance.html">Performance</a></li>
+    <li><a href="anleitung.html">Anleitung</a></li>
+    <li><a href="archive.html">Archiv</a></li>
+    <li><a href="pricing.html">Preise</a></li>
+    <li><a href="about.html">Über uns</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="mode-toggle">
+      <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+      <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+    </div>
+    <div id="nav-auth-out" class="nav-auth">
+      <a href="members/login.html" class="nav-login-link">Login</a>
+      <a href="members/register.html" class="btn btn-primary nav-cta">Konto erstellen</a>
+    </div>
+    <div id="nav-auth-in" class="nav-auth" style="display:none;">
+      <span id="nav-user-name" style="font-size:11px;color:rgba(255,255,255,0.45);"></span>
+      <a href="members/dashboard.html" class="btn nav-cta">Dashboard</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav-mobile">
+  <a href="methodik.html">Methodik</a>
+  <a href="performance.html">Performance</a>
+  <a href="anleitung.html">Anleitung</a>
+  <a href="archive.html">Archiv</a>
+  <a href="pricing.html">Preise</a>
+  <a href="about.html">Über uns</a>
+  <a href="contact.html">Kontakt</a>
+  <div class="mode-toggle" style="margin-top:16px;width:100%;">
+    <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+    <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div style="background:var(--dark);padding:120px var(--px) 80px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;opacity:0.035;background-image:repeating-linear-gradient(90deg,#fff 0,#fff 1px,transparent 1px,transparent 80px),repeating-linear-gradient(0deg,#fff 0,#fff 1px,transparent 1px,transparent 80px);pointer-events:none;"></div>
+  <div style="max-width:var(--max-width);margin:0 auto;position:relative;z-index:2;">
+    <p class="section-label" style="color:var(--accent);">Öffentliches Archiv</p>
+    <h1 style="font-family:'EB Garamond',serif;font-size:clamp(40px,5vw,72px);font-weight:500;color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:20px;">
+      Portfolio-Archiv
+    </h1>
+    <div style="display:flex;align-items:center;gap:12px;margin-top:4px;">
+      <span class="delay-badge">5 Werktage Verzögerung</span>
+      <p style="font-size:13px;color:rgba(255,255,255,0.35);">Abonnenten erhalten Updates ohne Verzögerung, täglich vor Marktöffnung.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Archive Content -->
+<div class="section-full">
+  <div class="section-inner">
+
+    <!-- Fact Sheets -->
+    <div id="fact-sheets" style="padding-bottom:56px;margin-bottom:48px;border-bottom:1px solid var(--border);">
+
+      <div class="section-header" style="margin-bottom:32px;" data-reveal>
+        <p class="section-label">Produkt-Dokumentation</p>
+        <h2 style="font-family:'EB Garamond',serif;font-size:28px;font-weight:500;color:var(--dark);">Fact Sheets</h2>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.65;max-width:600px;margin-top:8px;">Übersichtliche Produktdokumentation — aktuelle und archivierte Fact Sheets zum Download.</p>
+      </div>
+
+      <!-- Institutional Fact Sheets -->
+      <div data-show="institutional" data-reveal>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;max-width:680px;">
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:28px 32px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+              <span style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);">Scherbius Inst 1.0</span>
+              <span style="display:inline-flex;align-items:center;padding:3px 10px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:2px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#16a34a;">Aktuell</span>
+            </div>
+            <h3 style="font-family:'EB Garamond',serif;font-size:19px;font-weight:600;color:var(--dark);margin-bottom:8px;">Fact Sheet — Institutionell</h3>
+            <p style="font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:20px;">Strategie-Beschreibung, Performance-Kennzahlen, Risikoparameter und Produktübersicht für institutionelle Investoren und Due-Diligence-Zwecke.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border-light);">
+              <span style="font-size:11px;color:var(--text-dim);">März 2026 · Version 1.0</span>
+              <a href="#" class="btn btn-secondary" style="padding:7px 16px;font-size:10px;">PDF herunterladen</a>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:11px;color:var(--text-dim);margin-top:16px;">Weitere Fact Sheets werden nach Produktaktualisierungen veröffentlicht.</p>
+      </div>
+
+      <!-- Retail Fact Sheets -->
+      <div data-show="retail" data-reveal>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;max-width:680px;">
+          <!-- Current: Privatanleger 1.1 -->
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:28px 32px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+              <span style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);">Privatanleger 1.1</span>
+              <span style="display:inline-flex;align-items:center;padding:3px 10px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:2px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#16a34a;">Aktuell</span>
+            </div>
+            <h3 style="font-family:'EB Garamond',serif;font-size:19px;font-weight:600;color:var(--dark);margin-bottom:8px;">Fact Sheet — Privatanleger</h3>
+            <p style="font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:20px;">Strategie-Beschreibung, Performance-Kennzahlen, Zertifikate-Informationen und Produktübersicht für informierte Privatanleger.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border-light);">
+              <span style="font-size:11px;color:var(--text-dim);">März 2026 · Version 1.1</span>
+              <a href="#" class="btn btn-secondary" style="padding:7px 16px;font-size:10px;">PDF herunterladen</a>
+            </div>
+          </div>
+          <!-- Historical: Privatanleger 1.0 -->
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:28px 32px;opacity:0.7;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+              <span style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);">Privatanleger 1.0</span>
+              <span style="font-size:9px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;">Vorgänger</span>
+            </div>
+            <h3 style="font-family:'EB Garamond',serif;font-size:19px;font-weight:600;color:var(--dark);margin-bottom:8px;">Fact Sheet — Privatanleger</h3>
+            <p style="font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:20px;">Erste Produktversion. Abgelöst durch Version 1.1 im März 2026.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border-light);">
+              <span style="font-size:11px;color:var(--text-dim);">Dez 2025 · Version 1.0</span>
+              <a href="#" class="btn btn-secondary" style="padding:7px 16px;font-size:10px;">PDF herunterladen</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Info Box -->
+    <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:4px;padding:20px 28px;margin-bottom:40px;display:flex;gap:16px;align-items:flex-start;" data-reveal>
+      <div>
+        <p style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px;">Hinweis zum öffentlichen Archiv</p>
+        <p style="font-size:13px;color:#7F1D1D;line-height:1.65;">
+          Dieses Archiv zeigt Portfolio-Updates mit <strong>5 Werktagen Verzögerung</strong>. Abonnenten von Scherbius 1.0 erhalten alle Updates täglich vor Marktöffnung, ohne Verzögerung.
+          <a href="pricing.html" style="color:var(--accent);font-weight:600;">Zum Abonnement</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Institutional Archive -->
+    <div data-show="institutional" data-reveal>
+      <div class="section-header" style="margin-bottom:32px;">
+        <p class="section-label">Scherbius 1.0 Institutionell</p>
+        <h2 style="font-family:'EB Garamond',serif;font-size:28px;font-weight:500;color:var(--dark);">Öffentliche Updates — Institutionell</h2>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:24px;">
+        <table class="archive-table">
+          <thead>
+            <tr>
+              <th>Datum</th>
+              <th>Produkt</th>
+              <th>Beschreibung</th>
+              <th>Download</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:600;color:var(--dark);">19. Feb 2026</td>
+              <td><span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--accent);">Institutionell</span></td>
+              <td style="color:var(--text-muted);">Portfolio-Update — Tagesabschluss</td>
+              <td><a href="#" class="btn btn-secondary" style="padding:6px 14px;font-size:9px;">PDF</a></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:var(--dark);">18. Feb 2026</td>
+              <td><span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--accent);">Institutionell</span></td>
+              <td style="color:var(--text-muted);">Portfolio-Update — Tagesabschluss</td>
+              <td><a href="#" class="btn btn-secondary" style="padding:6px 14px;font-size:9px;">PDF</a></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:var(--dark);">17. Feb 2026</td>
+              <td><span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--accent);">Institutionell</span></td>
+              <td style="color:var(--text-muted);">Portfolio-Update — Tagesabschluss</td>
+              <td><a href="#" class="btn btn-secondary" style="padding:6px 14px;font-size:9px;">PDF</a></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:var(--dark);">14. Feb 2026</td>
+              <td><span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--accent);">Institutionell</span></td>
+              <td style="color:var(--text-muted);">Portfolio-Update — Tagesabschluss</td>
+              <td><a href="#" class="btn btn-secondary" style="padding:6px 14px;font-size:9px;">PDF</a></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:var(--dark);">13. Feb 2026</td>
+              <td><span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--accent);">Institutionell</span></td>
+              <td style="color:var(--text-muted);">Monatsabschluss Januar 2026 + Portfolio-Update</td>
+              <td><a href="#" class="btn btn-secondary" style="padding:6px 14px;font-size:9px;">PDF</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:11px;color:var(--text-dim);">Neueste Einträge werden nach 5 Werktagen freigeschaltet. Ältere Updates auf Anfrage.</p>
+    </div>
+
+    <!-- Retail Archive -->
+    <div data-show="retail" data-reveal>
+      <div class="section-header" style="margin-bottom:32px;">
+        <p class="section-label">Scherbius 1.0 Privatanleger</p>
+        <h2 style="font-family:'EB Garamond',serif;font-size:28px;font-weight:500;color:var(--dark);">Öffentliche Updates — Privatanleger</h2>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:24px;">
+        <table class="archive-table">
+          <thead>
+            <tr>
+              <th>Datum</th>
+              <th>Produkt</th>
+              <th>Beschreibung</th>
+              <th>Download</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:600;color:var(--dark);">19. Feb 2026</td>
+              <td><span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);">Privatanleger</span></td>
+              <td style="color:var(--text-muted);">Portfolio-Update — Tagesabschluss</td>
+              <td><a href="#" class="btn btn-secondary" style="padding:6px 14px;font-size:9px;">PDF</a></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:var(--dark);">18. Feb 2026</td>
+              <td><span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);">Privatanleger</span></td>
+              <td style="color:var(--text-muted);">Portfolio-Update — Tagesabschluss</td>
+              <td><a href="#" class="btn btn-secondary" style="padding:6px 14px;font-size:9px;">PDF</a></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:var(--dark);">17. Feb 2026</td>
+              <td><span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);">Privatanleger</span></td>
+              <td style="color:var(--text-muted);">Portfolio-Update — Tagesabschluss</td>
+              <td><a href="#" class="btn btn-secondary" style="padding:6px 14px;font-size:9px;">PDF</a></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:var(--dark);">14. Feb 2026</td>
+              <td><span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);">Privatanleger</span></td>
+              <td style="color:var(--text-muted);">Portfolio-Update — Tagesabschluss</td>
+              <td><a href="#" class="btn btn-secondary" style="padding:6px 14px;font-size:9px;">PDF</a></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;color:var(--dark);">13. Feb 2026</td>
+              <td><span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);">Privatanleger</span></td>
+              <td style="color:var(--text-muted);">Monatsabschluss Januar 2026 + Portfolio-Update</td>
+              <td><a href="#" class="btn btn-secondary" style="padding:6px 14px;font-size:9px;">PDF</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:11px;color:var(--text-dim);">Neueste Einträge werden nach 5 Werktagen freigeschaltet. Ältere Updates auf Anfrage.</p>
+    </div>
+
+    <!-- Subscribe CTA -->
+    <div style="background:var(--dark);border-radius:4px;padding:40px 48px;margin-top:48px;display:flex;justify-content:space-between;align-items:center;gap:32px;" data-reveal>
+      <div>
+        <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Kein Warten</p>
+        <h3 style="font-family:'EB Garamond',serif;font-size:22px;font-weight:500;color:#fff;margin-bottom:8px;">
+          <span data-show="institutional">Abonnenten erhalten Updates täglich vor Marktöffnung</span>
+          <span data-show="retail">14 Tage kostenlos — ohne Kreditkarte</span>
+        </h3>
+        <p style="font-size:13px;color:rgba(255,255,255,0.4);" data-show="institutional">Institutionelle Konditionen auf Anfrage. Persönliche Beratung inklusive.</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.4);" data-show="retail">Kein automatisches Abonnement. Manuell kündbar.</p>
+      </div>
+      <div style="flex-shrink:0;">
+        <a href="contact.html" class="btn btn-primary" data-show="institutional">Kontakt aufnehmen</a>
+        <a href="pricing.html#trial" class="btn btn-primary" data-show="retail">Kostenlos testen</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-pill" style="margin-bottom:20px;"><img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="28"></div>
+      <p class="footer-brand-tagline">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</p>
+      <a href="https://linkedin.com/company/scherbius-analytics/" target="_blank" rel="noopener noreferrer" style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;">LinkedIn</a>
+    </div>
+    <div>
+      <p class="footer-col-title">Navigation</p>
+      <ul class="footer-links">
+        <li><a href="methodik.html">Methodik</a></li>
+        <li><a href="performance.html">Performance</a></li>
+        <li><a href="anleitung.html">Anleitung</a></li>
+        <li><a href="pricing.html">Preise</a></li>
+        <li><a href="about.html">Über uns</a></li>
+        <li><a href="contact.html">Kontakt</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Ressourcen</p>
+      <ul class="footer-links">
+        <li><a href="archive.html">Portfolio-Archiv</a></li>
+        <li><a href="legal/risikohinweise.html">Risikohinweise</a></li>
+        <li><a href="legal/datenschutz.html">Datenschutzerklärung</a></li>
+        <li><a href="legal/impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Kontakt</p>
+      <ul class="footer-links">
+        <li style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding-bottom:2px;">F. Kaya</li>
+        <li><a href="mailto:kaya@scherbius.de">kaya@scherbius.de</a></li>
+        <li style="margin-bottom:12px;"><a href="tel:+4915208755758">+49 152 08755758</a></li>
+        <li style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding-bottom:2px;">E. Richter</li>
+        <li><a href="mailto:richter@scherbius.de">richter@scherbius.de</a></li>
+        <li><a href="tel:+4915170854496">+49 151 70854496</a></li>
+      </ul>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,0.1);padding:40px 0;margin-top:16px;">
+    <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:20px;">Disclaimer / Risikohinweis</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;">
+      <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.75;margin:0;">Die hier bereitgestellten Informationen stellen keine Anlageberatung im Sinne des § 2 Abs. 8 Nr. 10 WpHG dar. Die Inhalte dienen ausschließlich allgemeinen Informationszwecken und berücksichtigen keine individuellen Kenntnisse und Erfahrungen, Anlageziele, finanzielle Verhältnisse, Risikobereitschaft oder Verlusttragfähigkeit der Empfänger. Anlageentscheidungen, die auf Basis dieser Informationen getroffen werden, erfolgen ausschließlich auf eigenes Risiko und in eigener Verantwortung.</p>
+      <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.75;margin:0;">Der Handel mit Finanzinstrumenten, insbesondere Aktien und Derivaten, ist mit erheblichen Risiken bis hin zum Totalverlust verbunden. Vergangene Wertentwicklungen, Backtests und Modellrechnungen sind keine Garantie für zukünftige Ergebnisse. Scherbius Analytics UG (haftungsbeschränkt) übernimmt keine Haftung für Verluste oder Schäden, die aus der Nutzung der bereitgestellten Informationen entstehen.</p>
+      <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.75;margin:0;">Die Empfehlungen beruhen auf regelbasierten, datengetriebenen Portfolio-Allokationen ohne persönliche Beratung. Es findet keine Vermögensverwaltung statt und es werden keine Eigentumsrechte an Vermögenswerten übertragen. Methodik und Backtests werden transparent offengelegt; der Vertrieb der Anlagestrategieempfehlungen wurde gemäß § 86 Abs. 1 WpHG bei der BaFin angezeigt.</p>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <p class="footer-legal">&copy; 2026 Scherbius Analytics UG (haftungsbeschränkt) &nbsp;·&nbsp; HRB 195105 Amtsgericht Hamburg &nbsp;·&nbsp; Alle Rechte vorbehalten.</p>
+    <p class="footer-legal">
+      <a href="legal/impressum.html">Impressum</a> &nbsp;·&nbsp;
+      <a href="legal/datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="legal/risikohinweise.html">Risikohinweise</a>
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

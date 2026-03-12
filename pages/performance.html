@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="institutional">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance — Scherbius Analytics</title>
+  <meta name="description" content="Vollständige Track-Record-Dokumentation von Scherbius 1.0 — Equity-Kurven, Jahresrenditen, statistische Kennzahlen.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/reveal.css">
+  <style>
+    .perf-table { width:100%; border-collapse:collapse; }
+    .perf-table th, .perf-table td { padding:12px 20px; font-size:12px; text-align:right; border-bottom:1px solid var(--border-light); }
+    .perf-table th:first-child, .perf-table td:first-child { text-align:left; }
+    .perf-table thead th { background:#F7F5F2; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); }
+    .perf-table .pos { color:var(--green); font-weight:600; }
+    .perf-table .neg { color:var(--accent); font-weight:600; }
+    .perf-table .year-row td:first-child { font-weight:600; color:var(--dark); }
+    .stats-table { width:100%; border-collapse:collapse; }
+    .stats-table th, .stats-table td { padding:14px 24px; font-size:13px; border-bottom:1px solid var(--border-light); }
+    .stats-table thead th { background:#F7F5F2; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); text-align:left; }
+    .stats-table td:not(:first-child) { text-align:right; }
+    .stat-pos { font-weight:600; color:var(--green); text-align:right; }
+    .stat-muted { color:var(--text-muted); text-align:right; }
+  </style>
+  <script>try{var _m=localStorage.getItem('sa_mode');if(_m)document.documentElement.setAttribute('data-mode',_m);}catch(e){}</script>
+</head>
+<body class="page-content">
+
+<nav class="nav" id="main-nav">
+  <a href="../index.html" class="nav-logo">
+    <img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="32">
+  </a>
+  <ul class="nav-links">
+    <li><a href="methodik.html">Methodik</a></li>
+    <li><a href="performance.html" class="active">Performance</a></li>
+    <li><a href="anleitung.html">Anleitung</a></li>
+    <li><a href="archive.html">Archiv</a></li>
+    <li><a href="pricing.html">Preise</a></li>
+    <li><a href="about.html">Über uns</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="mode-toggle">
+      <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+      <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+    </div>
+    <div id="nav-auth-out" class="nav-auth">
+      <a href="members/login.html" class="nav-login-link">Login</a>
+      <a href="members/register.html" class="btn btn-primary nav-cta">Konto erstellen</a>
+    </div>
+    <div id="nav-auth-in" class="nav-auth" style="display:none;">
+      <span id="nav-user-name" style="font-size:11px;color:rgba(255,255,255,0.45);"></span>
+      <a href="members/dashboard.html" class="btn nav-cta">Dashboard</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav-mobile">
+  <a href="methodik.html">Methodik</a>
+  <a href="performance.html">Performance</a>
+  <a href="anleitung.html">Anleitung</a>
+  <a href="archive.html">Archiv</a>
+  <a href="pricing.html">Preise</a>
+  <a href="about.html">Über uns</a>
+  <a href="contact.html">Kontakt</a>
+  <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
+    <a href="members/login.html" style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);">Login</a>
+    <a href="members/register.html" style="font-size:13px;font-weight:600;color:var(--accent);">Konto erstellen</a>
+  </div>
+  <div class="mode-toggle" style="margin-top:16px;width:100%;">
+    <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+    <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div style="background:var(--dark);padding:120px var(--px) 80px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;opacity:0.035;background-image:repeating-linear-gradient(90deg,#fff 0,#fff 1px,transparent 1px,transparent 80px),repeating-linear-gradient(0deg,#fff 0,#fff 1px,transparent 1px,transparent 80px);pointer-events:none;"></div>
+  <div style="max-width:var(--max-width);margin:0 auto;position:relative;z-index:2;">
+    <p class="section-label" style="color:var(--accent);">Track Record</p>
+    <h1 style="font-family:'EB Garamond',serif;font-size:clamp(40px,5vw,72px);font-weight:500;color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:20px;">
+      <span data-show="institutional">Scherbius 1.0<br><em style="color:rgba(255,255,255,0.4)">Performance Dokumentation</em></span>
+      <span data-show="retail">Scherbius 1.0 Privatanleger<br><em style="color:rgba(255,255,255,0.4)">Performance Dokumentation</em></span>
+    </h1>
+    <p style="font-size:14px;color:rgba(255,255,255,0.35);max-width:600px;line-height:1.75;">
+      Backtest Januar 2015 – Dezember 2025 &nbsp;·&nbsp; Live ab 15. Dezember 2025 &nbsp;·&nbsp; NASDAQ-100 als Benchmark
+    </p>
+    <p style="font-size:12px;color:rgba(255,255,255,0.22);max-width:600px;line-height:1.65;margin-top:10px;" data-show="institutional">
+      Alle Renditen netto nach Transaktionskosten.
+    </p>
+    <p style="font-size:12px;color:rgba(255,255,255,0.22);max-width:600px;line-height:1.65;margin-top:10px;" data-show="retail">
+      Alle Renditen netto nach Transaktionskosten und Steuern (Kapitalertragsteuer 25 % + Solidaritätszuschlag 5,5 %).
+    </p>
+  </div>
+</div>
+
+<!-- KPI Grid -->
+<div class="section-full">
+  <div class="section-inner">
+
+    <div class="perf-kpi-grid" data-show="institutional" data-reveal>
+      <div class="kpi-card">
+        <p class="kpi-label">CAGR (netto)</p>
+        <div class="kpi-value text-green" data-count="14.9" data-suffix="%" data-decimals="1">14,9 %</div>
+        <p class="kpi-sub">NDX: 17,3 %</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Sharpe Ratio</p>
+        <div class="kpi-value text-green" data-count="1.68" data-suffix="" data-decimals="2">1,68</div>
+        <p class="kpi-sub">NDX: 0,79 — 2,1× besser</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Jensen Alpha p.a.</p>
+        <div class="kpi-value text-green" data-count="10.71" data-suffix="%" data-decimals="2">+10,71 %</div>
+        <p class="kpi-sub">p &lt; 0,0001</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Max. Drawdown</p>
+        <div class="kpi-value" data-count="7.88" data-prefix="−" data-suffix="%" data-decimals="2">−7,88 %</div>
+        <p class="kpi-sub">NDX: −35,56 %</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Endwert (netto)</p>
+        <div class="kpi-value" data-count="46967" data-suffix=" €" data-decimals="0">46.967 €</div>
+        <p class="kpi-sub">aus 10.000 € Start</p>
+      </div>
+    </div>
+
+    <div class="perf-kpi-grid" data-show="retail" data-reveal>
+      <div class="kpi-card">
+        <p class="kpi-label">CAGR (netto)</p>
+        <div class="kpi-value text-green" data-count="27.8" data-suffix="%" data-decimals="1">27,8 %</div>
+        <p class="kpi-sub">NDX: 17,5 %</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Gesamtrendite</p>
+        <div class="kpi-value text-green" data-count="1445" data-suffix="%" data-decimals="0">+1.445 %</div>
+        <p class="kpi-sub">NDX: +490 %</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Sharpe Ratio</p>
+        <div class="kpi-value text-green" data-count="0.97" data-suffix="" data-decimals="2">0,97</div>
+        <p class="kpi-sub">NDX: 0,80</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Max. Drawdown</p>
+        <div class="kpi-value" data-count="36.84" data-prefix="−" data-suffix="%" data-decimals="2">−36,84 %</div>
+        <p class="kpi-sub">NDX: −35,6 %</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Endwert (netto)</p>
+        <div class="kpi-value" data-count="154543" data-suffix=" €" data-decimals="0">154.543 €</div>
+        <p class="kpi-sub">aus 10.000 € Start</p>
+      </div>
+    </div>
+
+    <!-- Equity Chart -->
+    <div class="perf-chart" data-reveal style="margin-top:40px;">
+      <div class="perf-chart-header">
+        <div>
+          <p class="perf-chart-label">
+            <span data-show="institutional">Scherbius 1.0 Institutionell vs. NASDAQ-100</span>
+            <span data-show="retail">Scherbius 1.0 Privatanleger vs. NASDAQ-100</span>
+          </p>
+          <p class="perf-chart-sub">Indexiert auf 10.000 € · Jan 2015 – Feb 2026 · Scroll/Pinch zum Zoomen</p>
+        </div>
+        <button class="chart-reset-btn" id="eq-chart-reset">Zoom zurücksetzen</button>
+      </div>
+      <div class="chart-container">
+        <canvas id="eq-chart" style="max-height:420px;"></canvas>
+      </div>
+      <div class="chart-nav-wrap" id="eq-chart-nav-wrap">
+        <canvas id="eq-chart-nav"></canvas>
+        <div class="chart-nav-overlay">
+          <div class="chart-nav-mask-l"></div>
+          <div class="chart-nav-sel">
+            <div class="chart-nav-hl"></div>
+            <div class="chart-nav-hr"></div>
+          </div>
+          <div class="chart-nav-mask-r"></div>
+        </div>
+      </div>
+      <p class="perf-chart-disclaimer">
+        Backtest 01/2015–12/2025, Live ab 15.12.2025.
+        <span data-show="institutional">Institutionelle Renditen: netto nach Transaktionskosten.</span>
+        <span data-show="retail">Privatanleger-Renditen: netto nach Transaktionskosten und Steuern (Kapitalertragsteuer 25 % + Soli 5,5 %).</span>
+        Historische Performance ist kein verlässlicher Indikator für zukünftige Ergebnisse.
+        <a href="legal/risikohinweise.html">Vollständige Risikohinweise</a>
+      </p>
+    </div>
+
+    <!-- Drawdown Chart -->
+    <div class="perf-chart" data-reveal style="margin-top:40px;">
+      <div class="perf-chart-header">
+        <div>
+          <p class="perf-chart-label">Drawdown-Vergleich — Scherbius vs. NASDAQ-100</p>
+          <p class="perf-chart-sub">Jan 2015 – Feb 2026 · Prozentualer Rückgang vom jeweiligen Allzeithoch</p>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="dd-chart" style="max-height:260px;"></canvas>
+      </div>
+      <p class="perf-chart-disclaimer">
+        Drawdown = prozentualer Rückgang vom jeweils letzten Allzeithoch (ATH). Werte nahe 0 % bedeuten: das Portfolio notiert auf oder nahe seinem ATH.
+        <span data-show="institutional">Institutionelle Variante: max. Drawdown −7,88 % (NDX: −35,56 %).</span>
+        <span data-show="retail">Privatanleger-Variante (netto nach Steuern): max. Drawdown −36,84 % (NDX: −35,56 %).</span>
+        Historische Performance ist kein verlässlicher Indikator für zukünftige Ergebnisse.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Annual Returns -->
+<div class="section-full section-warm">
+  <div class="section-inner">
+    <div class="section-header" data-reveal>
+      <p class="section-label">Jahresrenditen</p>
+      <h2 class="section-title">Rendite nach Jahr,<br><em>im Vergleich</em></h2>
+    </div>
+
+    <div class="perf-chart" data-reveal style="margin-bottom:40px;">
+      <div class="perf-chart-header">
+        <div>
+          <p class="perf-chart-label">
+            <span data-show="institutional">Jahresrenditen Institutionell vs. NASDAQ-100 (%)</span>
+            <span data-show="retail">Jahresrenditen Privatanleger vs. NASDAQ-100 (%)</span>
+          </p>
+          <p class="perf-chart-sub">2015–2026* (* laufendes Jahr, Stand Feb 2026)</p>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="annual-chart" style="max-height:300px;"></canvas>
+      </div>
+    </div>
+
+    <!-- Table Institutional -->
+    <div data-show="institutional" data-reveal>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+        <table class="perf-table">
+          <thead><tr><th>Jahr</th><th>Scherbius 1.0 Inst.</th><th>NASDAQ-100</th><th>Differenz</th></tr></thead>
+          <tbody>
+            <tr class="year-row"><td>2015</td><td class="pos">+15,1 %</td><td class="pos">+8,6 %</td><td class="pos">+6,5 %</td></tr>
+            <tr class="year-row"><td>2016</td><td class="pos">+6,1 %</td><td class="pos">+5,9 %</td><td class="pos">+0,2 %</td></tr>
+            <tr class="year-row"><td>2017</td><td class="pos">+11,7 %</td><td class="pos">+31,5 %</td><td class="neg">−19,8 %</td></tr>
+            <tr class="year-row"><td>2018</td><td class="pos">+12,5 %</td><td class="neg">−1,0 %</td><td class="pos">+13,5 %</td></tr>
+            <tr class="year-row"><td>2019</td><td class="pos">+10,8 %</td><td class="pos">+38,0 %</td><td class="neg">−27,2 %</td></tr>
+            <tr class="year-row"><td>2020</td><td class="pos">+11,0 %</td><td class="pos">+47,6 %</td><td class="neg">−36,6 %</td></tr>
+            <tr class="year-row"><td>2021</td><td class="pos">+24,4 %</td><td class="pos">+26,6 %</td><td class="neg">−2,2 %</td></tr>
+            <tr class="year-row"><td>2022</td><td class="pos">+14,3 %</td><td class="neg">−33,0 %</td><td class="pos">+47,3 %</td></tr>
+            <tr class="year-row"><td>2023</td><td class="pos">+11,5 %</td><td class="pos">+53,8 %</td><td class="neg">−42,3 %</td></tr>
+            <tr class="year-row"><td>2024</td><td class="pos">+21,9 %</td><td class="pos">+24,9 %</td><td class="neg">−3,0 %</td></tr>
+            <tr class="year-row"><td>2025</td><td class="pos">+23,8 %</td><td class="pos">+20,2 %</td><td class="pos">+3,6 %</td></tr>
+            <tr class="year-row" style="background:#F7F5F2;"><td>2026*</td><td class="pos">+3,9 %</td><td class="neg">−0,9 %</td><td class="pos">+4,8 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Table Retail -->
+    <div data-show="retail" data-reveal>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+        <table class="perf-table">
+          <thead><tr><th>Jahr</th><th>Scherbius 1.0 Priv.</th><th>NASDAQ-100</th><th>Differenz</th></tr></thead>
+          <tbody>
+            <tr class="year-row"><td>2015</td><td class="pos">+34,79 %</td><td class="pos">+8,6 %</td><td class="pos">+26,2 %</td></tr>
+            <tr class="year-row"><td>2016</td><td class="pos">+23,39 %</td><td class="pos">+5,9 %</td><td class="pos">+17,5 %</td></tr>
+            <tr class="year-row"><td>2017</td><td class="pos">+5,14 %</td><td class="pos">+31,5 %</td><td class="neg">−26,4 %</td></tr>
+            <tr class="year-row"><td>2018</td><td class="pos">+69,44 %</td><td class="neg">−1,0 %</td><td class="pos">+70,5 %</td></tr>
+            <tr class="year-row"><td>2019</td><td class="pos">+1,15 %</td><td class="pos">+38,0 %</td><td class="neg">−36,8 %</td></tr>
+            <tr class="year-row"><td>2020</td><td class="pos">+1,31 %</td><td class="pos">+47,6 %</td><td class="neg">−46,3 %</td></tr>
+            <tr class="year-row"><td>2021</td><td class="pos">+56,18 %</td><td class="pos">+26,6 %</td><td class="pos">+29,6 %</td></tr>
+            <tr class="year-row"><td>2022</td><td class="pos">+41,55 %</td><td class="neg">−33,0 %</td><td class="pos">+74,6 %</td></tr>
+            <tr class="year-row"><td>2023</td><td class="pos">+24,33 %</td><td class="pos">+53,8 %</td><td class="neg">−29,5 %</td></tr>
+            <tr class="year-row"><td>2024</td><td class="pos">+17,10 %</td><td class="pos">+24,9 %</td><td class="neg">−7,8 %</td></tr>
+            <tr class="year-row"><td>2025</td><td class="pos">+51,72 %</td><td class="pos">+20,2 %</td><td class="pos">+31,6 %</td></tr>
+            <tr class="year-row" style="background:#F7F5F2;"><td>2026*</td><td class="pos">+4,23 %</td><td class="neg">−1,15 %</td><td class="pos">+5,4 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p style="font-size:10px;color:var(--text-dim);margin-top:12px;">* 2026: laufendes Jahr, Stand Februar 2026.</p>
+  </div>
+</div>
+
+<!-- Live Performance seit Auflage -->
+<div class="section-full">
+  <div class="section-inner">
+    <div class="section-header" data-reveal>
+      <p class="section-label">Live Track Record</p>
+      <h2 class="section-title">Performance seit Auflage,<br><em>ab 15. Dez 2025</em></h2>
+      <p class="section-desc">
+        Kumulierte Rendite seit dem Live-Start am 15. Dezember 2025 — Portfolio vs. NASDAQ-100.
+        <span data-show="retail">Privatanleger-Renditen netto nach Transaktionskosten und Steuern.</span>
+        <span data-show="institutional">Institutionelle Renditen netto nach Transaktionskosten.</span>
+      </p>
+    </div>
+    <div class="perf-chart" data-reveal>
+      <div class="perf-chart-header">
+        <div>
+          <p class="perf-chart-label">
+            <span data-show="institutional">Kumulierte Performance — Scherbius 1.0 Institutionell vs. NASDAQ-100</span>
+            <span data-show="retail">Kumulierte Performance — Scherbius 1.0 Privatanleger vs. NASDAQ-100</span>
+          </p>
+          <p class="perf-chart-sub">15. Dez 2025 – Feb 2026 · Kumulierte Rendite in % seit Auflage</p>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="live-chart" style="max-height:280px;"></canvas>
+      </div>
+      <p class="perf-chart-disclaimer">
+        Live-Daten ab 15.12.2025.
+        <span data-show="retail">Renditen netto nach Transaktionskosten und Kapitalertragsteuer (25 % + Soli 5,5 %).</span>
+        <span data-show="institutional">Renditen netto nach Transaktionskosten.</span>
+        Historische Performance ist kein verlässlicher Indikator für zukünftige Ergebnisse.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Cash / Investitionsquote -->
+<div class="section-full" data-show="retail">
+  <div class="section-inner">
+    <div class="section-header" data-reveal>
+      <p class="section-label">Portfolio Allokation</p>
+      <h2 class="section-title">Cash vs. Investiert,<br><em>täglich</em></h2>
+      <p class="section-desc">
+        Scherbius 1.0 ist selten vollständig investiert. Ein dauerhaft hoher Cash Anteil verhindert Totalverlustszenarien systematisch, das System geht nur dann ins Risiko, wenn strukturelle Marktineffizienzen identifiziert werden.
+      </p>
+    </div>
+
+    <div class="perf-chart" data-reveal>
+      <div class="perf-chart-header">
+        <div>
+          <p class="perf-chart-label">Cash vs. Investiert — tägliche Allokation</p>
+          <p class="perf-chart-sub">Privatanleger · März 2015 – Feb 2026 · Anteil am Gesamtkapital</p>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="cash-inv-chart" style="max-height:300px;"></canvas>
+      </div>
+      <p class="perf-chart-disclaimer">
+        Investiert (grün) + Cash (grau) = 100 %. Darstellung auf Basis täglicher Portfoliogewichtungen im Backtest Zeitraum.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Cash / Investitionsquote — Institutionell -->
+<div class="section-full" data-show="institutional">
+  <div class="section-inner">
+    <div class="section-header" data-reveal>
+      <p class="section-label">Portfolio-Allokation</p>
+      <h2 class="section-title">Cash vs. Investiert,<br><em>täglich</em></h2>
+      <p class="section-desc">
+        Scherbius 1.0 Institutionell ist selten vollständig investiert. Der variablen Cash Anteil ist ein integraler Bestandteil des Risikomanagementsystems, das Portfolio geht nur dann ins Risiko, wenn strukturelle Marktineffizienzen identifiziert werden. An mehr als 74 % aller Handelstage werden aktiv Positionen gehalten.
+      </p>
+    </div>
+    <div class="perf-chart" data-reveal>
+      <div class="perf-chart-header">
+        <div>
+          <p class="perf-chart-label">Cash vs. Investiert — tägliche Allokation</p>
+          <p class="perf-chart-sub">Institutionell · Jan 2015 – Feb 2026 · Anteil am Gesamtkapital</p>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="cash-inv-chart-inst" style="max-height:300px;"></canvas>
+      </div>
+      <p class="perf-chart-disclaimer">
+        Investiert (grün) + Cash (grau) = 100 %. Darstellung auf Basis täglicher Portfoliogewichtungen im Backtest-Zeitraum.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Statistik Block 1: Rendite & Wachstum
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section-full section-warm">
+  <div class="section-inner">
+    <div class="section-header" data-reveal>
+      <p class="section-label">Statistischer Vergleich · 1/3</p>
+      <h2 class="section-title">Rendite &amp; Wachstum,<br><em>im Detail</em></h2>
+    </div>
+
+    <!-- Erklärttext Retail -->
+    <div data-show="retail" data-reveal>
+      <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
+        Scherbius 1.0 erzielt eine durchschnittliche Jahresrendite von <strong>27,53 %</strong> — netto nach Transaktionskosten und voller Kapitalertragsteuer. Der Sharpe-Ratio von <strong>0,97</strong> zeigt: Die Rendite kommt nicht durch übermäßige Risikonahme, sondern durch konsistente Signalqualität. Der <strong>Profit Factor von 1,74</strong> bedeutet: Für jeden verlorenen Euro werden im Durchschnitt 1,74 Euro verdient — über 11 Jahre hinweg stabil.
+      </p>
+    </div>
+
+    <!-- Erklärttext Institutionell -->
+    <div data-show="institutional" data-reveal>
+      <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
+        Scherbius 1.0 Institutionell erzielt ein CAGR von <strong>14,9 %</strong> netto nach Transaktionskosten bei einem <strong>Sharpe-Ratio von 1,68</strong> — mehr als doppelt so hoch wie der NASDAQ-100 (0,79). Der Profit Factor von <strong>1,64</strong> belegt, dass die Strategie systematisch mehr Gewinne als Verluste produziert. Die Trefferquote von 62,2 % zeigt: Mehr als 6 von 10 Handelsentscheidungen sind profitabel.
+      </p>
+    </div>
+
+    <!-- Tabelle Institutionell -->
+    <div data-show="institutional" data-reveal>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:16px;">
+        <table class="stats-table">
+          <thead><tr><th>Kennzahl</th><th style="text-align:right;color:var(--accent);">Scherbius 1.0 Inst.</th><th style="text-align:right;">NASDAQ-100</th></tr></thead>
+          <tbody>
+            <tr><td>CAGR (netto)</td><td class="stat-pos">14,90 %</td><td class="stat-muted">17,30 %</td></tr>
+            <tr><td>Sharpe Ratio</td><td class="stat-pos">1,68</td><td class="stat-muted">0,79</td></tr>
+            <tr><td>Sortino Ratio</td><td class="stat-pos">0,19</td><td class="stat-muted">0,07</td></tr>
+            <tr><td>Volatilität (ann.)</td><td style="text-align:right;font-weight:600;color:var(--green);">8,99 %</td><td class="stat-muted">22,25 %</td></tr>
+            <tr><td>Profit Factor</td><td class="stat-pos">1,64</td><td class="stat-muted">1,17</td></tr>
+            <tr><td>Trefferquote (Trades)</td><td class="stat-pos">62,2 %</td><td class="stat-muted">55,96 %</td></tr>
+            <tr><td>Positive 12-Monats-Fenster</td><td class="stat-pos">100 %</td><td class="stat-muted">74 %</td></tr>
+            <tr><td>Endwert (aus 10.000 €, netto)</td><td class="stat-pos">46.967 €</td><td class="stat-muted">59.131 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tabelle Retail -->
+    <div data-show="retail" data-reveal>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:16px;">
+        <table class="stats-table">
+          <thead><tr><th>Kennzahl</th><th style="text-align:right;color:var(--accent);">Scherbius 1.0 Priv.</th><th style="text-align:right;">NASDAQ-100</th></tr></thead>
+          <tbody>
+            <tr><td>CAGR (netto)</td><td class="stat-pos">27,8 %</td><td class="stat-muted">17,3 %</td></tr>
+            <tr><td>Gesamtrendite (netto)</td><td class="stat-pos">+1.445 %</td><td class="stat-muted">+490 %</td></tr>
+            <tr><td>Ø Jahresrendite</td><td class="stat-pos">27,53 %</td><td class="stat-muted">18,49 %</td></tr>
+            <tr><td>Sharpe Ratio</td><td class="stat-pos">0,97</td><td class="stat-muted">0,79</td></tr>
+            <tr><td>Sortino Ratio</td><td class="stat-pos">0,12</td><td class="stat-muted">0,07</td></tr>
+            <tr><td>Volatilität (ann.)</td><td style="text-align:right;font-weight:600;color:var(--text);">29,00 %</td><td class="stat-muted">22,25 %</td></tr>
+            <tr><td>Profit Factor</td><td class="stat-pos">1,74</td><td class="stat-muted">1,16</td></tr>
+            <tr><td>Trefferquote (Trades)</td><td class="stat-pos">61,73 %</td><td class="stat-muted">55,94 %</td></tr>
+            <tr><td>Endwert (aus 10.000 €, netto)</td><td class="stat-pos">154.543 €</td><td class="stat-muted">59.027 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Statistik Block 2: Risiko & Drawdown
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section-full">
+  <div class="section-inner">
+    <div class="section-header" data-reveal>
+      <p class="section-label">Statistischer Vergleich · 2/3</p>
+      <h2 class="section-title">Risiko &amp; Drawdown,<br><em>im Detail</em></h2>
+    </div>
+
+    <!-- Erklärttext Retail -->
+    <div data-show="retail" data-reveal>
+      <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
+        An <strong>95 % aller Handelstage</strong> verliert das Retail-Portfolio nicht mehr als <strong>0,71 %</strong> — der NASDAQ-100 verliert an diesen Tagen mehr als dreimal so viel (2,23 %). Im schlechtesten Fall (CVaR, Expected Shortfall) liegt der durchschnittliche Verlust bei <strong>2,66 %</strong>, verglichen mit 3,34 % beim Index. Der maximale Drawdown von −36,84 % resultiert aus der Steuerbelastung; die Erholungszeit von 246 Tagen liegt deutlich unter dem NASDAQ-100 mit 519 Tagen.
+      </p>
+    </div>
+
+    <!-- Erklärttext Institutionell -->
+    <div data-show="institutional" data-reveal>
+      <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
+        Scherbius 1.0 Institutionell hält den täglichen VaR mit <strong>0,51 %</strong> auf einem Niveau, das mehr als viermal geringer ist als der NASDAQ-100 (2,23 %). Der <strong>maximale Drawdown von −7,88 %</strong> wurde in nur <strong>122 Tagen</strong> vollständig erholt (NDX: 519 Tage). Die durchschnittliche Drawdown-Tiefe von 0,68 % (NDX: 2,77 %) zeigt: Das Portfolio arbeitet über den gesamten Zeitraum nahe an seinem Allzeithoch.
+      </p>
+    </div>
+
+    <!-- Tabelle Institutionell -->
+    <div data-show="institutional" data-reveal>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:16px;">
+        <table class="stats-table">
+          <thead><tr><th>Kennzahl</th><th style="text-align:right;color:var(--accent);">Scherbius 1.0 Inst.</th><th style="text-align:right;">NASDAQ-100</th></tr></thead>
+          <tbody>
+            <tr><td>Max. Drawdown</td><td style="text-align:right;font-weight:600;color:var(--green);">−7,88 %</td><td class="stat-muted">−35,56 %</td></tr>
+            <tr><td>Ø Drawdown-Tiefe</td><td style="text-align:right;font-weight:600;color:var(--green);">0,68 %</td><td class="stat-muted">2,77 %</td></tr>
+            <tr><td>Max. Drawdown-Dauer (Tage)</td><td style="text-align:right;font-weight:600;color:var(--green);">122</td><td class="stat-muted">519</td></tr>
+            <tr><td>VaR 95 % (historisch, täglich)</td><td style="text-align:right;font-weight:600;color:var(--green);">0,51 %</td><td class="stat-muted">2,23 %</td></tr>
+            <tr><td>CVaR / Expected Shortfall 95 %</td><td style="text-align:right;font-weight:600;color:var(--green);">1,06 %</td><td class="stat-muted">3,35 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tabelle Retail -->
+    <div data-show="retail" data-reveal>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:16px;">
+        <table class="stats-table">
+          <thead><tr><th>Kennzahl</th><th style="text-align:right;color:var(--accent);">Scherbius 1.0 Priv.</th><th style="text-align:right;">NASDAQ-100</th></tr></thead>
+          <tbody>
+            <tr><td>Max. Drawdown</td><td style="text-align:right;font-weight:600;color:var(--accent);">−36,84 %</td><td class="stat-muted">−35,56 %</td></tr>
+            <tr><td>Ø Drawdown-Tiefe</td><td style="text-align:right;font-weight:600;color:var(--text);">2,88 %</td><td class="stat-muted">2,77 %</td></tr>
+            <tr><td>Max. Drawdown-Dauer (Tage)</td><td style="text-align:right;font-weight:600;color:var(--green);">246</td><td class="stat-muted">519</td></tr>
+            <tr><td>VaR 95 % (historisch, täglich)</td><td style="text-align:right;font-weight:600;color:var(--green);">0,71 %</td><td class="stat-muted">2,23 %</td></tr>
+            <tr><td>CVaR / Expected Shortfall 95 %</td><td style="text-align:right;font-weight:600;color:var(--green);">2,66 %</td><td class="stat-muted">3,34 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Statistik Block 3: Faktormodell-Analyse
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section-full section-warm">
+  <div class="section-inner">
+    <div class="section-header" data-reveal>
+      <p class="section-label">Statistischer Vergleich · 3/3</p>
+      <h2 class="section-title">Faktormodell-Analyse,<br><em>CAPM &amp; Fama-French</em></h2>
+    </div>
+
+    <!-- Erklärttext Retail -->
+    <div data-show="retail" data-reveal>
+      <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
+        Das <strong>Jensen Alpha von +23,27 % p.a.</strong> ist statistisch hochsignifikant (p &lt; 0,01). Der <strong>R²-Wert von 3,33 %</strong> belegt, dass weniger als 4 % der Portfoliorendite durch Marktbewegungen erklärt werden — die Strategie erzeugt echtes, marktunabhängiges Alpha. Das Fama-French 3-Faktor-Modell bestätigt dieses Ergebnis (<strong>FF3-Alpha: +23,17 %</strong>) und schließt aus, dass die Überrendite auf bekannte Faktorprämien (Size, Value) zurückzuführen ist. Das <strong>Beta von 0,29</strong> zeigt eine sehr geringe Abhängigkeit vom Gesamtmarkt.
+      </p>
+    </div>
+
+    <!-- Erklärttext Institutionell -->
+    <div data-show="institutional" data-reveal>
+      <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
+        Das <strong>Jensen Alpha von +10,71 % p.a.</strong> ist mit p &lt; 0,0001 außerordentlich hochsignifikant. Das <strong>Beta von 0,127</strong> belegt eine extrem geringe Marktabhängigkeit — das Portfolio bewegt sich weitgehend unabhängig vom NASDAQ-100. Der <strong>R²-Wert von 6,7 %</strong> zeigt: Nur 6,7 % der Portfoliorendite werden durch den Index erklärt. Das Fama-French 3-Faktor-Modell bestätigt das Ergebnis mit einem <strong>FF3-Alpha von +10,74 %</strong> — die Überrendite ist auf echte Signalqualität zurückzuführen, nicht auf bekannte Faktorprämien.
+      </p>
+    </div>
+
+    <!-- Tabelle Institutionell -->
+    <div data-show="institutional" data-reveal>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:16px;">
+        <table class="stats-table">
+          <thead><tr><th>Kennzahl</th><th style="text-align:right;color:var(--accent);">Scherbius 1.0 Inst.</th><th style="text-align:right;">NASDAQ-100</th></tr></thead>
+          <tbody>
+            <tr><td>Jensen Alpha p.a. (CAPM)</td><td class="stat-pos">+10,71 %</td><td class="stat-muted">—</td></tr>
+            <tr><td>p-Wert (CAPM Alpha)</td><td class="stat-pos">&lt; 0,0001</td><td class="stat-muted">—</td></tr>
+            <tr><td>Fama-French 3-Faktor Alpha p.a.</td><td class="stat-pos">+10,74 %</td><td class="stat-muted">—</td></tr>
+            <tr><td>p-Wert (FF3 Alpha)</td><td class="stat-pos">&lt; 0,0001</td><td class="stat-muted">—</td></tr>
+            <tr><td>Beta (vs. NASDAQ-100)</td><td style="text-align:right;font-weight:600;color:var(--green);">0,127</td><td class="stat-muted">1,000</td></tr>
+            <tr><td>R² (Markterklärungsgehalt)</td><td style="text-align:right;font-weight:600;color:var(--green);">6,7 %</td><td class="stat-muted">88,2 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tabelle Retail -->
+    <div data-show="retail" data-reveal>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:16px;">
+        <table class="stats-table">
+          <thead><tr><th>Kennzahl</th><th style="text-align:right;color:var(--accent);">Scherbius 1.0 Priv.</th><th style="text-align:right;">NASDAQ-100</th></tr></thead>
+          <tbody>
+            <tr><td>Jensen Alpha p.a. (CAPM)</td><td class="stat-pos">+23,27 %</td><td class="stat-muted">—</td></tr>
+            <tr><td>p-Wert (CAPM Alpha)</td><td class="stat-pos">&lt; 0,01</td><td class="stat-muted">—</td></tr>
+            <tr><td>Fama-French 3-Faktor Alpha p.a.</td><td class="stat-pos">+23,17 %</td><td class="stat-muted">—</td></tr>
+            <tr><td>p-Wert (FF3 Alpha)</td><td class="stat-pos">&lt; 0,01</td><td class="stat-muted">—</td></tr>
+            <tr><td>Beta (vs. NASDAQ-100)</td><td style="text-align:right;font-weight:600;color:var(--text);">0,29</td><td class="stat-muted">1,000</td></tr>
+            <tr><td>R² (Markterklärungsgehalt)</td><td style="text-align:right;font-weight:600;color:var(--text);">3,33 %</td><td class="stat-muted">88,2 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p style="font-size:10px;color:var(--text-dim);line-height:1.6;max-width:680px;">
+      Alle Angaben basieren auf Backtests (01/2015–12/2025) und Live-Daten ab 15.12.2025.
+      <span data-show="institutional">Institutionelle Renditen: netto nach Transaktionskosten.</span>
+      <span data-show="retail">Privatanleger-Renditen: netto nach Transaktionskosten und Steuern (Kapitalertragsteuer 25 % + Solidaritätszuschlag 5,5 %).</span>
+      <a href="legal/risikohinweise.html" style="color:var(--text-dim);">Vollständige Risikohinweise</a>
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Turnover-Analyse
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section-full">
+  <div class="section-inner">
+    <div class="section-header" data-reveal>
+      <p class="section-label">Handelsaktivität</p>
+      <h2 class="section-title">Turnover-Analyse,<br><em>tatsächliche Trades</em></h2>
+    </div>
+
+    <!-- Erklärttext Retail -->
+    <div data-show="retail" data-reveal>
+      <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
+        Der annualisierte Turnover von <strong>1.822,8 %</strong> bedeutet: das Portfolio-Volumen wird pro Jahr etwa 18-mal umgeschlagen. An <strong>36,6 % aller Handelstage</strong> finden tatsächliche Transaktionen statt — an den übrigen Tagen hält die Strategie Positionen ohne Änderung. Der Median-Turnover von 0 % zeigt, dass an den meisten aktiven Tagen keine Umschichtung stattfindet; Transaktionen erfolgen gebündelt und gezielt.
+      </p>
+    </div>
+
+    <!-- Erklärttext Institutionell -->
+    <div data-show="institutional" data-reveal>
+      <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
+        Der annualisierte Turnover von <strong>3.119,0 %</strong> spiegelt die höhere Handelsdichte der institutionellen Strategie wider. An <strong>74,2 % aller Handelstage</strong> werden aktiv Positionen angepasst — das System rebalanciert täglich regelbasiert. Der maximale Einzeltag-Turnover von 110,95 % zeigt, dass das Gesamtportfolio an einzelnen Tagen vollständig umgeschichtet werden kann.
+      </p>
+    </div>
+
+    <!-- Tabelle Institutionell -->
+    <div data-show="institutional" data-reveal>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:16px;">
+        <table class="stats-table">
+          <thead><tr><th>Metric</th><th style="text-align:right;color:var(--accent);">Scherbius 1.0 Inst.</th></tr></thead>
+          <tbody>
+            <tr><td>Annualisierter Turnover</td><td class="stat-muted">3.119,0 %</td></tr>
+            <tr><td>Ø Täglicher Turnover</td><td class="stat-muted">12,435 %</td></tr>
+            <tr><td>Median Täglicher Turnover</td><td class="stat-muted">7,577 %</td></tr>
+            <tr><td>Max. Turnover an einem Tag</td><td class="stat-muted">110,95 %</td></tr>
+            <tr><td>Handelstage mit Trades</td><td class="stat-muted">2.080 / 2.804 Tage</td></tr>
+            <tr><td>Anteil Tage mit Trades</td><td class="stat-muted">74,2 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tabelle Retail -->
+    <div data-show="retail" data-reveal>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:16px;">
+        <table class="stats-table">
+          <thead><tr><th>Metric</th><th style="text-align:right;color:var(--accent);">Scherbius 1.0 Priv.</th></tr></thead>
+          <tbody>
+            <tr><td>Annualisierter Turnover</td><td class="stat-muted">1.822,8 %</td></tr>
+            <tr><td>Ø Täglicher Turnover</td><td class="stat-muted">7,148 %</td></tr>
+            <tr><td>Median Täglicher Turnover</td><td class="stat-muted">0 %</td></tr>
+            <tr><td>Max. Turnover an einem Tag</td><td class="stat-muted">109,7 %</td></tr>
+            <tr><td>Handelstage mit Trades</td><td class="stat-muted">1.008 / 2.755 Tage</td></tr>
+            <tr><td>Anteil Tage mit Trades</td><td class="stat-muted">36,6 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Wahrscheinlichkeit positiver Wertentwicklung
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section-full section-warm">
+  <div class="section-inner">
+    <div class="section-header" data-reveal>
+      <p class="section-label">Positivwahrscheinlichkeit</p>
+      <h2 class="section-title">Wahrscheinlichkeit<br><em>positiver Wertentwicklung</em></h2>
+    </div>
+
+    <!-- Erklärttext Retail -->
+    <div data-show="retail" data-reveal>
+      <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
+        Über einen <strong>12-Monats-Horizont</strong> erzielte Scherbius 1.0 in <strong>95,10 %</strong> aller rollierenden Fenster eine positive Rendite — der NASDAQ-100 nur in 85,14 %. Über 24 Monate ist die Quote <strong>100 %</strong>: jedes beliebige 24-Monats-Fenster im Backtest war profitabel. Diese Kennzahl misst, wie konsistent die Strategie über verschiedene Haltedauern Gewinne erzeugt.
+      </p>
+    </div>
+
+    <!-- Erklärttext Institutionell -->
+    <div data-show="institutional" data-reveal>
+      <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
+        Über einen <strong>12-Monats-Horizont</strong> erzielte Scherbius 1.0 Institutionell in <strong>100 %</strong> aller rollierenden Fenster eine positive Rendite — der NASDAQ-100 in 85,14 %. Bereits über <strong>3 Monate</strong> liegt die Trefferquote bei 93,91 % (NDX: 75,23 %). Die institutionelle Strategie ist damit besonders für Anleger geeignet, die auf rollierender Basis Rechenschaft gegenüber Investoren ablegen.
+      </p>
+    </div>
+
+    <!-- Tabellen Institutionell -->
+    <div data-show="institutional" data-reveal>
+      <p style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;">Portfolio vs. NASDAQ-100 vs. MSCI World (IWDA.L, USD)</p>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:16px;">
+        <table class="stats-table">
+          <thead><tr><th>Horizont</th><th style="text-align:right;color:var(--accent);">Portfolio</th><th style="text-align:right;">NASDAQ-100</th><th style="text-align:right;">MSCI World</th></tr></thead>
+          <tbody>
+            <tr><td>Nach 3 Monaten</td><td class="stat-pos">93,91 %</td><td class="stat-muted">75,23 %</td><td class="stat-muted">74,82 %</td></tr>
+            <tr><td>Nach 6 Monaten</td><td class="stat-pos">98,66 %</td><td class="stat-muted">79,75 %</td><td class="stat-muted">75,11 %</td></tr>
+            <tr><td>Nach 12 Monaten</td><td class="stat-pos">100,00 %</td><td class="stat-muted">85,14 %</td><td class="stat-muted">78,95 %</td></tr>
+            <tr><td>Nach 24 Monaten</td><td class="stat-pos">100,00 %</td><td class="stat-muted">90,72 %</td><td class="stat-muted">93,25 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tabellen Retail -->
+    <div data-show="retail" data-reveal>
+      <p style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;">Portfolio vs. NASDAQ-100 vs. MSCI World (IWDA.L, USD)</p>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:16px;">
+        <table class="stats-table">
+          <thead><tr><th>Horizont</th><th style="text-align:right;color:var(--accent);">Portfolio</th><th style="text-align:right;">NASDAQ-100</th><th style="text-align:right;">MSCI World</th></tr></thead>
+          <tbody>
+            <tr><td>Nach 3 Monaten</td><td class="stat-pos">81,33 %</td><td class="stat-muted">75,23 %</td><td class="stat-muted">74,83 %</td></tr>
+            <tr><td>Nach 6 Monaten</td><td class="stat-pos">88,91 %</td><td class="stat-muted">79,75 %</td><td class="stat-muted">75,12 %</td></tr>
+            <tr><td>Nach 12 Monaten</td><td class="stat-pos">95,10 %</td><td class="stat-muted">85,14 %</td><td class="stat-muted">78,96 %</td></tr>
+            <tr><td>Nach 24 Monaten</td><td class="stat-pos">100,00 %</td><td class="stat-muted">90,72 %</td><td class="stat-muted">93,25 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-bg-lines"></div>
+  <div class="cta-inner" data-reveal>
+    <p class="section-label" style="color:var(--accent);text-align:center;margin-bottom:20px;">Zugang</p>
+    <h2 class="cta-title" data-show="institutional">Kontakt aufnehmen</h2>
+    <h2 class="cta-title" data-show="retail">14 Tage kostenlos testen</h2>
+    <p class="cta-desc" data-show="institutional">Sprechen Sie mit uns über Scherbius 1.0 Institutionell — Strategie, Konditionen, Due Diligence.</p>
+    <p class="cta-desc" data-show="retail">Kein Kreditkartendaten. Kein automatisches Abonnement. Überzeugen Sie sich selbst.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn btn-primary" data-show="institutional">Kontakt aufnehmen</a>
+      <a href="pricing.html#trial" class="btn btn-primary" data-show="retail">Kostenlos testen</a>
+      <a href="methodik.html" class="btn-outline-white">Methodik-Dokumentation</a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-pill" style="margin-bottom:20px;"><img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="28"></div>
+      <p class="footer-brand-tagline">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</p>
+      <a href="https://linkedin.com/company/scherbius-analytics/" target="_blank" rel="noopener noreferrer" style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;">LinkedIn</a>
+    </div>
+    <div>
+      <p class="footer-col-title">Navigation</p>
+      <ul class="footer-links">
+        <li><a href="methodik.html">Methodik</a></li>
+        <li><a href="performance.html">Performance</a></li>
+        <li><a href="anleitung.html">Anleitung</a></li>
+        <li><a href="pricing.html">Preise</a></li>
+        <li><a href="about.html">Über uns</a></li>
+        <li><a href="contact.html">Kontakt</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Ressourcen</p>
+      <ul class="footer-links">
+        <li><a href="archive.html">Portfolio-Archiv</a></li>
+        <li><a href="legal/risikohinweise.html">Risikohinweise</a></li>
+        <li><a href="legal/datenschutz.html">Datenschutzerklärung</a></li>
+        <li><a href="legal/impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Kontakt</p>
+      <ul class="footer-links">
+        <li style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding-bottom:2px;">F. Kaya</li>
+        <li><a href="mailto:kaya@scherbius.de">kaya@scherbius.de</a></li>
+        <li style="margin-bottom:12px;"><a href="tel:+4915208755758">+49 152 08755758</a></li>
+        <li style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding-bottom:2px;">E. Richter</li>
+        <li><a href="mailto:richter@scherbius.de">richter@scherbius.de</a></li>
+        <li><a href="tel:+4915170854496">+49 151 70854496</a></li>
+      </ul>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,0.1);padding:40px 0;margin-top:16px;">
+    <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:20px;">Disclaimer / Risikohinweis</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;">
+      <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.75;margin:0;">Die hier bereitgestellten Informationen stellen keine Anlageberatung im Sinne des § 2 Abs. 8 Nr. 10 WpHG dar. Die Inhalte dienen ausschließlich allgemeinen Informationszwecken und berücksichtigen keine individuellen Kenntnisse und Erfahrungen, Anlageziele, finanzielle Verhältnisse, Risikobereitschaft oder Verlusttragfähigkeit der Empfänger. Anlageentscheidungen, die auf Basis dieser Informationen getroffen werden, erfolgen ausschließlich auf eigenes Risiko und in eigener Verantwortung.</p>
+      <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.75;margin:0;">Der Handel mit Finanzinstrumenten, insbesondere Aktien und Derivaten, ist mit erheblichen Risiken bis hin zum Totalverlust verbunden. Vergangene Wertentwicklungen, Backtests und Modellrechnungen sind keine Garantie für zukünftige Ergebnisse. Scherbius Analytics UG (haftungsbeschränkt) übernimmt keine Haftung für Verluste oder Schäden, die aus der Nutzung der bereitgestellten Informationen entstehen.</p>
+      <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.75;margin:0;">Die Empfehlungen beruhen auf regelbasierten, datengetriebenen Portfolio-Allokationen ohne persönliche Beratung. Es findet keine Vermögensverwaltung statt und es werden keine Eigentumsrechte an Vermögenswerten übertragen. Methodik und Backtests werden transparent offengelegt; der Vertrieb der Anlagestrategieempfehlungen wurde gemäß § 86 Abs. 1 WpHG bei der BaFin angezeigt.</p>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <p class="footer-legal">&copy; 2026 Scherbius Analytics UG (haftungsbeschränkt) &nbsp;·&nbsp; HRB 195105 Amtsgericht Hamburg &nbsp;·&nbsp; Alle Rechte vorbehalten.</p>
+    <p class="footer-legal">
+      <a href="legal/impressum.html">Impressum</a> &nbsp;·&nbsp;
+      <a href="legal/datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="legal/risikohinweise.html">Risikohinweise</a>
+    </p>
+  </div>
+  <div style="max-width:var(--max-width);margin:0 auto;padding:20px var(--px) 32px;">
+    <p style="font-size:10px;color:rgba(255,255,255,0.15);line-height:1.65;">
+      Risikohinweis: Alle Performance-Angaben basieren auf Backtests historischer Daten. Historische Performance ist kein verlässlicher Indikator für zukünftige Ergebnisse. Scherbius Analytics UG (haftungsbeschränkt) bietet keine individuelle Anlageberatung.
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+<script src="../js/chartdata.js"></script>
+<script src="../js/charts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

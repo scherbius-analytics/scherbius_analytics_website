@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="institutional">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strategie — Scherbius Analytics</title>
+  <meta name="description" content="Dokumentation der quantitativen Methode von Scherbius 1.0 — regelbasiert, systematisch, täglich.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/reveal.css">
+  <script>try{var _m=localStorage.getItem('sa_mode');if(_m)document.documentElement.setAttribute('data-mode',_m);}catch(e){}</script>
+</head>
+<body class="page-content">
+
+<!-- Navigation -->
+<nav class="nav" id="main-nav">
+  <a href="../index.html" class="nav-logo">
+    <img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="32">
+  </a>
+  <ul class="nav-links">
+    <li><a href="strategy.html" class="active">Strategie</a></li>
+    <li><a href="performance.html">Performance</a></li>
+    <li><a href="anleitung.html">Anleitung</a></li>
+    <li><a href="archive.html">Archiv</a></li>
+    <li><a href="pricing.html">Preise</a></li>
+    <li><a href="about.html">Über uns</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="mode-toggle">
+      <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+      <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+    </div>
+    <div id="nav-auth-out" class="nav-auth">
+      <a href="members/login.html" class="nav-login-link">Login</a>
+      <a href="members/register.html" class="btn btn-primary nav-cta">Konto erstellen</a>
+    </div>
+    <div id="nav-auth-in" class="nav-auth" style="display:none;">
+      <span id="nav-user-name" style="font-size:11px;color:rgba(255,255,255,0.45);"></span>
+      <a href="members/dashboard.html" class="btn nav-cta">Dashboard</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<nav class="nav-mobile">
+  <a href="strategy.html">Strategie</a>
+  <a href="performance.html">Performance</a>
+  <a href="anleitung.html">Anleitung</a>
+  <a href="archive.html">Archiv</a>
+  <a href="pricing.html">Preise</a>
+  <a href="about.html">Über uns</a>
+  <a href="contact.html">Kontakt</a>
+  <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
+    <a href="members/login.html" style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);">Login</a>
+    <a href="members/register.html" style="font-size:13px;font-weight:600;color:var(--accent);">Konto erstellen</a>
+  </div>
+  <div class="mode-toggle" style="margin-top:16px;width:100%;">
+    <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+    <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+  </div>
+</nav>
+
+
+<!-- Page Hero -->
+<div style="background:var(--dark);padding:120px var(--px) 80px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;opacity:0.035;background-image:repeating-linear-gradient(90deg,#fff 0,#fff 1px,transparent 1px,transparent 80px),repeating-linear-gradient(0deg,#fff 0,#fff 1px,transparent 1px,transparent 80px);pointer-events:none;"></div>
+  <div style="max-width:var(--max-width);margin:0 auto;position:relative;z-index:2;">
+    <p class="section-label" style="color:var(--accent);" data-reveal>Scherbius 1.0 — Methode</p>
+    <h1 style="font-family:'EB Garamond',serif;font-size:clamp(40px,5vw,72px);font-weight:500;color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:20px;" data-reveal>
+      <span data-show="institutional">Quantitative Strategie<br><em style="color:rgba(255,255,255,0.4)">für institutionelle Investoren</em></span>
+      <span data-show="retail">Quantitative Strategie<br><em style="color:rgba(255,255,255,0.4)">für Privatanleger</em></span>
+    </h1>
+    <p style="font-size:15px;color:rgba(255,255,255,0.45);max-width:580px;line-height:1.75;" data-reveal data-show="institutional">
+      Scherbius 1.0 Institutionell ist eine algorithmische Handelsstrategie, die auf regelbasierter Signalverarbeitung und dynamischem Risikomanagement basiert. Das Ziel: robuste, marktunkorrelierte Renditen mit streng kontrolliertem Drawdown.
+    </p>
+    <p style="font-size:15px;color:rgba(255,255,255,0.45);max-width:580px;line-height:1.75;" data-reveal data-show="retail">
+      Scherbius 1.0 Privatanleger ist eine algorithmische Handelsstrategie, die auf regelbasierter Signalverarbeitung basiert. Das Ziel: überlegene langfristige Renditen durch systematische Ausnutzung von Marktineffizienzen.
+    </p>
+  </div>
+</div>
+
+
+<!-- Overview Badges -->
+<div class="section-full">
+  <div class="section-inner">
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:72px;" data-reveal>
+      <div class="kpi-card" style="text-align:center;">
+        <p class="kpi-label">Universum</p>
+        <div class="kpi-value" style="font-size:20px;">NASDAQ-100</div>
+        <p class="kpi-sub">US-Technologieaktien</p>
+      </div>
+      <div class="kpi-card" style="text-align:center;">
+        <p class="kpi-label">Rebalancing</p>
+        <div class="kpi-value" style="font-size:20px;">Täglich</div>
+        <p class="kpi-sub">Update vor Marktöffnung</p>
+      </div>
+      <div class="kpi-card" style="text-align:center;">
+        <p class="kpi-label">Positionierung</p>
+        <div class="kpi-value" style="font-size:20px;">Nur Long</div>
+        <p class="kpi-sub">Regelbasiert, täglich rebalanciert</p>
+      </div>
+      <div class="kpi-card" style="text-align:center;" data-show="institutional">
+        <p class="kpi-label">Beta vs. NDX</p>
+        <div class="kpi-value" style="font-size:20px;">0,127</div>
+        <p class="kpi-sub">Nahezu marktunabhängig</p>
+      </div>
+      <div class="kpi-card" style="text-align:center;" data-show="retail">
+        <p class="kpi-label">CAGR netto</p>
+        <div class="kpi-value text-green" style="font-size:20px;">27,8 %</div>
+        <p class="kpi-sub">Backtest 2015–2025</p>
+      </div>
+    </div>
+
+    <!-- Core Methodology -->
+    <div class="section-header" data-reveal>
+      <p class="section-label">Kernmethodik</p>
+      <h2 class="section-title">Vier Säulen der<br><em>Scherbius-Methode</em></h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:72px;" data-reveal>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:40px;">
+        <h3 style="font-family:'EB Garamond',serif;font-size:22px;font-weight:600;color:var(--dark);margin-bottom:12px;">Regelbasierte Signalerzeugung</h3>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.75;">
+          Sämtliche Kauf- und Verkaufssignale werden durch deterministische Algorithmen erzeugt. Es gibt keine diskretionären Eingriffe, keine menschliche Übersteuerung. Das System berechnet täglich auf Basis aktueller Marktdaten die optimalen Positionen für jedes Instrument im Portfolio.
+        </p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:40px;">
+        <h3 style="font-family:'EB Garamond',serif;font-size:22px;font-weight:600;color:var(--dark);margin-bottom:12px;">Dynamische Positionsgrößen</h3>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.75;">
+          Die Größe jeder Position wird täglich neu berechnet und an das aktuelle Marktregime angepasst. In Phasen erhöhter Volatilität reduziert das System Positionen proaktiv, bevor Verluste entstehen — nicht reaktiv danach.
+        </p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:40px;">
+        <h3 style="font-family:'EB Garamond',serif;font-size:22px;font-weight:600;color:var(--dark);margin-bottom:12px;">Korrelationsmanagement</h3>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.75;">
+          Das Portfolio ist so konstruiert, dass es einen minimalen Beta-Koeffizienten zum Gesamtmarkt aufweist. Durch die gleichzeitige Haltung von Long- und Short-Positionen werden Marktphasen-Risiken strukturell reduziert. Das Ergebnis: ein Beta von 0,127 gegenüber dem NASDAQ-100.
+        </p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:40px;">
+        <h3 style="font-family:'EB Garamond',serif;font-size:22px;font-weight:600;color:var(--dark);margin-bottom:12px;">Drawdown-Kontrolle</h3>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.75;">
+          Ein mehrstufiges Drawdown-Kontrollsystem überwacht das Portfolio in Echtzeit. Sobald definierte Schwellenwerte erreicht werden, reduziert das System automatisch die Gesamtexponierung — unabhängig von Markterwartungen oder externen Meinungen.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Risk Framework (Dark) -->
+<div class="section-full section-dark">
+  <div class="section-inner">
+
+    <div class="section-header" data-reveal>
+      <p class="section-label" style="color:var(--accent)">Risiko-Framework</p>
+      <h2 class="section-title" style="color:#fff">Risiko ist keine Nebenbedingung.<br><em style="color:rgba(255,255,255,0.4)">Es ist das Kernproblem.</em></h2>
+      <p class="section-desc" style="color:rgba(255,255,255,0.5);">
+        Die meisten Anlagestrategien optimieren zuerst auf Rendite und behandeln Risiko als Constraint. Scherbius 1.0 dreht diese Logik um: Risiko wird zuerst definiert und kontrolliert, Rendite entsteht als Konsequenz disziplinierter Risikonahme.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" data-reveal>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:32px;">
+        <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:16px;">Value at Risk (95 %)</p>
+        <div data-show="institutional">
+          <p style="font-family:'Outfit',sans-serif;font-size:28px;font-weight:700;color:#fff;letter-spacing:-1px;line-height:1;">0,51 %</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:6px;">NDX: 2,23 % — 4,4× geringer</p>
+        </div>
+        <div data-show="retail">
+          <p style="font-family:'Outfit',sans-serif;font-size:28px;font-weight:700;color:#fff;letter-spacing:-1px;line-height:1;">0,71 %</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:6px;">NDX: 2,23 % — 3,2× geringer</p>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:32px;">
+        <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:16px;">Max. Drawdown</p>
+        <div data-show="institutional">
+          <p style="font-family:'Outfit',sans-serif;font-size:28px;font-weight:700;color:#fff;letter-spacing:-1px;line-height:1;">−7,88 %</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:6px;">NDX: −35,56 % über gleichen Zeitraum</p>
+        </div>
+        <div data-show="retail">
+          <p style="font-family:'Outfit',sans-serif;font-size:28px;font-weight:700;color:#fff;letter-spacing:-1px;line-height:1;">−36,84 %</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:6px;">NDX: −35,56 % (vergleichbar)</p>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:32px;">
+        <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:16px;">12-Monats-Positivwahrscheinlichkeit</p>
+        <div data-show="institutional">
+          <p style="font-family:'Outfit',sans-serif;font-size:28px;font-weight:700;color:#fff;letter-spacing:-1px;line-height:1;">100 %</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:6px;">Kein negatives 12-Monats-Fenster im Backtest</p>
+        </div>
+        <div data-show="retail">
+          <p style="font-family:'Outfit',sans-serif;font-size:28px;font-weight:700;color:#fff;letter-spacing:-1px;line-height:1;">82 %</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:6px;">Positive 12-Monats-Fenster im Backtest</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Statistical Significance -->
+<div class="section-full">
+  <div class="section-inner">
+
+    <div class="section-header" data-reveal>
+      <p class="section-label">Statistische Validierung</p>
+      <h2 class="section-title">Alpha, das sich<br><em>beweisen lässt</em></h2>
+      <p class="section-desc">
+        Die CAPM-Regressionsanalyse über den gesamten Backtest-Zeitraum zeigt: das Alpha von Scherbius 1.0 ist statistisch hochsignifikant und nicht durch Marktbewegungen erklärbar.
+      </p>
+    </div>
+
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;" data-reveal>
+      <table style="width:100%;border-collapse:collapse;">
+        <thead>
+          <tr style="background:#F7F5F2;">
+            <th style="padding:16px 24px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-align:left;border-bottom:1px solid var(--border);">Kennzahl</th>
+            <th style="padding:16px 24px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);text-align:right;border-bottom:1px solid var(--border);">
+              <span data-show="institutional">Scherbius 1.0 Inst.</span>
+              <span data-show="retail">Scherbius 1.0 Priv.</span>
+            </th>
+            <th style="padding:16px 24px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-align:right;border-bottom:1px solid var(--border);">NASDAQ-100</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border-light);">
+            <td style="padding:16px 24px;font-size:13px;color:var(--text);">Jensen Alpha p.a.</td>
+            <td style="padding:16px 24px;font-size:13px;font-weight:600;color:var(--green);text-align:right;">
+              <span data-show="institutional">+10,71 %</span>
+              <span data-show="retail">+23,27 %</span>
+            </td>
+            <td style="padding:16px 24px;font-size:13px;color:var(--text-muted);text-align:right;">—</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border-light);">
+            <td style="padding:16px 24px;font-size:13px;color:var(--text);">Beta (Marktsensitivität)</td>
+            <td style="padding:16px 24px;font-size:13px;font-weight:600;color:var(--dark);text-align:right;">
+              <span data-show="institutional">0,127</span>
+              <span data-show="retail">0,29</span>
+            </td>
+            <td style="padding:16px 24px;font-size:13px;color:var(--text-muted);text-align:right;">1,000</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border-light);">
+            <td style="padding:16px 24px;font-size:13px;color:var(--text);">R² (Erklärungsgehalt)</td>
+            <td style="padding:16px 24px;font-size:13px;font-weight:600;color:var(--dark);text-align:right;">
+              <span data-show="institutional">6,7 %</span>
+              <span data-show="retail">3,33 %</span>
+            </td>
+            <td style="padding:16px 24px;font-size:13px;color:var(--text-muted);text-align:right;">100 %</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border-light);">
+            <td style="padding:16px 24px;font-size:13px;color:var(--text);">Sharpe Ratio</td>
+            <td style="padding:16px 24px;font-size:13px;font-weight:600;color:var(--green);text-align:right;">
+              <span data-show="institutional">1,68</span>
+              <span data-show="retail">0,97</span>
+            </td>
+            <td style="padding:16px 24px;font-size:13px;color:var(--text-muted);text-align:right;">
+              <span data-show="institutional">0,79</span>
+              <span data-show="retail">0,80</span>
+            </td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border-light);">
+            <td style="padding:16px 24px;font-size:13px;color:var(--text);">CAGR netto</td>
+            <td style="padding:16px 24px;font-size:13px;font-weight:600;color:var(--green);text-align:right;">
+              <span data-show="institutional">14,90 %</span>
+              <span data-show="retail">27,8 %</span>
+            </td>
+            <td style="padding:16px 24px;font-size:13px;color:var(--text-muted);text-align:right;">
+              <span data-show="institutional">17,3 %</span>
+              <span data-show="retail">17,5 %</span>
+            </td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border-light);">
+            <td style="padding:16px 24px;font-size:13px;color:var(--text);">Signifikanzniveau CAPM (p-Wert)</td>
+            <td style="padding:16px 24px;font-size:13px;font-weight:600;color:var(--green);text-align:right;">
+              <span data-show="institutional">&lt; 0,0001</span>
+              <span data-show="retail">&lt; 0,01</span>
+            </td>
+            <td style="padding:16px 24px;font-size:13px;color:var(--text-muted);text-align:right;">—</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border-light);">
+            <td style="padding:16px 24px;font-size:13px;color:var(--text);">Fama-French 3-Faktor Alpha p.a.</td>
+            <td style="padding:16px 24px;font-size:13px;font-weight:600;color:var(--green);text-align:right;">
+              <span data-show="institutional">+10,74 %</span>
+              <span data-show="retail">+23,17 %</span>
+            </td>
+            <td style="padding:16px 24px;font-size:13px;color:var(--text-muted);text-align:right;">—</td>
+          </tr>
+          <tr>
+            <td style="padding:16px 24px;font-size:13px;color:var(--text);">Signifikanzniveau FF3 (p-Wert)</td>
+            <td style="padding:16px 24px;font-size:13px;font-weight:600;color:var(--green);text-align:right;">
+              <span data-show="institutional">&lt; 0,001</span>
+              <span data-show="retail">&lt; 0,01</span>
+            </td>
+            <td style="padding:16px 24px;font-size:13px;color:var(--text-muted);text-align:right;">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:10px;color:var(--text-dim);margin-top:12px;line-height:1.5;">
+      Quelle: CAPM-Regression über den Backtest-Zeitraum 01/2015–12/2025. Alle Angaben basieren auf historischen Daten.
+      <span data-show="institutional">Institutionelle Renditen: netto nach Transaktionskosten.</span>
+      <span data-show="retail">Privatanleger-Renditen: netto nach Transaktionskosten und Steuern (Kapitalertragsteuer 25 % + Solidaritätszuschlag 5,5 %).</span>
+      <a href="legal/risikohinweise.html" style="color:var(--text-dim);">Vollständige Risikohinweise</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-bg-lines"></div>
+  <div class="cta-inner" data-reveal>
+    <p class="section-label" style="color:var(--accent);text-align:center;margin-bottom:20px;">Nächster Schritt</p>
+    <h2 class="cta-title" data-show="institutional">Performance im Detail ansehen</h2>
+    <h2 class="cta-title" data-show="retail">Jetzt kostenlos testen</h2>
+    <p class="cta-desc" data-show="institutional">Überzeugen Sie sich von den statistischen Ergebnissen: Equity-Kurven, Jahresrenditen und vollständige Kennzahlen.</p>
+    <p class="cta-desc" data-show="retail">14 Tage vollständiger Zugang — keine Kreditkartendaten, kein automatisches Abonnement.</p>
+    <div class="cta-actions">
+      <a href="performance.html" class="btn btn-primary">Track Record ansehen</a>
+      <a href="contact.html" class="btn-outline-white" data-show="institutional">Kontakt aufnehmen</a>
+      <a href="pricing.html#trial" class="btn-outline-white" data-show="retail">Kostenlos testen</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-pill" style="margin-bottom:20px;">
+        <img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="28">
+      </div>
+      <p class="footer-brand-tagline">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</p>
+      <a href="https://linkedin.com/company/scherbius-analytics/" target="_blank" rel="noopener noreferrer"
+         style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;">LinkedIn</a>
+    </div>
+    <div>
+      <p class="footer-col-title">Navigation</p>
+      <ul class="footer-links">
+        <li><a href="strategy.html">Strategie</a></li>
+        <li><a href="performance.html">Performance</a></li>
+        <li><a href="anleitung.html">Anleitung</a></li>
+        <li><a href="pricing.html">Preise</a></li>
+        <li><a href="about.html">Über uns</a></li>
+        <li><a href="contact.html">Kontakt</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Ressourcen</p>
+      <ul class="footer-links">
+        <li><a href="archive.html">Portfolio-Archiv</a></li>
+        <li><a href="legal/risikohinweise.html">Risikohinweise</a></li>
+        <li><a href="legal/datenschutz.html">Datenschutzerklärung</a></li>
+        <li><a href="legal/impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Kontakt</p>
+      <ul class="footer-links">
+        <li style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding-bottom:2px;">F. Kaya</li>
+        <li><a href="mailto:kaya@scherbius.de">kaya@scherbius.de</a></li>
+        <li style="margin-bottom:12px;"><a href="tel:+4915208755758">+49 152 08755758</a></li>
+        <li style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding-bottom:2px;">E. Richter</li>
+        <li><a href="mailto:richter@scherbius.de">richter@scherbius.de</a></li>
+        <li><a href="tel:+4915170854496">+49 151 70854496</a></li>
+      </ul>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,0.1);padding:40px 0;margin-top:16px;">
+    <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:20px;">Disclaimer / Risikohinweis</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;">
+      <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.75;margin:0;">Die hier bereitgestellten Informationen stellen keine Anlageberatung im Sinne des § 2 Abs. 8 Nr. 10 WpHG dar. Die Inhalte dienen ausschließlich allgemeinen Informationszwecken und berücksichtigen keine individuellen Kenntnisse und Erfahrungen, Anlageziele, finanzielle Verhältnisse, Risikobereitschaft oder Verlusttragfähigkeit der Empfänger. Anlageentscheidungen, die auf Basis dieser Informationen getroffen werden, erfolgen ausschließlich auf eigenes Risiko und in eigener Verantwortung.</p>
+      <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.75;margin:0;">Der Handel mit Finanzinstrumenten, insbesondere Aktien und Derivaten, ist mit erheblichen Risiken bis hin zum Totalverlust verbunden. Vergangene Wertentwicklungen, Backtests und Modellrechnungen sind keine Garantie für zukünftige Ergebnisse. Scherbius Analytics UG (haftungsbeschränkt) übernimmt keine Haftung für Verluste oder Schäden, die aus der Nutzung der bereitgestellten Informationen entstehen.</p>
+      <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.75;margin:0;">Die Empfehlungen beruhen auf regelbasierten, datengetriebenen Portfolio-Allokationen ohne persönliche Beratung. Es findet keine Vermögensverwaltung statt und es werden keine Eigentumsrechte an Vermögenswerten übertragen. Methodik und Backtests werden transparent offengelegt; der Vertrieb der Anlagestrategieempfehlungen wurde gemäß § 86 Abs. 1 WpHG bei der BaFin angezeigt.</p>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <p class="footer-legal">&copy; 2026 Scherbius Analytics UG (haftungsbeschränkt) &nbsp;·&nbsp; HRB 195105 Amtsgericht Hamburg &nbsp;·&nbsp; Alle Rechte vorbehalten.</p>
+    <p class="footer-legal">
+      <a href="legal/impressum.html">Impressum</a> &nbsp;·&nbsp;
+      <a href="legal/datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="legal/risikohinweise.html">Risikohinweise</a>
+    </p>
+  </div>
+  <div style="max-width:var(--max-width);margin:0 auto;padding:20px var(--px) 32px;">
+    <p style="font-size:10px;color:rgba(255,255,255,0.15);line-height:1.65;">
+      Risikohinweis: Alle Angaben basieren auf Backtests historischer Daten. Historische Performance ist kein verlässlicher Indikator für zukünftige Ergebnisse. Scherbius Analytics UG (haftungsbeschränkt) bietet keine individuelle Anlageberatung.
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

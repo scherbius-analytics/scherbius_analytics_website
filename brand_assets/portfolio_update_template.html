@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scherbius Analytics &#8211; Portfolio Update #{{update_nr}} &#8211; {{datum_kurz}}</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap');
+
+:root {
+  --red:    #B52A1C;
+  --dark:   #111111;
+  --mid:    #444444;
+  --muted:  #888888;
+  --border: #DEDEDE;
+  --bgrow:  #F6F6F6;
+  --white:  #FFFFFF;
+  --green:  #1D8A4E;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { font-size: 10.5pt; }
+
+body {
+  font-family: 'Figtree', sans-serif;
+  color: var(--dark);
+  background: #D0D0D0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ── PAGE ── */
+.page {
+  width: 210mm;
+  margin: 12mm auto 24mm;
+  background: var(--white);
+  box-shadow: 0 4px 40px rgba(0,0,0,.2);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── HEADER ── */
+.hd {
+  background: var(--dark);
+  color: var(--white);
+  padding: 9mm 14mm 8mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8mm;
+  flex-shrink: 0;
+}
+.hd-eyebrow {
+  font-size: 6.5pt;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 3pt;
+}
+.hd-title { font-size: 19pt; font-weight: 800; letter-spacing: -0.4px; line-height: 1.1; }
+.hd-sub { font-size: 9pt; font-weight: 300; color: #AAAAAA; margin-top: 3pt; font-style: italic; }
+.hd-right { text-align: right; flex-shrink: 0; }
+.hd-badge {
+  display: inline-block;
+  background: var(--red);
+  color: var(--white);
+  font-size: 7.5pt;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 3pt 8pt;
+  margin-bottom: 5pt;
+}
+.hd-fields { font-size: 8pt; color: #AAAAAA; line-height: 2; }
+.hd-fields strong { color: var(--white); font-weight: 500; }
+
+.rule-red { height: 3px; background: var(--red); flex-shrink: 0; }
+
+/* ── BODY ── */
+.body { padding: 8mm 14mm 0; flex: 1; }
+
+.greeting {
+  font-size: 10.5pt;
+  color: var(--mid);
+  padding-bottom: 6mm;
+  margin-bottom: 7mm;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── SECTIONS ── */
+.section { margin-bottom: 8mm; }
+
+.sec-title {
+  font-size: 6.5pt;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--red);
+  padding-bottom: 4pt;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 5pt;
+}
+
+/* ── KPI ROW ── */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--border);
+}
+.kpi {
+  padding: 5mm 4mm;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.kpi:last-child { border-right: none; }
+.kpi-label {
+  font-size: 6.5pt;
+  font-weight: 600;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 3pt;
+}
+.kpi-value { font-size: 20pt; font-weight: 800; line-height: 1; letter-spacing: -0.5px; }
+.kpi-value.pos { color: var(--green); }
+.kpi-value.neg { color: var(--red); }
+.kpi-bench { font-size: 7.5pt; color: var(--muted); margin-top: 3pt; }
+
+/* ── CHART ── */
+.chart-wrap {
+  position: relative;
+  height: 155pt;
+  width: 100%;
+}
+.chart-legend {
+  display: flex;
+  gap: 14pt;
+  justify-content: center;
+  font-size: 7.5pt;
+  color: var(--muted);
+  align-items: center;
+  margin-top: 4pt;
+}
+
+/* ── TABLE ── */
+table { width: 100%; border-collapse: collapse; font-size: 8pt; }
+thead tr { background: var(--dark); }
+thead th {
+  color: var(--white);
+  padding: 4.5pt 6pt;
+  text-align: left;
+  font-size: 6.5pt;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+thead th:not(:first-child) { text-align: right; }
+tbody tr { border-bottom: 1px solid var(--border); }
+tbody tr:nth-child(even) { background: var(--bgrow); }
+tbody td { padding: 4.5pt 6pt; color: var(--mid); font-size: 8pt; }
+tbody td:not(:first-child) { text-align: right; font-family: 'DM Mono', monospace; font-size: 7.5pt; }
+.ticker { font-weight: 700; color: var(--dark); }
+.strat {
+  display: inline-block;
+  font-size: 6.5pt;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  padding: 1.5pt 4pt;
+  border-radius: 2pt;
+  background: #EEF1FF;
+  color: #4560D8;
+  text-transform: uppercase;
+  font-family: 'Figtree', sans-serif;
+}
+.pos-c { color: var(--green); font-weight: 600; }
+.neg-c { color: var(--red); font-weight: 600; }
+
+/* ── EMPTY ── */
+.empty {
+  text-align: center;
+  padding: 8mm;
+  color: var(--muted);
+  border: 1px dashed var(--border);
+  font-size: 9pt;
+  font-style: italic;
+}
+
+/* ── PARAMS ── */
+.params-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+.param-card { border: 1px solid var(--border); padding: 4mm; }
+.param-name {
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--dark);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4pt;
+  padding-bottom: 3pt;
+  border-bottom: 2px solid var(--red);
+}
+.param-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8pt;
+  padding: 2.5pt 0;
+  border-bottom: 1px solid #F0F0F0;
+}
+.param-row:last-child { border-bottom: none; }
+.pk { color: var(--muted); }
+.pv { font-weight: 600; font-family: 'DM Mono', monospace; font-size: 7.5pt; }
+
+/* ── ONVISTA ── */
+.onvista-box {
+  margin-top: 4mm;
+  padding: 3.5mm 4.5mm;
+  background: #FDF5F5;
+  border: 1px solid #ECCBCA;
+  border-left: 3px solid var(--red);
+  font-size: 8pt;
+  line-height: 1.6;
+}
+.onvista-box a { color: var(--red); font-weight: 600; text-decoration: none; }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--dark);
+  color: #777;
+  padding: 6mm 14mm 7mm;
+  font-size: 7.5pt;
+  line-height: 1.8;
+  flex-shrink: 0;
+  margin-top: 10mm;
+}
+.footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; margin-bottom: 5mm; }
+.footer-col-title {
+  font-size: 6.5pt;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 2pt;
+}
+.footer hr { border: none; border-top: 1px solid #282828; margin: 4mm 0; }
+.disclaimer { font-size: 7pt; color: #555; line-height: 1.65; }
+
+
+/* ════════════════════════════════
+   PRINT
+   ════════════════════════════════ */
+@media print {
+
+  @page {
+    size: A4 portrait;
+    margin-top: 14mm;
+    margin-bottom: 14mm;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  @page :first {
+    margin-top: 0;
+    margin-bottom: 14mm;
+  }
+
+  html { font-size: 10.5pt; }
+
+  body {
+    background: white;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+    display: block;
+  }
+
+  .hd,
+  .rule-red,
+  .kpi-row,
+  .chart-wrap,
+  .chart-legend,
+  .params-grid,
+  .param-card,
+  .onvista-box,
+  .empty,
+  .footer,
+  .footer-grid {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; break-inside: avoid; }
+
+  .footer {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-top: 8mm;
+  }
+
+  a::after { content: none !important; }
+}
+
+@media screen {
+  .page { margin: 12mm auto 24mm; }
+}
+
+/* ── INTERACTIVE TABLES ── */
+.itbl-wrap { overflow-x: auto; }
+.itbl { width: 100%; border-collapse: collapse; font-size: 8pt; }
+.itbl thead tr { background: var(--dark); }
+.itbl thead th {
+  color: var(--white);
+  padding: 4.5pt 6pt;
+  text-align: left;
+  font-size: 6.5pt;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.itbl thead th:not(:first-child) { text-align: right; }
+.itbl thead th.col-edit { text-align: left; color: #FFD580; }
+.itbl tbody tr { border-bottom: 1px solid var(--border); }
+.itbl tbody tr:nth-child(even) { background: var(--bgrow); }
+.itbl tbody td { padding: 3.5pt 6pt; color: var(--mid); font-size: 8pt; vertical-align: middle; }
+.itbl tbody td:not(:first-child):not(.col-edit-cell) { text-align: right; font-family: 'DM Mono', monospace; font-size: 7.5pt; }
+.col-edit-cell { text-align: left !important; padding: 2pt 4pt !important; }
+.col-edit-cell input {
+  width: 100%;
+  min-width: 72pt;
+  border: 1px solid var(--border);
+  border-radius: 2pt;
+  padding: 3pt 5pt;
+  font-size: 7.5pt;
+  font-family: 'DM Mono', monospace;
+  color: var(--dark);
+  background: #FFFDF5;
+  outline: none;
+  transition: border-color .15s, background .15s;
+  box-sizing: border-box;
+}
+.col-edit-cell input:focus {
+  border-color: var(--red);
+  background: #FFF8F0;
+}
+.col-edit-cell input::placeholder { color: #BBBBBB; font-style: italic; }
+.itbl-save-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4pt;
+  gap: 5pt;
+}
+.btn-save {
+  background: var(--dark);
+  color: var(--white);
+  border: none;
+  padding: 3.5pt 10pt;
+  font-size: 7pt;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2pt;
+  font-family: 'Figtree', sans-serif;
+  transition: background .15s;
+}
+.btn-save:hover { background: var(--red); }
+.btn-clear {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 3.5pt 10pt;
+  font-size: 7pt;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2pt;
+  font-family: 'Figtree', sans-serif;
+  transition: all .15s;
+}
+.btn-clear:hover { border-color: var(--red); color: var(--red); }
+.save-hint {
+  font-size: 6.5pt;
+  color: var(--muted);
+  margin-top: 3pt;
+  font-style: italic;
+}
+@media print {
+  .col-edit-cell input {
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
+  .itbl-save-row, .save-hint { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="hd">
+    <div>
+      <div class="hd-eyebrow">Scherbius Analytics UG (haftungsbeschr&#228;nkt)</div>
+      <div class="hd-title">Portfolio Update</div>
+      <div class="hd-sub">{{modell_version}}</div>
+    </div>
+    <div class="hd-right">
+      <div class="hd-badge">UPDATE #{{update_nr}}</div>
+      <div class="hd-fields">
+        Datum: <strong>{{datum_lang}}</strong><br>
+        Benchmark: <strong>NASDAQ-100</strong><br>
+        Live seit: <strong>{{datum_auflage}}</strong>
+      </div>
+    </div>
+  </div>
+  <div class="rule-red"></div>
+
+  <div class="body">
+
+    <div class="greeting">{{begruessung}}</div>
+
+    <!-- 1 · PERFORMANCE AUF EINEN BLICK -->
+    <div class="section">
+      <div class="sec-title">Performance auf einen Blick</div>
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-label">Letzter Monat</div>
+          <div class="kpi-value {{kpi_monat_class}}">{{kpi_monat_portfolio}}</div>
+          <div class="kpi-bench">NDX: {{kpi_monat_ndx}}&nbsp;&nbsp;|&nbsp;&nbsp;Outperf.: {{kpi_monat_outperf}}</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">YTD ab 01.01.{{jahr}}</div>
+          <div class="kpi-value {{kpi_ytd_class}}">{{kpi_ytd_portfolio}}</div>
+          <div class="kpi-bench">NDX: {{kpi_ytd_ndx}}&nbsp;&nbsp;|&nbsp;&nbsp;Outperf.: {{kpi_ytd_outperf}}</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Seit Auflage {{datum_auflage}}</div>
+          <div class="kpi-value {{kpi_auflage_class}}">{{kpi_auflage_portfolio}}</div>
+          <div class="kpi-bench">NDX: {{kpi_auflage_ndx}}&nbsp;&nbsp;|&nbsp;&nbsp;Outperf.: {{kpi_auflage_outperf}}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 · CHART -->
+    <div class="section">
+      <div class="sec-title">Kumulierte Performance seit Auflage ({{datum_auflage}}) vs. NASDAQ-100</div>
+      <div class="chart-wrap">
+        <canvas id="perfChart"></canvas>
+      </div>
+      <div class="chart-legend">
+        <span style="display:flex;align-items:center;gap:5pt;">
+          <span style="display:inline-block;width:22pt;height:2px;background:#111;"></span>Portfolio (netto)
+        </span>
+        <span style="display:flex;align-items:center;gap:5pt;">
+          <svg width="22pt" height="8pt" style="vertical-align:middle;overflow:visible;">
+            <line x1="0" y1="4" x2="22" y2="4" stroke="#B52A1C" stroke-width="2" stroke-dasharray="4,3"/>
+          </svg>NASDAQ-100
+        </span>
+      </div>
+    </div>
+
+    <!-- 3 · TRADES HEUTE -->
+    <div class="section">
+      <div class="sec-title">Trades am {{datum_kurz}}</div>
+      <div class="itbl-wrap">
+        <table class="itbl" id="tradesTable">
+          <thead>
+            <tr>
+              <th>Datum</th>
+              <th>Uhrzeit</th>
+              <th>Basiswert</th>
+              <th>Signal</th>
+              <th>Strategie</th>
+              <th>Gewichtung</th>
+              <th class="col-edit">ISIN Trade&nbsp;Republic</th>
+              <th class="col-edit">ISIN Scalable&nbsp;Capital</th>
+            </tr>
+          </thead>
+          <tbody id="tradesTbody">
+          </tbody>
+        </table>
+      </div>
+      <div class="itbl-save-row">
+        <button class="btn-clear" onclick="clearTable('trades')">Leeren</button>
+        <button class="btn-save" onclick="saveTable('trades')">&#10003;&nbsp; Speichern</button>
+      </div>
+      <div class="save-hint">ISINs werden lokal im Browser gespeichert und beim n&#228;chsten &#214;ffnen wiederhergestellt.</div>
+    </div>
+
+    <!-- 4 · PORTFOLIO ZUSAMMENSETZUNG -->
+    <div class="section">
+      <div class="sec-title">Portfolio-Zusammensetzung am {{datum_kurz}}</div>
+      <div class="itbl-wrap">
+        <table class="itbl" id="portfolioTable">
+          <thead>
+            <tr>
+              <th>Datum</th>
+              <th>Basiswert</th>
+              <th>Strategie</th>
+              <th>Gewichtung</th>
+              <th class="col-edit">ISIN Trade&nbsp;Republic</th>
+              <th class="col-edit">ISIN Scalable&nbsp;Capital</th>
+            </tr>
+          </thead>
+          <tbody id="portfolioTbody">
+          </tbody>
+        </table>
+      </div>
+      <div class="itbl-save-row">
+        <button class="btn-clear" onclick="clearTable('portfolio')">Leeren</button>
+        <button class="btn-save" onclick="saveTable('portfolio')">&#10003;&nbsp; Speichern</button>
+      </div>
+      <div class="save-hint">ISINs werden lokal im Browser gespeichert und beim n&#228;chsten &#214;ffnen wiederhergestellt.</div>
+    </div>
+
+    <!-- 5 · REALISIERTE TRADES -->
+    <div class="section">
+      <div class="sec-title">Realisierte Trades &#8212; letzte 5 Handelstage</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Verkaufstag</th>
+            <th>Renditeperiode&nbsp;Start</th>
+            <th>Basiswert</th>
+            <th>Strategie</th>
+            <th>Verk.&nbsp;Gew.</th>
+            <th>Rendite&nbsp;v.&nbsp;K.</th>
+            <th>Rendite&nbsp;n.&nbsp;K.</th>
+            <th>Netto&nbsp;n.&nbsp;St.</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{{realisierte_trades_rows}}}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 6 · RETURN VERGLEICH -->
+    <div class="section">
+      <div class="sec-title">Return-Vergleich: Portfolio vs. NASDAQ-100</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Zeitraum</th>
+            <th>Portfolio Return</th>
+            <th>NASDAQ-100 Return</th>
+            <th>Outperformance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Letzter Monat ({{kpi_monat_zeitraum}})</td>
+            <td class="{{kpi_monat_portfolio_c}}">{{kpi_monat_portfolio}}</td>
+            <td class="{{kpi_monat_ndx_c}}">{{kpi_monat_ndx}}</td>
+            <td class="{{kpi_monat_outperf_c}}">{{kpi_monat_outperf}}</td>
+          </tr>
+          <tr>
+            <td>YTD ab 01.01.{{jahr}}</td>
+            <td class="{{kpi_ytd_portfolio_c}}">{{kpi_ytd_portfolio}}</td>
+            <td class="{{kpi_ytd_ndx_c}}">{{kpi_ytd_ndx}}</td>
+            <td class="{{kpi_ytd_outperf_c}}">{{kpi_ytd_outperf}}</td>
+          </tr>
+          <tr>
+            <td>Seit Auflage ab {{datum_auflage}}</td>
+            <td class="{{kpi_auflage_portfolio_c}}">{{kpi_auflage_portfolio}}</td>
+            <td class="{{kpi_auflage_ndx_c}}">{{kpi_auflage_ndx}}</td>
+            <td class="{{kpi_auflage_outperf_c}}">{{kpi_auflage_outperf}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 7 · MINI FUTURES PARAMETER -->
+    <div class="section">
+      <div class="sec-title">Mini Futures / Knock-Out Parameter je Strategie</div>
+      <div class="params-grid">
+        {{{params_grid_html}}}
+      </div>
+      <div class="onvista-box">
+        <strong>Wichtiger Hinweis zur Derivate-Auswahl:</strong> Die in der ISIN-Spalte oben eingetragenen Zertifikate sind Vorschl&#228;ge auf Basis der Modellparameter. Sollte ein vorgeschlagenes Produkt bei Ihrem Broker <em>nicht</em> handelbar sein, m&#252;ssen Sie eigenst&#228;ndig ein passendes Zertifikat suchen &#8212; die obigen Konditionen (Hebel, KO-Level, Spread, Slippage) m&#252;ssen dabei zwingend eingehalten werden.<br><br>
+        <strong>Knock-Out-Optionsscheine suchen &amp; finden</strong> &#8212; Suchkriterien bereits voreingestellt:<br>
+        <a href="https://www.onvista.de/derivate/Knock-Outs?brokerId=8458&amp;cols=instrument,instrumentUnderlying.name,strikeAbs,knockOutAbs,dateMaturity,quote.bid,quote.ask,gearingAsk,spreadAskPct,derivativesSubCategory.id,issuer.name,urlProspectus,differenceKnockOutPct&amp;differenceKnockOutPctRange=17;50&amp;feature=STOP_LOSS&amp;order=DESC&amp;sort=differenceKnockOutPct">
+          onvista.de &#8594; Knock-Out-Suche (voreingestellt)
+        </a><br>
+        <span style="font-size:7pt;color:#888;">Bitte w&#228;hlen Sie anschlie&#223;end den entsprechenden Basiswert und Ihren Broker in den Filtereinstellungen aus. Nicht jedes Derivat ist bei jedem Broker handelbar.</span>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-col-title">Kontakt</div>
+        Florian Kaya &#8212; Gesch&#228;ftsf&#252;hrer<br>
+        M.Sc. Volkswirtschaftslehre<br>
+        kaya&#64;scherbius.de &nbsp;&#183;&nbsp; +49 152 08755758
+      </div>
+      <div>
+        <div class="footer-col-title">Scherbius Analytics UG (haftungsbeschr&#228;nkt)</div>
+        Quantitative Portfoliostrategien f&#252;r Privatanleger<br>
+        Horner Landstra&#223;e 130, 22111 Hamburg<br>
+        HRB 195105 &nbsp;&#183;&nbsp; Amtsgericht Hamburg
+      </div>
+    </div>
+    <hr>
+    <div class="disclaimer">
+      <strong style="color:#777;">Disclaimer / Risikohinweis:</strong>
+      Dieser Report stellt keine Anlageberatung im Sinne des &#167;&nbsp;2 Abs.&nbsp;8 Nr.&nbsp;10 WpHG dar, sondern eine Anlagestrategieempfehlung gem&#228;&#223; &#167;&nbsp;85 Abs.&nbsp;1 WpHG. Die Inhalte dienen ausschlie&#223;lich allgemeinen Informationszwecken und ber&#252;cksichtigen keine individuellen Kenntnisse und Erfahrungen, Anlageziele, finanzielle Verh&#228;ltnisse, Risikobereitschaft oder Verlusttragf&#228;higkeit der Empf&#228;nger. Anlageentscheidungen erfolgen ausschlie&#223;lich auf eigenes Risiko. Der Handel mit Finanzinstrumenten, insbesondere Derivaten, ist mit erheblichen Risiken bis hin zum Totalverlust verbunden. Vergangene Wertentwicklungen und Backtests sind keine Garantie f&#252;r zuk&#252;nftige Ergebnisse. Es findet keine Verm&#246;gensverwaltung statt. Der Vertrieb der Anlagestrategieempfehlungen wurde gem&#228;&#223; &#167;&nbsp;86 Abs.&nbsp;1 WpHG der BaFin angezeigt.
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script>
+/* ── TABLE DATA ── */
+const TRADES_DATA = {{{trades_data_json}}};
+const PORTFOLIO_DATA = {{{portfolio_data_json}}};
+
+/* ── STORAGE KEYS ── */
+const KEYS = { trades: 'schy_trades_{{update_nr}}', portfolio: 'schy_portfolio_{{update_nr}}' };
+
+/* ── RENDER TRADES TABLE ── */
+function renderTrades() {
+  const saved = JSON.parse(localStorage.getItem(KEYS.trades) || '{}');
+  const tbody = document.getElementById('tradesTbody');
+  tbody.innerHTML = '';
+  TRADES_DATA.forEach((r, i) => {
+    const isin_tr = saved[i]?.isin_tr ?? '';
+    const isin_sc = saved[i]?.isin_sc ?? '';
+    const stratBadge = r.strategie
+      ? `<span class="strat">${r.strategie}</span>`
+      : '<span style="color:#bbb;font-style:italic;font-size:7pt;">—</span>';
+    const tickerCell = r.ticker
+      ? `<span class="ticker">${r.ticker}</span>`
+      : '<span style="color:#bbb;">—</span>';
+    tbody.innerHTML += `
+      <tr>
+        <td>${r.datum || '—'}</td>
+        <td>${r.uhrzeit || '—'}</td>
+        <td>${tickerCell}</td>
+        <td>${r.signal || '—'}</td>
+        <td>${stratBadge}</td>
+        <td>${r.gewichtung || '—'}</td>
+        <td class="col-edit-cell">
+          <input type="text" placeholder="z.B. DE000XXX"
+            id="t_isin_tr_${i}" value="${isin_tr}">
+        </td>
+        <td class="col-edit-cell">
+          <input type="text" placeholder="z.B. DE000XXX"
+            id="t_isin_sc_${i}" value="${isin_sc}">
+        </td>
+      </tr>`;
+  });
+}
+
+/* ── RENDER PORTFOLIO TABLE ── */
+function renderPortfolio() {
+  const tbody = document.getElementById('portfolioTbody');
+  tbody.innerHTML = '';
+  if (PORTFOLIO_DATA.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="4" style="text-align:center;padding:8mm;color:var(--muted);font-style:italic;font-size:9pt;border:none;">
+          Keine offenen Positionen
+        </td>
+        <td class="col-edit-cell"><input type="text" placeholder="z.B. DE000XXX" disabled style="opacity:.35;cursor:not-allowed;"></td>
+        <td class="col-edit-cell"><input type="text" placeholder="z.B. DE000XXX" disabled style="opacity:.35;cursor:not-allowed;"></td>
+      </tr>`;
+    return;
+  }
+  const saved = JSON.parse(localStorage.getItem(KEYS.portfolio) || '{}');
+  PORTFOLIO_DATA.forEach((r, i) => {
+    const isin_tr = saved[i]?.isin_tr ?? '';
+    const isin_sc = saved[i]?.isin_sc ?? '';
+    tbody.innerHTML += `
+      <tr>
+        <td>${r.datum}</td>
+        <td><span class="ticker">${r.ticker}</span></td>
+        <td><span class="strat">${r.strategie}</span></td>
+        <td>${r.gewichtung}</td>
+        <td class="col-edit-cell">
+          <input type="text" placeholder="z.B. DE000XXX"
+            id="p_isin_tr_${i}" value="${isin_tr}">
+        </td>
+        <td class="col-edit-cell">
+          <input type="text" placeholder="z.B. DE000XXX"
+            id="p_isin_sc_${i}" value="${isin_sc}">
+        </td>
+      </tr>`;
+  });
+}
+
+/* ── SAVE ── */
+function saveTable(which) {
+  if (which === 'trades') {
+    const data = {};
+    TRADES_DATA.forEach((_, i) => {
+      data[i] = {
+        isin_tr: document.getElementById(`t_isin_tr_${i}`)?.value || '',
+        isin_sc: document.getElementById(`t_isin_sc_${i}`)?.value || '',
+      };
+    });
+    localStorage.setItem(KEYS.trades, JSON.stringify(data));
+    flashSaved('trades');
+  } else {
+    const data = {};
+    PORTFOLIO_DATA.forEach((_, i) => {
+      data[i] = {
+        isin_tr: document.getElementById(`p_isin_tr_${i}`)?.value || '',
+        isin_sc: document.getElementById(`p_isin_sc_${i}`)?.value || '',
+      };
+    });
+    localStorage.setItem(KEYS.portfolio, JSON.stringify(data));
+    flashSaved('portfolio');
+  }
+}
+
+function clearTable(which) {
+  if (which === 'trades') {
+    localStorage.removeItem(KEYS.trades);
+    renderTrades();
+  } else {
+    localStorage.removeItem(KEYS.portfolio);
+    renderPortfolio();
+  }
+}
+
+function flashSaved(which) {
+  const btns = document.querySelectorAll('.btn-save');
+  btns.forEach(b => {
+    if (b.getAttribute('onclick')?.includes(which)) {
+      const orig = b.textContent;
+      b.textContent = '✓ Gespeichert';
+      b.style.background = 'var(--green)';
+      setTimeout(() => { b.textContent = orig; b.style.background = ''; }, 1800);
+    }
+  });
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', () => {
+  renderTrades();
+  renderPortfolio();
+});
+</script>
+<script>
+const labels = [{{{chart_labels_js}}}];
+const portfolio = [{{{chart_portfolio_js}}}];
+const nasdaq = [{{{chart_nasdaq_js}}}];
+
+new Chart(document.getElementById('perfChart').getContext('2d'), {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      {
+        label: 'Portfolio (netto)',
+        data: portfolio,
+        borderColor: '#111111',
+        borderWidth: 2.2,
+        pointRadius: 0,
+        pointHoverRadius: 4,
+        tension: 0.35,
+        fill: false
+      },
+      {
+        label: 'NASDAQ-100',
+        data: nasdaq,
+        borderColor: '#B52A1C',
+        borderWidth: 1.6,
+        borderDash: [5, 4],
+        pointRadius: 0,
+        pointHoverRadius: 4,
+        tension: 0.35,
+        fill: false
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#111',
+        titleColor: '#888',
+        bodyColor: '#fff',
+        padding: 10,
+        callbacks: {
+          label: c => ' ' + c.dataset.label + ': ' + (c.parsed.y >= 0 ? '+' : '') + c.parsed.y.toFixed(2) + '%'
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { font: { size: 7.5, family: "'Figtree', sans-serif" }, color: '#999', maxTicksLimit: 10, maxRotation: 0 },
+        border: { color: '#DEDEDE' }
+      },
+      y: {
+        grid: { color: '#F0F0F0' },
+        border: { display: false },
+        ticks: {
+          font: { size: 7.5, family: "'Figtree', sans-serif" },
+          color: '#999',
+          callback: v => (v >= 0 ? '+' : '') + v.toFixed(1) + '%'
+        }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>

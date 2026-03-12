@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="institutional">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Scherbius Analytics</title>
+  <meta name="description" content="Melden Sie sich in Ihrem Scherbius Analytics Mitgliederbereich an.">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/index.css">
+  <script>try{var _m=localStorage.getItem('sa_mode');if(_m)document.documentElement.setAttribute('data-mode',_m);}catch(e){}</script>
+  <style>
+    .auth-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+    }
+    .auth-center {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px var(--px) 60px;
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 440px;
+    }
+    .auth-logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .auth-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 30px;
+      font-weight: 500;
+      color: var(--dark);
+      text-align: center;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+    .auth-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .auth-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--white);
+      font-size: 14px;
+      color: var(--dark);
+      font-family: 'Outfit', sans-serif;
+      transition: border-color 0.15s;
+      box-sizing: border-box;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--dark);
+    }
+    .form-input.error {
+      border-color: var(--accent);
+    }
+    .auth-error {
+      display: none;
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      border-radius: 4px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #7F1D1D;
+    }
+    .auth-error.visible { display: block; }
+    .auth-success {
+      display: none;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: 4px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #14532D;
+    }
+    .auth-success.visible { display: block; }
+    .auth-btn {
+      width: 100%;
+      justify-content: center;
+      padding: 14px;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+    .auth-btn:disabled {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .auth-footer-links {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .auth-footer-links a {
+      color: var(--dark);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .auth-footer-links a:hover { text-decoration: underline; }
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 8px 0;
+    }
+    .auth-divider hr {
+      flex: 1;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+    .auth-divider span {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .forgot-link {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: right;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .forgot-link:hover { color: var(--dark); }
+    .config-hint {
+      background: #FFF7ED;
+      border: 1px solid #FED7AA;
+      border-radius: 4px;
+      padding: 12px 16px;
+      font-size: 12px;
+      color: #92400E;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body class="page-content" style="background:var(--bg);">
+
+<nav class="nav" id="main-nav">
+  <a href="../../index.html" class="nav-logo">
+    <img src="../../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="32">
+  </a>
+  <ul class="nav-links">
+    <li><a href="../methodik.html">Methodik</a></li>
+    <li><a href="../performance.html">Performance</a></li>
+    <li><a href="../anleitung.html">Anleitung</a></li>
+    <li><a href="../archive.html">Archiv</a></li>
+    <li><a href="../pricing.html">Preise</a></li>
+    <li><a href="../about.html">Über uns</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="mode-toggle">
+      <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+      <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+    </div>
+    <div id="nav-auth-out" class="nav-auth">
+      <a href="login.html" class="nav-login-link" style="color:rgba(255,255,255,0.9);">Login</a>
+      <a href="register.html" class="btn btn-primary nav-cta">Konto erstellen</a>
+    </div>
+    <div id="nav-auth-in" class="nav-auth" style="display:none;">
+      <span id="nav-user-name" style="font-size:11px;color:rgba(255,255,255,0.45);"></span>
+      <a href="dashboard.html" class="btn nav-cta">Dashboard</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav-mobile">
+  <a href="../methodik.html">Methodik</a>
+  <a href="../performance.html">Performance</a>
+  <a href="../anleitung.html">Anleitung</a>
+  <a href="../archive.html">Archiv</a>
+  <a href="../pricing.html">Preise</a>
+  <a href="../about.html">Über uns</a>
+  <a href="../contact.html">Kontakt</a>
+  <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
+    <a href="login.html" style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);">Login</a>
+    <a href="register.html" style="font-size:13px;font-weight:600;color:var(--accent);">Konto erstellen</a>
+  </div>
+  <div class="mode-toggle" style="margin-top:16px;width:100%;">
+    <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+    <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+  </div>
+</nav>
+
+<div class="auth-wrap">
+  <div class="auth-center">
+    <div class="auth-card">
+
+      <div class="auth-logo">
+        <img src="../../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="36">
+      </div>
+
+      <h1 class="auth-title">Willkommen zurück</h1>
+      <p class="auth-sub">Melde dich in deinem Mitgliederbereich an</p>
+
+      <div id="config-hint" class="config-hint" style="display:none;">
+        <strong>Hinweis:</strong> Supabase ist noch nicht konfiguriert. Trage deine Zugangsdaten in <code>js/config.js</code> ein, damit der Login funktioniert.
+      </div>
+
+      <div id="auth-error" class="auth-error"></div>
+      <div id="auth-success" class="auth-success"></div>
+
+      <!-- Login form -->
+      <form class="auth-form" id="login-form">
+        <div class="form-field">
+          <label class="form-label" for="login-email">E-Mail-Adresse</label>
+          <input class="form-input" type="email" id="login-email" name="email" placeholder="name@beispiel.de" autocomplete="email" required>
+        </div>
+        <div class="form-field">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <label class="form-label" for="login-password">Passwort</label>
+            <span class="forgot-link" id="forgot-link">Passwort vergessen?</span>
+          </div>
+          <input class="form-input" type="password" id="login-password" name="password" placeholder="••••••••" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="btn btn-primary auth-btn" id="login-btn">Anmelden</button>
+      </form>
+
+      <!-- Forgot password form (hidden by default) -->
+      <form class="auth-form" id="forgot-form" style="display:none;">
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Gib deine E-Mail-Adresse ein und wir senden dir einen Link zum Zurücksetzen deines Passworts.</p>
+        <div class="form-field">
+          <label class="form-label" for="reset-email">E-Mail-Adresse</label>
+          <input class="form-input" type="email" id="reset-email" placeholder="name@beispiel.de" required>
+        </div>
+        <button type="submit" class="btn btn-primary auth-btn" id="reset-btn">Link senden</button>
+        <button type="button" class="btn btn-secondary auth-btn" id="back-to-login">Zurück zum Login</button>
+      </form>
+
+      <div class="auth-divider" style="margin-top:24px;">
+        <hr><span>oder</span><hr>
+      </div>
+
+      <div class="auth-footer-links">
+        Noch kein Konto? <a href="register.html">Jetzt registrieren</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Supabase SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="../../js/config.js"></script>
+<script src="../../js/auth.js"></script>
+<script src="../../js/main.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // Show config hint if not set up
+  if (window.SA_CONFIG && SA_CONFIG.SUPABASE_URL === 'DEINE_SUPABASE_URL') {
+    document.getElementById('config-hint').style.display = 'block';
+  }
+
+  // Check if already logged in → redirect to dashboard
+  (async function () {
+    var session = await SA_Auth.getSession();
+    if (session) window.location.href = 'dashboard.html';
+  })();
+
+  var loginForm  = document.getElementById('login-form');
+  var forgotForm = document.getElementById('forgot-form');
+  var errorBox   = document.getElementById('auth-error');
+  var successBox = document.getElementById('auth-success');
+
+  function showError(msg) {
+    errorBox.textContent = msg;
+    errorBox.classList.add('visible');
+    successBox.classList.remove('visible');
+  }
+  function showSuccess(msg) {
+    successBox.textContent = msg;
+    successBox.classList.add('visible');
+    errorBox.classList.remove('visible');
+  }
+  function clearMessages() {
+    errorBox.classList.remove('visible');
+    successBox.classList.remove('visible');
+  }
+
+  // Login
+  loginForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    clearMessages();
+    var btn   = document.getElementById('login-btn');
+    var email = document.getElementById('login-email').value.trim();
+    var pass  = document.getElementById('login-password').value;
+    btn.disabled = true;
+    btn.textContent = 'Anmelden…';
+    try {
+      await SA_Auth.signIn(email, pass);
+      // Check redirect param
+      var params   = new URLSearchParams(window.location.search);
+      var redirect = params.get('redirect');
+      window.location.href = redirect && redirect.startsWith('/') ? redirect : 'dashboard.html';
+    } catch (err) {
+      var msgs = {
+        'Invalid login credentials': 'E-Mail oder Passwort ist falsch.',
+        'Email not confirmed':        'Bitte bestätige zuerst deine E-Mail-Adresse.',
+        'Supabase nicht konfiguriert.':'Supabase ist noch nicht eingerichtet. Bitte trage deine Daten in js/config.js ein.'
+      };
+      showError(msgs[err.message] || err.message || 'Anmeldung fehlgeschlagen. Bitte erneut versuchen.');
+      btn.disabled = false;
+      btn.textContent = 'Anmelden';
+    }
+  });
+
+  // Forgot password toggle
+  document.getElementById('forgot-link').addEventListener('click', function () {
+    loginForm.style.display  = 'none';
+    forgotForm.style.display = 'flex';
+    clearMessages();
+  });
+  document.getElementById('back-to-login').addEventListener('click', function () {
+    forgotForm.style.display = 'none';
+    loginForm.style.display  = 'flex';
+    clearMessages();
+  });
+
+  // Reset password
+  forgotForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    clearMessages();
+    var btn   = document.getElementById('reset-btn');
+    var email = document.getElementById('reset-email').value.trim();
+    btn.disabled = true;
+    btn.textContent = 'Sende…';
+    try {
+      await SA_Auth.resetPassword(email);
+      showSuccess('Link gesendet! Prüfe deinen Posteingang.');
+    } catch (err) {
+      showError(err.message || 'Fehler beim Senden. Bitte versuche es erneut.');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Link senden';
+    }
+  });
+
+})();
+</script>
+</body>
+</html>

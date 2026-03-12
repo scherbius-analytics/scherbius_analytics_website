@@ -1,0 +1,17 @@
+# System
+.DS_Store
+.tmp/
+
+# Agent / Dev files
+memory/
+CLAUDE.md
+Claude_R_Input.Rmd
+Methodik/
+Screensshots/
+output/
+tools/
+
+# Secrets
+.env
+credentials.json
+token.json

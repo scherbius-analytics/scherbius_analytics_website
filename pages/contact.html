@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="institutional">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt — Scherbius Analytics</title>
+  <meta name="description" content="Kontaktieren Sie Scherbius Analytics — Kontakt aufnehmen oder Privatanleger-Testzugang starten.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/reveal.css">
+  <style>
+    .contact-form label { display:block; font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-muted); margin-bottom:8px; }
+    .contact-form input, .contact-form select, .contact-form textarea {
+      width:100%; padding:12px 16px; font-family:'Outfit',sans-serif; font-size:13px;
+      border:1px solid var(--border); border-radius:2px; background:var(--white);
+      color:var(--dark); outline:none; transition:border-color 0.2s;
+    }
+    .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color:var(--dark); }
+    .contact-form .field { margin-bottom:20px; }
+    .contact-form textarea { resize:vertical; min-height:140px; }
+  </style>
+  <script>try{var _m=localStorage.getItem('sa_mode');if(_m)document.documentElement.setAttribute('data-mode',_m);}catch(e){}</script>
+</head>
+<body class="page-content">
+
+<nav class="nav" id="main-nav">
+  <a href="../index.html" class="nav-logo">
+    <img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="32">
+  </a>
+  <ul class="nav-links">
+    <li><a href="methodik.html">Methodik</a></li>
+    <li><a href="performance.html">Performance</a></li>
+    <li><a href="anleitung.html">Anleitung</a></li>
+    <li><a href="archive.html">Archiv</a></li>
+    <li><a href="pricing.html">Preise</a></li>
+    <li><a href="about.html">Über uns</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="mode-toggle">
+      <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+      <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+    </div>
+    <div id="nav-auth-out" class="nav-auth">
+      <a href="members/login.html" class="nav-login-link">Login</a>
+      <a href="members/register.html" class="btn btn-primary nav-cta">Konto erstellen</a>
+    </div>
+    <div id="nav-auth-in" class="nav-auth" style="display:none;">
+      <span id="nav-user-name" style="font-size:11px;color:rgba(255,255,255,0.45);"></span>
+      <a href="members/dashboard.html" class="btn nav-cta">Dashboard</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav-mobile">
+  <a href="methodik.html">Methodik</a>
+  <a href="performance.html">Performance</a>
+  <a href="anleitung.html">Anleitung</a>
+  <a href="archive.html">Archiv</a>
+  <a href="pricing.html">Preise</a>
+  <a href="about.html">Über uns</a>
+  <a href="contact.html">Kontakt</a>
+  <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
+    <a href="members/login.html" style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);">Login</a>
+    <a href="members/register.html" style="font-size:13px;font-weight:600;color:var(--accent);">Konto erstellen</a>
+  </div>
+  <div class="mode-toggle" style="margin-top:16px;width:100%;">
+    <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+    <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div style="background:var(--dark);padding:120px var(--px) 80px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;opacity:0.035;background-image:repeating-linear-gradient(90deg,#fff 0,#fff 1px,transparent 1px,transparent 80px),repeating-linear-gradient(0deg,#fff 0,#fff 1px,transparent 1px,transparent 80px);pointer-events:none;"></div>
+  <div style="max-width:var(--max-width);margin:0 auto;position:relative;z-index:2;">
+    <p class="section-label" style="color:var(--accent);">Kontakt</p>
+    <h1 style="font-family:'EB Garamond',serif;font-size:clamp(40px,5vw,72px);font-weight:500;color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:20px;">
+      <span data-show="institutional">Kontakt<br><em style="color:rgba(255,255,255,0.4)">aufnehmen</em></span>
+      <span data-show="retail">Schreiben Sie<br><em style="color:rgba(255,255,255,0.4)">uns</em></span>
+    </h1>
+    <p style="font-size:15px;color:rgba(255,255,255,0.4);max-width:480px;line-height:1.75;" data-show="institutional">
+      Wir erläutern unsere Strategie, beantworten Ihre Fragen und besprechen individuelle Konditionen.
+    </p>
+    <p style="font-size:15px;color:rgba(255,255,255,0.4);max-width:480px;line-height:1.75;" data-show="retail">
+      Für den 14-Tage-Testzugang oder allgemeine Fragen — wir antworten schnell und persönlich.
+    </p>
+  </div>
+</div>
+
+<!-- Contact Section -->
+<div class="section-full">
+  <div class="section-inner">
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:64px;align-items:start;" data-reveal>
+
+      <!-- Contact Info -->
+      <div>
+        <p class="section-label" style="margin-bottom:24px;">Direktkontakt</p>
+        <div style="display:flex;flex-direction:column;gap:24px;">
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:28px;">
+            <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;">Florian Kaya — Gründer &amp; Geschäftsführer</p>
+            <a href="mailto:kaya@scherbius.de" style="font-size:14px;font-weight:600;color:var(--dark);display:block;margin-bottom:6px;">kaya@scherbius.de</a>
+            <a href="tel:+4915208755758" style="font-size:13px;color:var(--text-muted);">+49 152 08755758</a>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:28px;">
+            <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;">Erik Richter — Co-Gründer</p>
+            <a href="mailto:richter@scherbius.de" style="font-size:14px;font-weight:600;color:var(--dark);display:block;margin-bottom:6px;">richter@scherbius.de</a>
+            <a href="tel:+4915170854496" style="font-size:13px;color:var(--text-muted);">+49 151 70854496</a>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:28px;" data-show="institutional">
+            <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Institutionelle Anfragen</p>
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.65;">Persönliche Beratung, individuelle Konditionen und Due-Diligence-Unterlagen auf Anfrage. Wir melden uns innerhalb von 24 Stunden.</p>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:28px;" data-show="retail">
+            <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">14-Tage-Testzugang</p>
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.65;">Keine Kreditkartendaten. Kein automatisches Abonnement. Wählen Sie im Formular "14-Tage-Test anfragen".</p>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:28px;">
+            <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;">Antwortzeit</p>
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.65;">Werktags innerhalb von 24 Stunden. Sie erhalten eine Bestätigungsmail bei Eingang Ihrer Nachricht.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div>
+        <p class="section-label" style="margin-bottom:24px;">Nachricht senden</p>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:40px;">
+          <form class="contact-form"
+                action="mailto:kaya@scherbius.de"
+                method="get"
+                enctype="text/plain">
+            <div class="field">
+              <label for="contact-name">Name</label>
+              <input type="text" id="contact-name" name="name" placeholder="Vor- und Nachname" required>
+            </div>
+            <div class="field">
+              <label for="contact-email">E-Mail-Adresse</label>
+              <input type="email" id="contact-email" name="email" placeholder="ihre@email.de" required>
+            </div>
+            <div class="field" data-show="institutional">
+              <label for="contact-company">Unternehmen</label>
+              <input type="text" id="contact-company" name="company" placeholder="Name Ihres Unternehmens">
+            </div>
+            <div class="field">
+              <label for="contact-subject">Betreff</label>
+              <select id="contact-subject" name="subject">
+                <option value="Allgemeine Anfrage">Allgemeine Anfrage</option>
+                <option value="Institutionelle Anfrage">Institutionelle Anfrage</option>
+                <option value="Privatanleger-Abonnement">Privatanleger-Abonnement</option>
+                <option value="14-Tage-Test anfragen">14-Tage-Test anfragen</option>
+                <option value="Performance-Fragen">Fragen zur Performance</option>
+                <option value="Sonstiges">Sonstiges</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="contact-message">Nachricht</label>
+              <textarea id="contact-message" name="body" placeholder="Ihre Nachricht an uns..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+              Nachricht senden
+            </button>
+            <p style="font-size:11px;color:var(--text-dim);margin-top:16px;line-height:1.5;">
+              Mit dem Absenden öffnet sich Ihr E-Mail-Programm. Ihre Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet.
+              <a href="legal/datenschutz.html" style="color:var(--text-dim);">Datenschutzerklärung</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-pill" style="margin-bottom:20px;"><img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="28"></div>
+      <p class="footer-brand-tagline">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</p>
+      <a href="https://linkedin.com/company/scherbius-analytics/" target="_blank" rel="noopener noreferrer" style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;">LinkedIn</a>
+    </div>
+    <div>
+      <p class="footer-col-title">Navigation</p>
+      <ul class="footer-links">
+        <li><a href="methodik.html">Methodik</a></li>
+        <li><a href="performance.html">Performance</a></li>
+        <li><a href="anleitung.html">Anleitung</a></li>
+        <li><a href="pricing.html">Preise</a></li>
+        <li><a href="about.html">Über uns</a></li>
+        <li><a href="contact.html">Kontakt</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Ressourcen</p>
+      <ul class="footer-links">
+        <li><a href="archive.html">Portfolio-Archiv</a></li>
+        <li><a href="legal/risikohinweise.html">Risikohinweise</a></li>
+        <li><a href="legal/datenschutz.html">Datenschutzerklärung</a></li>
+        <li><a href="legal/impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Kontakt</p>
+      <ul class="footer-links">
+        <li style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding-bottom:2px;">F. Kaya</li>
+        <li><a href="mailto:kaya@scherbius.de">kaya@scherbius.de</a></li>
+        <li style="margin-bottom:12px;"><a href="tel:+4915208755758">+49 152 08755758</a></li>
+        <li style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding-bottom:2px;">E. Richter</li>
+        <li><a href="mailto:richter@scherbius.de">richter@scherbius.de</a></li>
+        <li><a href="tel:+4915170854496">+49 151 70854496</a></li>
+      </ul>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,0.1);padding:40px 0;margin-top:16px;">
+    <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:20px;">Disclaimer / Risikohinweis</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;">
+      <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.75;margin:0;">Die hier bereitgestellten Informationen stellen keine Anlageberatung im Sinne des § 2 Abs. 8 Nr. 10 WpHG dar. Die Inhalte dienen ausschließlich allgemeinen Informationszwecken und berücksichtigen keine individuellen Kenntnisse und Erfahrungen, Anlageziele, finanzielle Verhältnisse, Risikobereitschaft oder Verlusttragfähigkeit der Empfänger. Anlageentscheidungen, die auf Basis dieser Informationen getroffen werden, erfolgen ausschließlich auf eigenes Risiko und in eigener Verantwortung.</p>
+      <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.75;margin:0;">Der Handel mit Finanzinstrumenten, insbesondere Aktien und Derivaten, ist mit erheblichen Risiken bis hin zum Totalverlust verbunden. Vergangene Wertentwicklungen, Backtests und Modellrechnungen sind keine Garantie für zukünftige Ergebnisse. Scherbius Analytics UG (haftungsbeschränkt) übernimmt keine Haftung für Verluste oder Schäden, die aus der Nutzung der bereitgestellten Informationen entstehen.</p>
+      <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.75;margin:0;">Die Empfehlungen beruhen auf regelbasierten, datengetriebenen Portfolio-Allokationen ohne persönliche Beratung. Es findet keine Vermögensverwaltung statt und es werden keine Eigentumsrechte an Vermögenswerten übertragen. Methodik und Backtests werden transparent offengelegt; der Vertrieb der Anlagestrategieempfehlungen wurde gemäß § 86 Abs. 1 WpHG bei der BaFin angezeigt.</p>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <p class="footer-legal">&copy; 2026 Scherbius Analytics UG (haftungsbeschränkt) &nbsp;·&nbsp; HRB 195105 Amtsgericht Hamburg &nbsp;·&nbsp; Alle Rechte vorbehalten.</p>
+    <p class="footer-legal">
+      <a href="legal/impressum.html">Impressum</a> &nbsp;·&nbsp;
+      <a href="legal/datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="legal/risikohinweise.html">Risikohinweise</a>
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

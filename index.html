@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="institutional">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scherbius Analytics — Quantitatives Portfoliomanagement</title>
+  <meta name="description" content="Tägliche Portfolio-Updates, statistisch geprüfte Alpha-Quellen, unkorreliert mit Aktien- und Rentenmärkten. Für institutionelle und private Investoren.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/index.css">
+  <!-- Restore mode immediately to prevent layout flash -->
+  <script>try{var _m=localStorage.getItem('sa_mode');if(_m)document.documentElement.setAttribute('data-mode',_m);}catch(e){}</script>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════
+     Navigation
+     ════════════════════════════════════════════════════════════ -->
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="32">
+  </a>
+  <ul class="nav-links">
+    <li><a href="pages/methodik.html">Methodik</a></li>
+    <li><a href="pages/performance.html">Performance</a></li>
+    <li><a href="pages/anleitung.html">Anleitung</a></li>
+    <li><a href="pages/archive.html">Archiv</a></li>
+    <li><a href="pages/pricing.html">Preise</a></li>
+    <li><a href="pages/about.html">Über uns</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="mode-toggle">
+      <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+      <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+    </div>
+    <div id="nav-auth-out" class="nav-auth">
+      <a href="pages/members/login.html" class="nav-login-link">Login</a>
+      <a href="pages/members/register.html" class="btn btn-primary nav-cta">Konto erstellen</a>
+    </div>
+    <div id="nav-auth-in" class="nav-auth" style="display:none;">
+      <span id="nav-user-name" style="font-size:11px;color:rgba(255,255,255,0.45);"></span>
+      <a href="pages/members/dashboard.html" class="btn nav-cta">Dashboard</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<nav class="nav-mobile">
+  <a href="pages/methodik.html">Methodik</a>
+  <a href="pages/performance.html">Performance</a>
+  <a href="pages/anleitung.html">Anleitung</a>
+  <a href="pages/archive.html">Archiv</a>
+  <a href="pages/pricing.html">Preise</a>
+  <a href="pages/about.html">Über uns</a>
+  <a href="pages/contact.html">Kontakt</a>
+  <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
+    <a href="pages/members/login.html" style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);">Login</a>
+    <a href="pages/members/register.html" style="font-size:13px;font-weight:600;color:var(--accent);">Konto erstellen</a>
+  </div>
+  <div class="mode-toggle" style="margin-top:16px;width:100%;">
+    <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+    <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     Hero
+     ════════════════════════════════════════════════════════════ -->
+<section class="hero">
+
+  <!-- ── Cycling Wall Street background ───────────────────────── -->
+  <div style="position:absolute;inset:0;z-index:0;overflow:hidden;">
+    <div class="hbg-slide" style="position:absolute;inset:0;background-image:url('Website Bilder/Wall_Street 1940.png');background-size:cover;background-position:50% 50%;filter:grayscale(20%) contrast(1.05);transition:opacity 2.2s ease;opacity:1;"></div>
+    <div class="hbg-slide" style="position:absolute;inset:0;background-image:url('Website Bilder/watermark_1024_1.RETOUCHED-1969-NYC_Stock_Exchange___Wall_Street-5075x3364.jpg');background-size:cover;background-position:50% 50%;filter:grayscale(20%) contrast(1.05);transition:opacity 2.2s ease;opacity:0;"></div>
+    <div class="hbg-slide" style="position:absolute;inset:0;background-image:url('Website Bilder/Stock Crash Crowd.webp');background-size:cover;background-position:50% 50%;filter:grayscale(20%) contrast(1.05);transition:opacity 2.2s ease;opacity:0;"></div>
+    <div class="hbg-slide" style="position:absolute;inset:0;background-image:url('Website Bilder/thomas-struth-broad-street-new-yorkwall-street-dzf50--thumb-xl.jpg');background-size:cover;background-position:50% 50%;filter:grayscale(20%) contrast(1.05);transition:opacity 2.2s ease;opacity:0;"></div>
+    <div class="hbg-slide" style="position:absolute;inset:0;background-image:url('Website Bilder/Broker check the ticker.webp');background-size:cover;background-position:50% 50%;filter:grayscale(20%) contrast(1.05);transition:opacity 2.2s ease;opacity:0;"></div>
+    <div class="hbg-slide" style="position:absolute;inset:0;background-image:url('Website Bilder/Charlie Chaplin on Wall Street.jpg');background-size:cover;background-position:50% 50%;filter:grayscale(20%) contrast(1.05);transition:opacity 2.2s ease;opacity:0;"></div>
+    <div class="hbg-slide" style="position:absolute;inset:0;background-image:url('Website Bilder/Lost_on_wall_street.webp');background-size:cover;background-position:50% 50%;filter:grayscale(20%) contrast(1.05);transition:opacity 2.2s ease;opacity:0;"></div>
+    <div class="hbg-slide" style="position:absolute;inset:0;background-image:url('Website Bilder/Newspaper.webp');background-size:cover;background-position:50% 50%;filter:grayscale(20%) contrast(1.05);transition:opacity 2.2s ease;opacity:0;"></div>
+    <div class="hbg-slide" style="position:absolute;inset:0;background-image:url('Website Bilder/WallStreet Empty.webp');background-size:cover;background-position:50% 50%;filter:grayscale(20%) contrast(1.05);transition:opacity 2.2s ease;opacity:0;"></div>
+  </div>
+  <!-- Dark overlay — keeps text legible -->
+  <div style="position:absolute;inset:0;z-index:1;background:rgba(8,8,8,0.72);"></div>
+
+  <div class="hero-bg-lines" style="position:relative;z-index:2;"></div>
+  <div class="hero-accent-line" style="position:relative;z-index:2;"></div>
+  <div class="hero-inner" style="position:relative;z-index:2;">
+
+    <!-- ── Left: Headline + CTAs ──────────────────────────────── -->
+    <div class="hero-content">
+      <p class="hero-label">Scherbius Analytics — Quantitatives Portfolio Management</p>
+
+      <h1 class="hero-title">
+        <span data-show="institutional">Marktunabhängige<br><span class="hero-title-em">Überrendite</span></span>
+        <span data-show="retail">Marktunabhängige<br><span class="hero-title-em">Überrendite</span></span>
+      </h1>
+
+      <p class="hero-subtitle" data-show="institutional">
+        Multi-Strategie-Portfolios. Statistisch robustes Alpha.<br>
+        Unkorreliert mit Aktien- und Rentenmärkten.
+      </p>
+      <p class="hero-subtitle" data-show="retail">
+        Risikomanagement für Privatanleger.<br>
+        Tägliche Updates. 14 Tage kostenlos testen.
+      </p>
+
+      <div class="hero-actions">
+        <a href="pages/contact.html" class="btn btn-primary" data-show="institutional">Kontakt aufnehmen</a>
+        <a href="pages/pricing.html#trial" class="btn btn-primary" data-show="retail">14 Tage kostenlos testen</a>
+        <a href="pages/performance.html" class="btn-outline-white">Track Record ansehen</a>
+      </div>
+    </div>
+
+    <!-- ── Right: KPI Panel ────────────────────────────────────── -->
+    <div class="hero-kpi-panel">
+
+      <!-- Institutionell -->
+      <div class="hero-kpi-list" data-show="institutional">
+        <div class="hero-kpi-item">
+          <span class="hero-kpi-label">Sharpe Ratio</span>
+          <span class="hero-kpi-value" data-count="1.68" data-decimals="2">1,68</span>
+        </div>
+        <div class="hero-kpi-item">
+          <span class="hero-kpi-label">Jensen Alpha p.a.</span>
+          <span class="hero-kpi-value hero-kpi-value-em" data-count="10.71" data-prefix="+" data-suffix=" %" data-decimals="2">+10,71 %</span>
+        </div>
+        <div class="hero-kpi-item">
+          <span class="hero-kpi-label">Max. Drawdown</span>
+          <span class="hero-kpi-value" data-count="7.88" data-prefix="−" data-suffix=" %" data-decimals="2">−7,88 %</span>
+        </div>
+        <div class="hero-kpi-item">
+          <span class="hero-kpi-label">Beta</span>
+          <span class="hero-kpi-value" data-count="0.127" data-decimals="3">0,127</span>
+        </div>
+      </div>
+
+      <!-- Privatanleger -->
+      <div class="hero-kpi-list" data-show="retail">
+        <div class="hero-kpi-item">
+          <span class="hero-kpi-label">Gesamtrendite netto</span>
+          <span class="hero-kpi-value hero-kpi-value-em" data-count="1445" data-prefix="+" data-suffix=" %" data-decimals="0">+1.445 %</span>
+        </div>
+        <div class="hero-kpi-item">
+          <span class="hero-kpi-label">CAGR netto</span>
+          <span class="hero-kpi-value hero-kpi-value-em" data-count="27.8" data-prefix="+" data-suffix=" %" data-decimals="1">+27,8 %</span>
+        </div>
+        <div class="hero-kpi-item">
+          <span class="hero-kpi-label">Sharpe Ratio</span>
+          <span class="hero-kpi-value" data-count="0.97" data-decimals="2">0,97</span>
+        </div>
+        <div class="hero-kpi-item">
+          <span class="hero-kpi-label">Max. Drawdown</span>
+          <span class="hero-kpi-value" data-count="36.8" data-prefix="−" data-suffix=" %" data-decimals="1">−36,8 %</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="hero-scroll-indicator" style="position:relative;z-index:2;">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+
+  <script>
+  (function () {
+    var slides = document.querySelectorAll('.hbg-slide');
+    var cur = 0;
+    var DUR = 6000;
+    function advance() {
+      slides[cur].style.opacity = '0';
+      cur = (cur + 1) % slides.length;
+      slides[cur].style.opacity = '1';
+      setTimeout(advance, DUR);
+    }
+    setTimeout(advance, DUR);
+  })();
+  </script>
+</section>
+
+
+
+
+<!-- ════════════════════════════════════════════════════════════
+     Performance Overview
+     ════════════════════════════════════════════════════════════ -->
+<div class="section-full">
+  <div class="section-inner">
+
+    <div class="section-header" data-reveal>
+      <p class="section-label">Track Record</p>
+      <h2 class="section-title">
+        <span data-show="institutional">Quantitative Multi-Strategie-Portfolios,<br><em>für etablierte Institutionen</em></span>
+        <span data-show="retail">Quantitatives Risikomanagement ,<br><em>für ambitionierte Privatanleger</em></span>
+      </h2>
+      <p class="section-desc" data-show="institutional">
+        Scherbius 1.0 Institutionell: CAGR 14,9 % bei Sharpe Ratio 1,68.
+        Jensen Alpha von +10,71 % p.a. (p&lt;0,0001). Backtest Januar 2015 bis Dezember 2025.
+        <span style="display:block;margin-top:8px;font-size:11px;color:var(--text-dim);">Alle Angaben netto nach Transaktionskosten.</span>
+      </p>
+      <p class="section-desc" data-show="retail">
+        Scherbius 1.0 Privatanleger: +1.445 % Gesamtrendite bei CAGR 27,8 % — mehr als dreifach besser
+        als der NASDAQ-100 (+490 %). Backtest Januar 2015 bis Dezember 2025.
+        <span style="display:block;margin-top:8px;font-size:11px;color:var(--text-dim);">Alle Angaben netto nach Transaktionskosten und Steuern (Kapitalertragsteuer 25 % + Solidaritätszuschlag 5,5 %).</span>
+      </p>
+    </div>
+
+    <!-- KPI Grid — Institutional -->
+    <div class="perf-kpi-grid" data-show="institutional" data-reveal>
+      <div class="kpi-card">
+        <p class="kpi-label">CAGR (netto)</p>
+        <div class="kpi-value text-green" data-count="14.9" data-suffix="%" data-decimals="1">14,9 %</div>
+        <p class="kpi-sub">NDX: 17,3 %</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Sharpe Ratio</p>
+        <div class="kpi-value text-green" data-count="1.68" data-suffix="" data-decimals="2">1,68</div>
+        <p class="kpi-sub">NDX: 0,79</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Max. Drawdown</p>
+        <div class="kpi-value" data-count="7.88" data-prefix="−" data-suffix="%" data-decimals="2">−7,88 %</div>
+        <p class="kpi-sub">NDX: −35,56 %</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Jensen Alpha p.a.</p>
+        <div class="kpi-value text-green" data-count="10.71" data-suffix="%" data-decimals="2">+10,71 %</div>
+        <p class="kpi-sub">p &lt; 0,0001 (hochsign.)</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Endwert (netto)</p>
+        <div class="kpi-value" data-count="46967" data-suffix=" €" data-decimals="0">46.967 €</div>
+        <p class="kpi-sub">aus 10.000 € Start</p>
+      </div>
+    </div>
+
+    <!-- KPI Grid — Retail -->
+    <div class="perf-kpi-grid" data-show="retail" data-reveal>
+      <div class="kpi-card">
+        <p class="kpi-label">CAGR (netto)</p>
+        <div class="kpi-value text-green" data-count="27.8" data-suffix="%" data-decimals="1">27,8 %</div>
+        <p class="kpi-sub">NDX: 17,5 %</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Gesamtrendite</p>
+        <div class="kpi-value text-green" data-count="1445" data-suffix="%" data-decimals="0">+1.445 %</div>
+        <p class="kpi-sub">NDX: +490 %</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Sharpe Ratio</p>
+        <div class="kpi-value text-green" data-count="0.97" data-suffix="" data-decimals="2">0,97</div>
+        <p class="kpi-sub">NDX: 0,80</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Max. Drawdown</p>
+        <div class="kpi-value" data-count="36.84" data-prefix="−" data-suffix="%" data-decimals="2">−36,84 %</div>
+        <p class="kpi-sub">NDX: −35,6 %</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Endwert (netto)</p>
+        <div class="kpi-value" data-count="154543" data-suffix=" €" data-decimals="0">154.543 €</div>
+        <p class="kpi-sub">aus 10.000 € Start</p>
+      </div>
+    </div>
+
+    <!-- Interactive Equity Chart -->
+    <div class="perf-chart" data-reveal>
+      <div class="perf-chart-header">
+        <div>
+          <p class="perf-chart-label">
+            <span data-show="institutional">Scherbius 1.0 Institutionell vs. NASDAQ-100</span>
+            <span data-show="retail">Scherbius 1.0 Privatanleger vs. NASDAQ-100</span>
+          </p>
+          <p class="perf-chart-sub">Indexiert auf 10.000 €, Jan 2015 – Feb 2026 · Scroll/Pinch zum Zoomen</p>
+        </div>
+        <button class="chart-reset-btn" id="eq-chart-reset">Zoom zurücksetzen</button>
+      </div>
+      <div class="chart-container">
+        <canvas id="eq-chart" style="max-height:360px;"></canvas>
+      </div>
+      <div class="chart-nav-wrap" id="eq-chart-nav-wrap">
+        <canvas id="eq-chart-nav"></canvas>
+        <div class="chart-nav-overlay">
+          <div class="chart-nav-mask-l"></div>
+          <div class="chart-nav-sel">
+            <div class="chart-nav-hl"></div>
+            <div class="chart-nav-hr"></div>
+          </div>
+          <div class="chart-nav-mask-r"></div>
+        </div>
+      </div>
+      <p class="perf-chart-disclaimer">
+        Alle Angaben basieren auf Backtests (01/2015–12/2025) sowie Live-Daten ab 15.12.2025.
+        Institutionelle Renditen: netto nach Transaktionskosten.
+        Privatanleger-Renditen: netto nach Transaktionskosten und Steuern (Kapitalertragsteuer 25 % + Soli 5,5 %).
+        Historische Performance ist kein verlässlicher Indikator für zukünftige Ergebnisse.
+        <a href="pages/legal/risikohinweise.html">Vollständige Risikohinweise</a>
+      </p>
+    </div>
+
+    <div style="margin-top:32px;text-align:center;" data-reveal>
+      <a href="pages/performance.html" class="btn btn-secondary">Vollständige Rendite-Analyse</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     Fact Sheets
+     ════════════════════════════════════════════════════════════ -->
+<div class="section-full" style="background:#F7F5F2;">
+  <div class="section-inner">
+
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:40px;" data-reveal>
+      <div>
+        <p class="section-label">Produktdokumentation</p>
+        <h2 class="section-title" style="margin-bottom:0;">Fact Sheets</h2>
+      </div>
+      <a href="pages/archive.html#fact-sheets" style="font-size:11px;color:var(--text-dim);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;">Alle Versionen im Archiv →</a>
+    </div>
+
+    <!-- Institutional -->
+    <div data-show="institutional" data-reveal>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:space-between;gap:40px;padding:28px 36px;">
+        <div>
+          <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Scherbius Analytics Inst 1.0</p>
+          <h3 style="font-family:'EB Garamond',serif;font-size:20px;font-weight:600;color:var(--dark);margin-bottom:6px;">Fact Sheet — Institutionell</h3>
+          <p style="font-size:12px;color:var(--text-muted);">Strategie, Performance-Kennzahlen und Risikoparameter · Stand März 2026 · Version 1.0</p>
+        </div>
+        <div style="flex-shrink:0;">
+          <a href="#" class="btn btn-secondary" style="white-space:nowrap;">PDF herunterladen</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Retail -->
+    <div data-show="retail" data-reveal>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:space-between;gap:40px;padding:28px 36px;">
+        <div>
+          <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Scherbius Analytics Privatanleger 1.1</p>
+          <h3 style="font-family:'EB Garamond',serif;font-size:20px;font-weight:600;color:var(--dark);margin-bottom:6px;">Fact Sheet — Privatanleger</h3>
+          <p style="font-size:12px;color:var(--text-muted);">Strategie, Performance-Kennzahlen und Zertifikate-Informationen · Stand März 2026 · Version 1.1</p>
+        </div>
+        <div style="flex-shrink:0;">
+          <a href="#" class="btn btn-secondary" style="white-space:nowrap;">PDF herunterladen</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     Solution (Dark)
+     ════════════════════════════════════════════════════════════ -->
+<div class="section-full section-dark">
+  <div class="section-inner">
+
+    <div class="section-header" data-reveal>
+      <p class="section-label" style="color:var(--accent)">Die Methode</p>
+      <h2 class="section-title" style="color:#fff">Nicht Assets — sondern<br><em style="color:rgba(255,255,255,0.4)">unkorrelierte Return Streams</em></h2>
+      <p class="section-desc" style="color:rgba(255,255,255,0.5)">
+        Scherbius diversifiziert nicht zwischen klassischen Assetklassen, sondern zwischen Renditequellen. Die entscheidende Frage lautet nicht welches Asset, sondern welche Strategie wird wie hoch gewichtet.
+      </p>
+    </div>
+
+    <!-- Kernidee: 3 Karten -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px;" data-reveal>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:32px;">
+        <h3 style="font-family:'EB Garamond',serif;font-size:19px;font-weight:600;color:#fff;margin-bottom:12px;line-height:1.3;">Unkorrelierter Return Stream</h3>
+        <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75;">Gesucht wird nicht das beste Instrument, sondern ein Portfolio aus vielen Renditequellen, die sich gegenseitig nicht beeinflussen.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:32px;">
+        <h3 style="font-family:'EB Garamond',serif;font-size:19px;font-weight:600;color:#fff;margin-bottom:12px;line-height:1.3;">Portfolio aus vielen Strategien</h3>
+        <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75;">Jede einzelne Strategie hat Schwächen, aber diversifiziert als Bündel verhalten sie sich statistisch robust und stabil über alle Marktregime.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:32px;">
+        <h3 style="font-family:'EB Garamond',serif;font-size:19px;font-weight:600;color:#fff;margin-bottom:12px;line-height:1.3;">Reines Alpha durch Diversifikation</h3>
+        <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75;">Viele unkorrelierte Strategien in einem Portfolio zusammengelegt produzieren reines Alpha, unabhängig vom Marktgeschehen.</p>
+      </div>
+    </div>
+
+    <!-- Zwei-Ebenen-Ansatz -->
+    <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:48px;" data-reveal>
+      <p class="section-label" style="color:var(--accent);margin-bottom:28px;">Zwei-Ebenen-Ansatz</p>
+      <div style="display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr;align-items:center;gap:0;">
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:28px 32px;">
+          <div style="display:inline-block;background:var(--accent);color:#fff;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:14px;">1. Ebene</div>
+          <p style="font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:#fff;margin-bottom:8px;">5 Strategien pro Markt</p>
+          <p style="font-size:12px;color:rgba(255,255,255,0.4);line-height:1.65;">Mean Reversion · Momentum</p>
+        </div>
+        <div style="text-align:center;color:rgba(255,255,255,0.2);font-size:22px;">→</div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:28px 32px;">
+          <div style="display:inline-block;background:var(--accent);color:#fff;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:14px;">2. Ebene</div>
+          <p style="font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:#fff;margin-bottom:8px;">ML Eintrittswahrscheinlichkeit</p>
+          <p style="font-size:12px;color:rgba(255,255,255,0.4);line-height:1.65;">XGBoost · Hidden Markov Models</p>
+        </div>
+        <div style="text-align:center;color:rgba(255,255,255,0.2);font-size:22px;">→</div>
+        <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.18);border-radius:4px;padding:28px 32px;">
+          <div style="display:inline-block;background:#2d6a4f;color:#fff;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:14px;">Endprodukt</div>
+          <p style="font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:#fff;margin-bottom:8px;">Marktunabhängiges Portfolio</p>
+          <p style="font-size:12px;color:rgba(255,255,255,0.4);line-height:1.65;">Kelly gewichtet · β = 0,127</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;text-align:center;" data-reveal>
+      <a href="pages/methodik.html" class="btn btn-ghost">Vollständige Methodik Dokumentation</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     Inspiration — Zitate
+     ════════════════════════════════════════════════════════════ -->
+<div id="qc-section" style="background:#0b0b0b;overflow:hidden;">
+
+  <style>
+    .qc-intro {
+      text-align: center;
+      padding: 80px var(--px) 48px;
+    }
+    .qc-filmstrip {
+      position: relative;
+      height: 75vh;
+      min-height: 540px;
+      max-height: 760px;
+    }
+    .qc-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: stretch;
+      opacity: 0;
+      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+    .qc-slide.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .qc-text-panel {
+      flex: 0 0 48%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 64px 56px 64px clamp(32px, calc((100vw - 1280px) / 2 + 60px), 120px);
+      background: linear-gradient(to right, #0b0b0b 65%, rgba(11,11,11,0) 100%);
+      position: relative;
+      z-index: 2;
+    }
+    .qc-photo-panel {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    .qc-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(15%) contrast(1.08);
+      transition: transform 7s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: scale(1.07);
+    }
+    .qc-slide.is-active .qc-photo {
+      transform: scale(1);
+    }
+    .qc-photo-fade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #0b0b0b 0%, rgba(11,11,11,0.1) 35%, rgba(11,11,11,0) 60%),
+                  linear-gradient(to top, rgba(11,11,11,0.5) 0%, rgba(11,11,11,0) 40%);
+      z-index: 1;
+    }
+    .qc-num {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .qc-name {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(26px, 2.8vw, 42px);
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 28px;
+      line-height: 1.1;
+      letter-spacing: -0.3px;
+    }
+    .qc-quote {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(17px, 1.7vw, 24px);
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.58);
+      line-height: 1.7;
+      border-left: 2px solid var(--accent);
+      padding-left: 22px;
+      margin: 0;
+    }
+    .qc-nav {
+      position: absolute;
+      bottom: 32px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      z-index: 10;
+    }
+    .qc-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .qc-dot.is-active {
+      background: var(--accent);
+      transform: scale(1.4);
+    }
+    .qc-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.06);
+      z-index: 10;
+    }
+    .qc-progress-fill {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+    }
+    @media (max-width: 768px) {
+      .qc-text-panel {
+        flex: 0 0 100%;
+        padding: 40px 24px 80px;
+        background: linear-gradient(to bottom, rgba(11,11,11,0.1) 0%, #0b0b0b 55%);
+        justify-content: flex-end;
+      }
+      .qc-photo-panel {
+        position: absolute;
+        inset: 0;
+      }
+      .qc-photo-fade {
+        background: linear-gradient(to bottom, rgba(11,11,11,0.2) 0%, #0b0b0b 65%);
+      }
+    }
+  </style>
+
+  <div class="qc-intro">
+    <p class="section-label" style="color:var(--accent);margin-bottom:16px;">Unsere Inspiration</p>
+    <h2 style="font-family:'EB Garamond',serif;font-size:clamp(28px,3.5vw,52px);font-weight:500;color:#fff;line-height:1.15;letter-spacing:-0.5px;margin:0;">Auf den Schultern<br><em style="color:rgba(255,255,255,0.35)">genialer Köpfe</em></h2>
+  </div>
+
+  <div class="qc-filmstrip">
+
+    <!-- 1 · Feynman -->
+    <div class="qc-slide is-active">
+      <div class="qc-text-panel">
+        <p class="qc-num">01 / 06</p>
+        <p class="qc-name">Richard Feynman</p>
+        <p class="qc-quote">„The first principle is that you must not fool yourself, and you are the easiest person to fool."</p>
+      </div>
+      <div class="qc-photo-panel">
+        <img class="qc-photo" src="Website Bilder/Richard Feynman.webp" alt="Richard Feynman">
+        <div class="qc-photo-fade"></div>
+      </div>
+    </div>
+
+    <!-- 2 · Sharpe -->
+    <div class="qc-slide">
+      <div class="qc-text-panel">
+        <p class="qc-num">02 / 06</p>
+        <p class="qc-name">William Sharpe</p>
+        <p class="qc-quote">„If you're not thinking about risk, then you're not thinking."</p>
+      </div>
+      <div class="qc-photo-panel">
+        <img class="qc-photo" src="Website Bilder/William Sharpe.webp" alt="William Sharpe">
+        <div class="qc-photo-fade"></div>
+      </div>
+    </div>
+
+    <!-- 3 · Markowitz -->
+    <div class="qc-slide">
+      <div class="qc-text-panel">
+        <p class="qc-num">03 / 06</p>
+        <p class="qc-name">Harry Markowitz</p>
+        <p class="qc-quote">„An investor who knew future returns with certainty would invest in only one security."</p>
+      </div>
+      <div class="qc-photo-panel">
+        <img class="qc-photo" src="Website Bilder/harry-markowitz.jpg" alt="Harry Markowitz">
+        <div class="qc-photo-fade"></div>
+      </div>
+    </div>
+
+    <!-- 4 · Thorp -->
+    <div class="qc-slide">
+      <div class="qc-text-panel">
+        <p class="qc-num">04 / 06</p>
+        <p class="qc-name">Ed Thorp</p>
+        <p class="qc-quote">„Casino gambling with a system where you have the edge is a wonderful teacher for elementary money management."</p>
+      </div>
+      <div class="qc-photo-panel">
+        <img class="qc-photo" src="Website Bilder/Ed Thorp.jpg" alt="Ed Thorp">
+        <div class="qc-photo-fade"></div>
+      </div>
+    </div>
+
+    <!-- 5 · Dalio -->
+    <div class="qc-slide">
+      <div class="qc-text-panel">
+        <p class="qc-num">05 / 06</p>
+        <p class="qc-name">Ray Dalio</p>
+        <p class="qc-quote">„The holy grail of investing is to have 15 or more good, uncorrelated return streams."</p>
+      </div>
+      <div class="qc-photo-panel">
+        <img class="qc-photo" src="Website Bilder/Ray Dalio.webp" alt="Ray Dalio">
+        <div class="qc-photo-fade"></div>
+      </div>
+    </div>
+
+    <!-- 6 · Disney -->
+    <div class="qc-slide">
+      <div class="qc-text-panel">
+        <p class="qc-num">06 / 06</p>
+        <p class="qc-name">Walt Disney</p>
+        <p class="qc-quote">„There is no magic in magic; it's all in the details."</p>
+      </div>
+      <div class="qc-photo-panel">
+        <img class="qc-photo" src="Website Bilder/Walt Disney - There is no magic in magic; it is all in the details.webp" alt="Walt Disney">
+        <div class="qc-photo-fade"></div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="qc-nav">
+      <button class="qc-dot is-active" data-idx="0"></button>
+      <button class="qc-dot" data-idx="1"></button>
+      <button class="qc-dot" data-idx="2"></button>
+      <button class="qc-dot" data-idx="3"></button>
+      <button class="qc-dot" data-idx="4"></button>
+      <button class="qc-dot" data-idx="5"></button>
+    </div>
+
+    <div class="qc-progress"><div class="qc-progress-fill" id="qc-bar"></div></div>
+  </div>
+
+  <script>
+  (function () {
+    var slides   = document.querySelectorAll('.qc-slide');
+    var dots     = document.querySelectorAll('.qc-dot');
+    var bar      = document.getElementById('qc-bar');
+    var DURATION = 6000;
+    var current  = 0;
+    var t0       = null;
+    var raf      = null;
+    var paused   = false;
+
+    function goTo(idx) {
+      slides[current].classList.remove('is-active');
+      dots[current].classList.remove('is-active');
+      current = (idx + slides.length) % slides.length;
+      slides[current].classList.add('is-active');
+      dots[current].classList.add('is-active');
+      t0 = null;
+    }
+
+    function tick(now) {
+      if (paused) return;
+      if (t0 === null) t0 = now;
+      var elapsed = now - t0;
+      var pct = Math.min((elapsed / DURATION) * 100, 100);
+      if (bar) bar.style.width = pct + '%';
+      if (elapsed >= DURATION) goTo(current + 1);
+      raf = requestAnimationFrame(tick);
+    }
+
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        goTo(parseInt(dot.dataset.idx, 10));
+      });
+    });
+
+    var section = document.getElementById('qc-section');
+    section.addEventListener('mouseenter', function () {
+      paused = true;
+      cancelAnimationFrame(raf);
+    });
+    section.addEventListener('mouseleave', function () {
+      paused = false;
+      var pct = bar ? parseFloat(bar.style.width) : 0;
+      t0 = performance.now() - (pct / 100) * DURATION;
+      raf = requestAnimationFrame(tick);
+    });
+
+    raf = requestAnimationFrame(tick);
+  })();
+  </script>
+
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     How It Works
+     ════════════════════════════════════════════════════════════ -->
+<div class="section-full section-warm">
+  <div class="section-inner">
+
+    <div class="section-header" data-reveal>
+      <p class="section-label">Schritt für Schritt</p>
+      <h2 class="section-title">Vom Signal<br><em>zur Position</em></h2>
+    </div>
+
+    <div class="how-steps" data-reveal>
+      <div class="how-step">
+        <p class="how-step-title">Update empfangen</p>
+        <p class="how-step-desc">Täglich vor Marktöffnung erhalten Sie das Portfolio-Update als PDF mit allen Positionen, Größen und Risikoparametern.</p>
+      </div>
+      <div class="how-step-arrow">→</div>
+      <div class="how-step">
+        <p class="how-step-title">Signale prüfen</p>
+        <p class="how-step-desc">Neue Positionen, Exits und Größenänderungen sind klar ausgewiesen. Der Vergleich mit dem Vortag zeigt auf einen Blick, was sich geändert hat.</p>
+      </div>
+      <div class="how-step-arrow">→</div>
+      <div class="how-step">
+        <p class="how-step-title">Im Broker umsetzen</p>
+        <p class="how-step-desc">Setzen Sie die Signale in Ihrem eigenen Broker-Konto um. Positionsgrößen sind prozentual angegeben, multipliziert mit Ihrem Portfoliowert ergibt sich der absolute Betrag.</p>
+      </div>
+      <div class="how-step-arrow">→</div>
+      <div class="how-step">
+        <p class="how-step-title">Disziplin halten</p>
+        <p class="how-step-desc">Das System entscheidet regelbasiert, ohne diskretionäre Eingriffe. Vertrauen Sie dem Prozess, auch in herausfordernden Marktphasen.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:48px;" data-reveal>
+      <a href="pages/anleitung.html" class="btn btn-secondary">Vollständige Anleitung lesen</a>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     Pricing Preview (Dark)
+     ════════════════════════════════════════════════════════════ -->
+<div class="section-full section-dark">
+  <div class="section-inner">
+
+    <div class="section-header" data-reveal>
+      <p class="section-label" style="color:var(--accent)">Zugang</p>
+      <h2 class="section-title" style="color:#fff" data-show="institutional">
+        Für institutionelle<br><em style="color:rgba(255,255,255,0.4)">Investoren</em>
+      </h2>
+      <h2 class="section-title" style="color:#fff" data-show="retail">
+        Für informierte<br><em style="color:rgba(255,255,255,0.4)">Privatanleger</em>
+      </h2>
+    </div>
+
+    <!-- Institutional: contact only -->
+    <div data-show="institutional" data-reveal>
+      <div style="max-width:560px;margin:0 auto;">
+        <div class="pricing-card" style="background:rgba(185,28,28,0.06);border-color:rgba(185,28,28,0.25);">
+          <p class="pricing-tier">Institutionell</p>
+          <p class="pricing-desc">
+            Institutionelle Kunden erhalten persönliche Beratung, individuelle Konditionen und direkten Support.
+            Bitte nehmen Sie Kontakt auf.
+          </p>
+          <ul class="pricing-features">
+            <li>Tägliche Portfolio-Updates (PDF)</li>
+            <li>Vollständige Strategie-Dokumentation</li>
+            <li>Persönlicher Ansprechpartner</li>
+            <li>Individuelle Konditionen nach Absprache</li>
+            <li>Due-Diligence-Unterlagen auf Anfrage</li>
+          </ul>
+          <a href="pages/contact.html" class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:16px;">
+            Kontakt aufnehmen
+          </a>
+          <p style="text-align:center;font-size:12px;color:rgba(255,255,255,0.3);">
+            Oder direkt: <a href="tel:+4915208755758" style="color:rgba(255,255,255,0.45);">+49 152 08755758</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Retail: €39.99 + free trial -->
+    <div data-show="retail" data-reveal>
+      <div class="pricing-cards">
+        <div class="pricing-card">
+          <p class="pricing-tier">Privatanleger</p>
+          <div class="pricing-price">
+            <span class="pricing-currency">€</span>
+            <span class="pricing-amount">39</span>
+            <span class="pricing-period">,99 / Monat</span>
+          </div>
+          <p class="pricing-desc">Tägliche Portfolio-Updates mit klaren Handlungsempfehlungen für ambitionierte Privatanleger.</p>
+          <ul class="pricing-features">
+            <li>Tägliches Portfolio-Update (PDF)</li>
+            <li>Positionsgrößen und Signale</li>
+            <li>Monatlicher Performancebericht</li>
+            <li>Zugang zum öffentlichen Archiv</li>
+          </ul>
+          <a href="pages/pricing.html#trial" class="btn btn-ghost" style="width:100%;justify-content:center;">
+            Jetzt abonnieren
+          </a>
+        </div>
+        <div class="pricing-card pricing-card-featured">
+          <div class="pricing-badge-top">Empfohlen</div>
+          <p class="pricing-tier">14 Tage Testzugang</p>
+          <div class="pricing-price">
+            <span class="pricing-currency" style="font-size:16px;">€</span>
+            <span class="pricing-amount" style="font-size:44px;">0</span>
+            <span class="pricing-period">für 14 Tage</span>
+          </div>
+          <p class="pricing-desc">Keine Kreditkartendaten erforderlich. Kein automatisches Abonnement. Einfach testen.</p>
+          <ul class="pricing-features">
+            <li>14 Tage vollständiger Zugang</li>
+            <li>Keine Zahlungsdaten erforderlich</li>
+            <li>Kein automatisches Abonnement</li>
+            <li>Danach: €39,99 / Monat</li>
+          </ul>
+          <a href="pages/pricing.html#trial" class="btn btn-primary" style="width:100%;justify-content:center;">
+            Kostenlos testen
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:24px;" data-reveal>
+      <a href="pages/pricing.html" style="color:rgba(255,255,255,0.35);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;">
+        Alle Leistungen im Überblick →
+      </a>
+    </p>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     CTA
+     ════════════════════════════════════════════════════════════ -->
+<div class="cta-section">
+  <div class="cta-bg-lines"></div>
+  <div class="cta-inner" data-reveal>
+    <p class="section-label" style="color:var(--accent);text-align:center;margin-bottom:20px;">Erste Schritte</p>
+
+    <h2 class="cta-title" data-show="institutional">Sprechen Sie mit<br>unseren Experten</h2>
+    <h2 class="cta-title" data-show="retail">14 Tage kostenlos<br>testen</h2>
+
+    <p class="cta-desc" data-show="institutional">
+      Wir erläutern unsere Strategie, beantworten Ihre Fragen und besprechen
+      individuelle Konditionen in einem persönlichen Gespräch.
+    </p>
+    <p class="cta-desc" data-show="retail">
+      Keine Kreditkartendaten. Kein automatisches Abonnement.
+      Überzeugen Sie sich selbst von der Performance von Scherbius 1.0.
+    </p>
+
+    <div class="cta-actions">
+      <a href="pages/contact.html" class="btn btn-primary" data-show="institutional">Kontakt aufnehmen</a>
+      <a href="pages/pricing.html#trial" class="btn btn-primary" data-show="retail">Kostenlos testen</a>
+      <a href="pages/performance.html" class="btn-outline-white">Track Record ansehen</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     Footer
+     ════════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-pill" style="margin-bottom:20px;">
+        <img src="brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="28">
+      </div>
+      <p class="footer-brand-tagline">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</p>
+      <a href="https://linkedin.com/company/scherbius-analytics/" target="_blank" rel="noopener noreferrer"
+         style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;">
+        LinkedIn
+      </a>
+    </div>
+    <div>
+      <p class="footer-col-title">Navigation</p>
+      <ul class="footer-links">
+        <li><a href="pages/methodik.html">Methodik</a></li>
+        <li><a href="pages/performance.html">Performance</a></li>
+        <li><a href="pages/anleitung.html">Anleitung</a></li>
+        <li><a href="pages/pricing.html">Preise</a></li>
+        <li><a href="pages/about.html">Über uns</a></li>
+        <li><a href="pages/contact.html">Kontakt</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Ressourcen</p>
+      <ul class="footer-links">
+        <li><a href="pages/archive.html">Portfolio-Archiv</a></li>
+        <li><a href="pages/legal/risikohinweise.html">Risikohinweise</a></li>
+        <li><a href="pages/legal/datenschutz.html">Datenschutzerklärung</a></li>
+        <li><a href="pages/legal/impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Kontakt</p>
+      <ul class="footer-links">
+        <li style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding-bottom:2px;">F. Kaya</li>
+        <li><a href="mailto:kaya@scherbius.de">kaya@scherbius.de</a></li>
+        <li style="margin-bottom:12px;"><a href="tel:+4915208755758">+49 152 08755758</a></li>
+        <li style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding-bottom:2px;">E. Richter</li>
+        <li><a href="mailto:richter@scherbius.de">richter@scherbius.de</a></li>
+        <li><a href="tel:+4915170854496">+49 151 70854496</a></li>
+      </ul>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,0.1);padding:40px 0;margin-top:16px;">
+    <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:20px;">Disclaimer / Risikohinweis</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;">
+      <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.75;margin:0;">Die hier bereitgestellten Informationen stellen keine Anlageberatung im Sinne des § 2 Abs. 8 Nr. 10 WpHG dar. Die Inhalte dienen ausschließlich allgemeinen Informationszwecken und berücksichtigen keine individuellen Kenntnisse und Erfahrungen, Anlageziele, finanzielle Verhältnisse, Risikobereitschaft oder Verlusttragfähigkeit der Empfänger. Anlageentscheidungen, die auf Basis dieser Informationen getroffen werden, erfolgen ausschließlich auf eigenes Risiko und in eigener Verantwortung.</p>
+      <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.75;margin:0;">Der Handel mit Finanzinstrumenten, insbesondere Aktien und Derivaten, ist mit erheblichen Risiken bis hin zum Totalverlust verbunden. Vergangene Wertentwicklungen, Backtests und Modellrechnungen sind keine Garantie für zukünftige Ergebnisse. Scherbius Analytics UG (haftungsbeschränkt) übernimmt keine Haftung für Verluste oder Schäden, die aus der Nutzung der bereitgestellten Informationen entstehen.</p>
+      <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.75;margin:0;">Die Empfehlungen beruhen auf regelbasierten, datengetriebenen Portfolio-Allokationen ohne persönliche Beratung. Es findet keine Vermögensverwaltung statt und es werden keine Eigentumsrechte an Vermögenswerten übertragen. Methodik und Backtests werden transparent offengelegt; der Vertrieb der Anlagestrategieempfehlungen wurde gemäß § 86 Abs. 1 WpHG bei der BaFin angezeigt.</p>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <p class="footer-legal">
+      &copy; 2026 Scherbius Analytics UG (haftungsbeschränkt) &nbsp;·&nbsp; HRB 195105 Amtsgericht Hamburg &nbsp;·&nbsp; Alle Rechte vorbehalten.
+    </p>
+    <p class="footer-legal">
+      <a href="pages/legal/impressum.html">Impressum</a> &nbsp;·&nbsp;
+      <a href="pages/legal/datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="pages/legal/risikohinweise.html">Risikohinweise</a>
+    </p>
+  </div>
+  <div style="max-width:var(--max-width);margin:0 auto;padding:20px var(--px) 32px;">
+    <p style="font-size:10px;color:rgba(255,255,255,0.15);line-height:1.65;">
+      Risikohinweis: Alle auf dieser Website dargestellten Performance Angaben basieren auf Backtests und Validation historischer Daten.
+      Historische Performance ist kein verlässlicher Indikator für zukünftige Ergebnisse. Kapitalanlagen in Finanzinstrumente
+      sind mit Risiken verbunden, die bis zum vollständigen Verlust des eingesetzten Kapitals führen können. Scherbius Analytics
+      UG (haftungsbeschränkt) bietet keine individuelle Anlageberatung. Diese Website dient ausschließlich
+      Informationszwecken und stellt keine Anlageempfehlung dar.
+    </p>
+  </div>
+</footer>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     Scripts
+     ════════════════════════════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+<script src="js/chartdata.js"></script>
+<script src="js/charts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
