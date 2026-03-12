@@ -67,12 +67,14 @@
 
 .hero-title {
   font-family: 'EB Garamond', serif;
-  font-size: clamp(56px, 8vw, 104px);
+  font-size: clamp(44px, 5.5vw, 76px);
   font-weight: 500;
   color: #fff;
-  line-height: 1.0;
-  letter-spacing: -2px;
+  line-height: 1.05;
+  letter-spacing: -1.5px;
   margin-bottom: 8px;
+  hyphens: none;
+  word-break: keep-all;
 }
 
 .hero-title-em {
