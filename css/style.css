@@ -648,17 +648,33 @@ body.page-content .nav-login-link:hover,
   [style*="grid-template-columns:1fr 1fr 1fr"],
   [style*="grid-template-columns:1fr 40px 1fr"],
   [style*="grid-template-columns:3fr"],
-  [style*="grid-template-columns:2fr"] {
+  [style*="grid-template-columns:2fr"],
+  [style*="grid-template-columns:1fr 2fr"],
+  [style*="grid-template-columns:64px 1fr"] {
     grid-template-columns: 1fr !important;
   }
   [style*="grid-template-columns:1fr 1fr;"],
   [style*="grid-template-columns:1fr 1fr "] {
     grid-template-columns: 1fr !important;
   }
+  /* Remove left-indent on step content when step grid collapses */
+  [style*="grid-template-columns:64px 1fr"] > [style*="padding-left:32px"] {
+    padding-left: 0 !important;
+  }
   /* Charts: allow full-width rendering */
   canvas              { max-height: none !important; }
   .chart-nav-wrap     { height: 44px; }
   .chart-nav-wrap canvas { height: 44px !important; }
+}
+
+/* ── CTA dark box: stack on mobile ──────────────────────────── */
+@media (max-width: 768px) {
+  .cta-dark {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 32px 24px !important;
+    gap: 20px !important;
+  }
 }
 
 /* ── Mobile: ≤600px ──────────────────────────────────────────── */
