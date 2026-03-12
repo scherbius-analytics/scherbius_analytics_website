@@ -18,6 +18,9 @@
     .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color:var(--dark); }
     .contact-form .field { margin-bottom:20px; }
     .contact-form textarea { resize:vertical; min-height:140px; }
+    @media (max-width: 768px) {
+      .contact-cols { grid-template-columns: 1fr !important; gap: 40px !important; }
+    }
   </style>
   <script>try{var _m=localStorage.getItem('sa_mode');if(_m)document.documentElement.setAttribute('data-mode',_m);}catch(e){}</script>
 </head>
@@ -92,7 +95,7 @@
 <!-- Contact Section -->
 <div class="section-full">
   <div class="section-inner">
-    <div style="display:grid;grid-template-columns:1fr 2fr;gap:64px;align-items:start;" data-reveal>
+    <div class="contact-cols" style="display:grid;grid-template-columns:1fr 2fr;gap:64px;align-items:start;" data-reveal>
 
       <!-- Contact Info -->
       <div>
