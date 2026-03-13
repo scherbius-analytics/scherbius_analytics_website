@@ -18,8 +18,6 @@ const SA = {
     this._activeLinks();
     this._scrollReveal();
     this._counters();
-    // i18n — init after mode so mode-specific elements are visible
-    if (typeof SA_I18N !== 'undefined') SA_I18N.init();
   },
 
   /* ── Mode toggle ────────────────────────────────────────── */

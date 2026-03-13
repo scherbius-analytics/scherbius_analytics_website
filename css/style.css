@@ -485,48 +485,6 @@ body.page-content .nav-login-link:hover,
 .mode-btn.active { background: var(--dark); color: #fff; }
 .mode-btn:hover:not(.active) { color: var(--dark); }
 
-/* ── Language Toggle ─────────────────────────────────────────── */
-.lang-toggle {
-  display: flex;
-  background: var(--border-light);
-  border-radius: 3px;
-  padding: 3px;
-  gap: 2px;
-  flex-shrink: 0;
-}
-.lang-btn {
-  font-family: 'Outfit', sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  padding: 7px 10px;
-  border-radius: 2px;
-  border: none;
-  cursor: pointer;
-  background: transparent;
-  color: var(--text-muted);
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-.lang-btn:focus  { outline: none; }
-.lang-btn.active { background: var(--dark); color: #fff; }
-.lang-btn:hover:not(.active) { color: var(--dark); }
-
-/* On dark hero bg, invert toggle colours like mode-toggle */
-body:not(.page-content) .nav:not(.scrolled) .lang-toggle {
-  background: rgba(255,255,255,0.08);
-}
-body:not(.page-content) .nav:not(.scrolled) .lang-btn {
-  color: rgba(255,255,255,0.45);
-}
-body:not(.page-content) .nav:not(.scrolled) .lang-btn.active {
-  background: rgba(255,255,255,0.16);
-  color: #fff;
-}
-body:not(.page-content) .nav:not(.scrolled) .lang-btn:hover:not(.active) {
-  color: rgba(255,255,255,0.85);
-}
 
 /* ── Nav right cluster ───────────────────────────────────────── */
 .nav-right {
@@ -675,7 +633,6 @@ body:not(.page-content) .nav:not(.scrolled) .lang-btn:hover:not(.active) {
   .nav-right .nav-cta { display: none; }
   .nav-right          { gap: 10px; }
   .mode-btn           { padding: 6px 10px; font-size: 9px; letter-spacing: 0.8px; }
-  .lang-btn           { padding: 6px 8px;  font-size: 9px; letter-spacing: 0.8px; }
   .footer-top         { grid-template-columns: 1fr 1fr; gap: 40px; }
   .perf-kpi-grid      { grid-template-columns: repeat(2, 1fr); }
   .perf-chart         { padding: 24px 20px; }
@@ -730,8 +687,6 @@ body:not(.page-content) .nav:not(.scrolled) .lang-btn:hover:not(.active) {
   .nav-right              { gap: 8px; }
   .nav-right .mode-toggle { width: auto; flex-shrink: 0; }
   .nav-right .mode-btn    { padding: 5px 8px; font-size: 8.5px; letter-spacing: 0.5px; }
-  .nav-right .lang-toggle { width: auto; flex-shrink: 0; }
-  .nav-right .lang-btn    { padding: 5px 7px; font-size: 8.5px; letter-spacing: 0.5px; }
 
   /* Footer */
   .footer-top    { grid-template-columns: 1fr; }
@@ -751,7 +706,6 @@ body:not(.page-content) .nav:not(.scrolled) .lang-btn:hover:not(.active) {
 @media (max-width: 420px) {
   :root { --px: 16px; }
   .nav-right .mode-toggle { display: none; }
-  .nav-right .lang-toggle { display: none; }
   .perf-kpi-grid          { grid-template-columns: 1fr; }
   .kpi-value              { font-size: 20px; }
 }

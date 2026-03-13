@@ -9,8 +9,7 @@
   <link rel="stylesheet" href="css/reveal.css">
   <link rel="stylesheet" href="css/index.css">
   <!-- Restore mode immediately to prevent layout flash -->
-  <script>try{var _m=localStorage.getItem('sa_mode');if(_m)document.documentElement.setAttribute('data-mode',_m);}catch(e){}
-  <script>try{var _l=localStorage.getItem('sa_lang');if(_l){document.documentElement.setAttribute('data-lang',_l);document.documentElement.lang=_l;}}catch(e){}<\/script></script>
+  <script>try{var _m=localStorage.getItem('sa_mode');if(_m)document.documentElement.setAttribute('data-mode',_m);}catch(e){}</script>
 </head>
 <body>
 
@@ -22,55 +21,47 @@
     <img src="brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="32">
   </a>
   <ul class="nav-links">
-    <li><a href="pages/methodik.html" data-i18n="nav.methodik">Methodik</a></li>
-    <li><a href="pages/performance.html" data-i18n="nav.performance">Performance</a></li>
-    <li><a href="pages/anleitung.html" data-i18n="nav.anleitung">Anleitung</a></li>
-    <li><a href="pages/archive.html" data-i18n="nav.archiv">Archiv</a></li>
-    <li><a href="pages/pricing.html" data-i18n="nav.preise">Preise</a></li>
-    <li><a href="pages/about.html" data-i18n="nav.ueber">Über uns</a></li>
+    <li><a href="pages/methodik.html">Methodik</a></li>
+    <li><a href="pages/performance.html">Performance</a></li>
+    <li><a href="pages/anleitung.html">Anleitung</a></li>
+    <li><a href="pages/archive.html">Archiv</a></li>
+    <li><a href="pages/pricing.html">Preise</a></li>
+    <li><a href="pages/about.html">Über uns</a></li>
   </ul>
   <div class="nav-right">
     <div class="mode-toggle">
-      <button class="mode-btn" data-mode-btn="institutional" data-i18n="mode.inst">Institutionell</button>
-      <button class="mode-btn" data-mode-btn="retail" data-i18n="mode.retail">Privatanleger</button>
-    </div>
-    <div class="lang-toggle">
-      <button class="lang-btn active" data-lang-btn="de">DE</button>
-      <button class="lang-btn" data-lang-btn="en">EN</button>
+      <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+      <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
     </div>
     <div id="nav-auth-out" class="nav-auth">
-      <a href="pages/members/login.html" class="nav-login-link" data-i18n="nav.login">Login</a>
-      <a href="pages/members/register.html" class="btn btn-primary nav-cta" data-i18n="nav.register">Konto erstellen</a>
+      <a href="pages/members/login.html" class="nav-login-link">Login</a>
+      <a href="pages/members/register.html" class="btn btn-primary nav-cta">Konto erstellen</a>
     </div>
     <div id="nav-auth-in" class="nav-auth" style="display:none;">
       <span id="nav-user-name" style="font-size:11px;color:rgba(255,255,255,0.45);"></span>
-      <a href="pages/members/dashboard.html" class="btn nav-cta" data-i18n="nav.dashboard">Dashboard</a>
+      <a href="pages/members/dashboard.html" class="btn nav-cta">Dashboard</a>
     </div>
-    <button class="nav-hamburger" aria-label="Menü öffnen" data-i18n-aria="nav.hamburger" aria-expanded="false">
+    <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-  </div>
-  <div class="lang-toggle" style="margin-top:8px;width:100%;">
-    <button class="lang-btn active" data-lang-btn="de">DE</button>
-    <button class="lang-btn" data-lang-btn="en">EN</button>
   </div>
 </nav>
 
 <nav class="nav-mobile">
-  <a href="pages/methodik.html" data-i18n="nav.methodik">Methodik</a>
-  <a href="pages/performance.html" data-i18n="nav.performance">Performance</a>
-  <a href="pages/anleitung.html" data-i18n="nav.anleitung">Anleitung</a>
-  <a href="pages/archive.html" data-i18n="nav.archiv">Archiv</a>
-  <a href="pages/pricing.html" data-i18n="nav.preise">Preise</a>
-  <a href="pages/about.html" data-i18n="nav.ueber">Über uns</a>
-  <a href="pages/contact.html" data-i18n="nav.kontakt">Kontakt</a>
+  <a href="pages/methodik.html">Methodik</a>
+  <a href="pages/performance.html">Performance</a>
+  <a href="pages/anleitung.html">Anleitung</a>
+  <a href="pages/archive.html">Archiv</a>
+  <a href="pages/pricing.html">Preise</a>
+  <a href="pages/about.html">Über uns</a>
+  <a href="pages/contact.html">Kontakt</a>
   <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
-    <a href="pages/members/login.html" style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);" data-i18n="nav.login">Login</a>
-    <a href="pages/members/register.html" style="font-size:13px;font-weight:600;color:var(--accent);" data-i18n="nav.register">Konto erstellen</a>
+    <a href="pages/members/login.html" style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);">Login</a>
+    <a href="pages/members/register.html" style="font-size:13px;font-weight:600;color:var(--accent);">Konto erstellen</a>
   </div>
   <div class="mode-toggle" style="margin-top:16px;width:100%;">
-    <button class="mode-btn" data-mode-btn="institutional" data-i18n="mode.inst">Institutionell</button>
-    <button class="mode-btn" data-mode-btn="retail" data-i18n="mode.retail">Privatanleger</button>
+    <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+    <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
   </div>
 </nav>
 
@@ -101,7 +92,7 @@
 
     <!-- ── Left: Headline + CTAs ──────────────────────────────── -->
     <div class="hero-content">
-      <p class="hero-label" data-i18n="hero.label">Scherbius Analytics — Quantitatives Portfolio Management</p>
+      <p class="hero-label">Scherbius Analytics — Quantitatives Portfolio Management</p>
 
       <h1 class="hero-title">
         <span data-show="institutional">Marktunabhängige<br><span class="hero-title-em">Überrendite</span></span>
@@ -118,9 +109,9 @@
       </p>
 
       <div class="hero-actions">
-        <a href="pages/contact.html" class="btn btn-primary" data-show="institutional" data-i18n="hero.cta.inst">Kontakt aufnehmen</a>
-        <a href="pages/pricing.html#trial" class="btn btn-primary" data-show="retail" data-i18n="hero.cta.retail">14 Tage kostenlos testen</a>
-        <a href="pages/performance.html" class="btn-outline-white" data-i18n="hero.cta.track">Track Record ansehen</a>
+        <a href="pages/contact.html" class="btn btn-primary" data-show="institutional">Kontakt aufnehmen</a>
+        <a href="pages/pricing.html#trial" class="btn btn-primary" data-show="retail">14 Tage kostenlos testen</a>
+        <a href="pages/performance.html" class="btn-outline-white">Track Record ansehen</a>
       </div>
     </div>
 
@@ -150,11 +141,11 @@
       <!-- Privatanleger -->
       <div class="hero-kpi-list" data-show="retail">
         <div class="hero-kpi-item">
-          <span class="hero-kpi-label" data-i18n="hero.kpi.total">Gesamtrendite netto</span>
+          <span class="hero-kpi-label">Gesamtrendite netto</span>
           <span class="hero-kpi-value hero-kpi-value-em" data-count="1445" data-prefix="+" data-suffix=" %" data-decimals="0">+1.445 %</span>
         </div>
         <div class="hero-kpi-item">
-          <span class="hero-kpi-label" data-i18n="hero.kpi.cagr">CAGR netto</span>
+          <span class="hero-kpi-label">CAGR netto</span>
           <span class="hero-kpi-value hero-kpi-value-em" data-count="27.8" data-prefix="+" data-suffix=" %" data-decimals="1">+27,8 %</span>
         </div>
         <div class="hero-kpi-item">
@@ -286,7 +277,7 @@
           </p>
           <p class="perf-chart-sub">Indexiert auf 10.000 €, Jan 2015 – Feb 2026 · Scroll/Pinch zum Zoomen</p>
         </div>
-        <button class="chart-reset-btn" id="eq-chart-reset" data-i18n="tr.chart.reset">Zoom zurücksetzen</button>
+        <button class="chart-reset-btn" id="eq-chart-reset">Zoom zurücksetzen</button>
       </div>
       <div class="chart-container">
         <canvas id="eq-chart" style="max-height:360px;"></canvas>
@@ -312,7 +303,7 @@
     </div>
 
     <div style="margin-top:32px;text-align:center;" data-reveal>
-      <a href="pages/performance.html" class="btn btn-secondary" data-i18n="tr.full">Vollständige Rendite-Analyse</a>
+      <a href="pages/performance.html" class="btn btn-secondary">Vollständige Rendite-Analyse</a>
     </div>
   </div>
 </div>
@@ -341,7 +332,7 @@
           <p style="font-size:12px;color:var(--text-muted);">Strategie, Performance-Kennzahlen und Risikoparameter · Stand März 2026 · Version 1.0</p>
         </div>
         <div style="flex-shrink:0;">
-          <a href="#" class="btn btn-secondary" style="white-space:nowrap;" data-i18n="fs.download">PDF herunterladen</a>
+          <a href="#" class="btn btn-secondary" style="white-space:nowrap;">PDF herunterladen</a>
         </div>
       </div>
     </div>
@@ -355,7 +346,7 @@
           <p style="font-size:12px;color:var(--text-muted);">Strategie, Performance-Kennzahlen und Zertifikate-Informationen · Stand März 2026 · Version 1.1</p>
         </div>
         <div style="flex-shrink:0;">
-          <a href="#" class="btn btn-secondary" style="white-space:nowrap;" data-i18n="fs.download">PDF herunterladen</a>
+          <a href="#" class="btn btn-secondary" style="white-space:nowrap;">PDF herunterladen</a>
         </div>
       </div>
     </div>
@@ -419,7 +410,7 @@
     </div>
 
     <div style="margin-top:48px;text-align:center;" data-reveal>
-      <a href="pages/methodik.html" class="btn btn-ghost" data-i18n="sol.methodik">Vollständige Methodik Dokumentation</a>
+      <a href="pages/methodik.html" class="btn btn-ghost">Vollständige Methodik Dokumentation</a>
     </div>
   </div>
 </div>
@@ -906,7 +897,7 @@
       <div class="logo-pill" style="margin-bottom:20px;">
         <img src="brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="28">
       </div>
-      <p class="footer-brand-tagline" data-i18n-html="footer.tagline">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</p>
+      <p class="footer-brand-tagline">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</p>
       <a href="https://linkedin.com/company/scherbius-analytics/" target="_blank" rel="noopener noreferrer"
          style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;">
         LinkedIn
@@ -915,25 +906,25 @@
     <div>
       <p class="footer-col-title">Navigation</p>
       <ul class="footer-links">
-        <li><a href="pages/methodik.html" data-i18n="nav.methodik">Methodik</a></li>
-        <li><a href="pages/performance.html" data-i18n="nav.performance">Performance</a></li>
-        <li><a href="pages/anleitung.html" data-i18n="nav.anleitung">Anleitung</a></li>
-        <li><a href="pages/pricing.html" data-i18n="nav.preise">Preise</a></li>
-        <li><a href="pages/about.html" data-i18n="nav.ueber">Über uns</a></li>
-        <li><a href="pages/contact.html" data-i18n="nav.kontakt">Kontakt</a></li>
+        <li><a href="pages/methodik.html">Methodik</a></li>
+        <li><a href="pages/performance.html">Performance</a></li>
+        <li><a href="pages/anleitung.html">Anleitung</a></li>
+        <li><a href="pages/pricing.html">Preise</a></li>
+        <li><a href="pages/about.html">Über uns</a></li>
+        <li><a href="pages/contact.html">Kontakt</a></li>
       </ul>
     </div>
     <div>
       <p class="footer-col-title">Ressourcen</p>
       <ul class="footer-links">
-        <li><a href="pages/archive.html" data-i18n="footer.archiv">Portfolio-Archiv</a></li>
-        <li><a href="pages/legal/risikohinweise.html" data-i18n="footer.risk">Risikohinweise</a></li>
-        <li><a href="pages/legal/datenschutz.html" data-i18n="footer.privacy">Datenschutzerklärung</a></li>
-        <li><a href="pages/legal/impressum.html" data-i18n="footer.imprint">Impressum</a></li>
+        <li><a href="pages/archive.html">Portfolio-Archiv</a></li>
+        <li><a href="pages/legal/risikohinweise.html">Risikohinweise</a></li>
+        <li><a href="pages/legal/datenschutz.html">Datenschutzerklärung</a></li>
+        <li><a href="pages/legal/impressum.html">Impressum</a></li>
       </ul>
     </div>
     <div>
-      <p class="footer-col-title" data-i18n="nav.kontakt">Kontakt</p>
+      <p class="footer-col-title">Kontakt</p>
       <ul class="footer-links">
         <li style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding-bottom:2px;">F. Kaya</li>
         <li><a href="mailto:kaya@scherbius.de">kaya@scherbius.de</a></li>
@@ -957,9 +948,9 @@
       &copy; 2026 Scherbius Analytics UG (haftungsbeschränkt) &nbsp;·&nbsp; HRB 195105 Amtsgericht Hamburg &nbsp;·&nbsp; Alle Rechte vorbehalten.
     </p>
     <p class="footer-legal">
-      <a href="pages/legal/impressum.html" data-i18n="footer.imprint">Impressum</a> &nbsp;·&nbsp;
-      <a href="pages/legal/datenschutz.html" data-i18n="footer.privacy.short">Datenschutz</a> &nbsp;·&nbsp;
-      <a href="pages/legal/risikohinweise.html" data-i18n="footer.risk">Risikohinweise</a>
+      <a href="pages/legal/impressum.html">Impressum</a> &nbsp;·&nbsp;
+      <a href="pages/legal/datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="pages/legal/risikohinweise.html">Risikohinweise</a>
     </p>
   </div>
 </footer>
@@ -976,7 +967,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="js/config.js"></script>
 <script src="js/auth.js"></script>
-<script src="js/i18n.js"><\/script>
+
 <script src="js/main.js"></script>
 
 </body>
