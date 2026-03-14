@@ -62,13 +62,10 @@ var SA_Auth = (function () {
 
     // Create subscription record + log IP
     if (result.data.user) {
-      var trialEnd = new Date();
-      trialEnd.setDate(trialEnd.getDate() + SA_CONFIG.TRIAL_DAYS);
       var subData = {
-        user_id:    result.data.user.id,
-        status:     plan === 'monthly' ? 'pending_payment' : 'trialing',
-        plan:       'retail',
-        trial_ends_at: plan === 'trial' ? trialEnd.toISOString() : null
+        user_id: result.data.user.id,
+        status:  'pending_payment',
+        plan:    'retail',
       };
       await _client.from('subscriptions').insert(subData);
 

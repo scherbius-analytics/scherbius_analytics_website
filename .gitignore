@@ -9,6 +9,7 @@ Claude_R_Input.Rmd
 Methodik/
 Screensshots/
 output/
+pdfs/*.pdf
 tools/
 
 # Secrets
