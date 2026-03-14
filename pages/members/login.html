@@ -280,6 +280,14 @@
     document.getElementById('config-hint').style.display = 'block';
   }
 
+  // Show success banner after password update
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('pw_updated') === '1') {
+    var successBox = document.getElementById('auth-success');
+    successBox.textContent = 'Passwort erfolgreich geändert. Bitte melde dich mit deinem neuen Passwort an.';
+    successBox.classList.add('visible');
+  }
+
   // Check if already logged in → redirect to dashboard
   (async function () {
     var session = await SA_Auth.getSession();

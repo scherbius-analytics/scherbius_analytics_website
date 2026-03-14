@@ -65,7 +65,7 @@ var SA_Auth = (function () {
 
   async function resetPassword(email) {
     if (!_client) throw new Error('Supabase nicht konfiguriert.');
-    var redirectTo = window.location.origin + '/' + _rootPath() + 'pages/members/login.html';
+    var redirectTo = window.location.origin + '/' + _rootPath() + 'pages/members/update-password.html';
     var result = await _client.auth.resetPasswordForEmail(email, { redirectTo: redirectTo });
     if (result.error) throw result.error;
   }
