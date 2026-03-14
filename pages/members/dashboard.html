@@ -86,6 +86,38 @@
     .welcome-banner { background:#F0FDF4; border:1px solid #BBF7D0; border-radius:4px; padding:14px 20px; font-size:13px; color:#14532D; margin-bottom:24px; display:none; }
     .welcome-banner.visible { display:block; }
 
+    /* ── Email confirmation notice ───────────────────────────── */
+    .confirm-notice {
+      display:none; margin-bottom:28px;
+      border:1px solid #FDE68A; border-radius:4px;
+      background:#FFFBEB; overflow:hidden;
+    }
+    .confirm-notice.visible { display:block; }
+    .confirm-notice-inner {
+      display:flex; align-items:flex-start; gap:18px; padding:20px 24px;
+    }
+    .confirm-notice-icon {
+      flex-shrink:0; width:40px; height:40px; border-radius:50%;
+      background:#FEF3C7; display:flex; align-items:center; justify-content:center;
+      font-size:18px; margin-top:2px;
+    }
+    .confirm-notice-title {
+      font-size:13px; font-weight:700; color:#92400E; margin-bottom:4px;
+    }
+    .confirm-notice-body {
+      font-size:13px; color:#78350F; line-height:1.65;
+    }
+    .confirm-notice-email {
+      font-weight:700; color:#92400E;
+    }
+    .confirm-notice-hint {
+      font-size:11px; color:#A16207; margin-top:8px; line-height:1.6;
+    }
+    .confirm-notice-footer {
+      border-top:1px solid #FDE68A; padding:10px 24px;
+      font-size:11px; color:#A16207; background:#FEF9E7;
+    }
+
     /* ── Performance embed ───────────────────────────────────── */
     .perf-embed { max-width:900px; }
 
@@ -153,6 +185,24 @@
   <!-- Welcome banner (shown after registration) -->
   <div class="welcome-banner" id="welcome-banner">
     Willkommen bei Scherbius Analytics. Ihr Konto wurde erfolgreich erstellt.
+  </div>
+
+  <!-- Email confirmation notice (shown after registration with ?confirm=1) -->
+  <div class="confirm-notice" id="confirm-notice">
+    <div class="confirm-notice-inner">
+      <div class="confirm-notice-icon">&#9993;</div>
+      <div>
+        <div class="confirm-notice-title">Bestätigungsmail ausstehend</div>
+        <div class="confirm-notice-body">
+          Wir haben eine Bestätigungs-E-Mail an <span class="confirm-notice-email" id="confirm-notice-email"></span> gesendet.
+          Bitte öffne die E-Mail und klicke auf den Bestätigungslink, um deinen Testzugang zu aktivieren.
+          <div class="confirm-notice-hint">Kein Mail erhalten? Prüfe deinen Spam-Ordner oder wende dich an <a href="mailto:kaya@scherbius.de" style="color:#92400E;">kaya@scherbius.de</a>.</div>
+        </div>
+      </div>
+    </div>
+    <div class="confirm-notice-footer">
+      Dein 14-tägiger Testzeitraum startet direkt nach der E-Mail-Bestätigung &mdash; keine Kreditkarte erforderlich.
+    </div>
   </div>
 
   <!-- Header -->
@@ -499,15 +549,34 @@
 // Welcome banner
 (function () {
   var params = new URLSearchParams(window.location.search);
-  if (params.get('welcome') === '1') {
-    var banner = document.getElementById('welcome-banner');
-    if (banner) {
+  var banner = document.getElementById('welcome-banner');
+
+  if (params.get('welcome') === '1' && banner) {
+    if (params.get('institutional') === '1') {
+      banner.textContent = 'Willkommen bei Scherbius Analytics. Ihr Konto wurde erstellt. Bitte nehmen Sie über den Tab „Mein Abonnement" Kontakt auf — wir melden uns innerhalb von 24 Stunden.';
       banner.classList.add('visible');
-      if (params.get('institutional') === '1') {
-        banner.textContent = 'Willkommen bei Scherbius Analytics. Ihr Konto wurde erstellt. Bitte nehmen Sie über den Tab „Mein Abonnement" Kontakt auf — wir melden uns innerhalb von 24 Stunden.';
-      } else if (params.get('confirm') === '1') {
-        banner.textContent = 'Konto erstellt! Bitte bestätige deine E-Mail-Adresse, um vollen Zugang zu erhalten.';
-      }
+    } else if (params.get('confirm') !== '1') {
+      banner.textContent = 'Willkommen bei Scherbius Analytics. Ihr Konto wurde erfolgreich erstellt.';
+      banner.classList.add('visible');
+    }
+  }
+
+  if (params.get('confirm') === '1') {
+    // Show prominent email confirmation notice instead of welcome banner
+    var confirmNotice = document.getElementById('confirm-notice');
+    if (confirmNotice) {
+      confirmNotice.classList.add('visible');
+      // Fill in email once member.js has rendered the session (poll briefly)
+      var attempts = 0;
+      var emailInterval = setInterval(function () {
+        var emailEl = document.getElementById('dash-user-email');
+        var noticeEmailEl = document.getElementById('confirm-notice-email');
+        if (noticeEmailEl && emailEl && emailEl.textContent) {
+          noticeEmailEl.textContent = emailEl.textContent;
+          clearInterval(emailInterval);
+        }
+        if (++attempts > 20) clearInterval(emailInterval);
+      }, 200);
     }
   }
   // Auto-switch to subscription tab for institutional registrations
