@@ -551,12 +551,13 @@
   var params = new URLSearchParams(window.location.search);
   var banner = document.getElementById('welcome-banner');
 
-  if (params.get('welcome') === '1' && banner) {
+  if (params.get('confirmed') === '1' && banner) {
+    // Nutzer hat gerade den Email-Bestätigungslink geklickt
+    banner.innerHTML = '<strong>&#10003; E-Mail bestätigt!</strong> Willkommen bei Scherbius Analytics — dein 14-tägiger Testzugang ist jetzt aktiv.';
+    banner.classList.add('visible');
+  } else if (params.get('welcome') === '1' && banner) {
     if (params.get('institutional') === '1') {
       banner.textContent = 'Willkommen bei Scherbius Analytics. Ihr Konto wurde erstellt. Bitte nehmen Sie über den Tab „Mein Abonnement" Kontakt auf — wir melden uns innerhalb von 24 Stunden.';
-      banner.classList.add('visible');
-    } else if (params.get('confirm') !== '1') {
-      banner.textContent = 'Willkommen bei Scherbius Analytics. Ihr Konto wurde erfolgreich erstellt.';
       banner.classList.add('visible');
     }
   }

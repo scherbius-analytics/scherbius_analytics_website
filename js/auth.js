@@ -35,10 +35,11 @@ var SA_Auth = (function () {
     if (!_client) throw new Error('Supabase nicht konfiguriert.');
     var meta = { full_name: fullName, plan: plan, mode: plan === 'institutional' ? 'institutional' : 'retail' };
     if (company) meta.company = company;
+    var confirmRedirect = window.location.origin + '/pages/members/dashboard.html?confirmed=1';
     var result = await _client.auth.signUp({
       email: email,
       password: password,
-      options: { data: meta }
+      options: { data: meta, emailRedirectTo: confirmRedirect }
     });
     if (result.error) throw result.error;
 
@@ -61,6 +62,13 @@ var SA_Auth = (function () {
     if (_client) await _client.auth.signOut();
     updateNavState(null);
     window.location.href = _rootPath() + 'index.html';
+  }
+
+  async function resendConfirmation(email) {
+    if (!_client) throw new Error('Supabase nicht konfiguriert.');
+    var confirmRedirect = window.location.origin + '/pages/members/dashboard.html?confirmed=1';
+    var result = await _client.auth.resend({ type: 'signup', email: email, options: { emailRedirectTo: confirmRedirect } });
+    if (result.error) throw result.error;
   }
 
   async function resetPassword(email) {
@@ -144,14 +152,15 @@ var SA_Auth = (function () {
   }
 
   return {
-    getSession:     getSession,
-    signIn:         signIn,
-    signUp:         signUp,
-    signOut:        signOut,
-    resetPassword:  resetPassword,
-    getSubscription:getSubscription,
-    requireAuth:    requireAuth,
-    updateNavState: updateNavState
+    getSession:          getSession,
+    signIn:              signIn,
+    signUp:              signUp,
+    signOut:             signOut,
+    resetPassword:       resetPassword,
+    resendConfirmation:  resendConfirmation,
+    getSubscription:     getSubscription,
+    requireAuth:         requireAuth,
+    updateNavState:      updateNavState
   };
 
 })();

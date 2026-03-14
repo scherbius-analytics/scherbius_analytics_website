@@ -299,8 +299,12 @@
   var errorBox   = document.getElementById('auth-error');
   var successBox = document.getElementById('auth-success');
 
-  function showError(msg) {
-    errorBox.textContent = msg;
+  function showError(msg, html) {
+    if (html) {
+      errorBox.innerHTML = msg;
+    } else {
+      errorBox.textContent = msg;
+    }
     errorBox.classList.add('visible');
     successBox.classList.remove('visible');
   }
@@ -330,12 +334,33 @@
       var redirect = params.get('redirect');
       window.location.href = redirect && redirect.startsWith('/') ? redirect : 'dashboard.html';
     } catch (err) {
-      var msgs = {
-        'Invalid login credentials': 'E-Mail oder Passwort ist falsch.',
-        'Email not confirmed':        'Bitte bestätige zuerst deine E-Mail-Adresse.',
-        'Supabase nicht konfiguriert.':'Supabase ist noch nicht eingerichtet. Bitte trage deine Daten in js/config.js ein.'
-      };
-      showError(msgs[err.message] || err.message || 'Anmeldung fehlgeschlagen. Bitte erneut versuchen.');
+      if (err.message === 'Email not confirmed') {
+        var capturedEmail = email;
+        showError(
+          'Deine E-Mail-Adresse wurde noch nicht bestätigt. ' +
+          'Bitte prüfe deinen Posteingang (und Spam-Ordner).<br><br>' +
+          '<button id="resend-confirm-btn" style="background:none;border:1px solid #B91C1C;border-radius:3px;color:#7F1D1D;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:7px 14px;cursor:pointer;font-family:inherit;">' +
+          'Bestätigungsmail erneut senden</button>',
+          true
+        );
+        document.getElementById('resend-confirm-btn').addEventListener('click', async function () {
+          this.disabled = true;
+          this.textContent = 'Sende…';
+          try {
+            await SA_Auth.resendConfirmation(capturedEmail);
+            this.textContent = 'Mail gesendet ✓';
+          } catch (e) {
+            this.textContent = 'Fehler — versuche es erneut';
+            this.disabled = false;
+          }
+        });
+      } else {
+        var msgs = {
+          'Invalid login credentials':   'E-Mail oder Passwort ist falsch.',
+          'Supabase nicht konfiguriert.':'Supabase ist noch nicht eingerichtet. Bitte trage deine Daten in js/config.js ein.'
+        };
+        showError(msgs[err.message] || err.message || 'Anmeldung fehlgeschlagen. Bitte erneut versuchen.');
+      }
       btn.disabled = false;
       btn.textContent = 'Anmelden';
     }

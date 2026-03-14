@@ -111,6 +111,31 @@
   <div class="auth-center">
     <div style="width:100%;max-width:920px;">
 
+      <!-- ── Erfolgsschirm nach Registrierung (E-Mail Bestätigung) ── -->
+      <div id="reg-success" style="display:none;max-width:520px;margin:0 auto;text-align:center;padding:20px 0 60px;">
+        <div style="width:64px;height:64px;background:#FEF3C7;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-size:28px;">&#9993;</div>
+        <p style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Fast geschafft</p>
+        <h1 style="font-family:'EB Garamond',serif;font-size:clamp(26px,4vw,38px);font-weight:500;color:var(--dark);letter-spacing:-0.3px;margin-bottom:16px;">Bestätige deine<br>E-Mail-Adresse.</h1>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.75;margin-bottom:8px;">Wir haben eine Bestätigungsmail an</p>
+        <p style="font-size:16px;font-weight:700;color:var(--dark);margin-bottom:24px;" id="reg-success-email"></p>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.75;margin-bottom:36px;">gesendet. Klicke auf den Link in der E-Mail, um deinen Testzugang zu aktivieren. Deine 14 Tage beginnen direkt nach der Bestätigung.</p>
+        <div style="background:#F7F5F2;border-radius:4px;padding:20px 28px;text-align:left;margin-bottom:32px;">
+          <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;">Was jetzt?</p>
+          <p style="font-size:13px;color:var(--text-muted);line-height:1.8;margin:0;">
+            1. Öffne dein E-Mail-Postfach<br>
+            2. Suche nach einer Mail von <strong style="color:var(--dark);">noreply@scherbius.de</strong><br>
+            3. Klicke auf „E-Mail bestätigen"<br>
+            4. Du wirst automatisch in dein Dashboard weitergeleitet
+          </p>
+        </div>
+        <p style="font-size:12px;color:var(--text-dim);margin-bottom:20px;">Kein Mail erhalten? Prüfe deinen Spam-Ordner oder</p>
+        <button id="reg-resend-btn" class="btn btn-secondary" style="font-size:11px;padding:10px 24px;">Bestätigungsmail erneut senden</button>
+        <p style="margin-top:28px;font-size:13px;color:var(--text-muted);">Bereits bestätigt? <a href="login.html" style="color:var(--dark);font-weight:600;">Zum Login</a></p>
+      </div>
+
+      <!-- ── Normales Formular ─────────────────────────────────── -->
+      <div id="reg-form-wrap">
+
       <div style="text-align:center;margin-bottom:48px;">
         <p class="section-label" style="color:var(--accent);margin-bottom:8px;">Mitgliederbereich</p>
         <h1 style="font-family:'EB Garamond',serif;font-size:clamp(28px,4vw,42px);font-weight:500;color:var(--dark);letter-spacing:-0.5px;margin-bottom:10px;">Konto erstellen</h1>
@@ -213,6 +238,8 @@
 
       </div>
 
+      </div><!-- end reg-form-wrap -->
+
       <!-- Institutional note -->
       <div style="margin-top:48px;background:#F7F5F2;border-radius:4px;padding:24px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
         <div>
@@ -293,21 +320,36 @@
       var data = await SA_Auth.signUp(email, pass, name, plan, company);
 
       if (plan === 'institutional') {
-        // Institutional: go to dashboard with contact prompt
         window.location.href = 'dashboard.html?welcome=1&institutional=1';
       } else if (plan === 'monthly' && SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY !== 'https://buy.stripe.com/DEIN_LINK') {
-        // Append email to Stripe Payment Link for pre-fill
         var stripeUrl = SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY + '?prefilled_email=' + encodeURIComponent(email);
         window.location.href = stripeUrl;
       } else if (plan === 'monthly') {
-        // Stripe not configured: go to dashboard with notice
         window.location.href = 'dashboard.html?notice=payment_pending';
       } else {
-        // Trial: check if email confirmation required
+        // Trial: zeige Bestätigungsschirm (kein Redirect zum Dashboard)
         if (data.user && data.user.email_confirmed_at) {
+          // Auto-confirmed (z.B. lokale Umgebung)
           window.location.href = 'dashboard.html?welcome=1';
         } else {
-          window.location.href = 'dashboard.html?welcome=1&confirm=1';
+          document.getElementById('reg-form-wrap').style.display = 'none';
+          document.getElementById('reg-success-email').textContent = email;
+          document.getElementById('reg-success').style.display = 'block';
+          window._regEmail = email;
+          // Resend button
+          document.getElementById('reg-resend-btn').addEventListener('click', async function () {
+            var resendBtn = this;
+            resendBtn.disabled = true;
+            resendBtn.textContent = 'Sende…';
+            try {
+              await SA_Auth.resendConfirmation(email);
+              resendBtn.textContent = 'Mail gesendet ✓';
+              setTimeout(function () { resendBtn.disabled = false; resendBtn.textContent = 'Bestätigungsmail erneut senden'; }, 4000);
+            } catch (e) {
+              resendBtn.disabled = false;
+              resendBtn.textContent = 'Fehler — erneut versuchen';
+            }
+          });
         }
       }
     } catch (err) {
