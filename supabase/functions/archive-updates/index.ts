@@ -49,9 +49,11 @@ serve(async (req: Request) => {
     // Cutoff: heute minus 5 Handelstage
     const cutoff = subtractTradingDays(new Date(), 5);
 
-    // Nur Dateien filtern, die älter als der Cutoff sind
+    // Datum aus Dateinamen extrahieren: "2026-03-14_Portfolio-Update-65.pdf" → 2026-03-14
+    // Fallback: created_at
     const publicFiles = (files ?? []).filter(file => {
-      const fileDate = new Date(file.created_at);
+      const match = file.name.match(/^(\d{4}-\d{2}-\d{2})/);
+      const fileDate = match ? new Date(match[1]) : new Date(file.created_at);
       return fileDate <= cutoff;
     });
 
@@ -66,7 +68,10 @@ serve(async (req: Request) => {
           .replace('.pdf', '')
           .replace(/_/g, ' ');
 
-        const date = new Date(file.created_at).toLocaleDateString('de-DE', {
+        // Datum aus Dateinamen extrahieren für korrekte Anzeige
+        const dateMatch = file.name.match(/^(\d{4}-\d{2}-\d{2})/);
+        const dateObj = dateMatch ? new Date(dateMatch[1] + 'T12:00:00Z') : new Date(file.created_at);
+        const date = dateObj.toLocaleDateString('de-DE', {
           day: '2-digit', month: 'long', year: 'numeric'
         });
 
