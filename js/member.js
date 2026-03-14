@@ -18,9 +18,12 @@ var SA_Member = (function () {
     _lockMode();
     _renderHeader();
     _renderStatusBadge();
+    _lockUpdatesTab();
     _bindTabs();
     _bindSignout();
-    _loadTab('updates');
+    // Wenn kein aktives Abo: direkt zum Abonnement-Tab, nicht Updates
+    var hasAccess = _subscription && (_subscription.status === 'active' || _subscription.status === 'trialing');
+    _loadTab(hasAccess ? 'updates' : 'subscription');
     if (typeof window._fillSettings === 'function') window._fillSettings(_session);
   }
 
@@ -100,11 +103,29 @@ var SA_Member = (function () {
     });
   }
 
+  // ── Tab Lock (kein Abo) ───────────────────────────────────────────────────
+
+  function _lockUpdatesTab() {
+    var hasAccess = _subscription && (_subscription.status === 'active' || _subscription.status === 'trialing');
+    if (hasAccess) return;
+
+    var tab = document.querySelector('.member-tab[data-tab="updates"]');
+    if (!tab) return;
+
+    tab.innerHTML = 'Portfolio-Updates <span style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;background:rgba(185,28,28,0.15);border-radius:2px;margin-left:6px;font-size:9px;line-height:1;">&#128274;</span>';
+    tab.style.opacity = '0.5';
+    tab.style.cursor  = 'not-allowed';
+    tab.dataset.locked = '1';
+  }
+
   // ── Tabs ──────────────────────────────────────────────────────────────────
 
   function _bindTabs() {
     document.querySelectorAll('.member-tab').forEach(function (tab) {
-      tab.addEventListener('click', function () { _loadTab(tab.dataset.tab); });
+      tab.addEventListener('click', function () {
+        if (tab.dataset.locked === '1') return; // Gesperrter Tab: ignorieren
+        _loadTab(tab.dataset.tab);
+      });
     });
   }
 
