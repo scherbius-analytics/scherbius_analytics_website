@@ -33,6 +33,23 @@ var SA_Auth = (function () {
 
   async function signUp(email, password, fullName, plan, company) {
     if (!_client) throw new Error('Supabase nicht konfiguriert.');
+
+    // ── IP-Check: Verhindert mehrfache Free Trials ─────────────────────────
+    try {
+      var ipResp = await fetch(SA_CONFIG.SUPABASE_URL + '/functions/v1/check-signup-ip', {
+        method: 'POST',
+        headers: { 'apikey': SA_CONFIG.SUPABASE_ANON_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'check' })
+      });
+      var ipData = await ipResp.json();
+      if (ipData.allowed === false) {
+        throw new Error(ipData.reason || 'Registrierung von dieser IP-Adresse nicht möglich.');
+      }
+    } catch (e) {
+      // Nur blockieren wenn explizit denied — Netzwerkfehler erlauben (fail open)
+      if (e.message && e.message.includes('IP-Adresse')) throw e;
+    }
+
     var meta = { full_name: fullName, plan: plan, mode: plan === 'institutional' ? 'institutional' : 'retail' };
     if (company) meta.company = company;
     var confirmRedirect = window.location.origin + '/pages/members/dashboard.html?confirmed=1';
@@ -43,7 +60,7 @@ var SA_Auth = (function () {
     });
     if (result.error) throw result.error;
 
-    // Create subscription record
+    // Create subscription record + log IP
     if (result.data.user) {
       var trialEnd = new Date();
       trialEnd.setDate(trialEnd.getDate() + SA_CONFIG.TRIAL_DAYS);
@@ -54,6 +71,15 @@ var SA_Auth = (function () {
         trial_ends_at: plan === 'trial' ? trialEnd.toISOString() : null
       };
       await _client.from('subscriptions').insert(subData);
+
+      // IP nach erfolgreicher Registrierung loggen
+      try {
+        fetch(SA_CONFIG.SUPABASE_URL + '/functions/v1/check-signup-ip', {
+          method: 'POST',
+          headers: { 'apikey': SA_CONFIG.SUPABASE_ANON_KEY, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'log', user_id: result.data.user.id })
+        });
+      } catch (e) { /* Nicht-kritisch */ }
     }
     return result.data;
   }

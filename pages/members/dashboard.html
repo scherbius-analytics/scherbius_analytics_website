@@ -408,12 +408,6 @@
         <p style="font-size:11px;color:var(--text-dim);margin-top:10px;display:none;" id="reset-pw-ok">Link wurde gesendet. Bitte prüfe deinen Posteingang.</p>
       </div>
 
-      <!-- Danger Zone -->
-      <div class="danger-zone">
-        <p class="danger-zone-title">Gefahrenzone</p>
-        <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:20px;">Das Löschen deines Kontos ist dauerhaft und kann nicht rückgängig gemacht werden. Alle deine Daten, einschließlich Abonnement-Informationen, werden vollständig entfernt.</p>
-        <button class="btn btn-danger" id="delete-account-btn">Konto löschen</button>
-      </div>
 
     </div>
   </div>
@@ -421,22 +415,6 @@
 </div>
 </div>
 
-<!-- ── Delete Account Modal ─────────────────────────────────────────────────── -->
-<div class="modal-overlay" id="delete-modal">
-  <div class="modal-card">
-    <p style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Konto löschen</p>
-    <h2 class="modal-title">Bist du sicher?</h2>
-    <p class="modal-desc">Diese Aktion ist unwiderruflich. Dein Konto, alle Daten und dein Abonnement werden dauerhaft gelöscht.<br><br>Tippe zur Bestätigung deine E-Mail-Adresse ein:</p>
-    <div class="modal-error" id="delete-modal-error"></div>
-    <div class="form-field">
-      <input class="form-input" type="email" id="delete-confirm-email" placeholder="deine@email.de" autocomplete="off">
-    </div>
-    <div class="modal-actions">
-      <button class="btn-danger" id="delete-confirm-btn" disabled>Konto endgültig löschen</button>
-      <button class="btn btn-secondary" id="delete-cancel-btn" style="font-size:11px;">Abbrechen</button>
-    </div>
-  </div>
-</div>
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
@@ -482,65 +460,6 @@
     });
   }
 
-  // Delete modal
-  var deleteBtn    = document.getElementById('delete-account-btn');
-  var modal        = document.getElementById('delete-modal');
-  var cancelBtn    = document.getElementById('delete-cancel-btn');
-  var confirmBtn   = document.getElementById('delete-confirm-btn');
-  var confirmInput = document.getElementById('delete-confirm-email');
-  var modalError   = document.getElementById('delete-modal-error');
-
-  if (deleteBtn) deleteBtn.addEventListener('click', function () {
-    modal.classList.add('visible');
-    confirmInput.value = '';
-    confirmBtn.disabled = true;
-    modalError.classList.remove('visible');
-    confirmInput.focus();
-  });
-
-  if (cancelBtn) cancelBtn.addEventListener('click', function () {
-    modal.classList.remove('visible');
-  });
-
-  // Enable confirm button only when email is typed
-  if (confirmInput) confirmInput.addEventListener('input', async function () {
-    var session = await SA_Auth.getSession();
-    if (!session) return;
-    confirmBtn.disabled = confirmInput.value.toLowerCase().trim() !== session.user.email.toLowerCase();
-  });
-
-  // Execute deletion
-  if (confirmBtn) confirmBtn.addEventListener('click', async function () {
-    confirmBtn.disabled = true;
-    confirmBtn.textContent = 'Löschen…';
-    modalError.classList.remove('visible');
-
-    try {
-      var session = await SA_Auth.getSession();
-      if (!session) throw new Error('Nicht eingeloggt');
-
-      var supabaseUrl = window.SA_CONFIG.SUPABASE_URL;
-      var resp = await fetch(supabaseUrl + '/functions/v1/delete-account', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + session.access_token,
-        },
-        body: JSON.stringify({ confirm_email: confirmInput.value.trim() }),
-      });
-
-      var data = await resp.json();
-      if (!resp.ok || !data.success) throw new Error(data.error || data.message || 'Fehler beim Löschen (HTTP ' + resp.status + ')');
-
-      // Sign out local session and redirect
-      await SA_Auth.signOut();
-    } catch (err) {
-      modalError.textContent = err.message || 'Löschen fehlgeschlagen. Bitte erneut versuchen.';
-      modalError.classList.add('visible');
-      confirmBtn.disabled = false;
-      confirmBtn.textContent = 'Konto endgültig löschen';
-    }
-  });
 
   // Expose fillSettings so member.js or welcome script can call it
   window._fillSettings = fillSettings;
