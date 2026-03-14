@@ -15,6 +15,7 @@ var SA_Member = (function () {
     if (!_session) return;
 
     _subscription = await SA_Auth.getSubscription(_session.user.id);
+    _lockMode();
     _renderHeader();
     _renderStatusBadge();
     _bindTabs();
@@ -74,6 +75,29 @@ var SA_Member = (function () {
         detail.textContent = 'Zugang bleibt bis Ende des Abrechnungszeitraums aktiv.';
       }
     }
+  }
+
+  // ── Mode lock (Mitgliederbereich) ─────────────────────────────────────────
+
+  function _lockMode() {
+    var meta = _session.user.user_metadata;
+
+    // Modus aus Metadata lesen; Fallback auf Subscription-Plan
+    var mode = 'retail';
+    if (meta && meta.mode) {
+      mode = meta.mode;
+    } else if (_subscription && _subscription.plan === 'institutional') {
+      mode = 'institutional';
+    }
+
+    // Modus setzen und localStorage überschreiben
+    document.documentElement.setAttribute('data-mode', mode);
+    try { localStorage.setItem('sa_mode', mode); } catch (e) {}
+
+    // Mode-Toggle im Mitgliederbereich ausblenden
+    document.querySelectorAll('.mode-toggle').forEach(function (el) {
+      el.style.display = 'none';
+    });
   }
 
   // ── Tabs ──────────────────────────────────────────────────────────────────

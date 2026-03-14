@@ -33,7 +33,7 @@ var SA_Auth = (function () {
 
   async function signUp(email, password, fullName, plan, company) {
     if (!_client) throw new Error('Supabase nicht konfiguriert.');
-    var meta = { full_name: fullName, plan: plan };
+    var meta = { full_name: fullName, plan: plan, mode: plan === 'institutional' ? 'institutional' : 'retail' };
     if (company) meta.company = company;
     var result = await _client.auth.signUp({
       email: email,
