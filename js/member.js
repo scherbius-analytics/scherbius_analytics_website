@@ -185,10 +185,16 @@ var SA_Member = (function () {
     try {
       var client = supabase.createClient(SA_CONFIG.SUPABASE_URL, SA_CONFIG.SUPABASE_ANON_KEY);
       var result = await client.storage.from('portfolio-updates').list('', {
-        sortBy: { column: 'created_at', order: 'desc' },
+        sortBy: { column: 'name', order: 'desc' },
         limit: 50
       });
       if (result.error || !result.data || result.data.length === 0) throw new Error('empty');
+      // Nach Dateiname-Datum sortieren (neueste zuerst)
+      result.data.sort(function (a, b) {
+        var da = (a.name.match(/^(\d{4}-\d{2}-\d{2})/) || ['',''])[1];
+        var db = (b.name.match(/^(\d{4}-\d{2}-\d{2})/) || ['',''])[1];
+        return db.localeCompare(da);
+      });
       await _renderPDFTable(container, result.data, client);
       container.dataset.loaded = '1';
     } catch (e) {
@@ -200,8 +206,10 @@ var SA_Member = (function () {
     var rows = await Promise.all(files.map(async function (file) {
       var signed = await client.storage.from('portfolio-updates').createSignedUrl(file.name, 3600);
       var url    = signed.data ? signed.data.signedUrl : '#';
-      var label  = file.name.replace('.pdf', '').replace(/_/g, ' ');
-      var date   = new Date(file.created_at).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' });
+      var label     = file.name.replace('.pdf', '').replace(/_/g, ' ');
+      var dateMatch = file.name.match(/^(\d{4}-\d{2}-\d{2})/);
+      var dateObj   = dateMatch ? new Date(dateMatch[1] + 'T12:00:00Z') : new Date(file.created_at);
+      var date      = dateObj.toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' });
       return '<tr>' +
         '<td style="font-weight:600;color:var(--dark);">' + date + '</td>' +
         '<td style="color:var(--text-muted);">' + label + '</td>' +

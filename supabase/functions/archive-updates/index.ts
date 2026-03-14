@@ -85,6 +85,13 @@ serve(async (req: Request) => {
       })
     );
 
+    // Nach Dateiname-Datum sortieren (neueste zuerst)
+    results.sort((a, b) => {
+      const da = a.name.match(/^(\d{4}-\d{2}-\d{2})/)?.[1] ?? '';
+      const db = b.name.match(/^(\d{4}-\d{2}-\d{2})/)?.[1] ?? '';
+      return db.localeCompare(da);
+    });
+
     return new Response(JSON.stringify(results), {
       status: 200,
       headers: { ...CORS, 'Content-Type': 'application/json' },
