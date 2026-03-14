@@ -10,9 +10,12 @@
  *   SUPABASE_SERVICE_ROLE_KEY — from Supabase Settings → API
  *
  * Stripe events handled:
- *   - checkout.session.completed          → activate subscription after payment
- *   - customer.subscription.updated       → sync status changes
+ *   - checkout.session.completed          → create subscription record (trialing or active)
+ *   - customer.subscription.updated       → sync status changes (trial→active, past_due, etc.)
  *   - customer.subscription.deleted       → mark as canceled
+ *   - invoice.payment_succeeded           → confirm active, update period end
+ *   - invoice.payment_failed              → mark as past_due
+ *   - customer.subscription.trial_will_end → (logged, can trigger reminder email later)
  */
 
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
@@ -80,16 +83,20 @@ serve(async (req: Request) => {
           break;
         }
 
-        // Upsert subscription record
+        // Upsert subscription record — use Stripe's actual status (trialing | active | ...)
+        const trialEnd = stripeSub.trial_end
+          ? new Date(stripeSub.trial_end * 1000).toISOString()
+          : null;
+
         const { error } = await supabase
           .from('subscriptions')
           .upsert({
             user_id: user.id,
             stripe_customer_id: customerId,
             stripe_subscription_id: subscriptionId,
-            status: 'active',
+            status: stripeSub.status,
             plan: 'retail',
-            trial_ends_at: null,
+            trial_ends_at: trialEnd,
             current_period_end: new Date(stripeSub.current_period_end * 1000).toISOString(),
             updated_at: new Date().toISOString(),
           }, { onConflict: 'user_id' });
@@ -132,6 +139,55 @@ serve(async (req: Request) => {
 
         if (error) throw error;
         console.log(`Canceled subscription ${sub.id}`);
+        break;
+      }
+
+      // ── Invoice paid → confirm active status + update period end ──────────
+      case 'invoice.payment_succeeded': {
+        const invoice = event.data.object as Stripe.Invoice;
+        const subId = invoice.subscription as string | null;
+        if (!subId) break;
+
+        const stripeSub = await stripe.subscriptions.retrieve(subId);
+
+        const { error } = await supabase
+          .from('subscriptions')
+          .update({
+            status: stripeSub.status,
+            current_period_end: new Date(stripeSub.current_period_end * 1000).toISOString(),
+            updated_at: new Date().toISOString(),
+          })
+          .eq('stripe_subscription_id', subId);
+
+        if (error) throw error;
+        console.log(`Invoice paid — subscription ${subId} status: ${stripeSub.status}`);
+        break;
+      }
+
+      // ── Invoice payment failed → mark as past_due ─────────────────────────
+      case 'invoice.payment_failed': {
+        const invoice = event.data.object as Stripe.Invoice;
+        const subId = invoice.subscription as string | null;
+        if (!subId) break;
+
+        const { error } = await supabase
+          .from('subscriptions')
+          .update({
+            status: 'past_due',
+            updated_at: new Date().toISOString(),
+          })
+          .eq('stripe_subscription_id', subId);
+
+        if (error) throw error;
+        console.log(`Invoice payment failed — subscription ${subId} → past_due`);
+        break;
+      }
+
+      // ── Trial ending in 3 days — logged (Resend email can be added later) ─
+      case 'customer.subscription.trial_will_end': {
+        const sub = event.data.object as Stripe.Subscription;
+        console.log(`Trial ending soon for subscription ${sub.id} (customer: ${sub.customer})`);
+        // TODO: trigger reminder email via Resend
         break;
       }
 

@@ -14,11 +14,11 @@ var SA_CONFIG = {
   SUPABASE_ANON_KEY: 'sb_publishable_Gpb4Fd36giXILIt6Hcr5mg_8tV7lgud',   // beginnt mit "eyJ..."
 
   // ── Stripe ────────────────────────────────────────────────────────────────
-  // Payment Link: Stripe Dashboard → Payment Links → Link erstellen → URL kopieren
-  STRIPE_PAYMENT_LINK_MONTHLY: 'https://buy.stripe.com/test_5kQcN7bpH0R8b4w7Ue3wQ00',
+  // Payment Link (Live): 14-Tage Trial + 39,99 EUR/Monat recurring
+  STRIPE_PAYMENT_LINK_MONTHLY: 'https://buy.stripe.com/28E00c4rAc3T4f78WN6c001',
 
-  // Customer Portal: Stripe Dashboard → Settings → Billing → Customer Portal aktivieren
-  STRIPE_CUSTOMER_PORTAL_URL: 'https://billing.stripe.com/p/login/3cIaEQaPYfg59zrgpf6c000',
+  // Customer Portal: Abonnement verwalten, kündigen, Zahlungsmethode ändern
+  STRIPE_CUSTOMER_PORTAL_URL: 'https://billing.stripe.com/p/login/28E00c4rAc3T4f78WN6c001',
 
   // ── App-Einstellungen ─────────────────────────────────────────────────────
   TRIAL_DAYS: 14

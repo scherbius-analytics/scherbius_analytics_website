@@ -197,11 +197,33 @@ var SA_Member = (function () {
   // ── Panel: Subscription ───────────────────────────────────────────────────
 
   function _loadSubscriptionPanel() {
-    var portalBtn = document.getElementById('stripe-portal-btn');
-    if (!portalBtn) return;
-    var portalUrl = SA_CONFIG.STRIPE_CUSTOMER_PORTAL_URL;
-    if (portalUrl && portalUrl !== 'https://billing.stripe.com/p/login/DEIN_PORTAL') {
-      portalBtn.href = portalUrl;
+    var portalBtn   = document.getElementById('stripe-portal-btn');
+    var upgradeBtn  = document.getElementById('upgrade-btn');
+
+    var hasStripe = _subscription && _subscription.stripe_subscription_id;
+    var isLive    = _subscription && (_subscription.status === 'active' || _subscription.status === 'trialing');
+
+    if (portalBtn) {
+      var portalUrl = SA_CONFIG.STRIPE_CUSTOMER_PORTAL_URL;
+      if (hasStripe && isLive && portalUrl) {
+        portalBtn.href = portalUrl;
+        portalBtn.style.display = 'flex';
+      } else {
+        portalBtn.style.display = 'none';
+      }
+    }
+
+    if (upgradeBtn) {
+      if (isLive && hasStripe) {
+        // Already subscribed — hide upgrade CTA
+        upgradeBtn.style.display = 'none';
+      } else {
+        // Needs to subscribe — send to Stripe Payment Link
+        var payLink = SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY;
+        upgradeBtn.href = payLink || '../pricing.html';
+        upgradeBtn.textContent = 'Abonnement aktivieren (14 Tage kostenlos testen)';
+        upgradeBtn.style.display = 'flex';
+      }
     }
   }
 
