@@ -127,10 +127,28 @@ var SA_Member = (function () {
 
     var hasAccess = _subscription && (_subscription.status === 'active' || _subscription.status === 'trialing');
     if (!hasAccess) {
-      container.innerHTML = '<div class="access-gate">' +
-        '<p style="font-size:14px;font-weight:500;color:var(--dark);margin-bottom:12px;">Aktives Abonnement erforderlich</p>' +
-        '<p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Um auf die täglichen Portfolio-Updates zuzugreifen, benötigst du ein aktives Abonnement.</p>' +
-        '<a href="../../pages/pricing.html" class="btn btn-primary">Abonnement aktivieren</a>' +
+      var payLink = (window.SA_CONFIG && SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY) ? SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY : '../../pages/pricing.html';
+      container.innerHTML =
+        '<div style="border:1px solid var(--border);border-radius:4px;overflow:hidden;max-width:560px;">' +
+          '<div style="padding:36px 40px;">' +
+            '<p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Kein aktives Abonnement</p>' +
+            '<h3 style="font-family:\'EB Garamond\',serif;font-size:24px;font-weight:500;color:var(--dark);margin-bottom:12px;">Portfolio-Updates freischalten</h3>' +
+            '<p style="font-size:13px;color:var(--text-muted);line-height:1.75;margin-bottom:28px;">' +
+              'Um auf die täglichen Portfolio-Updates zuzugreifen, benötigst du ein aktives Abonnement. ' +
+              'Starte jetzt deinen 14-tägigen Testzeitraum — du wirst erst nach Ablauf belastet.' +
+            '</p>' +
+            '<div style="display:flex;flex-direction:column;gap:10px;">' +
+              '<a href="' + payLink + '" class="btn btn-primary" style="justify-content:center;padding:14px 28px;">14 Tage kostenlos testen &rarr;</a>' +
+              '<p style="font-size:11px;color:var(--text-dim);line-height:1.6;margin:0;">' +
+                'Kreditkarte erforderlich &nbsp;&middot;&nbsp; Erst nach Ablauf belastet &nbsp;&middot;&nbsp; Monatlich kündbar' +
+              '</p>' +
+            '</div>' +
+          '</div>' +
+          '<div style="border-top:1px solid var(--border);padding:16px 40px;background:#F7F5F2;">' +
+            '<p style="font-size:11px;color:var(--text-dim);line-height:1.6;margin:0;">' +
+              'Fragen zum Abonnement? <a href="mailto:kaya@scherbius.de" style="color:var(--text-muted);">kaya@scherbius.de</a>' +
+            '</p>' +
+          '</div>' +
         '</div>';
       return;
     }
