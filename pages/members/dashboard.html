@@ -66,6 +66,22 @@
     /* ── Access gate ─────────────────────────────────────────── */
     .access-gate { padding:40px 0; text-align:center; }
 
+    /* ── Danger zone ─────────────────────────────────────────── */
+    .danger-zone { border:1px solid rgba(185,28,28,0.25); border-radius:4px; padding:28px 32px; background:rgba(185,28,28,0.03); }
+    .danger-zone-title { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+
+    /* ── Delete modal ────────────────────────────────────────── */
+    .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:1000; align-items:center; justify-content:center; padding:20px; }
+    .modal-overlay.visible { display:flex; }
+    .modal-card { background:#fff; border-radius:4px; padding:40px; max-width:460px; width:100%; }
+    .modal-title { font-family:'EB Garamond',serif; font-size:24px; font-weight:500; color:var(--dark); margin-bottom:8px; }
+    .modal-desc { font-size:13px; color:var(--text-muted); line-height:1.7; margin-bottom:24px; }
+    .modal-error { display:none; background:#FEF2F2; border:1px solid #FECACA; border-radius:4px; padding:10px 14px; font-size:13px; color:#7F1D1D; margin-bottom:16px; }
+    .modal-error.visible { display:block; }
+    .modal-actions { display:flex; gap:12px; margin-top:24px; }
+    .btn-danger { background:var(--accent); color:#fff; border:none; border-radius:2px; padding:12px 24px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; font-family:'Outfit',sans-serif; }
+    .btn-danger:disabled { opacity:0.5; pointer-events:none; }
+
     /* ── Welcome banner ──────────────────────────────────────── */
     .welcome-banner { background:#F0FDF4; border:1px solid #BBF7D0; border-radius:4px; padding:14px 20px; font-size:13px; color:#14532D; margin-bottom:24px; display:none; }
     .welcome-banner.visible { display:block; }
@@ -158,6 +174,7 @@
     <button class="member-tab" data-tab="factsheets">Fact Sheets</button>
     <button class="member-tab" data-tab="performance">Performance</button>
     <button class="member-tab" data-tab="subscription">Mein Abonnement</button>
+    <button class="member-tab" data-tab="settings">Einstellungen</button>
   </div>
 
   <!-- ── Panel: Updates ──────────────────────────────────────────────────── -->
@@ -315,7 +332,60 @@
     </div>
   </div>
 
+  <!-- ── Panel: Einstellungen ───────────────────────────────────────────── -->
+  <div class="member-panel" data-panel="settings" style="display:none;">
+    <div style="max-width:560px;display:flex;flex-direction:column;gap:24px;">
+
+      <!-- Account-Info -->
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:32px 36px;">
+        <p style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:24px;">Konto-Informationen</p>
+        <div class="sub-row">
+          <div><div class="sub-row-label">Name</div><div class="sub-row-value" id="settings-name">—</div></div>
+        </div>
+        <div class="sub-row">
+          <div><div class="sub-row-label">E-Mail-Adresse</div><div class="sub-row-value" id="settings-email">—</div></div>
+        </div>
+        <div class="sub-row" style="border-bottom:none;">
+          <div><div class="sub-row-label">Mitglied seit</div><div class="sub-row-value" id="settings-since">—</div></div>
+        </div>
+      </div>
+
+      <!-- Passwort -->
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:32px 36px;">
+        <p style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;">Passwort ändern</p>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:20px;">Wir senden dir einen sicheren Link an deine E-Mail-Adresse. Über diesen Link kannst du ein neues Passwort vergeben.</p>
+        <button class="btn btn-secondary" id="reset-pw-btn" style="font-size:11px;padding:10px 20px;">Passwort-Reset-Link senden</button>
+        <p style="font-size:11px;color:var(--text-dim);margin-top:10px;display:none;" id="reset-pw-ok">Link wurde gesendet. Bitte prüfe deinen Posteingang.</p>
+      </div>
+
+      <!-- Danger Zone -->
+      <div class="danger-zone">
+        <p class="danger-zone-title">Gefahrenzone</p>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:20px;">Das Löschen deines Kontos ist dauerhaft und kann nicht rückgängig gemacht werden. Alle deine Daten, einschließlich Abonnement-Informationen, werden vollständig entfernt.</p>
+        <button class="btn btn-danger" id="delete-account-btn">Konto löschen</button>
+      </div>
+
+    </div>
+  </div>
+
 </div>
+</div>
+
+<!-- ── Delete Account Modal ─────────────────────────────────────────────────── -->
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal-card">
+    <p style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Konto löschen</p>
+    <h2 class="modal-title">Bist du sicher?</h2>
+    <p class="modal-desc">Diese Aktion ist unwiderruflich. Dein Konto, alle Daten und dein Abonnement werden dauerhaft gelöscht.<br><br>Tippe zur Bestätigung deine E-Mail-Adresse ein:</p>
+    <div class="modal-error" id="delete-modal-error"></div>
+    <div class="form-field">
+      <input class="form-input" type="email" id="delete-confirm-email" placeholder="deine@email.de" autocomplete="off">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-danger" id="delete-confirm-btn" disabled>Konto endgültig löschen</button>
+      <button class="btn btn-secondary" id="delete-cancel-btn" style="font-size:11px;">Abbrechen</button>
+    </div>
+  </div>
 </div>
 
 <!-- Scripts -->
@@ -325,6 +395,107 @@
 <script src="../../js/member.js"></script>
 <script src="../../js/main.js"></script>
 <script>
+// ── Einstellungen Tab ──────────────────────────────────────────────────────
+(function () {
+  'use strict';
+
+  // Konto-Info befüllen wenn Session geladen ist
+  function fillSettings(session) {
+    if (!session) return;
+    var u = session.user;
+    var nameEl  = document.getElementById('settings-name');
+    var emailEl = document.getElementById('settings-email');
+    var sinceEl = document.getElementById('settings-since');
+    if (nameEl)  nameEl.textContent  = (u.user_metadata && u.user_metadata.full_name) ? u.user_metadata.full_name : '—';
+    if (emailEl) emailEl.textContent = u.email || '—';
+    if (sinceEl) {
+      var d = new Date(u.created_at);
+      sinceEl.textContent = d.toLocaleDateString('de-DE', { day:'2-digit', month:'long', year:'numeric' });
+    }
+  }
+
+  // Passwort-Reset
+  var resetBtn = document.getElementById('reset-pw-btn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', async function () {
+      resetBtn.disabled = true;
+      resetBtn.textContent = 'Wird gesendet…';
+      try {
+        var session = await SA_Auth.getSession();
+        if (session) await SA_Auth.resetPassword(session.user.email);
+        document.getElementById('reset-pw-ok').style.display = 'block';
+        resetBtn.textContent = 'Link gesendet';
+      } catch (e) {
+        resetBtn.disabled = false;
+        resetBtn.textContent = 'Passwort-Reset-Link senden';
+      }
+    });
+  }
+
+  // Delete modal
+  var deleteBtn    = document.getElementById('delete-account-btn');
+  var modal        = document.getElementById('delete-modal');
+  var cancelBtn    = document.getElementById('delete-cancel-btn');
+  var confirmBtn   = document.getElementById('delete-confirm-btn');
+  var confirmInput = document.getElementById('delete-confirm-email');
+  var modalError   = document.getElementById('delete-modal-error');
+
+  if (deleteBtn) deleteBtn.addEventListener('click', function () {
+    modal.classList.add('visible');
+    confirmInput.value = '';
+    confirmBtn.disabled = true;
+    modalError.classList.remove('visible');
+    confirmInput.focus();
+  });
+
+  if (cancelBtn) cancelBtn.addEventListener('click', function () {
+    modal.classList.remove('visible');
+  });
+
+  // Enable confirm button only when email is typed
+  if (confirmInput) confirmInput.addEventListener('input', async function () {
+    var session = await SA_Auth.getSession();
+    if (!session) return;
+    confirmBtn.disabled = confirmInput.value.toLowerCase().trim() !== session.user.email.toLowerCase();
+  });
+
+  // Execute deletion
+  if (confirmBtn) confirmBtn.addEventListener('click', async function () {
+    confirmBtn.disabled = true;
+    confirmBtn.textContent = 'Löschen…';
+    modalError.classList.remove('visible');
+
+    try {
+      var session = await SA_Auth.getSession();
+      if (!session) throw new Error('Nicht eingeloggt');
+
+      var supabaseUrl = window.SA_CONFIG.SUPABASE_URL;
+      var resp = await fetch(supabaseUrl + '/functions/v1/delete-account', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + session.access_token,
+        },
+        body: JSON.stringify({ confirm_email: confirmInput.value.trim() }),
+      });
+
+      var data = await resp.json();
+      if (!resp.ok || !data.success) throw new Error(data.error || data.message || 'Fehler beim Löschen (HTTP ' + resp.status + ')');
+
+      // Sign out local session and redirect
+      await SA_Auth.signOut();
+    } catch (err) {
+      modalError.textContent = err.message || 'Löschen fehlgeschlagen. Bitte erneut versuchen.';
+      modalError.classList.add('visible');
+      confirmBtn.disabled = false;
+      confirmBtn.textContent = 'Konto endgültig löschen';
+    }
+  });
+
+  // Expose fillSettings so member.js or welcome script can call it
+  window._fillSettings = fillSettings;
+})();
+
 // Welcome banner
 (function () {
   var params = new URLSearchParams(window.location.search);

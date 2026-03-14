@@ -20,6 +20,7 @@ var SA_Member = (function () {
     _bindTabs();
     _bindSignout();
     _loadTab('updates');
+    if (typeof window._fillSettings === 'function') window._fillSettings(_session);
   }
 
   // ── Header ────────────────────────────────────────────────────────────────

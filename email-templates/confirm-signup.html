@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--
+  SCHERBIUS ANALYTICS — E-Mail-Template: Bestätigung (Confirm Signup)
+  ─────────────────────────────────────────────────────────────────────
+  Supabase: Authentication → Email Templates → Confirm signup
+  Betreff:  Bestätige deine E-Mail-Adresse — Scherbius Analytics
+  ─────────────────────────────────────────────────────────────────────
+  Verfügbare Variablen:
+    {{ .Email }}             — E-Mail-Adresse des Nutzers
+    {{ .ConfirmationURL }}   — Bestätigungslink
+-->
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
+  <title>Bestätige deine E-Mail-Adresse — Scherbius Analytics</title>
+  <!--[if mso]>
+  <noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
+  <![endif]-->
+</head>
+<body style="margin:0;padding:0;background-color:#F4F1EC;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+
+<!-- Outer wrapper -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F4F1EC;">
+  <tr>
+    <td align="center" style="padding:48px 20px;">
+
+      <!-- ── Card ──────────────────────────────────────────────────── -->
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
+
+        <!-- Red top border -->
+        <tr>
+          <td style="height:3px;background-color:#B91C1C;font-size:0;line-height:0;" aria-hidden="true">&nbsp;</td>
+        </tr>
+
+        <!-- ── HEADER ──────────────────────────────────────────────── -->
+        <tr>
+          <td style="background-color:#1A1A1A;padding:36px 48px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td valign="middle">
+                  <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:12px;font-weight:400;letter-spacing:4px;text-transform:uppercase;color:#FFFFFF;">SCHERBIUS ANALYTICS</p>
+                  <p style="margin:7px 0 0;font-family:Georgia,'Times New Roman',serif;font-size:13px;font-style:italic;font-weight:400;color:rgba(255,255,255,0.35);letter-spacing:0.2px;">Marktunabhängige Systematik</p>
+                </td>
+                <td valign="middle" align="right">
+                  <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#B91C1C;">MITGLIEDERBEREICH</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Red accent line -->
+        <tr>
+          <td style="height:1px;background-color:#B91C1C;font-size:0;line-height:0;" aria-hidden="true">&nbsp;</td>
+        </tr>
+
+        <!-- ── BODY ────────────────────────────────────────────────── -->
+        <tr>
+          <td style="background-color:#FFFFFF;padding:52px 48px 44px;">
+
+            <!-- Label -->
+            <p style="margin:0 0 18px;font-family:Arial,Helvetica,sans-serif;font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#B91C1C;">E-Mail bestätigen</p>
+
+            <!-- Heading -->
+            <h1 style="margin:0 0 18px;font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:400;color:#1A1A1A;line-height:1.15;letter-spacing:-0.5px;">Willkommen bei<br>Scherbius Analytics.</h1>
+
+            <!-- Body text -->
+            <p style="margin:0 0 36px;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#6B7280;line-height:1.75;">Bitte bestätige deine E-Mail-Adresse, um deinen Zugang zu aktivieren. Dein 14-tägiger Testzeitraum beginnt direkt nach der Bestätigung — keine Kreditkarte erforderlich.</p>
+
+            <!-- CTA Button -->
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="background-color:#B91C1C;border-radius:2px;">
+                  <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ .ConfirmationURL }}" style="height:44px;v-text-anchor:middle;width:240px;" arcsize="2%" stroke="f" fillcolor="#B91C1C"><w:anchorlock/><center style="color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">E-Mail bestätigen</center></v:roundrect><![endif]-->
+                  <!--[if !mso]><!-->
+                  <a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:14px 36px;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#FFFFFF;text-decoration:none;border-radius:2px;">E-Mail bestätigen</a>
+                  <!--<![endif]-->
+                </td>
+              </tr>
+            </table>
+
+            <!-- Fallback link -->
+            <p style="margin:24px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#9CA3AF;line-height:1.7;">Falls der Button nicht funktioniert, kopiere diesen Link in deinen Browser:<br>
+              <a href="{{ .ConfirmationURL }}" style="color:#B91C1C;word-break:break-all;text-decoration:none;">{{ .ConfirmationURL }}</a>
+            </p>
+
+            <!-- Divider -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:40px 0 36px;">
+              <tr><td style="height:1px;background-color:#E8E5E0;font-size:0;line-height:0;" aria-hidden="true">&nbsp;</td></tr>
+            </table>
+
+            <!-- Trial info box -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="border-left:3px solid #B91C1C;padding:18px 22px;background-color:#F7F5F2;">
+                  <p style="margin:0 0 8px;font-family:Arial,Helvetica,sans-serif;font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#B91C1C;">Dein Testzugang</p>
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td style="padding:3px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6B7280;">&#8212;&nbsp;&nbsp;14 Tage vollständiger Zugang zu allen täglichen Updates</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:3px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6B7280;">&#8212;&nbsp;&nbsp;Keine Kreditkartendaten erforderlich</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:3px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6B7280;">&#8212;&nbsp;&nbsp;Kein automatisches Abonnement</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:3px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6B7280;">&#8212;&nbsp;&nbsp;Danach: &euro; 39,99 / Monat — nur bei Interesse</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+
+        <!-- ── FOOTER ──────────────────────────────────────────────── -->
+        <tr>
+          <td style="background-color:#F4F1EC;padding:28px 48px;border-top:1px solid #E8E5E0;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td valign="top">
+                  <p style="margin:0 0 5px;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C4C0BB;">Scherbius Analytics</p>
+                  <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#9CA3AF;line-height:1.7;">
+                    <a href="mailto:kaya@scherbius.de" style="color:#9CA3AF;text-decoration:none;">kaya@scherbius.de</a>
+                    &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+                    <a href="https://scherbius.de" style="color:#9CA3AF;text-decoration:none;">scherbius.de</a>
+                  </p>
+                </td>
+                <td valign="top" align="right">
+                  <p style="margin:0 0 4px;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:1.7;">
+                    <a href="https://scherbius.de/pages/legal/datenschutz.html" style="color:#9CA3AF;text-decoration:none;">Datenschutz</a>
+                    &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+                    <a href="https://scherbius.de/pages/legal/impressum.html" style="color:#9CA3AF;text-decoration:none;">Impressum</a>
+                  </p>
+                  <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#C4C0BB;">Gesendet an {{ .Email }}</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Bottom border -->
+        <tr>
+          <td style="height:3px;background-color:#1A1A1A;font-size:0;line-height:0;" aria-hidden="true">&nbsp;</td>
+        </tr>
+
+      </table>
+      <!-- ── End Card ──────────────────────────────────────────────── -->
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
