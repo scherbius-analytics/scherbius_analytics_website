@@ -71,7 +71,8 @@ const SA = {
       el.dataset.suffix  = kpi.suffix || '';
       el.dataset.prefix  = kpi.neg ? '−' : '';
       el.dataset.decimals= String(kpi.val).includes('.') ? '2' : '0';
-      el.textContent     = (kpi.neg ? '−' : '') + kpi.val + (kpi.suffix || '');
+      if (kpi.fmt) el.dataset.fmt = kpi.fmt;
+      el.textContent = kpi.fmt || ((kpi.neg ? '−' : '') + kpi.val + (kpi.suffix || ''));
     });
     document.querySelectorAll('[data-kpi-label]').forEach(el => {
       const key = el.dataset.kpiLabel;
@@ -83,6 +84,36 @@ const SA = {
       const kpi = kpis[key];
       if (kpi) el.textContent = kpi.sub;
     });
+    document.querySelectorAll('[data-kpi-cell]').forEach(el => {
+      const key = el.dataset.kpiCell;
+      const kpi = kpis[key];
+      if (kpi) el.textContent = kpi.fmt || kpi.val;
+    });
+    // Build annual returns tables dynamically
+    if (typeof SA_ANNUAL !== 'undefined') {
+      const modeKey = mode === 'institutional' ? 'inst' : 'retail';
+      const tbody = document.getElementById('annual-tbody-' + modeKey);
+      if (tbody) tbody.innerHTML = this._buildAnnualRows(SA_ANNUAL[modeKey]);
+    }
+  },
+
+  /* ── Annual returns table builder ───────────────────────── */
+  _buildAnnualRows(data) {
+    if (!data || !data.length) return '';
+    const fmt = (v, dec) => {
+      const abs = Math.abs(v).toLocaleString('de-DE', {
+        minimumFractionDigits: dec, maximumFractionDigits: dec
+      });
+      return (v >= 0 ? '+' : '−') + abs + ' %';
+    };
+    const cls = (v) => v >= 0 ? 'pos' : 'neg';
+    return data.map((r, i) => {
+      const isLast = i === data.length - 1;
+      const year   = r.y + (isLast ? '*' : '');
+      const diff   = Math.round((r.p - r.b) * 10) / 10;
+      const style  = isLast ? ' style="background:#F7F5F2;"' : '';
+      return `<tr class="year-row"${style}><td>${year}</td><td class="${cls(r.p)}">${fmt(r.p, 2)}</td><td class="${cls(r.b)}">${fmt(r.b, 1)}</td><td class="${cls(diff)}">${fmt(diff, 1)}</td></tr>`;
+    }).join('\n            ');
   },
 
   /* ── Counters ───────────────────────────────────────────── */
@@ -114,7 +145,11 @@ const SA = {
         minimumFractionDigits: decimals,
         maximumFractionDigits: decimals
       });
-      el.textContent = prefix + sep(target * ease) + suffix;
+      if (t >= 1 && el.dataset.fmt) {
+        el.textContent = el.dataset.fmt;
+      } else {
+        el.textContent = prefix + sep(target * ease) + suffix;
+      }
       if (t < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);

@@ -130,29 +130,29 @@
 
     <div class="perf-kpi-grid" data-show="retail" data-reveal>
       <div class="kpi-card">
-        <p class="kpi-label">CAGR (netto)</p>
-        <div class="kpi-value text-green" data-count="27.8" data-suffix="%" data-decimals="1">27,8 %</div>
-        <p class="kpi-sub">NDX: 17,5 %</p>
+        <p class="kpi-label" data-kpi-label="cagr">CAGR (netto)</p>
+        <div class="kpi-value text-green" data-kpi="cagr" data-count="27.8" data-suffix="%" data-decimals="1">27,8 %</div>
+        <p class="kpi-sub" data-kpi-sub="cagr">NDX: 17,5 %</p>
       </div>
       <div class="kpi-card">
-        <p class="kpi-label">Gesamtrendite</p>
-        <div class="kpi-value text-green" data-count="1445" data-suffix="%" data-decimals="0">+1.445 %</div>
-        <p class="kpi-sub">NDX: +490 %</p>
+        <p class="kpi-label" data-kpi-label="totalRet">Gesamtrendite</p>
+        <div class="kpi-value text-green" data-kpi="totalRet" data-count="1445" data-suffix="%" data-decimals="0">+1.445 %</div>
+        <p class="kpi-sub"></p>
       </div>
       <div class="kpi-card">
-        <p class="kpi-label">Sharpe Ratio</p>
-        <div class="kpi-value text-green" data-count="0.97" data-suffix="" data-decimals="2">0,97</div>
-        <p class="kpi-sub">NDX: 0,80</p>
+        <p class="kpi-label" data-kpi-label="sharpe">Sharpe Ratio</p>
+        <div class="kpi-value text-green" data-kpi="sharpe" data-count="0.97" data-suffix="" data-decimals="2">0,97</div>
+        <p class="kpi-sub" data-kpi-sub="sharpe">NDX: 0,80</p>
       </div>
       <div class="kpi-card">
-        <p class="kpi-label">Max. Drawdown</p>
-        <div class="kpi-value" data-count="36.84" data-prefix="−" data-suffix="%" data-decimals="2">−36,84 %</div>
-        <p class="kpi-sub">NDX: −35,6 %</p>
+        <p class="kpi-label" data-kpi-label="maxDD">Max. Drawdown</p>
+        <div class="kpi-value" data-kpi="maxDD" data-count="36.84" data-prefix="−" data-suffix="%" data-decimals="2">−36,84 %</div>
+        <p class="kpi-sub" data-kpi-sub="maxDD">NDX: −35,6 %</p>
       </div>
       <div class="kpi-card">
-        <p class="kpi-label">Endwert (netto)</p>
-        <div class="kpi-value" data-count="154543" data-suffix=" €" data-decimals="0">154.543 €</div>
-        <p class="kpi-sub">aus 10.000 € Start</p>
+        <p class="kpi-label" data-kpi-label="endVal">Endwert (netto)</p>
+        <div class="kpi-value" data-kpi="endVal" data-count="154543" data-suffix=" €" data-decimals="0">154.543 €</div>
+        <p class="kpi-sub" data-kpi-sub="endVal">aus 10.000 € Start</p>
       </div>
     </div>
 
@@ -265,7 +265,7 @@
         <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
         <table class="perf-table">
           <thead><tr><th>Jahr</th><th>Scherbius 1.0 Priv.</th><th>NASDAQ-100</th><th>Differenz</th></tr></thead>
-          <tbody>
+          <tbody id="annual-tbody-retail">
             <tr class="year-row"><td>2015</td><td class="pos">+34,79 %</td><td class="pos">+8,6 %</td><td class="pos">+26,2 %</td></tr>
             <tr class="year-row"><td>2016</td><td class="pos">+23,39 %</td><td class="pos">+5,9 %</td><td class="pos">+17,5 %</td></tr>
             <tr class="year-row"><td>2017</td><td class="pos">+5,14 %</td><td class="pos">+31,5 %</td><td class="neg">−26,4 %</td></tr>
@@ -427,15 +427,15 @@
         <table class="stats-table">
           <thead><tr><th>Kennzahl</th><th style="text-align:right;color:var(--accent);">Scherbius 1.0 Priv.</th><th style="text-align:right;">NASDAQ-100</th></tr></thead>
           <tbody>
-            <tr><td>CAGR (netto)</td><td class="stat-pos">27,8 %</td><td class="stat-muted">17,3 %</td></tr>
-            <tr><td>Gesamtrendite (netto)</td><td class="stat-pos">+1.445 %</td><td class="stat-muted">+490 %</td></tr>
-            <tr><td>Ø Jahresrendite</td><td class="stat-pos">27,53 %</td><td class="stat-muted">18,49 %</td></tr>
-            <tr><td>Sharpe Ratio</td><td class="stat-pos">0,97</td><td class="stat-muted">0,79</td></tr>
-            <tr><td>Sortino Ratio</td><td class="stat-pos">0,12</td><td class="stat-muted">0,07</td></tr>
-            <tr><td>Volatilität (ann.)</td><td style="text-align:right;font-weight:600;color:var(--text);">29,00 %</td><td class="stat-muted">22,25 %</td></tr>
-            <tr><td>Profit Factor</td><td class="stat-pos">1,74</td><td class="stat-muted">1,16</td></tr>
-            <tr><td>Trefferquote (Trades)</td><td class="stat-pos">61,73 %</td><td class="stat-muted">55,94 %</td></tr>
-            <tr><td>Endwert (aus 10.000 €, netto)</td><td class="stat-pos">154.543 €</td><td class="stat-muted">59.027 €</td></tr>
+            <tr><td>CAGR (netto)</td><td class="stat-pos" data-kpi-cell="cagr">27,8 %</td><td class="stat-muted">17,3 %</td></tr>
+            <tr><td>Gesamtrendite (netto)</td><td class="stat-pos" data-kpi-cell="totalRet">+1.445 %</td><td class="stat-muted">+490 %</td></tr>
+            <tr><td>Ø Jahresrendite</td><td class="stat-pos" data-kpi-cell="avgAnnual">27,53 %</td><td class="stat-muted">18,49 %</td></tr>
+            <tr><td>Sharpe Ratio</td><td class="stat-pos" data-kpi-cell="sharpe">0,97</td><td class="stat-muted">0,79</td></tr>
+            <tr><td>Sortino Ratio</td><td class="stat-pos" data-kpi-cell="sortino">0,12</td><td class="stat-muted">0,07</td></tr>
+            <tr><td>Volatilität (ann.)</td><td style="text-align:right;font-weight:600;color:var(--text);" data-kpi-cell="vol">29,00 %</td><td class="stat-muted">22,25 %</td></tr>
+            <tr><td>Profit Factor</td><td class="stat-pos" data-kpi-cell="profitFactor">1,74</td><td class="stat-muted">1,16</td></tr>
+            <tr><td>Trefferquote (Trades)</td><td class="stat-pos" data-kpi-cell="hitRate">61,73 %</td><td class="stat-muted">55,94 %</td></tr>
+            <tr><td>Endwert (aus 10.000 €, netto)</td><td class="stat-pos" data-kpi-cell="endVal">154.543 €</td><td class="stat-muted">59.027 €</td></tr>
           </tbody>
         </table>
         </div>      </div>
@@ -491,9 +491,9 @@
         <table class="stats-table">
           <thead><tr><th>Kennzahl</th><th style="text-align:right;color:var(--accent);">Scherbius 1.0 Priv.</th><th style="text-align:right;">NASDAQ-100</th></tr></thead>
           <tbody>
-            <tr><td>Max. Drawdown</td><td style="text-align:right;font-weight:600;color:var(--accent);">−36,84 %</td><td class="stat-muted">−35,56 %</td></tr>
-            <tr><td>Ø Drawdown-Tiefe</td><td style="text-align:right;font-weight:600;color:var(--text);">2,88 %</td><td class="stat-muted">2,77 %</td></tr>
-            <tr><td>Max. Drawdown-Dauer (Tage)</td><td style="text-align:right;font-weight:600;color:var(--green);">246</td><td class="stat-muted">519</td></tr>
+            <tr><td>Max. Drawdown</td><td style="text-align:right;font-weight:600;color:var(--accent);" data-kpi-cell="maxDD">−36,84 %</td><td class="stat-muted">−35,56 %</td></tr>
+            <tr><td>Ø Drawdown-Tiefe</td><td style="text-align:right;font-weight:600;color:var(--text);" data-kpi-cell="avgDdDepth">2,88 %</td><td class="stat-muted">2,77 %</td></tr>
+            <tr><td>Max. Drawdown-Dauer (Tage)</td><td style="text-align:right;font-weight:600;color:var(--green);" data-kpi-cell="maxDdDur">246</td><td class="stat-muted">519</td></tr>
             <tr><td>VaR 95 % (historisch, täglich)</td><td style="text-align:right;font-weight:600;color:var(--green);">0,71 %</td><td class="stat-muted">2,23 %</td></tr>
             <tr><td>CVaR / Expected Shortfall 95 %</td><td style="text-align:right;font-weight:600;color:var(--green);">2,66 %</td><td class="stat-muted">3,34 %</td></tr>
           </tbody>
