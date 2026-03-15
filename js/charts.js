@@ -24,39 +24,27 @@ function fmtVal(v) {
   return v.toLocaleString('de-DE', {maximumFractionDigits:0});
 }
 
-/* ── Custom plugin: vertical "Live seit" separator line ─────── */
+/* ── Custom plugin: vertical separator line at live-start ────── */
 const liveLinePlugin = {
   id: 'liveLine',
   afterDraw(chart) {
-    const liveDate = '2025-12-15';
-    const labels   = chart.data.labels || [];
-    const idx      = labels.findIndex(l => l >= liveDate);
-    if (idx < 0) return;
-
     const xScale = chart.scales.x;
     const yScale = chart.scales.y;
     if (!xScale || !yScale) return;
 
-    const x   = xScale.getPixelForValue(idx);
-    const top = yScale.top;
-    const bot = yScale.bottom;
-    const ctx = chart.ctx;
+    const liveTs = new Date('2025-12-15').getTime();
+    const x      = xScale.getPixelForValue(liveTs);
+    if (x < xScale.left || x > xScale.right) return;
 
+    const ctx = chart.ctx;
     ctx.save();
     ctx.beginPath();
     ctx.setLineDash([4, 4]);
-    ctx.strokeStyle = 'rgba(107,114,128,0.5)';
+    ctx.strokeStyle = 'rgba(107,114,128,0.45)';
     ctx.lineWidth   = 1;
-    ctx.moveTo(x, top);
-    ctx.lineTo(x, bot);
+    ctx.moveTo(x, yScale.top);
+    ctx.lineTo(x, yScale.bottom);
     ctx.stroke();
-
-    // Label "Live"
-    ctx.setLineDash([]);
-    ctx.font         = '500 10px Outfit, sans-serif';
-    ctx.fillStyle    = '#6B7280';
-    ctx.textAlign    = 'left';
-    ctx.fillText('Live', x + 4, top + 14);
     ctx.restore();
   }
 };
@@ -162,22 +150,23 @@ function buildEquityChart(canvasId, rawData, opts = {}) {
             onPan: ({ chart }) => { if (chart._navSyncFn) chart._navSyncFn(); }
           },
           limits: {
-            x: { minRange: 30 }
+            x: { minRange: 30 * 86400000 } // min. 30 Tage sichtbar
           }
         }
       },
       scales: {
         x: {
+          type: 'time',
+          time: {
+            tooltipFormat: 'yyyy-MM-dd',
+            displayFormats: { day: 'MMM yy', week: 'MMM yy', month: 'MMM yy', quarter: 'MMM yy', year: 'yyyy' }
+          },
           grid: { color: C_GRID, drawBorder: false },
           ticks: {
             maxTicksLimit: 8,
             maxRotation: 0,
             color: '#9CA3AF',
             font: { size: 10 },
-            callback: (val, i, ticks) => {
-              const lbl = labels[i] || '';
-              return lbl.substring(0, 7); // "2022-03"
-            }
           },
           border: { display: false }
         },
