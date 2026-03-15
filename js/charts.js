@@ -32,8 +32,11 @@ const liveLinePlugin = {
     const yScale = chart.scales.y;
     if (!xScale || !yScale) return;
 
-    const liveTs = new Date('2025-12-15').getTime();
-    const x      = xScale.getPixelForValue(liveTs);
+    const labels = chart.data.labels || [];
+    const idx    = labels.findIndex(l => l >= '2025-12-15');
+    if (idx < 0) return;
+
+    const x = xScale.getPixelForValue(idx);
     if (x < xScale.left || x > xScale.right) return;
 
     const ctx = chart.ctx;
@@ -150,23 +153,19 @@ function buildEquityChart(canvasId, rawData, opts = {}) {
             onPan: ({ chart }) => { if (chart._navSyncFn) chart._navSyncFn(); }
           },
           limits: {
-            x: { minRange: 30 * 86400000 } // min. 30 Tage sichtbar
+            x: { minRange: 30 }
           }
         }
       },
       scales: {
         x: {
-          type: 'time',
-          time: {
-            tooltipFormat: 'yyyy-MM-dd',
-            displayFormats: { day: 'MMM yy', week: 'MMM yy', month: 'MMM yy', quarter: 'MMM yy', year: 'yyyy' }
-          },
           grid: { color: C_GRID, drawBorder: false },
           ticks: {
             maxTicksLimit: 8,
             maxRotation: 0,
             color: '#9CA3AF',
             font: { size: 10 },
+            callback: (val) => (labels[val] || '').substring(0, 7)
           },
           border: { display: false }
         },
