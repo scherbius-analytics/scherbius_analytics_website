@@ -8,9 +8,8 @@ const SA = {
 
   /* ── Initialise ─────────────────────────────────────────── */
   init() {
-    // Init charts first so switchMode works on first _applyMode call
-    if (typeof SA_Charts !== 'undefined') SA_Charts.init();
-    this.mode = localStorage.getItem(this.MODE_KEY) || 'institutional';
+    this.mode = localStorage.getItem(this.MODE_KEY) || 'retail';
+    if (typeof SA_Charts !== 'undefined') SA_Charts.init(this.mode);
     this._applyMode(this.mode, false);
     this._bindToggle();
     this._navScroll();

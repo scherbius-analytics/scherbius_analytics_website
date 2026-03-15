@@ -743,12 +743,19 @@ const SA_Charts = {
   liveChart: null,
   _nav:      null,
 
-  init() {
-    this.eq     = buildEquityChart('eq-chart', SA_INST_EQ, { portLabel: 'Scherbius 1.0 Institutionell', benchLabel: 'NASDAQ-100' });
-    this.annual = buildAnnualChart('annual-chart', SA_ANNUAL.inst);
+  init(mode = 'retail') {
+    const isInst   = mode === 'institutional';
+    const eqData   = isInst ? SA_INST_EQ    : SA_RETAIL_EQ;
+    const ddData   = isInst ? SA_INST_DD    : SA_RETAIL_DD;
+    const annData  = isInst ? SA_ANNUAL.inst : SA_ANNUAL.retail;
+    const liveData = isInst ? SA_INST_LIVE  : SA_RETAIL_LIVE;
+    const portLabel = isInst ? 'Scherbius 1.0 Institutionell' : 'Scherbius 1.0 Privatanleger';
+
+    this.eq     = buildEquityChart('eq-chart', eqData, { portLabel, benchLabel: 'NASDAQ-100' });
+    this.annual = buildAnnualChart('annual-chart', annData);
 
     if (this.eq) {
-      this._nav = buildNavigator(this.eq, 'eq-chart-nav-wrap', SA_INST_EQ);
+      this._nav = buildNavigator(this.eq, 'eq-chart-nav-wrap', eqData);
       if (this._nav) this.eq._navSyncFn = this._nav.syncFromMain.bind(this._nav);
     }
 
@@ -757,12 +764,12 @@ const SA_Charts = {
       this.cashInvI = buildCashInvChart('cash-inv-chart-inst', SA_CASH_INV);
     }
 
-    if (typeof SA_INST_DD !== 'undefined') {
-      this.drawdown = buildDrawdownChart('dd-chart', SA_INST_DD);
+    if (typeof SA_RETAIL_DD !== 'undefined') {
+      this.drawdown = buildDrawdownChart('dd-chart', ddData);
     }
 
-    if (typeof SA_INST_LIVE !== 'undefined') {
-      this.liveChart = buildLiveChart('live-chart', SA_INST_LIVE);
+    if (typeof SA_RETAIL_LIVE !== 'undefined') {
+      this.liveChart = buildLiveChart('live-chart', liveData);
     }
   },
 
