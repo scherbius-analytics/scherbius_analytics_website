@@ -494,8 +494,8 @@
             <tr><td>Max. Drawdown</td><td style="text-align:right;font-weight:600;color:var(--accent);" data-kpi-cell="maxDD">−36,84 %</td><td class="stat-muted">−35,56 %</td></tr>
             <tr><td>Ø Drawdown-Tiefe</td><td style="text-align:right;font-weight:600;color:var(--text);" data-kpi-cell="avgDdDepth">2,88 %</td><td class="stat-muted">2,77 %</td></tr>
             <tr><td>Max. Drawdown-Dauer (Tage)</td><td style="text-align:right;font-weight:600;color:var(--green);" data-kpi-cell="maxDdDur">246</td><td class="stat-muted">519</td></tr>
-            <tr><td>VaR 95 % (historisch, täglich)</td><td style="text-align:right;font-weight:600;color:var(--green);">0,71 %</td><td class="stat-muted">2,23 %</td></tr>
-            <tr><td>CVaR / Expected Shortfall 95 %</td><td style="text-align:right;font-weight:600;color:var(--green);">2,66 %</td><td class="stat-muted">3,34 %</td></tr>
+            <tr><td>VaR 95 % (historisch, täglich)</td><td style="text-align:right;font-weight:600;color:var(--green);" data-kpi-cell="var95">0,71 %</td><td class="stat-muted">2,23 %</td></tr>
+            <tr><td>CVaR / Expected Shortfall 95 %</td><td style="text-align:right;font-weight:600;color:var(--green);" data-kpi-cell="cvar95">2,66 %</td><td class="stat-muted">3,34 %</td></tr>
           </tbody>
         </table>
         </div>      </div>
@@ -552,12 +552,12 @@
         <table class="stats-table">
           <thead><tr><th>Kennzahl</th><th style="text-align:right;color:var(--accent);">Scherbius 1.0 Priv.</th><th style="text-align:right;">NASDAQ-100</th></tr></thead>
           <tbody>
-            <tr><td>Jensen Alpha p.a. (CAPM)</td><td class="stat-pos">+23,27 %</td><td class="stat-muted">—</td></tr>
-            <tr><td>p-Wert (CAPM Alpha)</td><td class="stat-pos">&lt; 0,01</td><td class="stat-muted">—</td></tr>
-            <tr><td>Fama-French 3-Faktor Alpha p.a.</td><td class="stat-pos">+23,17 %</td><td class="stat-muted">—</td></tr>
-            <tr><td>p-Wert (FF3 Alpha)</td><td class="stat-pos">&lt; 0,01</td><td class="stat-muted">—</td></tr>
-            <tr><td>Beta (vs. NASDAQ-100)</td><td style="text-align:right;font-weight:600;color:var(--text);">0,29</td><td class="stat-muted">1,000</td></tr>
-            <tr><td>R² (Markterklärungsgehalt)</td><td style="text-align:right;font-weight:600;color:var(--text);">3,33 %</td><td class="stat-muted">88,2 %</td></tr>
+            <tr><td>Jensen Alpha p.a. (CAPM)</td><td class="stat-pos" data-kpi-cell="alpha">+23,27 %</td><td class="stat-muted">—</td></tr>
+            <tr><td>p-Wert (CAPM Alpha)</td><td class="stat-pos" data-kpi-cell="pCapm">&lt; 0,01</td><td class="stat-muted">—</td></tr>
+            <tr><td>Fama-French 3-Faktor Alpha p.a.</td><td class="stat-pos" data-kpi-cell="ff3Alpha">+23,17 %</td><td class="stat-muted">—</td></tr>
+            <tr><td>p-Wert (FF3 Alpha)</td><td class="stat-pos" data-kpi-cell="pFf3">&lt; 0,01</td><td class="stat-muted">—</td></tr>
+            <tr><td>Beta (vs. NASDAQ-100)</td><td style="text-align:right;font-weight:600;color:var(--text);" data-kpi-cell="beta">0,29</td><td class="stat-muted">1,000</td></tr>
+            <tr><td>R² (Markterklärungsgehalt)</td><td style="text-align:right;font-weight:600;color:var(--text);" data-kpi-cell="r2">3,33 %</td><td class="stat-muted">88,2 %</td></tr>
           </tbody>
         </table>
         </div>      </div>
@@ -621,12 +621,12 @@
         <table class="stats-table">
           <thead><tr><th>Metric</th><th style="text-align:right;color:var(--accent);">Scherbius 1.0 Priv.</th></tr></thead>
           <tbody>
-            <tr><td>Annualisierter Turnover</td><td class="stat-muted">1.822,8 %</td></tr>
-            <tr><td>Ø Täglicher Turnover</td><td class="stat-muted">7,148 %</td></tr>
-            <tr><td>Median Täglicher Turnover</td><td class="stat-muted">0 %</td></tr>
-            <tr><td>Max. Turnover an einem Tag</td><td class="stat-muted">109,7 %</td></tr>
-            <tr><td>Handelstage mit Trades</td><td class="stat-muted">1.008 / 2.755 Tage</td></tr>
-            <tr><td>Anteil Tage mit Trades</td><td class="stat-muted">36,6 %</td></tr>
+            <tr><td>Annualisierter Turnover</td><td class="stat-muted" data-kpi-cell="turnoverAnn">1.822,8 %</td></tr>
+            <tr><td>Ø Täglicher Turnover</td><td class="stat-muted" data-kpi-cell="turnoverAvg">7,148 %</td></tr>
+            <tr><td>Median Täglicher Turnover</td><td class="stat-muted" data-kpi-cell="turnoverMed">0 %</td></tr>
+            <tr><td>Max. Turnover an einem Tag</td><td class="stat-muted" data-kpi-cell="turnoverMax">109,7 %</td></tr>
+            <tr><td>Handelstage mit Trades</td><td class="stat-muted" data-kpi-cell="tradeDaysStr">1.008 / 2.755 Tage</td></tr>
+            <tr><td>Anteil Tage mit Trades</td><td class="stat-muted" data-kpi-cell="tradeDaysPct">36,6 %</td></tr>
           </tbody>
         </table>
         </div>      </div>
@@ -683,10 +683,10 @@
         <table class="stats-table">
           <thead><tr><th>Horizont</th><th style="text-align:right;color:var(--accent);">Portfolio</th><th style="text-align:right;">NASDAQ-100</th><th style="text-align:right;">MSCI World</th></tr></thead>
           <tbody>
-            <tr><td>Nach 3 Monaten</td><td class="stat-pos">81,33 %</td><td class="stat-muted">75,23 %</td><td class="stat-muted">74,83 %</td></tr>
-            <tr><td>Nach 6 Monaten</td><td class="stat-pos">88,91 %</td><td class="stat-muted">79,75 %</td><td class="stat-muted">75,12 %</td></tr>
-            <tr><td>Nach 12 Monaten</td><td class="stat-pos">95,10 %</td><td class="stat-muted">85,14 %</td><td class="stat-muted">78,96 %</td></tr>
-            <tr><td>Nach 24 Monaten</td><td class="stat-pos">100,00 %</td><td class="stat-muted">90,72 %</td><td class="stat-muted">93,25 %</td></tr>
+            <tr><td>Nach 3 Monaten</td><td class="stat-pos" data-kpi-cell="winRate3m">81,33 %</td><td class="stat-muted">75,23 %</td><td class="stat-muted">74,83 %</td></tr>
+            <tr><td>Nach 6 Monaten</td><td class="stat-pos" data-kpi-cell="winRate6m">88,91 %</td><td class="stat-muted">79,75 %</td><td class="stat-muted">75,12 %</td></tr>
+            <tr><td>Nach 12 Monaten</td><td class="stat-pos" data-kpi-cell="winRate12m">95,10 %</td><td class="stat-muted">85,14 %</td><td class="stat-muted">78,96 %</td></tr>
+            <tr><td>Nach 24 Monaten</td><td class="stat-pos" data-kpi-cell="winRate24m">100,00 %</td><td class="stat-muted">90,72 %</td><td class="stat-muted">93,25 %</td></tr>
           </tbody>
         </table>
         </div>      </div>
