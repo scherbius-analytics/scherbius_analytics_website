@@ -148,8 +148,8 @@
 
     </div>
 
-    <!-- Info Box -->
-    <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:4px;padding:20px 28px;margin-bottom:40px;display:flex;gap:16px;align-items:flex-start;" data-reveal>
+    <!-- Info Box — Retail -->
+    <div data-show="retail" style="background:#FEF2F2;border:1px solid #FECACA;border-radius:4px;padding:20px 28px;margin-bottom:40px;display:flex;gap:16px;align-items:flex-start;" data-reveal>
       <div>
         <p style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px;">Hinweis zum öffentlichen Archiv</p>
         <p style="font-size:13px;color:#7F1D1D;line-height:1.65;">
@@ -159,16 +159,39 @@
       </div>
     </div>
 
-    <!-- Archive Table (dynamisch aus Supabase, 5-Handelstage-Verzögerung) -->
-    <div id="archive-container" data-reveal>
+    <!-- Info Box — Institutional -->
+    <div data-show="institutional" style="background:#F8F7F4;border:1px solid var(--border);border-radius:4px;padding:20px 28px;margin-bottom:40px;" data-reveal>
+      <p style="font-size:12px;font-weight:700;color:var(--dark);margin-bottom:4px;">Institutionelle Dokumentation</p>
+      <p style="font-size:13px;color:var(--text-muted);line-height:1.65;">
+        Reporting und Portfolio-Updates für institutionelle Mandanten werden individuell und vertraulich bereitgestellt. Für Zugang zu institutionellen Reports nehmen Sie bitte direkt Kontakt auf.
+        <a href="contact.html" style="color:var(--dark);font-weight:600;">Kontakt aufnehmen</a>
+      </p>
+    </div>
+
+    <!-- Archive Table — Retail (Scherbius 1.0 Privatanleger) -->
+    <div id="archive-container" data-show="retail" data-reveal>
       <div class="section-header" style="margin-bottom:32px;">
-        <p class="section-label">Scherbius 1.0</p>
+        <p class="section-label">Scherbius 1.0 — Privatanleger</p>
         <h2 style="font-family:'EB Garamond',serif;font-size:28px;font-weight:500;color:var(--dark);">Öffentliche Portfolio-Updates</h2>
       </div>
       <div id="archive-table-wrap" style="background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:24px;">
         <p style="padding:32px;font-size:13px;color:var(--text-muted);">Lade Archiv…</p>
       </div>
       <p style="font-size:11px;color:var(--text-dim);">Neueste Einträge werden nach 5 Handelstagen freigeschaltet. Ältere Updates auf Anfrage: <a href="mailto:kaya@scherbius.de" style="color:var(--text-muted);">kaya@scherbius.de</a></p>
+    </div>
+
+    <!-- Archive — Institutional (Platzhalter) -->
+    <div data-show="institutional" data-reveal>
+      <div class="section-header" style="margin-bottom:32px;">
+        <p class="section-label">Scherbius Inst 1.0 — Institutionell</p>
+        <h2 style="font-family:'EB Garamond',serif;font-size:28px;font-weight:500;color:var(--dark);">Portfolio-Updates</h2>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:48px 40px;text-align:center;margin-bottom:24px;">
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.65;max-width:480px;margin:0 auto 20px;">
+          Institutionelle Portfolio-Reports werden nicht öffentlich archiviert. Reporting erfolgt individuell für jeden Mandanten.
+        </p>
+        <a href="contact.html" class="btn btn-secondary" style="padding:10px 24px;font-size:11px;">Zugang anfragen</a>
+      </div>
     </div>
 
     <!-- Subscribe CTA -->
