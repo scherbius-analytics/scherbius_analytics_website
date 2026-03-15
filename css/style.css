@@ -513,21 +513,19 @@ body.page-content .nav-login-link:hover,
   width: 100%;
 }
 .chart-reset-btn {
-  font-family: 'Outfit', sans-serif;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 5px 10px;
-  border-radius: 2px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text-muted);
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: normal;
+  padding: 4px 8px;
+  border-radius: 3px;
+  border: 1px solid #CCD6EB;
+  background: #F7F8FA;
+  color: #333333;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background 0.15s, border-color 0.15s;
   white-space: nowrap;
 }
-.chart-reset-btn:hover { border-color: var(--dark); color: var(--dark); }
+.chart-reset-btn:hover { background: #E8EBF5; border-color: #8085E9; color: #333333; }
 
 /* ── Chart Range Navigator (Highcharts-style) ───────────────── */
 .chart-nav-wrap {

@@ -24,6 +24,44 @@ function fmtVal(v) {
   return v.toLocaleString('de-DE', {maximumFractionDigits:0});
 }
 
+/* ── Custom plugin: vertical "Live seit" separator line ─────── */
+const liveLinePlugin = {
+  id: 'liveLine',
+  afterDraw(chart) {
+    const liveDate = '2025-12-15';
+    const labels   = chart.data.labels || [];
+    const idx      = labels.findIndex(l => l >= liveDate);
+    if (idx < 0) return;
+
+    const xScale = chart.scales.x;
+    const yScale = chart.scales.y;
+    if (!xScale || !yScale) return;
+
+    const x   = xScale.getPixelForValue(idx);
+    const top = yScale.top;
+    const bot = yScale.bottom;
+    const ctx = chart.ctx;
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = 'rgba(107,114,128,0.5)';
+    ctx.lineWidth   = 1;
+    ctx.moveTo(x, top);
+    ctx.lineTo(x, bot);
+    ctx.stroke();
+
+    // Label "Live"
+    ctx.setLineDash([]);
+    ctx.font         = '500 10px Outfit, sans-serif';
+    ctx.fillStyle    = '#6B7280';
+    ctx.textAlign    = 'left';
+    ctx.fillText('Live', x + 4, top + 14);
+    ctx.restore();
+  }
+};
+Chart.register(liveLinePlugin);
+
 /* ── Build equity curve chart ───────────────────────────────── */
 function buildEquityChart(canvasId, rawData, opts = {}) {
   const canvas = document.getElementById(canvasId);
