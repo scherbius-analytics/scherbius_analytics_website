@@ -48,6 +48,11 @@ const liveLinePlugin = {
     ctx.moveTo(x, yScale.top);
     ctx.lineTo(x, yScale.bottom);
     ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.font      = '600 10px Outfit, sans-serif';
+    ctx.fillStyle = 'rgba(107,114,128,0.8)';
+    ctx.textAlign = 'left';
+    ctx.fillText('Live', x + 4, yScale.top + 14);
     ctx.restore();
   }
 };
