@@ -8,8 +8,10 @@ CLAUDE.md
 Claude_R_Input.Rmd
 Methodik/
 Screensshots/
-output/
-pdfs/*.pdf
+output/privatanleger/*.html
+output/institutionell/*.html
+pdfs/privatanleger/*.pdf
+pdfs/institutionell/*.pdf
 tools/
 
 # Secrets
