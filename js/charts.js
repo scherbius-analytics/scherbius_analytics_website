@@ -810,8 +810,7 @@ const SA_Charts = {
     const annualData = isInst ? SA_ANNUAL.inst : SA_ANNUAL.retail;
     const portLabel  = isInst ? 'Scherbius 1.0 Institutionell' : 'Scherbius 1.0 Privatanleger';
 
-    if (this.eq) {
-      // Re-animate with new data
+    if (this.eq && eqData.length > 0) {
       const labels    = eqData.map(r => r.d);
       const portData  = eqData.map(r => r.p);
       const benchData = eqData.map(r => r.b);
@@ -831,14 +830,14 @@ const SA_Charts = {
         if (drawn < eqData.length) requestAnimationFrame(animate);
       };
       animate();
+
+      if (this._nav) {
+        this._nav.updateData(eqData);
+        this.eq._navSyncFn = this._nav.syncFromMain.bind(this._nav);
+      }
     }
 
-    if (this._nav) {
-      this._nav.updateData(eqData);
-      this.eq._navSyncFn = this._nav.syncFromMain.bind(this._nav);
-    }
-
-    if (this.annual) {
+    if (this.annual && annualData.length > 0) {
       const portColors = annualData.map(r => r.p >= 0 ? C_SA : '#FCA5A5');
       this.annual.data.labels = annualData.map(r => r.y === 2026 ? '2026*' : String(r.y));
       this.annual.data.datasets[0].data = annualData.map(r => r.p);
@@ -847,24 +846,27 @@ const SA_Charts = {
       this.annual.update();
     }
 
-    if (this.drawdown && typeof SA_RETAIL_DD !== 'undefined' && typeof SA_INST_DD !== 'undefined') {
+    if (this.drawdown) {
       const ddData = isInst ? SA_INST_DD : SA_RETAIL_DD;
-      const allVals = ddData.map(r => r.port).concat(ddData.map(r => r.ndx));
-      const dataMin = Math.min(...allVals);
-      const yMin    = Math.floor((dataMin - 5) / 5) * 5;
-      this.drawdown.data.labels = ddData.map(r => r.d);
-      this.drawdown.data.datasets[0].data = ddData.map(r => r.port);
-      this.drawdown.data.datasets[1].data = ddData.map(r => r.ndx);
-      this.drawdown.options.scales.y.min = yMin;
-      this.drawdown.update();
+      if (ddData && ddData.length > 0) {
+        const allVals = ddData.map(r => r.port).concat(ddData.map(r => r.ndx));
+        const yMin    = Math.floor((Math.min(...allVals) - 5) / 5) * 5;
+        this.drawdown.data.labels = ddData.map(r => r.d);
+        this.drawdown.data.datasets[0].data = ddData.map(r => r.port);
+        this.drawdown.data.datasets[1].data = ddData.map(r => r.ndx);
+        this.drawdown.options.scales.y.min = yMin;
+        this.drawdown.update();
+      }
     }
 
-    if (this.liveChart && typeof SA_RETAIL_LIVE !== 'undefined' && typeof SA_INST_LIVE !== 'undefined') {
+    if (this.liveChart) {
       const liveData = isInst ? SA_INST_LIVE : SA_RETAIL_LIVE;
-      this.liveChart.data.labels = liveData.map(r => r.d);
-      this.liveChart.data.datasets[0].data = liveData.map(r => r.port);
-      this.liveChart.data.datasets[1].data = liveData.map(r => r.ndx);
-      this.liveChart.update();
+      if (liveData && liveData.length > 0) {
+        this.liveChart.data.labels = liveData.map(r => r.d);
+        this.liveChart.data.datasets[0].data = liveData.map(r => r.port);
+        this.liveChart.data.datasets[1].data = liveData.map(r => r.ndx);
+        this.liveChart.update();
+      }
     }
   }
 };
