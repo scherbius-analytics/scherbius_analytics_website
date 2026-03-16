@@ -23,8 +23,9 @@ var SA_Member = (function () {
     _bindTabs();
     _bindSignout();
     // Wenn kein aktives Abo: direkt zum Abonnement-Tab, nicht Updates
-    var hasAccess = _subscription && (_subscription.status === 'active' || _subscription.status === 'trialing');
+    var hasAccess = _subscription && (_subscription.status === 'active' || _subscription.status === 'trialing' || (_subscription.status === 'canceled' && _subscription.current_period_end && new Date(_subscription.current_period_end) > new Date()));
     _loadTab(hasAccess ? 'updates' : 'subscription');
+    _bindCancelButton();
     if (typeof window._fillSettings === 'function') window._fillSettings(_session);
 
     // Wenn Zahlung unterwegs ist (pending_payment): automatisch pollen
@@ -81,8 +82,13 @@ var SA_Member = (function () {
       } else if (_subscription.status === 'active' && _subscription.current_period_end) {
         var next = new Date(_subscription.current_period_end);
         detail.textContent = 'Nächste Abrechnung: ' + next.toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' });
-      } else if (_subscription.status === 'canceled') {
-        detail.textContent = 'Zugang bleibt bis Ende des Abrechnungszeitraums aktiv.';
+      } else if (_subscription.status === 'canceled' && _subscription.current_period_end) {
+        var until = new Date(_subscription.current_period_end);
+        if (until > new Date()) {
+          detail.textContent = 'Gekündigt — Zugang aktiv bis ' + until.toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' }) + '.';
+        } else {
+          detail.textContent = 'Abonnement beendet.';
+        }
       }
     }
   }
@@ -113,7 +119,7 @@ var SA_Member = (function () {
   // ── Tab Lock (kein Abo) ───────────────────────────────────────────────────
 
   function _lockUpdatesTab() {
-    var hasAccess = _subscription && (_subscription.status === 'active' || _subscription.status === 'trialing');
+    var hasAccess = _subscription && (_subscription.status === 'active' || _subscription.status === 'trialing' || (_subscription.status === 'canceled' && _subscription.current_period_end && new Date(_subscription.current_period_end) > new Date()));
     if (hasAccess) return;
 
     var tab = document.querySelector('.member-tab[data-tab="updates"]');
@@ -153,7 +159,7 @@ var SA_Member = (function () {
     var container = document.getElementById('updates-list');
     if (!container || container.dataset.loaded) return;
 
-    var hasAccess = _subscription && (_subscription.status === 'active' || _subscription.status === 'trialing');
+    var hasAccess = _subscription && (_subscription.status === 'active' || _subscription.status === 'trialing' || (_subscription.status === 'canceled' && _subscription.current_period_end && new Date(_subscription.current_period_end) > new Date()));
     if (!hasAccess) {
       var payLink = (window.SA_CONFIG && SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY) ? SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY : '../../pages/pricing.html';
       container.innerHTML =
@@ -251,11 +257,13 @@ var SA_Member = (function () {
   // ── Panel: Subscription ───────────────────────────────────────────────────
 
   function _loadSubscriptionPanel() {
-    var portalBtn   = document.getElementById('stripe-portal-btn');
-    var upgradeBtn  = document.getElementById('upgrade-btn');
+    var portalBtn    = document.getElementById('stripe-portal-btn');
+    var upgradeBtn   = document.getElementById('upgrade-btn');
+    var cancelBtn    = document.getElementById('cancel-sub-btn');
 
-    var hasStripe = _subscription && _subscription.stripe_subscription_id;
-    var isLive    = _subscription && (_subscription.status === 'active' || _subscription.status === 'trialing');
+    var hasStripe  = _subscription && _subscription.stripe_subscription_id;
+    var isLive     = _subscription && (_subscription.status === 'active' || _subscription.status === 'trialing');
+    var isCanceled = _subscription && _subscription.status === 'canceled';
 
     if (portalBtn) {
       var portalUrl = SA_CONFIG.STRIPE_CUSTOMER_PORTAL_URL;
@@ -269,15 +277,17 @@ var SA_Member = (function () {
 
     if (upgradeBtn) {
       if (isLive && hasStripe) {
-        // Already subscribed — hide upgrade CTA
         upgradeBtn.style.display = 'none';
       } else {
-        // Needs to subscribe — send to Stripe Payment Link
         var payLink = SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY;
         upgradeBtn.href = payLink || '../pricing.html';
         upgradeBtn.textContent = 'Abonnement aktivieren (14 Tage kostenlos testen)';
         upgradeBtn.style.display = 'flex';
       }
+    }
+
+    if (cancelBtn) {
+      cancelBtn.style.display = (isLive && hasStripe) ? 'block' : 'none';
     }
   }
 
@@ -337,6 +347,94 @@ var SA_Member = (function () {
         _renderStatusBadge();
       }
     }, 5000);
+  }
+
+  // ── Kündigung ─────────────────────────────────────────────────────────────
+
+  function _bindCancelButton() {
+    var cancelBtn  = document.getElementById('cancel-sub-btn');
+    var modal      = document.getElementById('cancel-modal');
+    var confirmBtn = document.getElementById('cancel-confirm-btn');
+    if (!cancelBtn || !modal || !confirmBtn) return;
+
+    cancelBtn.addEventListener('click', function () {
+      var isTrial = _subscription && _subscription.status === 'trialing';
+
+      // Passende Modal-Variante einblenden
+      var trialDiv  = document.getElementById('cancel-modal-trial');
+      var activeDiv = document.getElementById('cancel-modal-active');
+      if (trialDiv)  trialDiv.style.display  = isTrial ? 'block' : 'none';
+      if (activeDiv) activeDiv.style.display = isTrial ? 'none'  : 'block';
+
+      // Periodenende anzeigen (nur aktive Kündigung)
+      if (!isTrial && _subscription && _subscription.current_period_end) {
+        var el = document.getElementById('cancel-modal-period-end');
+        if (el) el.textContent = new Date(_subscription.current_period_end).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' });
+      }
+
+      var errEl = document.getElementById('cancel-modal-error');
+      if (errEl) errEl.style.display = 'none';
+      confirmBtn.disabled = false;
+      confirmBtn.textContent = 'Jetzt kündigen';
+
+      modal.style.display = 'flex';
+    });
+
+    // Backdrop-Klick schließt Modal
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+
+    confirmBtn.addEventListener('click', async function () {
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = 'Wird bearbeitet…';
+      var errEl = document.getElementById('cancel-modal-error');
+      if (errEl) errEl.style.display = 'none';
+
+      try {
+        var token = _session && _session.access_token;
+        var resp  = await fetch(SA_CONFIG.SUPABASE_URL + '/functions/v1/cancel-subscription', {
+          method:  'POST',
+          headers: {
+            'Authorization':  'Bearer ' + token,
+            'apikey':          SA_CONFIG.SUPABASE_ANON_KEY,
+            'Content-Type':   'application/json',
+          },
+        });
+
+        var data = await resp.json();
+        if (!resp.ok) throw new Error(data.error || 'Unbekannter Fehler');
+
+        // Subscription lokal aktualisieren
+        _subscription.status = 'canceled';
+        if (data.periodEnd) _subscription.current_period_end = data.periodEnd;
+
+        modal.style.display = 'none';
+        _renderStatusBadge();
+        _loadSubscriptionPanel();
+
+        // Bei Trial: kein Zugang mehr → zum Subscription-Tab
+        if (data.isTrial) {
+          _lockUpdatesTab();
+          _loadTab('subscription');
+        } else {
+          // Aktive Kündigung: Zugang bleibt — Status-Hinweis im Panel
+          var detail2 = document.getElementById('sub-status-detail-2');
+          if (detail2 && _subscription.current_period_end) {
+            var until = new Date(_subscription.current_period_end);
+            detail2.textContent = 'Gekündigt — Zugang aktiv bis ' + until.toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' }) + '.';
+          }
+        }
+
+      } catch (err) {
+        if (errEl) {
+          errEl.textContent = 'Fehler: ' + err.message + '. Bitte wende dich an kaya@scherbius.de.';
+          errEl.style.display = 'block';
+        }
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = 'Jetzt kündigen';
+      }
+    });
   }
 
   // ── Signout ───────────────────────────────────────────────────────────────

@@ -324,13 +324,15 @@
 
         <div style="display:flex;flex-direction:column;gap:12px;">
           <a href="#" class="btn btn-secondary" id="stripe-portal-btn" style="display:none;justify-content:center;">
-            Abonnement verwalten (Stripe Portal)
+            Zahlungsmethode &amp; Rechnungen (Stripe Portal)
           </a>
           <a href="../pricing.html" class="btn btn-secondary" style="justify-content:center;" id="upgrade-btn">
             Abonnement aktivieren
           </a>
+          <button id="cancel-sub-btn" style="display:none;width:100%;padding:11px 24px;font-family:inherit;font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:#B91C1C;background:transparent;border:1.5px solid #FECACA;border-radius:4px;cursor:pointer;transition:background 0.15s,border-color 0.15s;" onmouseover="this.style.background='#FEF2F2'" onmouseout="this.style.background='transparent'">
+            Abonnement kündigen
+          </button>
           <p style="font-size:11px;color:var(--text-dim);line-height:1.6;">
-            Im Stripe Customer Portal kannst du deine Zahlungsmethode ändern, Rechnungen herunterladen und dein Abonnement monatlich kündigen.
             Bei Fragen: <a href="mailto:kaya@scherbius.de" style="color:var(--text-muted);">kaya@scherbius.de</a>
           </p>
         </div>
@@ -518,5 +520,43 @@
   }
 })();
 </script>
+
+<!-- ── Kündigungs-Modal ────────────────────────────────────────────────── -->
+<div id="cancel-modal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.5);backdrop-filter:blur(2px);align-items:center;justify-content:center;">
+  <div style="background:#fff;border-radius:4px;border:1px solid #E8E5E0;max-width:480px;width:calc(100% - 40px);padding:40px;position:relative;">
+    <!-- Close X -->
+    <button onclick="document.getElementById('cancel-modal').style.display='none'" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;color:#9CA3AF;cursor:pointer;line-height:1;">&times;</button>
+
+    <!-- Trial variant -->
+    <div id="cancel-modal-trial">
+      <p style="margin:0 0 6px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#B91C1C;">Testzugang beenden</p>
+      <h2 style="margin:0 0 16px;font-family:'EB Garamond',Georgia,serif;font-size:24px;font-weight:500;color:#1A1A1A;line-height:1.2;">Möchtest du deinen Trial wirklich beenden?</h2>
+      <p style="margin:0 0 24px;font-size:13px;color:#6B7280;line-height:1.75;">Du verlierst sofort deinen Zugang zu allen Portfolio-Updates. Es entstehen keine Kosten.</p>
+      <div style="background:#FEF2F2;border-left:3px solid #B91C1C;padding:14px 18px;margin-bottom:28px;border-radius:0 4px 4px 0;">
+        <p style="margin:0;font-size:12px;color:#7F1D1D;line-height:1.6;">Der Testzugang wird <strong>sofort</strong> und unwiderruflich beendet.</p>
+      </div>
+    </div>
+
+    <!-- Active variant -->
+    <div id="cancel-modal-active">
+      <p style="margin:0 0 6px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#B91C1C;">Abonnement kündigen</p>
+      <h2 style="margin:0 0 16px;font-family:'EB Garamond',Georgia,serif;font-size:24px;font-weight:500;color:#1A1A1A;line-height:1.2;">Abonnement zum Periodenende kündigen?</h2>
+      <p style="margin:0 0 24px;font-size:13px;color:#6B7280;line-height:1.75;">Dein Zugang bleibt bis zum Ende der aktuellen Abrechnungsperiode vollständig erhalten. Du wirst nicht erneut belastet.</p>
+      <div style="background:#F7F5F2;border-left:3px solid #1A1A1A;padding:14px 18px;margin-bottom:28px;border-radius:0 4px 4px 0;">
+        <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.6;">Zugang aktiv bis: <strong id="cancel-modal-period-end" style="color:#1A1A1A;">—</strong></p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;">
+      <button onclick="document.getElementById('cancel-modal').style.display='none'" style="flex:1;padding:12px;font-family:inherit;font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;background:#fff;border:1.5px solid #E8E5E0;border-radius:4px;cursor:pointer;color:#6B7280;">
+        Abbrechen
+      </button>
+      <button id="cancel-confirm-btn" style="flex:1;padding:12px;font-family:inherit;font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;background:#B91C1C;border:1.5px solid #B91C1C;border-radius:4px;cursor:pointer;color:#fff;">
+        Jetzt kündigen
+      </button>
+    </div>
+    <p id="cancel-modal-error" style="display:none;margin:12px 0 0;font-size:12px;color:#B91C1C;text-align:center;"></p>
+  </div>
+</div>
 </body>
 </html>
