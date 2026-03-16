@@ -1,0 +1,29 @@
+name: Daily Analytics Report
+
+on:
+  schedule:
+    # 19:00 UTC = 20:00 CET (Winter) / 21:00 CEST (Sommer)
+    # Adjusted: 18:00 UTC = 20:00 CEST (Sommer) / 19:00 CET (Winter)
+    - cron: '0 18 * * *'
+  workflow_dispatch:  # Manuell ausführbar über GitHub UI
+
+jobs:
+  send-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Send Daily Report
+        run: node .github/scripts/daily_report.js
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          REPORT_EMAIL: ${{ secrets.REPORT_EMAIL }}
