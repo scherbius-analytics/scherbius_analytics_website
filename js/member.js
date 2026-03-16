@@ -27,9 +27,9 @@ var SA_Member = (function () {
     _loadTab(hasAccess ? 'updates' : 'subscription');
     if (typeof window._fillSettings === 'function') window._fillSettings(_session);
 
-    // Nach Rückkehr von Stripe: Status pollen bis Webhook durchgelaufen ist
-    var params = new URLSearchParams(window.location.search);
-    if (params.get('from_stripe') === '1' && !hasAccess) {
+    // Wenn Zahlung unterwegs ist (pending_payment): automatisch pollen
+    // bis Webhook den Status auf trialing/active gesetzt hat
+    if (_subscription && _subscription.status === 'pending_payment') {
       _pollSubscriptionStatus();
     }
   }
