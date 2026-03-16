@@ -459,12 +459,12 @@
 
   if (params.get('confirmed') === '1' && banner) {
     // Nutzer hat gerade den Email-Bestätigungslink geklickt → Zahlungsmethode hinzufügen
-    var payLink = (window.SA_CONFIG && SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY) ? SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY : '#';
+    // Link wird von member.js mit prefilled_email + client_reference_id befüllt
     banner.innerHTML =
       '<strong>&#10003; E-Mail bestätigt!</strong> Dein Konto ist verifiziert. ' +
       'Füge jetzt deine Zahlungsmethode hinzu, um deinen 14-tägigen Testzugang zu starten — ' +
       'du wirst erst nach Ablauf belastet.' +
-      ' <a href="' + payLink + '" class="btn btn-primary" style="margin-left:16px;font-size:11px;padding:8px 18px;display:inline-flex;">Jetzt starten &rarr;</a>';
+      ' <a href="#" id="banner-stripe-link" class="btn btn-primary" style="margin-left:16px;font-size:11px;padding:8px 18px;display:inline-flex;">Jetzt starten &rarr;</a>';
     banner.classList.add('visible');
   } else if (params.get('welcome') === '1' && banner) {
     if (params.get('institutional') === '1') {

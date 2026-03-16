@@ -61,37 +61,41 @@ serve(async (req: Request) => {
 
         if (session.mode !== 'subscription') break;
 
-        const customerId = session.customer as string;
+        const customerId    = session.customer as string;
         const subscriptionId = session.subscription as string;
-        const customerEmail = session.customer_details?.email ?? session.customer_email;
 
-        if (!customerEmail) {
-          console.warn('No customer email in checkout session');
-          break;
+        // Primary: client_reference_id = Supabase user_id (set via URL param)
+        // Fallback: E-Mail-Lookup (langsamer, fehleranfälliger)
+        let userId = session.client_reference_id ?? null;
+
+        if (!userId) {
+          const customerEmail = session.customer_details?.email ?? session.customer_email;
+          if (!customerEmail) {
+            console.warn('No client_reference_id and no email — cannot identify user');
+            break;
+          }
+          const { data: userData, error: userErr } = await supabase.auth.admin.listUsers();
+          if (userErr) throw userErr;
+          const user = userData.users.find(u => u.email === customerEmail);
+          if (!user) {
+            console.warn(`No Supabase user found for email: ${customerEmail}`);
+            break;
+          }
+          userId = user.id;
+          console.log(`User identified via email fallback: ${userId}`);
+        } else {
+          console.log(`User identified via client_reference_id: ${userId}`);
         }
 
-        // Fetch the subscription details from Stripe for period end date
         const stripeSub = await stripe.subscriptions.retrieve(subscriptionId);
-
-        // Find Supabase user by email
-        const { data: userData, error: userErr } = await supabase.auth.admin.listUsers();
-        if (userErr) throw userErr;
-
-        const user = userData.users.find(u => u.email === customerEmail);
-        if (!user) {
-          console.warn(`No Supabase user found for email: ${customerEmail}`);
-          break;
-        }
-
-        // Upsert subscription record — use Stripe's actual status (trialing | active | ...)
-        const trialEnd = stripeSub.trial_end
+        const trialEnd  = stripeSub.trial_end
           ? new Date(stripeSub.trial_end * 1000).toISOString()
           : null;
 
         const { error } = await supabase
           .from('subscriptions')
           .upsert({
-            user_id: user.id,
+            user_id: userId,
             stripe_customer_id: customerId,
             stripe_subscription_id: subscriptionId,
             status: stripeSub.status,
@@ -102,7 +106,7 @@ serve(async (req: Request) => {
           }, { onConflict: 'user_id' });
 
         if (error) throw error;
-        console.log(`Activated subscription for user ${user.id}`);
+        console.log(`Subscription activated — user: ${userId}, status: ${stripeSub.status}`);
         break;
       }
 

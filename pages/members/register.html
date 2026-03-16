@@ -332,7 +332,10 @@
       if (plan === 'institutional') {
         window.location.href = 'dashboard.html?welcome=1&institutional=1';
       } else if (plan === 'monthly' && SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY !== 'https://buy.stripe.com/DEIN_LINK') {
-        var stripeUrl = SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY + '?prefilled_email=' + encodeURIComponent(email);
+        var userId = data.user ? data.user.id : '';
+        var stripeUrl = SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY
+          + '?prefilled_email=' + encodeURIComponent(email)
+          + (userId ? '&client_reference_id=' + encodeURIComponent(userId) : '');
         window.location.href = stripeUrl;
       } else if (plan === 'monthly') {
         window.location.href = 'dashboard.html?notice=payment_pending';

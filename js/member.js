@@ -18,6 +18,7 @@ var SA_Member = (function () {
     _lockMode();
     _renderHeader();
     _renderStatusBadge();
+    _updateStripeLinks();
     _lockUpdatesTab();
     _bindTabs();
     _bindSignout();
@@ -25,6 +26,12 @@ var SA_Member = (function () {
     var hasAccess = _subscription && (_subscription.status === 'active' || _subscription.status === 'trialing');
     _loadTab(hasAccess ? 'updates' : 'subscription');
     if (typeof window._fillSettings === 'function') window._fillSettings(_session);
+
+    // Nach Rückkehr von Stripe: Status pollen bis Webhook durchgelaufen ist
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('from_stripe') === '1' && !hasAccess) {
+      _pollSubscriptionStatus();
+    }
   }
 
   // ── Header ────────────────────────────────────────────────────────────────
@@ -272,6 +279,64 @@ var SA_Member = (function () {
         upgradeBtn.style.display = 'flex';
       }
     }
+  }
+
+  // ── Stripe-Links mit User-Kontext befüllen ────────────────────────────────
+
+  function _updateStripeLinks() {
+    if (!_session) return;
+    var email  = _session.user.email || '';
+    var userId = _session.user.id || '';
+    var base   = SA_CONFIG && SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY;
+    if (!base || base === '#') return;
+
+    var link = base
+      + '?prefilled_email=' + encodeURIComponent(email)
+      + '&client_reference_id=' + encodeURIComponent(userId);
+
+    // Welcome-Banner-Link (confirmed=1)
+    var bannerLink = document.getElementById('banner-stripe-link');
+    if (bannerLink) bannerLink.href = link;
+    document.querySelectorAll('.welcome-banner a').forEach(function (a) {
+      if (a.href && a.href.indexOf('stripe.com') !== -1) a.href = link;
+    });
+    // Upgrade-Button im Subscription-Tab
+    var upgradeBtn = document.getElementById('upgrade-btn');
+    if (upgradeBtn) upgradeBtn.href = link;
+    // Updates-Tab Freischalten-Link (wird dynamisch gerendert — setzen wir via Delegation)
+    window._stripePayLink = link;
+  }
+
+  // ── Polling nach Stripe-Checkout ──────────────────────────────────────────
+
+  function _pollSubscriptionStatus() {
+    var badge  = document.getElementById('sub-status-badge');
+    if (badge) {
+      badge.textContent = 'Wird aktiviert…';
+      badge.className   = 'sub-badge sub-badge-inactive';
+    }
+
+    var attempts = 0;
+    var maxAttempts = 24; // 24 × 5s = 2 Minuten
+
+    var interval = setInterval(async function () {
+      attempts++;
+      var sub = await SA_Auth.getSubscription(_session.user.id);
+      var active = sub && (sub.status === 'active' || sub.status === 'trialing');
+
+      if (active) {
+        clearInterval(interval);
+        _subscription = sub;
+        _renderStatusBadge();
+        _lockUpdatesTab();
+        _loadTab('updates');
+        // URL bereinigen
+        history.replaceState(null, '', window.location.pathname);
+      } else if (attempts >= maxAttempts) {
+        clearInterval(interval);
+        _renderStatusBadge();
+      }
+    }, 5000);
   }
 
   // ── Signout ───────────────────────────────────────────────────────────────
