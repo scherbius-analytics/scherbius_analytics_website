@@ -648,24 +648,33 @@ function drawChart(canvasId, data, yKey1, yKey2, opts) {
     if (useLog) { ctx.strokeStyle = '#F3F4F6'; ctx.lineWidth = 0.3; }
   }
 
-  // Year labels
+  // Achsenbeschriftung: DD.MM für Kurzzeiträume, sonst Jahreszahl
   ctx.fillStyle = '#9CA3AF';
   ctx.font = '9px Outfit, sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-  let lastYear = '';
-  data.forEach((d, i) => {
-    const yr = d.date.substring(0, 4);
-    if (yr !== lastYear) {
-      lastYear = yr;
-      ctx.fillText(yr, xPos(i), H - padding.bottom + 6);
-    }
-  });
+  if (opts && opts.shortDates) {
+    // DD.MM im Abstand von ~10 Datenpunkten (tägliche Live-Daten)
+    const step = Math.max(1, Math.round(data.length / 10));
+    data.forEach((d, i) => {
+      if (i % step === 0 || i === data.length - 1) {
+        const p = d.date.split('-');
+        ctx.fillText(p[2] + '.' + p[1], xPos(i), H - padding.bottom + 6);
+      }
+    });
+  } else {
+    let lastYear = '';
+    data.forEach((d, i) => {
+      const yr = d.date.substring(0, 4);
+      if (yr !== lastYear) { lastYear = yr; ctx.fillText(yr, xPos(i), H - padding.bottom + 6); }
+    });
+  }
 
-  // NDX line
+  // NDX-Linie: gestrichelt wenn opts.dashNdx, sonst durchgezogen
   ctx.beginPath();
   ctx.strokeStyle = '#C4C4C4';
   ctx.lineWidth = 1.2;
+  if (opts && opts.dashNdx) ctx.setLineDash([5, 4]);
   data.forEach((d, i) => {
     const x = xPos(i);
     const y = yPos(d[yKey2]);
@@ -673,6 +682,7 @@ function drawChart(canvasId, data, yKey1, yKey2, opts) {
     else ctx.lineTo(x, y);
   });
   ctx.stroke();
+  ctx.setLineDash([]);
 
   // Portfolio line
   ctx.beginPath();
@@ -748,13 +758,13 @@ function drawChart(canvasId, data, yKey1, yKey2, opts) {
 
 window.addEventListener('load', () => {
   drawChart('equityChart', eqData, 'portfolio', 'ndx', { liveDate: LIVE_DATE_ISO });
-  drawChart('liveChart',   liveData, 'portfolio', 'ndx', { pct: true, minY: 0 });
+  drawChart('liveChart',   liveData, 'portfolio', 'ndx', { pct: true, minY: 0, shortDates: true, dashNdx: true });
   drawChart('ddChart',     ddData, 'portfolio', 'ndx', { pct: true, maxY: 0, minY: -40 });
 });
 
 window.addEventListener('resize', () => {
   drawChart('equityChart', eqData, 'portfolio', 'ndx', { liveDate: LIVE_DATE_ISO });
-  drawChart('liveChart',   liveData, 'portfolio', 'ndx', { pct: true, minY: 0 });
+  drawChart('liveChart',   liveData, 'portfolio', 'ndx', { pct: true, minY: 0, shortDates: true, dashNdx: true });
   drawChart('ddChart',     ddData, 'portfolio', 'ndx', { pct: true, maxY: 0, minY: -40 });
 });
 </script>
