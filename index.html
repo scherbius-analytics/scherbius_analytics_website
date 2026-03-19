@@ -332,7 +332,7 @@
           <p style="font-size:12px;color:var(--text-muted);">Strategie, Performance-Kennzahlen und Risikoparameter · Stand März 2026 · Version 1.0</p>
         </div>
         <div style="flex-shrink:0;">
-          <a href="#" class="btn btn-secondary" style="white-space:nowrap;">PDF herunterladen</a>
+          <a id="inst-factsheet-btn-home" href="https://lmhefszwflbwznmoyymd.supabase.co/storage/v1/object/public/factsheets/Scherbius_1.0_Institutionell_Factsheet.pdf" class="btn btn-secondary" style="white-space:nowrap;" target="_blank" rel="noopener">PDF herunterladen</a>
         </div>
       </div>
     </div>
@@ -343,10 +343,10 @@
         <div>
           <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Scherbius Analytics Privatanleger 1.0</p>
           <h3 style="font-family:'EB Garamond',serif;font-size:20px;font-weight:600;color:var(--dark);margin-bottom:6px;">Fact Sheet — Privatanleger</h3>
-          <p style="font-size:12px;color:var(--text-muted);">Strategie, Performance-Kennzahlen und Zertifikate-Informationen · Stand Dez 2025 · Version 1.0</p>
+          <p style="font-size:12px;color:var(--text-muted);">Strategie, Performance-Kennzahlen und Zertifikate-Informationen · <span id="home-retail-factsheet-date">Stand Dez 2025</span> · Version 1.0</p>
         </div>
         <div style="flex-shrink:0;">
-          <a href="#" class="btn btn-secondary" style="white-space:nowrap;">PDF herunterladen</a>
+          <a id="home-retail-factsheet-btn" href="#" class="btn btn-secondary" style="white-space:nowrap;opacity:0.4;pointer-events:none;">PDF herunterladen</a>
         </div>
       </div>
     </div>
@@ -970,6 +970,41 @@
 <script src="js/auth.js"></script>
 
 <script src="js/main.js"></script>
+
+<script>
+(function () {
+  var BUCKET_BASE = 'https://lmhefszwflbwznmoyymd.supabase.co/storage/v1/object/public/factsheets/';
+  async function loadRetailFactsheet() {
+    var btn      = document.getElementById('home-retail-factsheet-btn');
+    var dateSpan = document.getElementById('home-retail-factsheet-date');
+    if (!btn) return;
+    try {
+      var client = supabase.createClient(SA_CONFIG.SUPABASE_URL, SA_CONFIG.SUPABASE_ANON_KEY);
+      var result = await client.storage.from('factsheets').list('', { sortBy: { column: 'name', order: 'desc' }, limit: 20 });
+      if (result.error || !result.data) return;
+      var files = result.data.filter(function (f) { return /Factsheet_Privatanleger_\d{8}\.pdf/i.test(f.name); });
+      files.sort(function (a, b) { return b.name.localeCompare(a.name); });
+      if (!files.length) return;
+      var latest = files[0];
+      var m = latest.name.match(/(\d{4})(\d{2})(\d{2})\.pdf$/);
+      if (m && dateSpan) {
+        var d = new Date(m[1] + '-' + m[2] + '-' + m[3] + 'T12:00:00Z');
+        dateSpan.textContent = 'Stand ' + d.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });
+      }
+      btn.href = BUCKET_BASE + encodeURIComponent(latest.name);
+      btn.target = '_blank';
+      btn.rel = 'noopener';
+      btn.style.opacity = '1';
+      btn.style.pointerEvents = 'auto';
+    } catch (e) {}
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadRetailFactsheet);
+  } else {
+    loadRetailFactsheet();
+  }
+})();
+</script>
 
 </body>
 </html>
