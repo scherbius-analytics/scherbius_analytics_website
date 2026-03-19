@@ -464,7 +464,7 @@
   <!-- EQUITY CHART -->
   <div class="chart-card">
     <div class="chart-header">
-      <h3>Wertentwicklung &mdash; Scherbius 1.0 vs. NASDAQ-100 (linear, ab 10.000 &euro;)</h3>
+      <h3>Wertentwicklung &mdash; Scherbius 1.0 vs. NASDAQ-100 (logarithmisch, ab 10.000 &euro;)</h3>
       <div class="chart-legend">
         <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>Scherbius 1.0 (netto)</div>
         <div class="legend-item"><div class="legend-dot" style="background:var(--line-ndx)"></div>NASDAQ-100</div>
@@ -562,17 +562,27 @@ function drawChart(canvasId, data, yKey1, yKey2, opts) {
   let maxY = Math.max(...allVals);
   if (opts && opts.maxY !== undefined) maxY = Math.max(maxY, opts.maxY);
   if (opts && opts.minY !== undefined) minY = Math.min(minY, opts.minY);
-  const rangeY = maxY - minY || 1;
+
+  // Logarithmische Skala für Equity-Chart, lineare Skala für Drawdown
+  const useLog = !(opts && opts.pct) && minY > 0;
+  const logMin = useLog ? Math.log(minY) : minY;
+  const logMax = useLog ? Math.log(maxY) : maxY;
+  const rangeY = (useLog ? logMax - logMin : maxY - minY) || 1;
 
   function xPos(i) { return padding.left + (i / (data.length - 1)) * cW; }
-  function yPos(v) { return padding.top + (1 - (v - minY) / rangeY) * cH; }
+  function yPos(v) {
+    const vScaled = useLog ? Math.log(Math.max(v, 1)) : v;
+    return padding.top + (1 - (vScaled - logMin) / rangeY) * cH;
+  }
 
   // Grid
   ctx.strokeStyle = '#E5E7EB';
   ctx.lineWidth = 0.5;
   const gridCount = 5;
   for (let i = 0; i <= gridCount; i++) {
-    const v = minY + (rangeY * i / gridCount);
+    const v = useLog
+      ? Math.exp(logMin + (rangeY * i / gridCount))
+      : minY + (rangeY * i / gridCount);
     const y = yPos(v);
     ctx.beginPath();
     ctx.moveTo(padding.left, y);
@@ -589,6 +599,8 @@ function drawChart(canvasId, data, yKey1, yKey2, opts) {
       if (v >= 1000) ctx.fillText((v/1000).toFixed(0) + 'k', padding.left - 6, y);
       else ctx.fillText(v.toFixed(0), padding.left - 6, y);
     }
+    // Dünne Hilfslinie bei log-Skala
+    if (useLog) { ctx.strokeStyle = '#F3F4F6'; ctx.lineWidth = 0.3; }
   }
 
   // Year labels
