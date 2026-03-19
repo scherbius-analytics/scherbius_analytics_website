@@ -55,8 +55,13 @@ serve(async (req: Request) => {
     // Nach Nummer sortieren (neueste zuerst)
     withNumber.sort((a, b) => b.nr - a.nr);
 
-    // Die 5 neuesten Reports (höchste Nummern) nicht im Archiv anzeigen
-    const publicFiles = withNumber.slice(5);
+    // Cutoff: heute minus 5 Handelstage (Datum aus Dateinamen, Fallback: created_at)
+    const cutoff = subtractTradingDays(new Date(), 5);
+    const publicFiles = withNumber.filter(file => {
+      const match = file.name.match(/^(\d{4}-\d{2}-\d{2})/);
+      const fileDate = match ? new Date(match[1]) : new Date(file.created_at);
+      return fileDate <= cutoff;
+    });
 
     // Für jede öffentliche Datei eine signed URL generieren (1 Stunde gültig)
     const results = await Promise.all(
