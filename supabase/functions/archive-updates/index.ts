@@ -42,20 +42,21 @@ serve(async (req: Request) => {
     // Alle Dateien aus dem privaten Bucket laden
     const { data: files, error } = await supabase.storage
       .from('portfolio-updates')
-      .list('', { sortBy: { column: 'created_at', order: 'desc' }, limit: 200 });
+      .list('', { sortBy: { column: 'name', order: 'desc' }, limit: 200 });
 
     if (error) throw error;
 
-    // Cutoff: heute minus 5 Handelstage
-    const cutoff = subtractTradingDays(new Date(), 5);
+    // Update-Nummer aus Dateinamen extrahieren: "Portfolio-Update-65.pdf" → 65
+    const withNumber = (files ?? []).map(file => {
+      const m = file.name.match(/Portfolio-Update-(\d+)/i);
+      return { ...file, nr: m ? parseInt(m[1], 10) : -1 };
+    }).filter(f => f.nr >= 0);
 
-    // Datum aus Dateinamen extrahieren: "2026-03-14_Portfolio-Update-65.pdf" → 2026-03-14
-    // Fallback: created_at
-    const publicFiles = (files ?? []).filter(file => {
-      const match = file.name.match(/^(\d{4}-\d{2}-\d{2})/);
-      const fileDate = match ? new Date(match[1]) : new Date(file.created_at);
-      return fileDate <= cutoff;
-    });
+    // Nach Nummer sortieren (neueste zuerst)
+    withNumber.sort((a, b) => b.nr - a.nr);
+
+    // Die 5 neuesten Reports (höchste Nummern) nicht im Archiv anzeigen
+    const publicFiles = withNumber.slice(5);
 
     // Für jede öffentliche Datei eine signed URL generieren (1 Stunde gültig)
     const results = await Promise.all(
@@ -64,11 +65,7 @@ serve(async (req: Request) => {
           .from('portfolio-updates')
           .createSignedUrl(file.name, 3600);
 
-        const label = file.name
-          .replace('.pdf', '')
-          .replace(/_/g, ' ');
-
-        // Datum aus Dateinamen extrahieren für korrekte Anzeige
+        // Datum aus Dateinamen extrahieren für Anzeige
         const dateMatch = file.name.match(/^(\d{4}-\d{2}-\d{2})/);
         const dateObj = dateMatch ? new Date(dateMatch[1] + 'T12:00:00Z') : new Date(file.created_at);
         const date = dateObj.toLocaleDateString('de-DE', {
@@ -77,20 +74,13 @@ serve(async (req: Request) => {
 
         return {
           name: file.name,
-          label,
+          nr: file.nr,
           date,
           created_at: file.created_at,
           url: signed?.signedUrl ?? null,
         };
       })
     );
-
-    // Nach Dateiname-Datum sortieren (neueste zuerst)
-    results.sort((a, b) => {
-      const da = a.name.match(/^(\d{4}-\d{2}-\d{2})/)?.[1] ?? '';
-      const db = b.name.match(/^(\d{4}-\d{2}-\d{2})/)?.[1] ?? '';
-      return db.localeCompare(da);
-    });
 
     return new Response(JSON.stringify(results), {
       status: 200,

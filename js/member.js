@@ -202,11 +202,11 @@ var SA_Member = (function () {
         limit: 50
       });
       if (result.error || !result.data || result.data.length === 0) throw new Error('empty');
-      // Nach Dateiname-Datum sortieren (neueste zuerst)
+      // Nach Update-Nummer sortieren (neueste zuerst)
       result.data.sort(function (a, b) {
-        var da = (a.name.match(/^(\d{4}-\d{2}-\d{2})/) || ['',''])[1];
-        var db = (b.name.match(/^(\d{4}-\d{2}-\d{2})/) || ['',''])[1];
-        return db.localeCompare(da);
+        var ma = a.name.match(/Portfolio-Update-(\d+)/i);
+        var mb = b.name.match(/Portfolio-Update-(\d+)/i);
+        return (mb ? parseInt(mb[1], 10) : 0) - (ma ? parseInt(ma[1], 10) : 0);
       });
       await _renderPDFTable(container, result.data, client);
       container.dataset.loaded = '1';
@@ -241,7 +241,7 @@ var SA_Member = (function () {
       if (d.getDay() !== 0 && d.getDay() !== 6) {
         rows += '<tr>' +
           '<td style="font-weight:600;color:var(--dark);">' + d.toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' }) + '</td>' +
-          '<td style="color:var(--text-muted);">Portfolio-Update — Tagesabschluss</td>' +
+          '<td style="color:var(--text-muted);">Portfolio Update — Privatanleger</td>' +
           '<td><span style="font-size:11px;color:var(--text-dim);">Nach Supabase-Einrichtung</span></td>' +
           '</tr>';
         count++;
