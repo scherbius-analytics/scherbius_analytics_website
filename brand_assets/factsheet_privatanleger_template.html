@@ -504,6 +504,32 @@
     </div>
   </div>
 
+  <!-- PERFORMANCE SEIT AUFLAGE -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <h3>Performance seit Auflage ({{live_date}}) &mdash; kumuliert vs. NASDAQ-100</h3>
+      <div class="chart-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>Scherbius 1.0 (netto)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--line-ndx)"></div>NASDAQ-100</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;">
+      <div style="background:var(--bg);border:1px solid var(--card-border);border-radius:5px;padding:10px 14px;">
+        <div style="font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-bottom:4px;font-weight:600;">Portfolio (netto)</div>
+        <div class="kpi-value {{kpi_auflage_class}}" style="font-family:'EB Garamond',serif;font-size:22px;font-weight:700;line-height:1;">{{kpi_auflage_portfolio}}</div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--card-border);border-radius:5px;padding:10px 14px;">
+        <div style="font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-bottom:4px;font-weight:600;">NASDAQ-100</div>
+        <div class="kpi-value" style="font-family:'EB Garamond',serif;font-size:22px;font-weight:700;line-height:1;">{{kpi_auflage_ndx}}</div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--card-border);border-radius:5px;padding:10px 14px;">
+        <div style="font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-bottom:4px;font-weight:600;">Outperformance</div>
+        <div class="kpi-value {{kpi_auflage_outperf_class}}" style="font-family:'EB Garamond',serif;font-size:22px;font-weight:700;line-height:1;">{{kpi_auflage_outperf}}</div>
+      </div>
+    </div>
+    <canvas id="liveChart"></canvas>
+  </div>
+
   <!-- DRAWDOWN CHART -->
   <div class="chart-card">
     <div class="chart-header">
@@ -537,8 +563,10 @@
 </div>
 
 <script>
-const eqData = {{{eq_data_json}}};
-const ddData = {{{dd_data_json}}};
+const eqData   = {{{eq_data_json}}};
+const ddData   = {{{dd_data_json}}};
+const liveData = {{{live_data_json}}};
+const LIVE_DATE_ISO = '{{live_date_iso}}';
 
 function drawChart(canvasId, data, yKey1, yKey2, opts) {
   const canvas = document.getElementById(canvasId);
@@ -641,6 +669,30 @@ function drawChart(canvasId, data, yKey1, yKey2, opts) {
   });
   ctx.stroke();
 
+  // Vertikale Trennlinie Backtest | Live
+  if (opts && opts.liveDate) {
+    const liveIdx = data.findIndex(d => d.date >= opts.liveDate);
+    if (liveIdx > 0) {
+      const lx = xPos(liveIdx);
+      ctx.save();
+      ctx.setLineDash([3, 3]);
+      ctx.strokeStyle = '#9CA3AF';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(lx, padding.top);
+      ctx.lineTo(lx, H - padding.bottom);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#9CA3AF';
+      ctx.font = '8px Outfit, sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText('Backtest', lx - 4, padding.top + 10);
+      ctx.textAlign = 'left';
+      ctx.fillText('Live', lx + 4, padding.top + 10);
+      ctx.restore();
+    }
+  }
+
   // Fill under portfolio
   if (!opts || !opts.pct) {
     const grad = ctx.createLinearGradient(0, padding.top, 0, H - padding.bottom);
@@ -678,13 +730,15 @@ function drawChart(canvasId, data, yKey1, yKey2, opts) {
 }
 
 window.addEventListener('load', () => {
-  drawChart('equityChart', eqData, 'portfolio', 'ndx', {});
-  drawChart('ddChart', ddData, 'portfolio', 'ndx', { pct: true, maxY: 0, minY: -40 });
+  drawChart('equityChart', eqData, 'portfolio', 'ndx', { liveDate: LIVE_DATE_ISO });
+  drawChart('liveChart',   liveData, 'portfolio', 'ndx', { pct: true, minY: 0 });
+  drawChart('ddChart',     ddData, 'portfolio', 'ndx', { pct: true, maxY: 0, minY: -40 });
 });
 
 window.addEventListener('resize', () => {
-  drawChart('equityChart', eqData, 'portfolio', 'ndx', {});
-  drawChart('ddChart', ddData, 'portfolio', 'ndx', { pct: true, maxY: 0, minY: -40 });
+  drawChart('equityChart', eqData, 'portfolio', 'ndx', { liveDate: LIVE_DATE_ISO });
+  drawChart('liveChart',   liveData, 'portfolio', 'ndx', { pct: true, minY: 0 });
+  drawChart('ddChart',     ddData, 'portfolio', 'ndx', { pct: true, maxY: 0, minY: -40 });
 });
 </script>
 
