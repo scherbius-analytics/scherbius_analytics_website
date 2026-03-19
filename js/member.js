@@ -150,6 +150,7 @@ var SA_Member = (function () {
       p.style.display = (p.dataset.panel === tabId) ? 'block' : 'none';
     });
     if (tabId === 'updates')      _loadUpdates();
+    if (tabId === 'factsheets')   _loadFactsheets();
     if (tabId === 'subscription') _loadSubscriptionPanel();
   }
 
@@ -252,6 +253,51 @@ var SA_Member = (function () {
       'Supabase noch nicht konfiguriert. Trage deine Daten in <code>js/config.js</code> ein und lade PDFs in den Bucket "portfolio-updates" hoch.' +
       '</div>' +
       '<table class="archive-table"><thead><tr><th>Datum</th><th>Beschreibung</th><th>Download</th></tr></thead><tbody>' + rows + '</tbody></table>';
+  }
+
+  // ── Panel: Fact Sheets ────────────────────────────────────────────────────
+
+  async function _loadFactsheets() {
+    var btn      = document.getElementById('retail-factsheet-btn');
+    var dateSpan = document.getElementById('retail-factsheet-date');
+    if (!btn || btn.dataset.loaded) return;
+
+    try {
+      var client = supabase.createClient(SA_CONFIG.SUPABASE_URL, SA_CONFIG.SUPABASE_ANON_KEY);
+      var result = await client.storage.from('factsheets').list('', {
+        sortBy: { column: 'name', order: 'desc' },
+        limit: 20
+      });
+      if (result.error || !result.data) throw new Error('list failed');
+
+      // Neuestes Privatanleger-Factsheet ermitteln
+      var files = result.data.filter(function (f) {
+        return /Factsheet_Privatanleger_\d{8}\.pdf/i.test(f.name);
+      });
+      files.sort(function (a, b) { return b.name.localeCompare(a.name); });
+      if (!files.length) throw new Error('no file');
+
+      var latest = files[0];
+      var signed = await client.storage.from('factsheets').createSignedUrl(latest.name, 3600);
+      if (!signed.data || !signed.data.signedUrl) throw new Error('no url');
+
+      // Datum aus Dateinamen: Factsheet_Privatanleger_20260319.pdf → 19.03.2026
+      var m = latest.name.match(/(\d{4})(\d{2})(\d{2})\.pdf$/);
+      var dateStr = m
+        ? new Date(m[1] + '-' + m[2] + '-' + m[3] + 'T12:00:00Z').toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' })
+        : '';
+
+      btn.href               = signed.data.signedUrl;
+      btn.target             = '_blank';
+      btn.rel                = 'noopener';
+      btn.style.opacity      = '1';
+      btn.style.pointerEvents = 'auto';
+      btn.dataset.loaded     = '1';
+      if (dateSpan) dateSpan.textContent = dateStr + ' · Version 1.0';
+
+    } catch (e) {
+      if (dateSpan) dateSpan.textContent = 'Noch nicht verfügbar';
+    }
   }
 
   // ── Panel: Subscription ───────────────────────────────────────────────────
