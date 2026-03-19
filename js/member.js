@@ -262,39 +262,30 @@ var SA_Member = (function () {
     var dateSpan = document.getElementById('retail-factsheet-date');
     if (!btn || btn.dataset.loaded) return;
 
+    var BUCKET_BASE = 'https://lmhefszwflbwznmoyymd.supabase.co/storage/v1/object/public/factsheets/';
     try {
-      var client = supabase.createClient(SA_CONFIG.SUPABASE_URL, SA_CONFIG.SUPABASE_ANON_KEY);
-      var result = await client.storage.from('factsheets').list('', {
-        sortBy: { column: 'name', order: 'desc' },
-        limit: 20
-      });
-      if (result.error || !result.data) throw new Error('list failed');
+      var d = new Date();
+      var url = null;
+      for (var i = 0; i < 30; i++) {
+        var y  = d.getFullYear();
+        var mo = String(d.getMonth() + 1).padStart(2, '0');
+        var dy = String(d.getDate()).padStart(2, '0');
+        var candidate = BUCKET_BASE + 'Factsheet_Privatanleger_' + y + mo + dy + '.pdf';
+        var resp = await fetch(candidate, { method: 'HEAD' });
+        if (resp.ok) { url = candidate; break; }
+        d.setDate(d.getDate() - 1);
+      }
+      if (!url) throw new Error('not found');
 
-      // Neuestes Privatanleger-Factsheet ermitteln
-      var files = result.data.filter(function (f) {
-        return /Factsheet_Privatanleger_\d{8}\.pdf/i.test(f.name);
-      });
-      files.sort(function (a, b) { return b.name.localeCompare(a.name); });
-      if (!files.length) throw new Error('no file');
-
-      var latest = files[0];
-      var signed = await client.storage.from('factsheets').createSignedUrl(latest.name, 3600);
-      if (!signed.data || !signed.data.signedUrl) throw new Error('no url');
-
-      // Datum aus Dateinamen: Factsheet_Privatanleger_20260319.pdf → 19.03.2026
-      var m = latest.name.match(/(\d{4})(\d{2})(\d{2})\.pdf$/);
-      var dateStr = m
-        ? new Date(m[1] + '-' + m[2] + '-' + m[3] + 'T12:00:00Z').toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' })
-        : '';
-
-      btn.href               = signed.data.signedUrl;
+      btn.href               = url;
       btn.target             = '_blank';
       btn.rel                = 'noopener';
       btn.style.opacity      = '1';
       btn.style.pointerEvents = 'auto';
       btn.dataset.loaded     = '1';
-      if (dateSpan) dateSpan.textContent = dateStr + ' · Version 1.0';
-
+      if (dateSpan) {
+        dateSpan.textContent = d.toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' }) + ' · Version 1.0';
+      }
     } catch (e) {
       if (dateSpan) dateSpan.textContent = 'Noch nicht verfügbar';
     }

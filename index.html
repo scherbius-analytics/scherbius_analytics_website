@@ -979,19 +979,22 @@
     var dateSpan = document.getElementById('home-retail-factsheet-date');
     if (!btn) return;
     try {
-      var client = supabase.createClient(SA_CONFIG.SUPABASE_URL, SA_CONFIG.SUPABASE_ANON_KEY);
-      var result = await client.storage.from('factsheets').list('', { sortBy: { column: 'name', order: 'desc' }, limit: 20 });
-      if (result.error || !result.data) return;
-      var files = result.data.filter(function (f) { return /Factsheet_Privatanleger_\d{8}\.pdf/i.test(f.name); });
-      files.sort(function (a, b) { return b.name.localeCompare(a.name); });
-      if (!files.length) return;
-      var latest = files[0];
-      var m = latest.name.match(/(\d{4})(\d{2})(\d{2})\.pdf$/);
-      if (m && dateSpan) {
-        var d = new Date(m[1] + '-' + m[2] + '-' + m[3] + 'T12:00:00Z');
+      var d = new Date();
+      var url = null;
+      for (var i = 0; i < 30; i++) {
+        var y  = d.getFullYear();
+        var mo = String(d.getMonth() + 1).padStart(2, '0');
+        var dy = String(d.getDate()).padStart(2, '0');
+        var candidate = BUCKET_BASE + 'Factsheet_Privatanleger_' + y + mo + dy + '.pdf';
+        var resp = await fetch(candidate, { method: 'HEAD' });
+        if (resp.ok) { url = candidate; break; }
+        d.setDate(d.getDate() - 1);
+      }
+      if (!url) return;
+      if (dateSpan) {
         dateSpan.textContent = 'Stand ' + d.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });
       }
-      btn.href = BUCKET_BASE + encodeURIComponent(latest.name);
+      btn.href = url;
       btn.target = '_blank';
       btn.rel = 'noopener';
       btn.style.opacity = '1';
