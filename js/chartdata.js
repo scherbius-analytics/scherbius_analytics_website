@@ -2979,11 +2979,11 @@ const SA_KPI = {
     ff3Alpha:    { val:22.76, fmt:"+22,76 %", suffix:"%", label:"FF3-Alpha p.a." },
     pCapm:       { fmt:"0,0100", label:"p-Wert (CAPM Alpha)" },
     pFf3:        { fmt:"< 0,01", label:"p-Wert (FF3 Alpha)" },
-    turnoverAnn: { fmt:"1.777,1 %", label:"Annualisierter Turnover" },
-    turnoverAvg: { fmt:"6,969 %", label:"Ø Täglicher Turnover" },
+    turnoverAnn: { fmt:"1.777,8 %", label:"Annualisierter Turnover" },
+    turnoverAvg: { fmt:"6,972 %", label:"Ø Täglicher Turnover" },
     turnoverMed: { fmt:"0,000 %", label:"Median Turnover" },
     turnoverMax: { fmt:"108,89 %", label:"Max. Turnover/Tag" },
-    tradeDaysStr:{ fmt:"903 / 2776 Tage", label:"Handelstage mit Trades" },
+    tradeDaysStr:{ fmt:"902 / 2774 Tage", label:"Handelstage mit Trades" },
     tradeDaysPct:{ fmt:"32,5 %", label:"Anteil Tage mit Trades" },
     winRate3m:   { fmt:"82,00 %", label:"Positiv nach 3 Monaten" },
     winRate6m:   { fmt:"90,08 %", label:"Positiv nach 6 Monaten" },
@@ -3768,8 +3768,7 @@ const SA_CASH_INV = [
   {d:"2026-02-19",inv:2.9,cash:97.1},
   {d:"2026-02-20",inv:2.9,cash:97.1},
   {d:"2026-03-16",inv:12.5,cash:87.5},
-  {d:"2026-03-17",inv:12.4,cash:87.6},
-  {d:"2026-03-20",inv:5.7,cash:94.3}
+  {d:"2026-03-17",inv:12.4,cash:87.6}
 ];
 
 /* ── Drawdown Vergleich (Retail, täglich) ────────────────────── */
