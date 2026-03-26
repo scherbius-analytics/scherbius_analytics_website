@@ -2983,8 +2983,8 @@ const SA_KPI = {
     ff3Alpha:    { val:22.56, fmt:"+22,56 %", suffix:"%", label:"FF3-Alpha p.a." },
     pCapm:       { fmt:"0,0105", label:"p-Wert (CAPM Alpha)" },
     pFf3:        { fmt:"0,0103", label:"p-Wert (FF3 Alpha)" },
-    turnoverAnn: { fmt:"1.778,6 %", label:"Annualisierter Turnover" },
-    turnoverAvg: { fmt:"6,975 %", label:"Ø Täglicher Turnover" },
+    turnoverAnn: { fmt:"1.778,3 %", label:"Annualisierter Turnover" },
+    turnoverAvg: { fmt:"6,974 %", label:"Ø Täglicher Turnover" },
     turnoverMed: { fmt:"0,000 %", label:"Median Turnover" },
     turnoverMax: { fmt:"108,89 %", label:"Max. Turnover/Tag" },
     tradeDaysStr:{ fmt:"914 / 2780 Tage", label:"Handelstage mit Trades" },
@@ -3783,7 +3783,7 @@ const SA_CASH_INV = [
   {d:"2026-03-23",inv:2.8,cash:97.2},
   {d:"2026-03-24",inv:6.2,cash:93.8},
   {d:"2026-03-25",inv:13.3,cash:86.7},
-  {d:"2026-03-26",inv:9,cash:91}
+  {d:"2026-03-26",inv:5.9,cash:94.1}
 ];
 
 /* ── Drawdown Vergleich (Retail, täglich) ────────────────────── */
