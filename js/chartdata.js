@@ -1,8 +1,8 @@
 /* ============================================================
    Scherbius Analytics — Chart Data
    AUTO-GENERATED von Scherbius_Retail_1.0.Rmd
-   Zuletzt aktualisiert: 26.03.2026
-   Tägliche Datenpunkte: 2822
+   Zuletzt aktualisiert: 27.03.2026
+   Tägliche Datenpunkte: 2823
    NICHT MANUELL BEARBEITEN
    ============================================================ */
 
@@ -2829,7 +2829,8 @@ const SA_RETAIL_EQ = [
   {d:"2026-03-20",p:144676.44,b:57434.22},
   {d:"2026-03-23",p:144753.78,b:58132.23},
   {d:"2026-03-24",p:145236.92,b:57684.88},
-  {d:"2026-03-25",p:141344.66,b:58070.69}
+  {d:"2026-03-25",p:143609.32,b:58070.69},
+  {d:"2026-03-26",p:141850.2,b:56686.41}
 ];
 
 const SA_INST_EQ = [
@@ -2947,7 +2948,7 @@ const SA_ANNUAL = {
     {y:2023,p:22.79,b:53.81},
     {y:2024,p:16.88,b:24.88},
     {y:2025,p:49.23,b:20.17},
-    {y:2026,p:3.22,b:-4.3}
+    {y:2026,p:3.59,b:-6.59}
   ],
   inst: [
     {y:2015,p:15.1,b:8.6},{y:2016,p:6.1,b:5.9},{y:2017,p:11.7,b:31.5},
@@ -2960,40 +2961,40 @@ const SA_ANNUAL = {
 /* ── KPI Definitions ──────────────────────────────────────────── */
 const SA_KPI = {
   retail: {
-    cagr:        { val:26.6, fmt:"26,6 %", suffix:"%",     label:"CAGR (netto)",           sub:"NDX: 16.8 %" },
-    totalRet:    { val:1313, fmt:"+1.313 %", suffix:"%",     label:"Gesamtrendite" },
-    sharpe:      { val:0.92, fmt:"0,92", suffix:"",      label:"Sharpe Ratio",            sub:"NDX: 0.77" },
+    cagr:        { val:26.6, fmt:"26,6 %", suffix:"%",     label:"CAGR (netto)",           sub:"NDX: 16.5 %" },
+    totalRet:    { val:1319, fmt:"+1.319 %", suffix:"%",     label:"Gesamtrendite" },
+    sharpe:      { val:0.92, fmt:"0,92", suffix:"",      label:"Sharpe Ratio",            sub:"NDX: 0.76" },
     sortino:     { val:0.12, fmt:"0,12", suffix:"",      label:"Sortino Ratio",           sub:"NDX: 0.07" },
     maxDD:       { val:36.4, fmt:"−36,40 %", suffix:"%",     label:"Max. Drawdown",           sub:"NDX: −35,56 %", neg:true },
-    endVal:      { val:141345, fmt:"141.345 €", suffix:"€",label:"Endwert (netto)",          sub:"aus 10.000 € Start", fmtK:true },
-    vol:         { val:29.51, fmt:"29,51 %", suffix:"%",     label:"Volatilität (ann.)", sub:"NDX: 22.21 %" },
-    avgAnnual:   { val:26.4, fmt:"26,40 %", suffix:"%",     label:"Ø Jahresrendite" },
+    endVal:      { val:141850, fmt:"141.850 €", suffix:"€",label:"Endwert (netto)",          sub:"aus 10.000 € Start", fmtK:true },
+    vol:         { val:29.5, fmt:"29,50 %", suffix:"%",     label:"Volatilität (ann.)", sub:"NDX: 22.22 %" },
+    avgAnnual:   { val:26.43, fmt:"26,43 %", suffix:"%",     label:"Ø Jahresrendite" },
     profitFactor:{ val:1.7, fmt:"1,70", suffix:"",      label:"Profit Factor",           sub:"NDX: 1.16" },
-    hitRate:     { val:60.95, fmt:"60,95 %", suffix:"%",     label:"Trefferquote (Trades)" },
-    avgDdDepth:  { val:319.33, fmt:"319,33 %", suffix:"%",     label:"Ø Drawdown-Tiefe",   sub:"NDX: 2,77 %", neg:true },
+    hitRate:     { val:61, fmt:"61,00 %", suffix:"%",     label:"Trefferquote (Trades)" },
+    avgDdDepth:  { val:319.01, fmt:"319,01 %", suffix:"%",     label:"Ø Drawdown-Tiefe",   sub:"NDX: 2,77 %", neg:true },
     maxDdDur:    { val:241, fmt:"241", suffix:"",      label:"Max. Drawdown-Dauer",     sub:"Handelstage" },
-    ret1m:       { val:-2.2, suffix:"%",  label:"1M-Rendite",          sub:"NDX: -3.59 %" },
-    retYtd:      { val:1, suffix:"%",  label:"YTD-Rendite",         sub:"NDX: -4.92 %" },
-    retSince:    { val:2.6, suffix:"%",  label:"Seit Auflage",        sub:"NDX: -5.3 %" },
-    var95:       { val:0.73, fmt:"0,73 %", suffix:"%", label:"VaR 95 % (täglich)" },
-    cvar95:      { val:2.76, fmt:"2,76 %", suffix:"%", label:"CVaR 95 % (täglich)" },
+    ret1m:       { val:-3.4, suffix:"%",  label:"1M-Rendite",          sub:"NDX: -5.36 %" },
+    retYtd:      { val:-0.24, suffix:"%",  label:"YTD-Rendite",         sub:"NDX: -5.98 %" },
+    retSince:    { val:1.35, suffix:"%",  label:"Seit Auflage",        sub:"NDX: -6.35 %" },
+    var95:       { val:0.74, fmt:"0,74 %", suffix:"%", label:"VaR 95 % (täglich)" },
+    cvar95:      { val:2.75, fmt:"2,75 %", suffix:"%", label:"CVaR 95 % (täglich)" },
     alpha:       { val:22.62, fmt:"+22,62 %", suffix:"%", label:"Jensen Alpha p.a. (CAPM)" },
     beta:        { val:0.298, fmt:"0,298", suffix:"",  label:"Beta (vs. NASDAQ-100)" },
     r2:          { val:3.41, fmt:"3,41 %", suffix:"%", label:"R² (Markterl.)" },
     ff3Alpha:    { val:22.56, fmt:"+22,56 %", suffix:"%", label:"FF3-Alpha p.a." },
     pCapm:       { fmt:"0,0105", label:"p-Wert (CAPM Alpha)" },
     pFf3:        { fmt:"0,0103", label:"p-Wert (FF3 Alpha)" },
-    turnoverAnn: { fmt:"1.778,3 %", label:"Annualisierter Turnover" },
-    turnoverAvg: { fmt:"6,974 %", label:"Ø Täglicher Turnover" },
+    turnoverAnn: { fmt:"1.778,2 %", label:"Annualisierter Turnover" },
+    turnoverAvg: { fmt:"6,973 %", label:"Ø Täglicher Turnover" },
     turnoverMed: { fmt:"0,000 %", label:"Median Turnover" },
     turnoverMax: { fmt:"108,89 %", label:"Max. Turnover/Tag" },
-    tradeDaysStr:{ fmt:"914 / 2780 Tage", label:"Handelstage mit Trades" },
+    tradeDaysStr:{ fmt:"915 / 2781 Tage", label:"Handelstage mit Trades" },
     tradeDaysPct:{ fmt:"32,9 %", label:"Anteil Tage mit Trades" },
-    winRate3m:   { fmt:"81,63 %", label:"Positiv nach 3 Monaten" },
+    winRate3m:   { fmt:"81,64 %", label:"Positiv nach 3 Monaten" },
     winRate6m:   { fmt:"89,47 %", label:"Positiv nach 6 Monaten" },
     winRate12m:  { fmt:"95,33 %", label:"Positiv nach 12 Monaten" },
     winRate24m:  { fmt:"100,00 %", label:"Positiv nach 24 Monaten" },
-    lastUpdated: "26.03.2026"
+    lastUpdated: "27.03.2026"
   },
   inst: {
     cagr:        { val:14.9,  fmt:"14,9 %",      suffix:"%",     label:"CAGR (netto)",      sub:"NDX: 17,3 %" },
@@ -3782,8 +3783,9 @@ const SA_CASH_INV = [
   {d:"2026-03-17",inv:9.5,cash:90.5},
   {d:"2026-03-23",inv:2.8,cash:97.2},
   {d:"2026-03-24",inv:6.2,cash:93.8},
-  {d:"2026-03-25",inv:13.3,cash:86.7},
-  {d:"2026-03-26",inv:5.9,cash:94.1}
+  {d:"2026-03-25",inv:13.4,cash:86.6},
+  {d:"2026-03-26",inv:5.6,cash:94.4},
+  {d:"2026-03-27",inv:11.2,cash:88.8}
 ];
 
 /* ── Drawdown Vergleich (Retail, täglich) ────────────────────── */
@@ -6609,7 +6611,8 @@ const SA_RETAIL_DD = [
   {d:"2026-03-20",port:-0.86,ndx:-7.01},
   {d:"2026-03-23",port:-0.81,ndx:-7.09},
   {d:"2026-03-24",port:-0.48,ndx:-7.99},
-  {d:"2026-03-25",port:-3.14,ndx:-7.31}
+  {d:"2026-03-25",port:-1.59,ndx:-7.31},
+  {d:"2026-03-26",port:-2.8,ndx:-8.34}
 ];
 
 const SA_INST_DD = [
@@ -6873,7 +6876,8 @@ const SA_RETAIL_LIVE = [
   {d:"2026-03-20",port:5.32,ndx:-4.66},
   {d:"2026-03-23",port:5.38,ndx:-3.51},
   {d:"2026-03-24",port:5.73,ndx:-4.25},
-  {d:"2026-03-25",port:2.9,ndx:-3.61}
+  {d:"2026-03-25",port:4.54,ndx:-3.61},
+  {d:"2026-03-26",port:3.26,ndx:-5.91}
 ];
 
 const SA_INST_LIVE = [
