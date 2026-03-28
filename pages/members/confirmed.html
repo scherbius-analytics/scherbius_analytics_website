@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Mail bestätigt — Scherbius Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      font-family: 'Outfit', sans-serif;
+    }
+    .confirm-card {
+      text-align: center;
+      max-width: 480px;
+      padding: 0 24px;
+    }
+    .spinner {
+      width: 44px;
+      height: 44px;
+      border: 3px solid var(--border);
+      border-top-color: var(--dark);
+      border-radius: 50%;
+      animation: spin 0.85s linear infinite;
+      margin: 0 auto 32px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .step-list {
+      text-align: left;
+      background: #F7F5F2;
+      border-radius: 4px;
+      padding: 20px 24px;
+      margin-top: 28px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+    .error-box {
+      display: none;
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      border-radius: 4px;
+      padding: 16px 20px;
+      font-size: 13px;
+      color: #7F1D1D;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="confirm-card">
+    <div class="spinner" id="spinner"></div>
+
+    <p style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">E-Mail bestätigt</p>
+    <h1 style="font-family:'EB Garamond',serif;font-size:32px;font-weight:500;color:var(--dark);letter-spacing:-0.3px;margin-bottom:14px;">Einen Moment…</h1>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8;" id="status-text">
+      Dein Konto wird aktiviert. Du wirst gleich zu Stripe weitergeleitet.
+    </p>
+
+    <div class="step-list">
+      <strong style="color:var(--dark);">Was jetzt passiert:</strong><br>
+      1. Stripe öffnet sich — Karte hinterlegen (jetzt 0,00 €)<br>
+      2. Das Dashboard öffnet sich in einem neuen Tab<br>
+      3. Nach 14 Tagen startet die Abrechnung (€ 39,99/Monat)
+    </div>
+
+    <div class="error-box" id="error-box">
+      Sitzung konnte nicht geladen werden. Bitte <a href="login.html" style="color:#7F1D1D;font-weight:600;">einloggen</a> und dann Stripe über das Dashboard aufrufen.
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="../../js/config.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var done = false;
+
+    function redirect(session) {
+      if (done) return;
+      done = true;
+
+      var email  = (session && session.user && session.user.email)  || '';
+      var userId = (session && session.user && session.user.id)     || '';
+
+      var stripeUrl = SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY
+        + '?prefilled_email='     + encodeURIComponent(email)
+        + '&client_reference_id=' + encodeURIComponent(userId);
+
+      // Dashboard in neuem Tab öffnen (gesperrt bis Stripe-Webhook feuert)
+      window.open('dashboard.html', '_blank');
+
+      // Aktuellen Tab zu Stripe
+      window.location.href = stripeUrl;
+    }
+
+    function showError() {
+      if (done) return;
+      done = true;
+      document.getElementById('spinner').style.display = 'none';
+      document.getElementById('status-text').textContent = 'Sitzung nicht gefunden.';
+      document.getElementById('error-box').style.display = 'block';
+    }
+
+    var client = supabase.createClient(SA_CONFIG.SUPABASE_URL, SA_CONFIG.SUPABASE_ANON_KEY);
+
+    // Supabase SDK verarbeitet automatisch das Token aus der URL
+    // onAuthStateChange feuert sobald die Session steht
+    client.auth.onAuthStateChange(function (event, session) {
+      if ((event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') && session) {
+        redirect(session);
+      }
+    });
+
+    // Auch direkt prüfen — falls Session bereits im Storage vorhanden
+    client.auth.getSession().then(function (result) {
+      if (result.data && result.data.session) {
+        redirect(result.data.session);
+      }
+    });
+
+    // Fallback nach 8 Sekunden
+    setTimeout(function () {
+      if (!done) showError();
+    }, 8000);
+  })();
+  </script>
+</body>
+</html>

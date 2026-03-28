@@ -52,7 +52,7 @@ var SA_Auth = (function () {
 
     var meta = { full_name: fullName, plan: plan, mode: plan === 'institutional' ? 'institutional' : 'retail' };
     if (company) meta.company = company;
-    var confirmRedirect = window.location.origin + '/pages/members/dashboard.html?confirmed=1';
+    var confirmRedirect = window.location.origin + '/pages/members/confirmed.html';
     var result = await _client.auth.signUp({
       email: email,
       password: password,
@@ -89,7 +89,7 @@ var SA_Auth = (function () {
 
   async function resendConfirmation(email) {
     if (!_client) throw new Error('Supabase nicht konfiguriert.');
-    var confirmRedirect = window.location.origin + '/pages/members/dashboard.html?confirmed=1';
+    var confirmRedirect = window.location.origin + '/pages/members/confirmed.html';
     var result = await _client.auth.resend({ type: 'signup', email: email, options: { emailRedirectTo: confirmRedirect } });
     if (result.error) throw result.error;
   }

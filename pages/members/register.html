@@ -125,7 +125,8 @@
             1. Öffne dein E-Mail-Postfach<br>
             2. Suche nach einer Mail von <strong style="color:var(--dark);">noreply@scherbius.de</strong><br>
             3. Klicke auf „E-Mail bestätigen"<br>
-            4. Du wirst automatisch in dein Dashboard weitergeleitet
+            4. Du wirst zu Stripe weitergeleitet — Karte hinterlegen, Trial startet<br>
+            5. Das Dashboard öffnet sich gleichzeitig in einem neuen Tab
           </p>
         </div>
         <p style="font-size:12px;color:var(--text-dim);margin-bottom:20px;">Kein Mail erhalten? Prüfe deinen Spam-Ordner oder</p>
@@ -341,12 +342,29 @@
       } else if (plan === 'monthly') {
         window.location.href = 'dashboard.html?notice=payment_pending';
       } else {
-        // Trial: direkt zu Stripe — Karte hinterlegen, dann startet der 14-tägige Testzeitraum
-        var userId = data.user ? data.user.id : '';
-        var stripeUrl = SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY
-          + '?prefilled_email=' + encodeURIComponent(email)
-          + (userId ? '&client_reference_id=' + encodeURIComponent(userId) : '');
-        window.location.href = stripeUrl;
+        // Trial: E-Mail bestätigen → danach automatisch zu Stripe + Dashboard
+        if (data.user && data.user.email_confirmed_at) {
+          // Lokale Umgebung / Auto-Confirmed: direkt zu confirmed.html
+          window.location.href = 'confirmed.html';
+        } else {
+          document.getElementById('reg-form-wrap').style.display = 'none';
+          document.getElementById('reg-success-email').textContent = email;
+          document.getElementById('reg-success').style.display = 'block';
+          window._regEmail = email;
+          document.getElementById('reg-resend-btn').addEventListener('click', async function () {
+            var resendBtn = this;
+            resendBtn.disabled = true;
+            resendBtn.textContent = 'Sende…';
+            try {
+              await SA_Auth.resendConfirmation(email);
+              resendBtn.textContent = 'Mail gesendet ✓';
+              setTimeout(function () { resendBtn.disabled = false; resendBtn.textContent = 'Bestätigungsmail erneut senden'; }, 4000);
+            } catch (e) {
+              resendBtn.disabled = false;
+              resendBtn.textContent = 'Fehler — erneut versuchen';
+            }
+          });
+        }
       }
     } catch (err) {
       var msgs = {
