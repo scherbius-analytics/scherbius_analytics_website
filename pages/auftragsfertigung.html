@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="institutional">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auftragsfertigung | Scherbius Analytics</title>
+  <meta name="description" content="Maßgeschneiderte quantitative Modelle von Scherbius Analytics, vollständig entwickelt, statistisch validiert, in Ihrem Eigentum.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/reveal.css">
+  <script>try{var _m=localStorage.getItem('sa_mode');if(_m)document.documentElement.setAttribute('data-mode',_m);}catch(e){}</script>
+</head>
+<body class="page-content">
+
+<!-- Navigation -->
+<nav class="nav" id="main-nav">
+  <a href="../index.html" class="nav-logo">
+    <img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="32">
+  </a>
+  <ul class="nav-links">
+    <li data-show="institutional"><a href="auftragsfertigung.html" class="active">Auftragsfertigung</a></li>
+    <li><a href="methodik.html">Methodik</a></li>
+    <li><a href="performance.html">Performance</a></li>
+    <li data-show="retail"><a href="anleitung.html">Anleitung</a></li>
+    <li data-show="retail"><a href="archive.html">Archiv</a></li>
+    <li><a href="pricing.html">Preise</a></li>
+    <li><a href="about.html">Über uns</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="mode-toggle">
+      <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+      <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+    </div>
+    <div id="nav-auth-inst" class="nav-auth" data-show="institutional">
+      <a href="contact.html" class="btn btn-primary nav-cta">Kontakt aufnehmen</a>
+    </div>
+    <div id="nav-auth-out" class="nav-auth">
+      <a href="members/login.html" class="nav-login-link">Login</a>
+      <a href="members/register.html" class="btn btn-primary nav-cta">Konto erstellen</a>
+    </div>
+    <div id="nav-auth-in" class="nav-auth" style="display:none;">
+      <span id="nav-user-name" style="font-size:11px;color:rgba(255,255,255,0.45);"></span>
+      <a href="members/dashboard.html" class="btn nav-cta">Dashboard</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<nav class="nav-mobile">
+  <a href="auftragsfertigung.html" data-show="institutional">Auftragsfertigung</a>
+  <a href="methodik.html">Methodik</a>
+  <a href="performance.html">Performance</a>
+  <a href="anleitung.html" data-show="retail">Anleitung</a>
+  <a href="archive.html" data-show="retail">Archiv</a>
+  <a href="pricing.html">Preise</a>
+  <a href="about.html">Über uns</a>
+  <a href="contact.html">Kontakt</a>
+  <div data-show="retail" style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
+    <a href="members/login.html" style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);">Login</a>
+    <a href="members/register.html" style="font-size:13px;font-weight:600;color:var(--accent);">Konto erstellen</a>
+  </div>
+  <div data-show="institutional" style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;">
+    <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;font-size:13px;">Kontakt aufnehmen</a>
+  </div>
+  <div class="mode-toggle" style="margin-top:16px;width:100%;">
+    <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
+    <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+  </div>
+</nav>
+
+
+<!-- Page Hero -->
+<div style="background:var(--dark);padding:120px var(--px) 80px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;opacity:0.035;background-image:repeating-linear-gradient(90deg,#fff 0,#fff 1px,transparent 1px,transparent 80px),repeating-linear-gradient(0deg,#fff 0,#fff 1px,transparent 1px,transparent 80px);pointer-events:none;"></div>
+  <div style="max-width:var(--max-width);margin:0 auto;position:relative;z-index:2;">
+    <p class="section-label" style="color:var(--accent);" data-reveal>B2B · Institutionell</p>
+    <h1 style="font-family:'EB Garamond',serif;font-size:clamp(40px,5vw,72px);font-weight:500;color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:20px;" data-reveal>
+      Quantitative Modelle nach Maß.<br><em style="color:rgba(255,255,255,0.4)">Von der Datenpipeline bis zum täglichen Signal.</em>
+    </h1>
+    <p style="font-size:15px;color:rgba(255,255,255,0.45);max-width:580px;line-height:1.75;" data-reveal>
+      Wir entwickeln vollständige quantitative Handelsmodelle, von der Dateninfrastruktur über die statistische Modellierung bis zur täglichen Portfolio-Allokation. Das fertige Modell geht vollständig in Ihr Eigentum über. Auf Wunsch betreiben wir es für Sie.
+    </p>
+    <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;" data-reveal>
+      <a href="contact.html" class="btn btn-primary">Kontakt aufnehmen</a>
+      <a href="performance.html" class="btn-outline-white">Track Record ansehen</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- Kernidee -->
+<div class="section-full">
+  <div class="section-inner">
+
+    <div class="section-header" data-reveal>
+      <p class="section-label">Das Prinzip</p>
+      <h2 class="section-title">Kein Abo. Keine Black Box.<br><em>Ihr Modell. Ihr Eigentum.</em></h2>
+      <p class="section-desc">
+        Scherbius Analytics entwickelt quantitative Handelsmodelle als vollständige Komplettlösung, von der Datenpipeline über die statistische Modellierung bis zum produktionsreifen Portfolio. Das fertige Modell wird Ihnen als lauffähiges, vollständig dokumentiertes Produkt übergeben.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px;" data-reveal>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:36px;">
+        <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;">Von Grund auf</p>
+        <h3 style="font-family:'EB Garamond',serif;font-size:20px;font-weight:600;color:var(--dark);margin-bottom:10px;">Data Engineering</h3>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.75;">
+          Dateninfrastruktur, Cleaning-Pipelines, Feature Engineering, sauber und reproduzierbar. Die Basis, auf der robuste Modelle entstehen.
+        </p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:36px;">
+        <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;">Statistisch validiert</p>
+        <h3 style="font-family:'EB Garamond',serif;font-size:20px;font-weight:600;color:var(--dark);margin-bottom:10px;">Robuste Modellierung</h3>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.75;">
+          Multi-Faktor-Analyse, Walk-Forward-Tests, Out-of-Sample-Validierung. Kein Overfitting, keine Blackbox, jede Alpha-Quelle wird statistisch nachgewiesen.
+        </p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:36px;">
+        <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;">Einsatzbereit</p>
+        <h3 style="font-family:'EB Garamond',serif;font-size:20px;font-weight:600;color:var(--dark);margin-bottom:10px;">Vollständiges Portfolio</h3>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.75;">
+          Risikoadjustierung, Positionsgrößenoptimierung, Drawdown-Kontrolle. Das Endprodukt ist nicht ein Prototyp, es ist ein einsatzfähiges Modell.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Produkte (Dark) -->
+<div class="section-full section-dark">
+  <div class="section-inner">
+
+    <div class="section-header" data-reveal>
+      <p class="section-label" style="color:var(--accent)">Produkte</p>
+      <h2 class="section-title" style="color:#fff">Zwei Leistungen.<br><em style="color:rgba(255,255,255,0.4)">Eine Methodik.</em></h2>
+      <p class="section-desc" style="color:rgba(255,255,255,0.5);">
+        Der Einstieg erfolgt immer über ein persönliches Gespräch. Kein Self-Service. Wir stellen sicher, dass das Produkt zu Ihren Anforderungen passt, bevor wir beginnen.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;" data-reveal>
+
+      <!-- Maßanfertigung -->
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(185,28,28,0.35);border-radius:4px;padding:40px;display:flex;flex-direction:column;position:relative;">
+        <div style="position:absolute;top:-1px;left:40px;background:var(--accent);color:#fff;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 16px;border-radius:0 0 4px 4px;">Kernleistung</div>
+        <div style="margin-bottom:24px;margin-top:16px;">
+          <div style="display:inline-block;background:rgba(185,28,28,0.35);border:1px solid rgba(185,28,28,0.5);color:rgba(255,255,255,0.8);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-bottom:18px;">Maßanfertigung</div>
+          <h3 style="font-family:'EB Garamond',serif;font-size:26px;font-weight:600;color:#fff;margin-bottom:12px;line-height:1.2;">Vollständiges Quant-Modell nach Maß</h3>
+          <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75;margin-bottom:20px;">
+            Wir entwickeln Ihr quantitatives Handelsmodell von Grund auf, nach Ihren Anforderungen, mit Ihrer Prägung. Von der Dateninfrastruktur über die statistische Modellierung bis zum vollständig risikoadjustierten Portfolio. Auslieferung als produktionsreifes Modell. Vollständige Lizenzeigentümerschaft nach Fertigstellung.
+          </p>
+        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:32px;flex:1;">
+          <li style="font-size:13px;color:rgba(255,255,255,0.55);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:1px;">✓</span>Dateninfrastruktur, Cleaning-Pipelines, Feature Engineering</li>
+          <li style="font-size:13px;color:rgba(255,255,255,0.55);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:1px;">✓</span>Statistische Modellierung, Walk-Forward, Out-of-Sample-Validierung</li>
+          <li style="font-size:13px;color:rgba(255,255,255,0.55);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:1px;">✓</span>Risikoadjustiertes Portfolio (Drawdown-Kontrolle, Positionsgrößen)</li>
+          <li style="font-size:13px;color:rgba(255,255,255,0.55);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:1px;">✓</span>White-Paper-Dokumentation &amp; Escrow auf Anfrage</li>
+          <li style="font-size:13px;color:rgba(255,255,255,0.55);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:1px;">✓</span>Vollständige Lizenzeigentümerschaft nach Fertigstellung</li>
+          <li style="font-size:13px;color:rgba(255,255,255,0.55);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:1px;">✓</span>White-Label-Option auf Anfrage</li>
+        </ul>
+        <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;">
+          <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:6px;">Entwicklungsgebühr (einmalig)</p>
+          <p style="font-size:28px;font-family:'EB Garamond',serif;color:#fff;font-weight:500;line-height:1;">€ 15.000 – 50.000</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:6px;">Projektabhängig · Festpreis nach Bedarfsanalyse</p>
+        </div>
+      </div>
+
+      <!-- Server-Betrieb & Wartung -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:40px;display:flex;flex-direction:column;">
+        <div style="margin-bottom:24px;">
+          <div style="display:inline-block;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-bottom:18px;">Zusatzleistung</div>
+          <h3 style="font-family:'EB Garamond',serif;font-size:26px;font-weight:600;color:#fff;margin-bottom:12px;line-height:1.2;">Server-Betrieb &amp; Wartung</h3>
+          <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75;margin-bottom:20px;">
+            Auf Wunsch betreiben wir Ihr fertiggestelltes Modell auf unserer Infrastruktur. Stabilitätspflege, Kompatibilitätsupdates, tägliche Bereitstellung des Modelloutputs. Die Lizenz und vollständige Verfügungsmacht verbleiben jederzeit bei Ihnen, unabhängig vom Betriebsmodell.
+          </p>
+        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:32px;flex:1;">
+          <li style="font-size:13px;color:rgba(255,255,255,0.55);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:1px;">✓</span>Täglicher Betrieb auf Scherbius-Infrastruktur</li>
+          <li style="font-size:13px;color:rgba(255,255,255,0.55);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:1px;">✓</span>Stabilitätspflege &amp; Kompatibilitätsupdates</li>
+          <li style="font-size:13px;color:rgba(255,255,255,0.55);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:1px;">✓</span>Modelloutput wird täglich bereitgestellt</li>
+          <li style="font-size:13px;color:rgba(255,255,255,0.55);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:1px;">✓</span>Lizenz &amp; Verfügungsmacht jederzeit beim Kunden</li>
+          <li style="font-size:13px;color:rgba(255,255,255,0.55);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:1px;">✓</span>Weiterentwicklungen auf separate Vereinbarung möglich</li>
+          <li style="font-size:13px;color:rgba(255,255,255,0.55);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:1px;">✓</span>Jederzeit kündbar &amp; auf Eigenbetrieb umstellbar</li>
+        </ul>
+        <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;">
+          <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:6px;">Monatlich (optional)</p>
+          <p style="font-size:28px;font-family:'EB Garamond',serif;color:#fff;font-weight:500;line-height:1;">€ 300 / Monat</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:6px;">Weiterentwicklung auf Verhandlungsbasis · Kein Abo-Zwang</p>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="font-size:12px;color:rgba(255,255,255,0.25);text-align:center;margin-top:28px;" data-reveal>
+      Beide Leistungen setzen ein persönliches Erstgespräch voraus. Kein Self-Service, kein automatischer Zugang.
+      Direktkontakt: <a href="tel:+4915208755758" style="color:rgba(255,255,255,0.4);">+49 152 08755758</a>
+    </p>
+
+  </div>
+</div>
+
+
+<!-- Nach Auslieferung: Zwei Optionen -->
+<div class="section-full">
+  <div class="section-inner">
+
+    <div class="section-header" data-reveal>
+      <p class="section-label">Nach Auslieferung</p>
+      <h2 class="section-title">Das Modell gehört Ihnen.<br><em>Zwei klare Optionen.</em></h2>
+      <p class="section-desc">
+        Mit der Lizenzübergabe werden Sie vollständiger Eigentümer. Ab diesem Moment entscheiden Sie, wie das Modell betrieben wird, vollständig in Ihrer Hand oder auf Wunsch durch uns betreut.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;" data-reveal>
+
+      <!-- Option A -->
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:40px;">
+        <div style="display:inline-block;background:#F0FDF4;border:1px solid #BBF7D0;color:#047857;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-bottom:20px;">Option A</div>
+        <h3 style="font-family:'EB Garamond',serif;font-size:22px;font-weight:600;color:var(--dark);margin-bottom:12px;line-height:1.25;">Betrieb durch Scherbius</h3>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.75;margin-bottom:24px;">
+          Wir übernehmen den täglichen Betrieb auf unserer Infrastruktur, Stabilitätspflege, Kompatibilitätsupdates, tägliche Bereitstellung des Modelloutputs. Die Lizenz und vollständige Verfügungsmacht verbleiben jederzeit bei Ihnen. Weiterentwicklungen sind jederzeit auf Verhandlungsbasis möglich.
+        </p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+          <li style="font-size:13px;color:var(--text-muted);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--green);flex-shrink:0;margin-top:2px;">✓</span>Täglicher Betrieb &amp; Stabilitätspflege (€ 300 / Monat)</li>
+          <li style="font-size:13px;color:var(--text-muted);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--green);flex-shrink:0;margin-top:2px;">✓</span>Lizenz &amp; Verfügungsmacht jederzeit beim Kunden</li>
+          <li style="font-size:13px;color:var(--text-muted);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--green);flex-shrink:0;margin-top:2px;">✓</span>Weiterentwicklung auf Verhandlungsbasis</li>
+          <li style="font-size:13px;color:var(--text-muted);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--green);flex-shrink:0;margin-top:2px;">✓</span>Jederzeit auf Eigenregie umstellbar</li>
+        </ul>
+      </div>
+
+      <!-- Option B -->
+      <div style="background:#F7F5F2;border:1px solid var(--border);border-radius:4px;padding:40px;">
+        <div style="display:inline-block;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-bottom:20px;">Option B</div>
+        <h3 style="font-family:'EB Garamond',serif;font-size:22px;font-weight:600;color:var(--dark);margin-bottom:12px;line-height:1.25;">Vollständige Eigenregie</h3>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.75;margin-bottom:24px;">
+          Sie erhalten das fertige Modell und betreiben es vollständig in Ihrer eigenen Infrastruktur. Kein laufender Vertrag mit Scherbius, volle Kontrolle, keine Abhängigkeit. Weiterentwicklungen können jederzeit auf Basis einer separaten Vereinbarung beauftragt werden.
+        </p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+          <li style="font-size:13px;color:var(--text-muted);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--green);flex-shrink:0;margin-top:2px;">✓</span>Deployment in eigener Infrastruktur</li>
+          <li style="font-size:13px;color:var(--text-muted);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--green);flex-shrink:0;margin-top:2px;">✓</span>Keine laufenden Verträge oder Gebühren</li>
+          <li style="font-size:13px;color:var(--text-muted);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--green);flex-shrink:0;margin-top:2px;">✓</span>Volle Kontrolle &amp; null Abhängigkeit</li>
+          <li style="font-size:13px;color:var(--text-muted);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--green);flex-shrink:0;margin-top:2px;">✓</span>Weiterentwicklung auf Verhandlungsbasis jederzeit möglich</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:28px 32px;margin-top:20px;" data-reveal>
+      <p style="font-size:13px;color:var(--text-muted);line-height:1.75;text-align:center;">
+        <strong style="color:var(--dark);">In beiden Fällen:</strong> Sie erwerben alle wirtschaftlichen Rechte an der Produktlizenz. Das Modell darf exklusiv durch Sie eingesetzt werden. Kein Abo, keine laufenden Lizenzgebühren, vollständiger Eigentumsübergang.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Zielkunden (Warm) -->
+<div class="section-full section-warm">
+  <div class="section-inner">
+
+    <div class="section-header" data-reveal>
+      <p class="section-label">Zielkunden</p>
+      <h2 class="section-title">Für wen ist<br><em>Auftragsfertigung geeignet?</em></h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;" data-reveal>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:24px;text-align:center;">
+        <p style="font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--dark);margin-bottom:8px;">Family Offices</p>
+        <p style="font-size:12px;color:var(--text-muted);line-height:1.6;">Eigene quantitative Strategie ohne internes Quant-Team aufzubauen</p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:24px;text-align:center;">
+        <p style="font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--dark);margin-bottom:8px;">Vermögensverwalter</p>
+        <p style="font-size:12px;color:var(--text-muted);line-height:1.6;">Erweiterung des Produktangebots um systematische Strategien</p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:24px;text-align:center;">
+        <p style="font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--dark);margin-bottom:8px;">Prop Trading Firmen</p>
+        <p style="font-size:12px;color:var(--text-muted);line-height:1.6;">Schnelle Integration statistisch validierter Alpha-Quellen</p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:24px;text-align:center;">
+        <p style="font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--dark);margin-bottom:8px;">Hedge Funds</p>
+        <p style="font-size:12px;color:var(--text-muted);line-height:1.6;">Neue unkorrelierte Strategien als Ergänzung bestehender Portfolios</p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:24px;text-align:center;">
+        <p style="font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--dark);margin-bottom:8px;">FinTech-Unternehmen</p>
+        <p style="font-size:12px;color:var(--text-muted);line-height:1.6;">Quant-Modell als lizenziertes Kernprodukt für eigene Plattform</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Disclaimer -->
+<div class="section-full" style="padding-top:0;">
+  <div class="section-inner">
+    <div style="background:#F7F5F2;border:1px solid var(--border);border-radius:4px;padding:28px 32px;" data-reveal>
+      <p style="font-size:12px;color:var(--text-muted);line-height:1.75;">
+        <strong style="color:var(--dark);font-weight:600;">Hinweis:</strong> Die hier beschriebenen Leistungen stellen keine Anlageberatung dar. Scherbius Analytics ist ein Software- und Technologieunternehmen. Die entwickelten Modelle sind technische Werkzeuge. Anlageentscheidungen auf Basis der Modelloutputs treffen die Kunden eigenverantwortlich. Es findet keine Vermögensverwaltung statt.
+        <a href="legal/risikohinweise.html" style="color:var(--text-muted);">Vollständige Risikohinweise</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-bg-lines"></div>
+  <div class="cta-inner" data-reveal>
+    <p class="section-label" style="color:var(--accent);text-align:center;margin-bottom:20px;">Nächster Schritt</p>
+    <h2 class="cta-title">Sprechen Sie mit uns</h2>
+    <p class="cta-desc">Erläutern Sie uns Ihre Anforderungen. Wir besprechen Machbarkeit, Umfang und Konditionen in einem vertraulichen Erstgespräch.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn btn-primary">Kontakt aufnehmen</a>
+      <a href="tel:+4915208755758" class="btn-outline-white">+49 152 08755758</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-pill" style="margin-bottom:20px;">
+        <img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="28">
+      </div>
+      <p class="footer-brand-tagline">Auftragsfertiger für quantitative Modelle.<br>Entwicklung. Validierung. Übergabe.</p>
+      <a href="https://linkedin.com/company/scherbius-analytics/" target="_blank" rel="noopener noreferrer"
+         style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;">LinkedIn</a>
+    </div>
+    <div>
+      <p class="footer-col-title">Navigation</p>
+      <ul class="footer-links">
+        <li><a href="methodik.html">Methodik</a></li>
+        <li><a href="performance.html">Performance</a></li>
+        <li><a href="anleitung.html">Anleitung</a></li>
+        <li><a href="pricing.html">Preise</a></li>
+        <li><a href="auftragsfertigung.html">Auftragsfertigung</a></li>
+        <li><a href="about.html">Über uns</a></li>
+        <li><a href="contact.html">Kontakt</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Ressourcen</p>
+      <ul class="footer-links">
+        <li><a href="archive.html">Portfolio-Archiv</a></li>
+        <li><a href="legal/risikohinweise.html">Risikohinweise</a></li>
+        <li><a href="legal/datenschutz.html">Datenschutzerklärung</a></li>
+        <li><a href="legal/impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Kontakt</p>
+      <ul class="footer-links">
+        <li style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding-bottom:2px;">F. Kaya</li>
+        <li><a href="mailto:kaya@scherbius.de">kaya@scherbius.de</a></li>
+        <li style="margin-bottom:12px;"><a href="tel:+4915208755758">+49 152 08755758</a></li>
+        <li style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding-bottom:2px;">E. Richter</li>
+        <li><a href="mailto:richter@scherbius.de">richter@scherbius.de</a></li>
+        <li><a href="tel:+4915170854496">+49 151 70854496</a></li>
+      </ul>
+    </div>
+  </div>
+  <div style="max-width:var(--max-width);margin:0 auto;padding:20px var(--px) 32px;">
+    <p style="font-size:10px;color:rgba(255,255,255,0.15);line-height:1.65;">
+      Die hier bereitgestellten Informationen stellen keine Anlageberatung im Sinne des § 2 Abs. 8 Nr. 10 WpHG dar. Die Inhalte dienen ausschließlich allgemeinen Informationszwecken und berücksichtigen keine individuellen Kenntnisse und Erfahrungen, Anlageziele, finanzielle Verhältnisse, Risikobereitschaft oder Verlusttragfähigkeit der Empfänger. Anlageentscheidungen, die auf Basis dieser Informationen getroffen werden, erfolgen ausschließlich auf eigenes Risiko und in eigener Verantwortung.
+      Der Handel mit Finanzinstrumenten, insbesondere Aktien und Derivaten, ist mit erheblichen Risiken bis hin zum Totalverlust verbunden. Vergangene Wertentwicklungen, Backtests und Modellrechnungen sind keine Garantie für zukünftige Ergebnisse. Scherbius Analytics UG (haftungsbeschränkt) übernimmt keine Haftung für Verluste oder Schäden, die aus der Nutzung der bereitgestellten Informationen entstehen.
+      Scherbius Analytics ist ein Software- und Technologieunternehmen. Die im Rahmen der Auftragsfertigung entwickelten Modelle sind technische Werkzeuge ohne Anlageberatungscharakter. Methodik und Backtests werden transparent offengelegt; der Vertrieb der Anlagestrategieempfehlungen wurde gemäß § 86 Abs. 1 WpHG bei der BaFin angezeigt.
+    </p>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <p class="footer-legal">&copy; 2026 Scherbius Analytics UG (haftungsbeschränkt) &nbsp;·&nbsp; HRB 195105 Amtsgericht Hamburg &nbsp;·&nbsp; Alle Rechte vorbehalten.</p>
+    <p class="footer-legal">
+      <a href="legal/impressum.html">Impressum</a> &nbsp;·&nbsp;
+      <a href="legal/datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="legal/risikohinweise.html">Risikohinweise</a>
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/analytics.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

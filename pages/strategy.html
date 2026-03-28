@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Strategie — Scherbius Analytics</title>
-  <meta name="description" content="Dokumentation der quantitativen Methode von Scherbius 1.0 — regelbasiert, systematisch, täglich.">
+  <title>Strategie | Scherbius Analytics</title>
+  <meta name="description" content="Dokumentation der quantitativen Methode von Scherbius 1.0, regelbasiert, systematisch, täglich.">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../css/reveal.css">
@@ -18,10 +18,11 @@
     <img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="32">
   </a>
   <ul class="nav-links">
+    <li data-show="institutional"><a href="auftragsfertigung.html">Auftragsfertigung</a></li>
     <li><a href="strategy.html" class="active">Strategie</a></li>
     <li><a href="performance.html">Performance</a></li>
-    <li><a href="anleitung.html">Anleitung</a></li>
-    <li><a href="archive.html">Archiv</a></li>
+    <li data-show="retail"><a href="anleitung.html">Anleitung</a></li>
+    <li data-show="retail"><a href="archive.html">Archiv</a></li>
     <li><a href="pricing.html">Preise</a></li>
     <li><a href="about.html">Über uns</a></li>
   </ul>
@@ -29,6 +30,9 @@
     <div class="mode-toggle">
       <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
       <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+    </div>
+    <div id="nav-auth-inst" class="nav-auth" data-show="institutional">
+      <a href="contact.html" class="btn btn-primary nav-cta">Kontakt aufnehmen</a>
     </div>
     <div id="nav-auth-out" class="nav-auth">
       <a href="members/login.html" class="nav-login-link">Login</a>
@@ -45,16 +49,20 @@
 </nav>
 
 <nav class="nav-mobile">
+  <a href="auftragsfertigung.html" data-show="institutional">Auftragsfertigung</a>
   <a href="strategy.html">Strategie</a>
   <a href="performance.html">Performance</a>
-  <a href="anleitung.html">Anleitung</a>
-  <a href="archive.html">Archiv</a>
+  <a href="anleitung.html" data-show="retail">Anleitung</a>
+  <a href="archive.html" data-show="retail">Archiv</a>
   <a href="pricing.html">Preise</a>
   <a href="about.html">Über uns</a>
   <a href="contact.html">Kontakt</a>
-  <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
+  <div data-show="retail" style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
     <a href="members/login.html" style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);">Login</a>
     <a href="members/register.html" style="font-size:13px;font-weight:600;color:var(--accent);">Konto erstellen</a>
+  </div>
+  <div data-show="institutional" style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;">
+    <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;font-size:13px;">Kontakt aufnehmen</a>
   </div>
   <div class="mode-toggle" style="margin-top:16px;width:100%;">
     <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
@@ -67,7 +75,7 @@
 <div style="background:var(--dark);padding:120px var(--px) 80px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;opacity:0.035;background-image:repeating-linear-gradient(90deg,#fff 0,#fff 1px,transparent 1px,transparent 80px),repeating-linear-gradient(0deg,#fff 0,#fff 1px,transparent 1px,transparent 80px);pointer-events:none;"></div>
   <div style="max-width:var(--max-width);margin:0 auto;position:relative;z-index:2;">
-    <p class="section-label" style="color:var(--accent);" data-reveal>Scherbius 1.0 — Methode</p>
+    <p class="section-label" style="color:var(--accent);" data-reveal>Scherbius 1.0, Methode</p>
     <h1 style="font-family:'EB Garamond',serif;font-size:clamp(40px,5vw,72px);font-weight:500;color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:20px;" data-reveal>
       <span data-show="institutional">Quantitative Strategie<br><em style="color:rgba(255,255,255,0.4)">für institutionelle Investoren</em></span>
       <span data-show="retail">Quantitative Strategie<br><em style="color:rgba(255,255,255,0.4)">für Privatanleger</em></span>
@@ -130,7 +138,7 @@
       <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:40px;">
         <h3 style="font-family:'EB Garamond',serif;font-size:22px;font-weight:600;color:var(--dark);margin-bottom:12px;">Dynamische Positionsgrößen</h3>
         <p style="font-size:14px;color:var(--text-muted);line-height:1.75;">
-          Die Größe jeder Position wird täglich neu berechnet und an das aktuelle Marktregime angepasst. In Phasen erhöhter Volatilität reduziert das System Positionen proaktiv, bevor Verluste entstehen — nicht reaktiv danach.
+          Die Größe jeder Position wird täglich neu berechnet und an das aktuelle Marktregime angepasst. In Phasen erhöhter Volatilität reduziert das System Positionen proaktiv, bevor Verluste entstehen, nicht reaktiv danach.
         </p>
       </div>
       <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:40px;">
@@ -142,7 +150,7 @@
       <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:40px;">
         <h3 style="font-family:'EB Garamond',serif;font-size:22px;font-weight:600;color:var(--dark);margin-bottom:12px;">Drawdown-Kontrolle</h3>
         <p style="font-size:14px;color:var(--text-muted);line-height:1.75;">
-          Ein mehrstufiges Drawdown-Kontrollsystem überwacht das Portfolio in Echtzeit. Sobald definierte Schwellenwerte erreicht werden, reduziert das System automatisch die Gesamtexponierung — unabhängig von Markterwartungen oder externen Meinungen.
+          Ein mehrstufiges Drawdown-Kontrollsystem überwacht das Portfolio in Echtzeit. Sobald definierte Schwellenwerte erreicht werden, reduziert das System automatisch die Gesamtexponierung, unabhängig von Markterwartungen oder externen Meinungen.
         </p>
       </div>
     </div>
@@ -167,11 +175,11 @@
         <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:16px;">Value at Risk (95 %)</p>
         <div data-show="institutional">
           <p style="font-family:'Outfit',sans-serif;font-size:28px;font-weight:700;color:#fff;letter-spacing:-1px;line-height:1;">0,51 %</p>
-          <p style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:6px;">NDX: 2,23 % — 4,4× geringer</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:6px;">NDX: 2,23 %, 4,4× geringer</p>
         </div>
         <div data-show="retail">
           <p style="font-family:'Outfit',sans-serif;font-size:28px;font-weight:700;color:#fff;letter-spacing:-1px;line-height:1;">0,71 %</p>
-          <p style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:6px;">NDX: 2,23 % — 3,2× geringer</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:6px;">NDX: 2,23 %, 3,2× geringer</p>
         </div>
       </div>
       <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:32px;">
@@ -319,7 +327,7 @@
     <h2 class="cta-title" data-show="institutional">Performance im Detail ansehen</h2>
     <h2 class="cta-title" data-show="retail">Jetzt kostenlos testen</h2>
     <p class="cta-desc" data-show="institutional">Überzeugen Sie sich von den statistischen Ergebnissen: Equity-Kurven, Jahresrenditen und vollständige Kennzahlen.</p>
-    <p class="cta-desc" data-show="retail">14 Tage vollständiger Zugang — Kreditkarte erforderlich, du wirst erst nach Ablauf belastet.</p>
+    <p class="cta-desc" data-show="retail">14 Tage vollständiger Zugang, Kreditkarte erforderlich, du wirst erst nach Ablauf belastet.</p>
     <div class="cta-actions">
       <a href="performance.html" class="btn btn-primary">Track Record ansehen</a>
       <a href="contact.html" class="btn-outline-white" data-show="institutional">Kontakt aufnehmen</a>
@@ -336,7 +344,10 @@
       <div class="logo-pill" style="margin-bottom:20px;">
         <img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="28">
       </div>
-      <p class="footer-brand-tagline">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</p>
+      <p class="footer-brand-tagline">
+        <span data-show="institutional">Auftragsfertiger für quantitative Modelle.<br>Entwicklung. Validierung. Übergabe.</span>
+        <span data-show="retail">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</span>
+      </p>
       <a href="https://linkedin.com/company/scherbius-analytics/" target="_blank" rel="noopener noreferrer"
          style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;">LinkedIn</a>
     </div>
@@ -347,6 +358,7 @@
         <li><a href="performance.html">Performance</a></li>
         <li><a href="anleitung.html">Anleitung</a></li>
         <li><a href="pricing.html">Preise</a></li>
+        <li><a href="auftragsfertigung.html">Auftragsfertigung</a></li>
         <li><a href="about.html">Über uns</a></li>
         <li><a href="contact.html">Kontakt</a></li>
       </ul>

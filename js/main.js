@@ -56,6 +56,11 @@ const SA = {
 
     // Update dynamic KPI content
     this._updateKPIs(mode);
+
+    // Re-apply nav auth visibility after mode change
+    if (typeof SA_Auth !== 'undefined' && SA_Auth.updateNavState) {
+      SA_Auth.getSession().then(function(s) { SA_Auth.updateNavState(s); });
+    }
   },
 
   /* ── Dynamic KPI update ─────────────────────────────────── */

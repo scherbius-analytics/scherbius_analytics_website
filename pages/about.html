@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Über uns — Scherbius Analytics</title>
-  <meta name="description" content="Das Team hinter Scherbius Analytics — Florian Kaya und Erik Richter.">
+  <title>Über uns | Scherbius Analytics</title>
+  <meta name="description" content="Das Team hinter Scherbius Analytics, Florian Kaya und Erik Richter.">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../css/reveal.css">
@@ -17,10 +17,11 @@
     <img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="32">
   </a>
   <ul class="nav-links">
+    <li data-show="institutional"><a href="auftragsfertigung.html">Auftragsfertigung</a></li>
     <li><a href="methodik.html">Methodik</a></li>
     <li><a href="performance.html">Performance</a></li>
-    <li><a href="anleitung.html">Anleitung</a></li>
-    <li><a href="archive.html">Archiv</a></li>
+    <li data-show="retail"><a href="anleitung.html">Anleitung</a></li>
+    <li data-show="retail"><a href="archive.html">Archiv</a></li>
     <li><a href="pricing.html">Preise</a></li>
     <li><a href="about.html" class="active">Über uns</a></li>
   </ul>
@@ -28,6 +29,9 @@
     <div class="mode-toggle">
       <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
       <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+    </div>
+    <div id="nav-auth-inst" class="nav-auth" data-show="institutional">
+      <a href="contact.html" class="btn btn-primary nav-cta">Kontakt aufnehmen</a>
     </div>
     <div id="nav-auth-out" class="nav-auth">
       <a href="members/login.html" class="nav-login-link">Login</a>
@@ -43,16 +47,20 @@
   </div>
 </nav>
 <nav class="nav-mobile">
+  <a href="auftragsfertigung.html" data-show="institutional">Auftragsfertigung</a>
   <a href="methodik.html">Methodik</a>
   <a href="performance.html">Performance</a>
-  <a href="anleitung.html">Anleitung</a>
-  <a href="archive.html">Archiv</a>
+  <a href="anleitung.html" data-show="retail">Anleitung</a>
+  <a href="archive.html" data-show="retail">Archiv</a>
   <a href="pricing.html">Preise</a>
   <a href="about.html">Über uns</a>
   <a href="contact.html">Kontakt</a>
-  <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
+  <div data-show="retail" style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
     <a href="members/login.html" style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);">Login</a>
     <a href="members/register.html" style="font-size:13px;font-weight:600;color:var(--accent);">Konto erstellen</a>
+  </div>
+  <div data-show="institutional" style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;">
+    <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;font-size:13px;">Kontakt aufnehmen</a>
   </div>
   <div class="mode-toggle" style="margin-top:16px;width:100%;">
     <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
@@ -190,7 +198,7 @@
       <p class="section-label" style="color:var(--accent);">Mission</p>
       <h2 class="section-title" style="color:#fff;">Systematisches Alpha<br><em style="color:rgba(255,255,255,0.4)">für jeden Investor</em></h2>
       <p class="section-desc" style="color:rgba(255,255,255,0.5);">
-        Institutionelle Hedgefonds generieren seit Jahrzehnten marktunkorrelierte Renditen — doch der Zugang war bisher wenigen vorbehalten. Scherbius Analytics macht diese Methoden transparent, dokumentiert und zugänglich.
+        Scherbius Analytics verfolgt zwei klar getrennte Leistungslinien: Als Auftragsfertiger entwickeln wir vollständige quantitative Handelsmodelle für institutionelle Kunden, von der Dateninfrastruktur bis zur täglichen Portfolio-Allokation, mit vollständiger Lizenzeigentümerschaft nach Fertigstellung. Parallel dazu betreiben wir Scherbius 1.0 als täglichen Signal-Service für Privatanleger.
       </p>
     </div>
 
@@ -199,14 +207,14 @@
         <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Transparenz</p>
         <h3 style="font-family:'EB Garamond',serif;font-size:20px;font-weight:600;color:#fff;margin-bottom:12px;">Vollständige Dokumentation</h3>
         <p style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;">
-          Wir dokumentieren jeden Aspekt unserer Strategie — Backtest-Methodik, Risikoparameter, statistische Validierung. Keine Blackbox, keine unseriösen Versprechungen.
+          Wir dokumentieren jeden Aspekt unserer Strategie, Backtest-Methodik, Risikoparameter, statistische Validierung. Keine Blackbox, keine unseriösen Versprechungen.
         </p>
       </div>
       <div style="border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:36px;">
         <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Disziplin</p>
         <h3 style="font-family:'EB Garamond',serif;font-size:20px;font-weight:600;color:#fff;margin-bottom:12px;">Regelbasiert ohne Ausnahme</h3>
         <p style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;">
-          Scherbius 1.0 trifft keine diskretionären Entscheidungen. Das System folgt exakt definierten Regeln unabhängig von subjektiven Einflüssen, Nachrichten oder Emotionen.
+          Scherbius 1.0 trifft keine diskretionären Entscheidungen. Das Modell folgt exakt definierten Regeln unabhängig von subjektiven Einflüssen, Nachrichten oder Emotionen.
         </p>
       </div>
       <div style="border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:36px;">
@@ -226,7 +234,8 @@
   <div class="cta-inner" data-reveal>
     <p class="section-label" style="color:var(--accent);text-align:center;margin-bottom:20px;">Kontakt</p>
     <h2 class="cta-title">Sprechen Sie mit uns</h2>
-    <p class="cta-desc">Fragen zur Strategie, zu institutionellen Konditionen oder zum Privatanleger-Abo? Wir antworten schnell und persönlich.</p>
+    <p class="cta-desc" data-show="institutional">Entwicklungsauftrag, Erstgespräch oder Fragen zur Methodik? Wir antworten persönlich.</p>
+    <p class="cta-desc" data-show="retail">Fragen zur Strategie oder zum Privatanleger-Abo? Wir antworten schnell und persönlich.</p>
     <div class="cta-actions">
       <a href="contact.html" class="btn btn-primary">Nachricht schreiben</a>
       <a href="performance.html" class="btn-outline-white">Track Record ansehen</a>
@@ -239,7 +248,10 @@
   <div class="footer-top">
     <div class="footer-brand">
       <div class="logo-pill" style="margin-bottom:20px;"><img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="28"></div>
-      <p class="footer-brand-tagline">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</p>
+      <p class="footer-brand-tagline">
+        <span data-show="institutional">Auftragsfertiger für quantitative Modelle.<br>Entwicklung. Validierung. Übergabe.</span>
+        <span data-show="retail">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</span>
+      </p>
       <a href="https://linkedin.com/company/scherbius-analytics/" target="_blank" rel="noopener noreferrer" style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;">LinkedIn</a>
     </div>
     <div>
@@ -249,6 +261,7 @@
         <li><a href="performance.html">Performance</a></li>
         <li><a href="anleitung.html">Anleitung</a></li>
         <li><a href="pricing.html">Preise</a></li>
+        <li><a href="auftragsfertigung.html">Auftragsfertigung</a></li>
         <li><a href="about.html">Über uns</a></li>
         <li><a href="contact.html">Kontakt</a></li>
       </ul>

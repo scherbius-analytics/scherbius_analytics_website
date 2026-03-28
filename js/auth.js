@@ -142,17 +142,19 @@ var SA_Auth = (function () {
     var elName = document.getElementById('nav-user-name');
     if (!elOut || !elIn) return;
 
+    var isRetail = document.documentElement.getAttribute('data-mode') === 'retail';
+
     if (session && session.user) {
       elOut.style.display = 'none';
-      elIn.style.display  = 'flex';
-      if (elName) {
+      elIn.style.display  = isRetail ? 'flex' : 'none';
+      if (elName && isRetail) {
         var meta = session.user.user_metadata;
         elName.textContent = (meta && meta.full_name)
           ? meta.full_name.split(' ')[0]
           : session.user.email;
       }
     } else {
-      elOut.style.display = 'flex';
+      elOut.style.display = isRetail ? 'flex' : 'none';
       elIn.style.display  = 'none';
     }
   }

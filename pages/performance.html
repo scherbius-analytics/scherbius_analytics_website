@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Performance — Scherbius Analytics</title>
-  <meta name="description" content="Vollständige Track-Record-Dokumentation von Scherbius 1.0 — Equity-Kurven, Jahresrenditen, statistische Kennzahlen.">
+  <title>Performance | Scherbius Analytics</title>
+  <meta name="description" content="Vollständige Track-Record-Dokumentation von Scherbius 1.0, Equity-Kurven, Jahresrenditen, statistische Kennzahlen.">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../css/reveal.css">
@@ -32,10 +32,11 @@
     <img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="32">
   </a>
   <ul class="nav-links">
+    <li data-show="institutional"><a href="auftragsfertigung.html">Auftragsfertigung</a></li>
     <li><a href="methodik.html">Methodik</a></li>
     <li><a href="performance.html" class="active">Performance</a></li>
-    <li><a href="anleitung.html">Anleitung</a></li>
-    <li><a href="archive.html">Archiv</a></li>
+    <li data-show="retail"><a href="anleitung.html">Anleitung</a></li>
+    <li data-show="retail"><a href="archive.html">Archiv</a></li>
     <li><a href="pricing.html">Preise</a></li>
     <li><a href="about.html">Über uns</a></li>
   </ul>
@@ -43,6 +44,9 @@
     <div class="mode-toggle">
       <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
       <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+    </div>
+    <div id="nav-auth-inst" class="nav-auth" data-show="institutional">
+      <a href="contact.html" class="btn btn-primary nav-cta">Kontakt aufnehmen</a>
     </div>
     <div id="nav-auth-out" class="nav-auth">
       <a href="members/login.html" class="nav-login-link">Login</a>
@@ -58,16 +62,20 @@
   </div>
 </nav>
 <nav class="nav-mobile">
+  <a href="auftragsfertigung.html" data-show="institutional">Auftragsfertigung</a>
   <a href="methodik.html">Methodik</a>
   <a href="performance.html">Performance</a>
-  <a href="anleitung.html">Anleitung</a>
-  <a href="archive.html">Archiv</a>
+  <a href="anleitung.html" data-show="retail">Anleitung</a>
+  <a href="archive.html" data-show="retail">Archiv</a>
   <a href="pricing.html">Preise</a>
   <a href="about.html">Über uns</a>
   <a href="contact.html">Kontakt</a>
-  <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
+  <div data-show="retail" style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
     <a href="members/login.html" style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);">Login</a>
     <a href="members/register.html" style="font-size:13px;font-weight:600;color:var(--accent);">Konto erstellen</a>
+  </div>
+  <div data-show="institutional" style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;">
+    <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;font-size:13px;">Kontakt aufnehmen</a>
   </div>
   <div class="mode-toggle" style="margin-top:16px;width:100%;">
     <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
@@ -109,7 +117,7 @@
       <div class="kpi-card">
         <p class="kpi-label">Sharpe Ratio</p>
         <div class="kpi-value text-green" data-count="1.68" data-suffix="" data-decimals="2">1,68</div>
-        <p class="kpi-sub">NDX: 0,79 — 2,1× besser</p>
+        <p class="kpi-sub">NDX: 0,79, 2,1× besser</p>
       </div>
       <div class="kpi-card">
         <p class="kpi-label">Jensen Alpha p.a.</p>
@@ -195,7 +203,7 @@
     <div class="perf-chart" data-reveal style="margin-top:40px;">
       <div class="perf-chart-header">
         <div>
-          <p class="perf-chart-label">Drawdown-Vergleich — Scherbius vs. NASDAQ-100</p>
+          <p class="perf-chart-label">Drawdown-Vergleich, Scherbius vs. NASDAQ-100</p>
           <p class="perf-chart-sub">Jan 2015 – Feb 2026 · Prozentualer Rückgang vom jeweiligen Allzeithoch</p>
         </div>
       </div>
@@ -211,6 +219,67 @@
     </div>
   </div>
 </div>
+
+<!-- Factsheets -->
+<div class="section-full" style="border-top:1px solid var(--border);">
+  <div class="section-inner">
+    <div class="section-header" data-reveal>
+      <p class="section-label">Dokumentation</p>
+      <h2 class="section-title">Factsheet<br><em>als PDF herunterladen</em></h2>
+      <p class="section-desc">Vollständige Modellbeschreibung, Strategie-Logik, Backtest-Statistiken und Risikorahmen, in einem Dokument.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" data-reveal>
+
+      <!-- Institutionell -->
+      <div data-show="institutional" style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:36px;display:flex;gap:28px;align-items:flex-start;">
+        <div style="flex-shrink:0;width:44px;height:52px;background:var(--dark);border-radius:2px;display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><rect x="1" y="1" width="14" height="18" rx="1" stroke="white" stroke-opacity="0.5" stroke-width="1.5"/><path d="M5 5h8M5 9h8M5 13h5" stroke="white" stroke-opacity="0.4" stroke-width="1.2" stroke-linecap="round"/><rect x="7" y="14" width="12" height="9" rx="1" fill="#B91C1C"/><path d="M10 16.5h6M10 18.5h4" stroke="white" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <div style="flex:1;">
+          <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Institutionell</p>
+          <h3 style="font-family:'EB Garamond',serif;font-size:18px;font-weight:600;color:var(--dark);margin-bottom:8px;">Scherbius 1.0 Referenzmodell</h3>
+          <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:20px;">Renditen netto nach Transaktionskosten · CAGR, Sharpe, Alpha, Drawdown · Strategie-Übersicht</p>
+          <a href="../Factsheets/Scherbius 1.0 Referenzmodell.pdf" target="_blank" rel="noopener" class="btn btn-secondary" style="display:inline-flex;align-items:center;gap:8px;">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            PDF herunterladen
+          </a>
+        </div>
+      </div>
+
+      <!-- Privatanleger -->
+      <div data-show="retail" style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:36px;display:flex;gap:28px;align-items:flex-start;">
+        <div style="flex-shrink:0;width:44px;height:52px;background:var(--dark);border-radius:2px;display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><rect x="1" y="1" width="14" height="18" rx="1" stroke="white" stroke-opacity="0.5" stroke-width="1.5"/><path d="M5 5h8M5 9h8M5 13h5" stroke="white" stroke-opacity="0.4" stroke-width="1.2" stroke-linecap="round"/><rect x="7" y="14" width="12" height="9" rx="1" fill="#B91C1C"/><path d="M10 16.5h6M10 18.5h4" stroke="white" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <div style="flex:1;">
+          <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Privatanleger</p>
+          <h3 style="font-family:'EB Garamond',serif;font-size:18px;font-weight:600;color:var(--dark);margin-bottom:8px;">Scherbius 1.0 Privatanleger Factsheet</h3>
+          <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:20px;">Renditen netto nach Steuern · CAGR, Sharpe, Drawdown · Strategie-Übersicht für Privatanleger</p>
+          <a href="../Factsheets/Scherbius 1.0 Privatanleger Factsheet.pdf" target="_blank" rel="noopener" class="btn btn-secondary" style="display:inline-flex;align-items:center;gap:8px;">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            PDF herunterladen
+          </a>
+        </div>
+      </div>
+
+      <!-- Zweite Spalte leer / Platzhalter im retail-Modus für Insti-Card -->
+      <div data-show="institutional" style="background:#F7F5F2;border:1px solid var(--border);border-radius:4px;padding:36px;display:flex;gap:28px;align-items:flex-start;">
+        <div style="flex-shrink:0;width:44px;height:52px;background:rgba(26,26,26,0.06);border-radius:2px;display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="#1A1A1A" stroke-opacity="0.3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div style="flex:1;">
+          <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Weiterführend</p>
+          <h3 style="font-family:'EB Garamond',serif;font-size:18px;font-weight:600;color:var(--dark);margin-bottom:8px;">Vollständige Methodik-Dokumentation</h3>
+          <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:20px;">Detaillierte Erläuterung der Signalgeneration, Walk-Forward-Tests und statistischen Validierung, auf Anfrage für qualifizierte Interessenten.</p>
+          <a href="contact.html" class="btn btn-secondary">Unterlagen anfragen</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
 <!-- Annual Returns -->
 <div class="section-full section-warm">
@@ -293,7 +362,7 @@
       <p class="section-label">Live Track Record</p>
       <h2 class="section-title">Performance seit Auflage,<br><em>ab 15. Dez 2025</em></h2>
       <p class="section-desc">
-        Kumulierte Rendite seit dem Live-Start am 15. Dezember 2025 — Portfolio vs. NASDAQ-100.
+        Kumulierte Rendite seit dem Live-Start am 15. Dezember 2025, Portfolio vs. NASDAQ-100.
         <span data-show="retail">Privatanleger-Renditen netto nach Transaktionskosten und Steuern.</span>
         <span data-show="institutional">Institutionelle Renditen netto nach Transaktionskosten.</span>
       </p>
@@ -302,8 +371,8 @@
       <div class="perf-chart-header">
         <div>
           <p class="perf-chart-label">
-            <span data-show="institutional">Kumulierte Performance — Scherbius 1.0 Institutionell vs. NASDAQ-100</span>
-            <span data-show="retail">Kumulierte Performance — Scherbius 1.0 Privatanleger vs. NASDAQ-100</span>
+            <span data-show="institutional">Kumulierte Performance, Scherbius 1.0 Institutionell vs. NASDAQ-100</span>
+            <span data-show="retail">Kumulierte Performance, Scherbius 1.0 Privatanleger vs. NASDAQ-100</span>
           </p>
           <p class="perf-chart-sub">15. Dez 2025 – Feb 2026 · Kumulierte Rendite in % seit Auflage</p>
         </div>
@@ -335,7 +404,7 @@
     <div class="perf-chart" data-reveal>
       <div class="perf-chart-header">
         <div>
-          <p class="perf-chart-label">Cash vs. Investiert — tägliche Allokation</p>
+          <p class="perf-chart-label">Cash vs. Investiert, tägliche Allokation</p>
           <p class="perf-chart-sub">Privatanleger · März 2015 – Feb 2026 · Anteil am Gesamtkapital</p>
         </div>
       </div>
@@ -349,7 +418,7 @@
   </div>
 </div>
 
-<!-- Cash / Investitionsquote — Institutionell -->
+<!-- Cash / Investitionsquote, Institutionell -->
 <div class="section-full" data-show="institutional">
   <div class="section-inner">
     <div class="section-header" data-reveal>
@@ -362,7 +431,7 @@
     <div class="perf-chart" data-reveal>
       <div class="perf-chart-header">
         <div>
-          <p class="perf-chart-label">Cash vs. Investiert — tägliche Allokation</p>
+          <p class="perf-chart-label">Cash vs. Investiert, tägliche Allokation</p>
           <p class="perf-chart-sub">Institutionell · Jan 2015 – Feb 2026 · Anteil am Gesamtkapital</p>
         </div>
       </div>
@@ -389,14 +458,14 @@
     <!-- Erklärttext Retail -->
     <div data-show="retail" data-reveal>
       <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
-        Scherbius 1.0 erzielt eine durchschnittliche Jahresrendite von <strong>27,53 %</strong> — netto nach Transaktionskosten und voller Kapitalertragsteuer. Der Sharpe-Ratio von <strong>0,97</strong> zeigt: Die Rendite kommt nicht durch übermäßige Risikonahme, sondern durch konsistente Signalqualität. Der <strong>Profit Factor von 1,74</strong> bedeutet: Für jeden verlorenen Euro werden im Durchschnitt 1,74 Euro verdient — über 11 Jahre hinweg stabil.
+        Scherbius 1.0 erzielt eine durchschnittliche Jahresrendite von <strong>27,53 %</strong>, netto nach Transaktionskosten und voller Kapitalertragsteuer. Der Sharpe-Ratio von <strong>0,97</strong> zeigt: Die Rendite kommt nicht durch übermäßige Risikonahme, sondern durch konsistente Signalqualität. Der <strong>Profit Factor von 1,74</strong> bedeutet: Für jeden verlorenen Euro werden im Durchschnitt 1,74 Euro verdient, über 11 Jahre hinweg stabil.
       </p>
     </div>
 
     <!-- Erklärttext Institutionell -->
     <div data-show="institutional" data-reveal>
       <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
-        Scherbius 1.0 Institutionell erzielt ein CAGR von <strong>14,9 %</strong> netto nach Transaktionskosten bei einem <strong>Sharpe-Ratio von 1,68</strong> — mehr als doppelt so hoch wie der NASDAQ-100 (0,79). Der Profit Factor von <strong>1,64</strong> belegt, dass die Strategie systematisch mehr Gewinne als Verluste produziert. Die Trefferquote von 62,2 % zeigt: Mehr als 6 von 10 Handelsentscheidungen sind profitabel.
+        Scherbius 1.0 Institutionell erzielt ein CAGR von <strong>14,9 %</strong> netto nach Transaktionskosten bei einem <strong>Sharpe-Ratio von 1,68</strong>, mehr als doppelt so hoch wie der NASDAQ-100 (0,79). Der Profit Factor von <strong>1,64</strong> belegt, dass die Strategie systematisch mehr Gewinne als Verluste produziert. Die Trefferquote von 62,2 % zeigt: Mehr als 6 von 10 Handelsentscheidungen sind profitabel.
       </p>
     </div>
 
@@ -456,7 +525,7 @@
     <!-- Erklärttext Retail -->
     <div data-show="retail" data-reveal>
       <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
-        An <strong>95 % aller Handelstage</strong> verliert das Retail-Portfolio nicht mehr als <strong>0,71 %</strong> — der NASDAQ-100 verliert an diesen Tagen mehr als dreimal so viel (2,23 %). Im schlechtesten Fall (CVaR, Expected Shortfall) liegt der durchschnittliche Verlust bei <strong>2,66 %</strong>, verglichen mit 3,34 % beim Index. Der maximale Drawdown von −36,84 % resultiert aus der Steuerbelastung; die Erholungszeit von 246 Tagen liegt deutlich unter dem NASDAQ-100 mit 519 Tagen.
+        An <strong>95 % aller Handelstage</strong> verliert das Retail-Portfolio nicht mehr als <strong>0,71 %</strong>, der NASDAQ-100 verliert an diesen Tagen mehr als dreimal so viel (2,23 %). Im schlechtesten Fall (CVaR, Expected Shortfall) liegt der durchschnittliche Verlust bei <strong>2,66 %</strong>, verglichen mit 3,34 % beim Index. Der maximale Drawdown von −36,84 % resultiert aus der Steuerbelastung; die Erholungszeit von 246 Tagen liegt deutlich unter dem NASDAQ-100 mit 519 Tagen.
       </p>
     </div>
 
@@ -516,14 +585,14 @@
     <!-- Erklärttext Retail -->
     <div data-show="retail" data-reveal>
       <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
-        Das <strong>Jensen Alpha von +23,27 % p.a.</strong> ist statistisch hochsignifikant (p &lt; 0,01). Der <strong>R²-Wert von 3,33 %</strong> belegt, dass weniger als 4 % der Portfoliorendite durch Marktbewegungen erklärt werden — die Strategie erzeugt echtes, marktunabhängiges Alpha. Das Fama-French 3-Faktor-Modell bestätigt dieses Ergebnis (<strong>FF3-Alpha: +23,17 %</strong>) und schließt aus, dass die Überrendite auf bekannte Faktorprämien (Size, Value) zurückzuführen ist. Das <strong>Beta von 0,29</strong> zeigt eine sehr geringe Abhängigkeit vom Gesamtmarkt.
+        Das <strong>Jensen Alpha von +23,27 % p.a.</strong> ist statistisch hochsignifikant (p &lt; 0,01). Der <strong>R²-Wert von 3,33 %</strong> belegt, dass weniger als 4 % der Portfoliorendite durch Marktbewegungen erklärt werden, die Strategie erzeugt echtes, marktunabhängiges Alpha. Das Fama-French 3-Faktor-Modell bestätigt dieses Ergebnis (<strong>FF3-Alpha: +23,17 %</strong>) und schließt aus, dass die Überrendite auf bekannte Faktorprämien (Size, Value) zurückzuführen ist. Das <strong>Beta von 0,29</strong> zeigt eine sehr geringe Abhängigkeit vom Gesamtmarkt.
       </p>
     </div>
 
     <!-- Erklärttext Institutionell -->
     <div data-show="institutional" data-reveal>
       <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
-        Das <strong>Jensen Alpha von +10,71 % p.a.</strong> ist mit p &lt; 0,0001 außerordentlich hochsignifikant. Das <strong>Beta von 0,127</strong> belegt eine extrem geringe Marktabhängigkeit — das Portfolio bewegt sich weitgehend unabhängig vom NASDAQ-100. Der <strong>R²-Wert von 6,7 %</strong> zeigt: Nur 6,7 % der Portfoliorendite werden durch den Index erklärt. Das Fama-French 3-Faktor-Modell bestätigt das Ergebnis mit einem <strong>FF3-Alpha von +10,74 %</strong> — die Überrendite ist auf echte Signalqualität zurückzuführen, nicht auf bekannte Faktorprämien.
+        Das <strong>Jensen Alpha von +10,71 % p.a.</strong> ist mit p &lt; 0,0001 außerordentlich hochsignifikant. Das <strong>Beta von 0,127</strong> belegt eine extrem geringe Marktabhängigkeit, das Portfolio bewegt sich weitgehend unabhängig vom NASDAQ-100. Der <strong>R²-Wert von 6,7 %</strong> zeigt: Nur 6,7 % der Portfoliorendite werden durch den Index erklärt. Das Fama-French 3-Faktor-Modell bestätigt das Ergebnis mit einem <strong>FF3-Alpha von +10,74 %</strong>, die Überrendite ist auf echte Signalqualität zurückzuführen, nicht auf bekannte Faktorprämien.
       </p>
     </div>
 
@@ -585,14 +654,14 @@
     <!-- Erklärttext Retail -->
     <div data-show="retail" data-reveal>
       <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
-        Der annualisierte Turnover von <strong>1.822,8 %</strong> bedeutet: das Portfolio-Volumen wird pro Jahr etwa 18-mal umgeschlagen. An <strong>36,6 % aller Handelstage</strong> finden tatsächliche Transaktionen statt — an den übrigen Tagen hält die Strategie Positionen ohne Änderung. Der Median-Turnover von 0 % zeigt, dass an den meisten aktiven Tagen keine Umschichtung stattfindet; Transaktionen erfolgen gebündelt und gezielt.
+        Der annualisierte Turnover von <strong>1.822,8 %</strong> bedeutet: das Portfolio-Volumen wird pro Jahr etwa 18-mal umgeschlagen. An <strong>36,6 % aller Handelstage</strong> finden tatsächliche Transaktionen statt, an den übrigen Tagen hält die Strategie Positionen ohne Änderung. Der Median-Turnover von 0 % zeigt, dass an den meisten aktiven Tagen keine Umschichtung stattfindet; Transaktionen erfolgen gebündelt und gezielt.
       </p>
     </div>
 
     <!-- Erklärttext Institutionell -->
     <div data-show="institutional" data-reveal>
       <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
-        Der annualisierte Turnover von <strong>3.119,0 %</strong> spiegelt die höhere Handelsdichte der institutionellen Strategie wider. An <strong>74,2 % aller Handelstage</strong> werden aktiv Positionen angepasst — das System rebalanciert täglich regelbasiert. Der maximale Einzeltag-Turnover von 110,95 % zeigt, dass das Gesamtportfolio an einzelnen Tagen vollständig umgeschichtet werden kann.
+        Der annualisierte Turnover von <strong>3.119,0 %</strong> spiegelt die höhere Handelsdichte der institutionellen Strategie wider. An <strong>74,2 % aller Handelstage</strong> werden aktiv Positionen angepasst, das System rebalanciert täglich regelbasiert. Der maximale Einzeltag-Turnover von 110,95 % zeigt, dass das Gesamtportfolio an einzelnen Tagen vollständig umgeschichtet werden kann.
       </p>
     </div>
 
@@ -647,14 +716,14 @@
     <!-- Erklärttext Retail -->
     <div data-show="retail" data-reveal>
       <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
-        Über einen <strong>12-Monats-Horizont</strong> erzielte Scherbius 1.0 in <strong>95,10 %</strong> aller rollierenden Fenster eine positive Rendite — der NASDAQ-100 nur in 85,14 %. Über 24 Monate ist die Quote <strong>100 %</strong>: jedes beliebige 24-Monats-Fenster im Backtest war profitabel. Diese Kennzahl misst, wie konsistent die Strategie über verschiedene Haltedauern Gewinne erzeugt.
+        Über einen <strong>12-Monats-Horizont</strong> erzielte Scherbius 1.0 in <strong>95,10 %</strong> aller rollierenden Fenster eine positive Rendite, der NASDAQ-100 nur in 85,14 %. Über 24 Monate ist die Quote <strong>100 %</strong>: jedes beliebige 24-Monats-Fenster im Backtest war profitabel. Diese Kennzahl misst, wie konsistent die Strategie über verschiedene Haltedauern Gewinne erzeugt.
       </p>
     </div>
 
     <!-- Erklärttext Institutionell -->
     <div data-show="institutional" data-reveal>
       <p class="section-desc" style="max-width:680px;margin-bottom:32px;">
-        Über einen <strong>12-Monats-Horizont</strong> erzielte Scherbius 1.0 Institutionell in <strong>100 %</strong> aller rollierenden Fenster eine positive Rendite — der NASDAQ-100 in 85,14 %. Bereits über <strong>3 Monate</strong> liegt die Trefferquote bei 93,91 % (NDX: 75,23 %). Die institutionelle Strategie ist damit besonders für Anleger geeignet, die auf rollierender Basis Rechenschaft gegenüber Investoren ablegen.
+        Über einen <strong>12-Monats-Horizont</strong> erzielte Scherbius 1.0 Institutionell in <strong>100 %</strong> aller rollierenden Fenster eine positive Rendite, der NASDAQ-100 in 85,14 %. Bereits über <strong>3 Monate</strong> liegt die Trefferquote bei 93,91 % (NDX: 75,23 %). Die institutionelle Strategie ist damit besonders für Anleger geeignet, die auf rollierender Basis Rechenschaft gegenüber Investoren ablegen.
       </p>
     </div>
 
@@ -701,7 +770,7 @@
     <p class="section-label" style="color:var(--accent);text-align:center;margin-bottom:20px;">Zugang</p>
     <h2 class="cta-title" data-show="institutional">Kontakt aufnehmen</h2>
     <h2 class="cta-title" data-show="retail">14 Tage kostenlos testen</h2>
-    <p class="cta-desc" data-show="institutional">Sprechen Sie mit uns über Scherbius 1.0 Institutionell — Strategie, Konditionen, Due Diligence.</p>
+    <p class="cta-desc" data-show="institutional">Sprechen Sie mit uns über Scherbius 1.0 Institutionell, Strategie, Konditionen, Due Diligence.</p>
     <p class="cta-desc" data-show="retail">Kein Kreditkartendaten. Kein automatisches Abonnement. Überzeugen Sie sich selbst.</p>
     <div class="cta-actions">
       <a href="contact.html" class="btn btn-primary" data-show="institutional">Kontakt aufnehmen</a>
@@ -716,7 +785,10 @@
   <div class="footer-top">
     <div class="footer-brand">
       <div class="logo-pill" style="margin-bottom:20px;"><img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="28"></div>
-      <p class="footer-brand-tagline">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</p>
+      <p class="footer-brand-tagline">
+        <span data-show="institutional">Auftragsfertiger für quantitative Modelle.<br>Entwicklung. Validierung. Übergabe.</span>
+        <span data-show="retail">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</span>
+      </p>
       <a href="https://linkedin.com/company/scherbius-analytics/" target="_blank" rel="noopener noreferrer" style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;">LinkedIn</a>
     </div>
     <div>

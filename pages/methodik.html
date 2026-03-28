@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Methodik — Scherbius Analytics</title>
+  <title>Methodik | Scherbius Analytics</title>
   <meta name="description" content="Wie Scherbius arbeitet: Kernidee, Methodik, statistische Robustheit und Grundsätze des quantitativen Portfoliomanagements.">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/index.css">
@@ -18,10 +18,11 @@
     <img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="32">
   </a>
   <ul class="nav-links">
+    <li data-show="institutional"><a href="auftragsfertigung.html">Auftragsfertigung</a></li>
     <li><a href="methodik.html" class="active">Methodik</a></li>
     <li><a href="performance.html">Performance</a></li>
-    <li><a href="anleitung.html">Anleitung</a></li>
-    <li><a href="archive.html">Archiv</a></li>
+    <li data-show="retail"><a href="anleitung.html">Anleitung</a></li>
+    <li data-show="retail"><a href="archive.html">Archiv</a></li>
     <li><a href="pricing.html">Preise</a></li>
     <li><a href="about.html">Über uns</a></li>
   </ul>
@@ -29,6 +30,9 @@
     <div class="mode-toggle">
       <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
       <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+    </div>
+    <div id="nav-auth-inst" class="nav-auth" data-show="institutional">
+      <a href="contact.html" class="btn btn-primary nav-cta">Kontakt aufnehmen</a>
     </div>
     <div id="nav-auth-out" class="nav-auth">
       <a href="members/login.html" class="nav-login-link">Login</a>
@@ -45,16 +49,20 @@
 </nav>
 
 <nav class="nav-mobile">
+  <a href="auftragsfertigung.html" data-show="institutional">Auftragsfertigung</a>
   <a href="methodik.html">Methodik</a>
   <a href="performance.html">Performance</a>
-  <a href="anleitung.html">Anleitung</a>
-  <a href="archive.html">Archiv</a>
+  <a href="anleitung.html" data-show="retail">Anleitung</a>
+  <a href="archive.html" data-show="retail">Archiv</a>
   <a href="pricing.html">Preise</a>
   <a href="about.html">Über uns</a>
   <a href="contact.html">Kontakt</a>
-  <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
+  <div data-show="retail" style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
     <a href="members/login.html" style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);">Login</a>
     <a href="members/register.html" style="font-size:13px;font-weight:600;color:var(--accent);">Konto erstellen</a>
+  </div>
+  <div data-show="institutional" style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;">
+    <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;font-size:13px;">Kontakt aufnehmen</a>
   </div>
   <div class="mode-toggle" style="margin-top:16px;width:100%;">
     <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
@@ -67,12 +75,12 @@
 <div style="background:var(--dark);padding:120px var(--px) 80px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;opacity:0.035;background-image:repeating-linear-gradient(90deg,#fff 0,#fff 1px,transparent 1px,transparent 80px),repeating-linear-gradient(0deg,#fff 0,#fff 1px,transparent 1px,transparent 80px);pointer-events:none;"></div>
   <div style="max-width:var(--max-width);margin:0 auto;position:relative;z-index:2;">
-    <p class="section-label" style="color:var(--accent);" data-reveal>Scherbius Analytics — Arbeitsweise</p>
+    <p class="section-label" style="color:var(--accent);" data-reveal>Scherbius Analytics, Arbeitsweise</p>
     <h1 style="font-family:'EB Garamond',serif;font-size:clamp(40px,5vw,72px);font-weight:500;color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:20px;" data-reveal>
       Methodik
     </h1>
     <p style="font-size:15px;color:rgba(255,255,255,0.45);max-width:600px;line-height:1.75;" data-reveal>
-      Wie können wir so ein hohes Alpha generieren? — Statistik. Kein Geheimnis, keine Magie. Nur disziplinierte, datengetriebene Methodik. Entwickelt mit dem Ziel, messbare marktunabhängige Rendite zu erzielen.
+      Wie können wir so ein hohes Alpha generieren?, Statistik. Kein Geheimnis, keine Magie. Nur disziplinierte, datengetriebene Methodik. Entwickelt mit dem Ziel, messbare marktunabhängige Rendite zu erzielen.
     </p>
   </div>
 </div>
@@ -97,13 +105,13 @@
       <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:40px;">
         <h3 style="font-family:'EB Garamond',serif;font-size:20px;font-weight:600;color:var(--dark);margin-bottom:12px;">Portfolio aus vielen Strategien</h3>
         <p style="font-size:14px;color:var(--text-muted);line-height:1.75;">
-          Das Portfolio besteht aus vielen unkorrelierten Strategien. Jede einzelne Strategie hat Schwächen — aber als Ensemble verhalten sie sich statistisch robust und stabil.
+          Das Portfolio besteht aus vielen unkorrelierten Strategien. Jede einzelne Strategie hat Schwächen, aber als Ensemble verhalten sie sich statistisch robust und stabil.
         </p>
       </div>
       <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:40px;">
         <h3 style="font-family:'EB Garamond',serif;font-size:20px;font-weight:600;color:var(--dark);margin-bottom:12px;">Reines Alpha durch Diversifikation</h3>
         <p style="font-size:14px;color:var(--text-muted);line-height:1.75;">
-          Keine Strategie ist perfekt — aber viele unkorrelierte Strategien in einem Portfolio zusammengelegt produzieren reines Alpha. Diversifikation auf Strategieebene ist der Kern des Ansatzes.
+          Keine Strategie ist perfekt, aber viele unkorrelierte Strategien in einem Portfolio zusammengelegt produzieren reines Alpha. Diversifikation auf Strategieebene ist der Kern des Ansatzes.
         </p>
       </div>
     </div>
@@ -144,11 +152,11 @@
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
           <li style="display:flex;align-items:flex-start;gap:10px;">
             <span style="width:4px;height:4px;background:var(--accent);border-radius:50%;margin-top:8px;flex-shrink:0;"></span>
-            <span style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6;">XGBoost — Decision Tree Models</span>
+            <span style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6;">XGBoost, Decision Tree Models</span>
           </li>
           <li style="display:flex;align-items:flex-start;gap:10px;">
             <span style="width:4px;height:4px;background:var(--accent);border-radius:50%;margin-top:8px;flex-shrink:0;"></span>
-            <span style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6;">HMM — Hidden Markov Models</span>
+            <span style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6;">HMM, Hidden Markov Models</span>
           </li>
         </ul>
       </div>
@@ -181,7 +189,7 @@
       <p class="section-label">Roadmap</p>
       <h2 class="section-title">Wie sich Scherbius<br><em>weiterentwickelt</em></h2>
       <p class="section-desc">
-        Scherbius 1.0 ist der Ausgangspunkt. Die gleiche Methodik — mehr Märkte, mehr Strategien, stärkere Diversifikation.
+        Scherbius 1.0 ist der Ausgangspunkt. Die gleiche Methodik, mehr Märkte, mehr Strategien, stärkere Diversifikation.
       </p>
     </div>
 
@@ -280,11 +288,11 @@
           </tr>
           <tr style="border-bottom:1px solid var(--border-light);">
             <td style="padding:20px 24px;font-size:13px;font-weight:600;color:var(--dark);vertical-align:top;">Walk-Forward-Tests (Out-of-Sample)</td>
-            <td style="padding:20px 24px;font-size:13px;color:var(--text-muted);line-height:1.75;vertical-align:top;">Wir optimieren in einem Zeitfenster und validieren mit nachfolgenden Daten, die der Optimierer noch nie gesehen hat — um die Robustheit außerhalb der Stichprobe sicherzustellen.</td>
+            <td style="padding:20px 24px;font-size:13px;color:var(--text-muted);line-height:1.75;vertical-align:top;">Wir optimieren in einem Zeitfenster und validieren mit nachfolgenden Daten, die der Optimierer noch nie gesehen hat, um die Robustheit außerhalb der Stichprobe sicherzustellen.</td>
           </tr>
           <tr style="border-bottom:1px solid var(--border-light);">
             <td style="padding:20px 24px;font-size:13px;font-weight:600;color:var(--dark);vertical-align:top;">Parametersensitivität</td>
-            <td style="padding:20px 24px;font-size:13px;color:var(--text-muted);line-height:1.75;vertical-align:top;">Wir überprüfen, ob die Leistung über einen breiten und günstigen Parameterraum stabil bleibt — und setzen nur Strategien ein, die sich ohne enge Feinanstimmung als effektiv erweisen.</td>
+            <td style="padding:20px 24px;font-size:13px;color:var(--text-muted);line-height:1.75;vertical-align:top;">Wir überprüfen, ob die Leistung über einen breiten und günstigen Parameterraum stabil bleibt, und setzen nur Strategien ein, die sich ohne enge Feinanstimmung als effektiv erweisen.</td>
           </tr>
           <tr style="border-bottom:1px solid var(--border-light);">
             <td style="padding:20px 24px;font-size:13px;font-weight:600;color:var(--dark);vertical-align:top;">Cross-Market-Anwendung</td>
@@ -314,7 +322,7 @@
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" data-reveal>
       <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:32px;">
         <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Survivorship Bias</p>
-        <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.75;">Delisted Stocks sind seit 1990 in das Modell eingebaut. Das Universum enthält alle historischen Konstituenten des NASDAQ 100 — auch jene, die vom Markt verschwunden sind.</p>
+        <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.75;">Delisted Stocks sind seit 1990 in das Modell eingebaut. Das Universum enthält alle historischen Konstituenten des NASDAQ 100, auch jene, die vom Markt verschwunden sind.</p>
       </div>
       <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:32px;">
         <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Look-Ahead-Bias</p>
@@ -326,7 +334,7 @@
       </div>
       <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:32px;">
         <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Kein Cherry Picking</p>
-        <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.75;">Scherbius hat ein klar definiertes Universum von Assets — die historische Zusammensetzung des NASDAQ 100 seit 1990. Es werden keine Instrumente nachträglich ausgewählt oder ausgeschlossen.</p>
+        <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.75;">Scherbius hat ein klar definiertes Universum von Assets, die historische Zusammensetzung des NASDAQ 100 seit 1990. Es werden keine Instrumente nachträglich ausgewählt oder ausgeschlossen.</p>
       </div>
     </div>
 
@@ -343,7 +351,7 @@
         <p class="section-label">Infrastruktur</p>
         <h2 class="section-title">Datenprovider</h2>
         <p class="section-desc">
-          Scherbius wurde ohne sündhaft teure Daten von Bloomberg oder Refinitiv gebaut. Alle notwendigen Informationen sind über zugängliche, qualitativ hochwertige Quellen verfügbar — und das Ergebnis spricht für sich.
+          Scherbius wurde ohne sündhaft teure Daten von Bloomberg oder Refinitiv gebaut. Alle notwendigen Informationen sind über zugängliche, qualitativ hochwertige Quellen verfügbar, und das Ergebnis spricht für sich.
         </p>
       </div>
       <div style="display:flex;flex-direction:column;gap:10px;">
@@ -390,14 +398,14 @@
           Scherbius liegt auch falsch.<br>Das ist Teil des Designs.
         </h2>
         <p style="font-size:15px;color:rgba(255,255,255,0.5);line-height:1.85;">
-          Scherbius ist keine "Money Printing Machine". Es ist ein Ansatz, messbare marktunabhängige Rendite zu erwirtschaften — Alpha. Kleine Verluste gehören zur Methode. Sie sind keine Fehler, sondern der Preis für disziplinierte, regelbasierte Entscheidungen.
+          Scherbius ist keine "Money Printing Machine". Es ist ein Ansatz, messbare marktunabhängige Rendite zu erwirtschaften, Alpha. Kleine Verluste gehören zur Methode. Sie sind keine Fehler, sondern der Preis für disziplinierte, regelbasierte Entscheidungen.
         </p>
       </div>
 
       <div style="margin-bottom:64px;padding-bottom:64px;border-bottom:1px solid rgba(255,255,255,0.08);" data-reveal>
         <p class="section-label" style="color:var(--accent);margin-bottom:24px;">Grundhaltung</p>
         <h2 style="font-family:'EB Garamond',serif;font-size:clamp(28px,4vw,52px);font-weight:500;color:#fff;line-height:1.2;">
-          Im Kern sind wir zutiefst risikoscheu. Wir nutzen Daten, um Struktur in das Marktchaos zu bringen — und machen Stabilität messbar.
+          Im Kern sind wir zutiefst risikoscheu. Wir nutzen Daten, um Struktur in das Marktchaos zu bringen, und machen Stabilität messbar.
         </h2>
       </div>
 
@@ -436,7 +444,10 @@
       <div class="logo-pill" style="margin-bottom:20px;">
         <img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="28">
       </div>
-      <p class="footer-brand-tagline">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</p>
+      <p class="footer-brand-tagline">
+        <span data-show="institutional">Auftragsfertiger für quantitative Modelle.<br>Entwicklung. Validierung. Übergabe.</span>
+        <span data-show="retail">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</span>
+      </p>
       <a href="https://linkedin.com/company/scherbius-analytics/" target="_blank" rel="noopener noreferrer"
          style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;">LinkedIn</a>
     </div>

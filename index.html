@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scherbius Analytics — Quantitatives Portfoliomanagement</title>
-  <meta name="description" content="Tägliche Portfolio-Updates, statistisch geprüfte Alpha-Quellen, unkorreliert mit Aktien- und Rentenmärkten. Für institutionelle und private Investoren.">
+  <title>Scherbius Analytics | Quantitatives Portfoliomanagement</title>
+  <meta name="description" content="Scherbius Analytics: Auftragsfertiger für quantitative Handelsmodelle. Maßgefertigte Modelle für institutionelle Investoren. Tägliche Portfolio-Signale für Privatanleger.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/reveal.css">
   <link rel="stylesheet" href="css/index.css">
@@ -21,10 +21,11 @@
     <img src="brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="32">
   </a>
   <ul class="nav-links">
+    <li data-show="institutional"><a href="pages/auftragsfertigung.html">Auftragsfertigung</a></li>
     <li><a href="pages/methodik.html">Methodik</a></li>
     <li><a href="pages/performance.html">Performance</a></li>
-    <li><a href="pages/anleitung.html">Anleitung</a></li>
-    <li><a href="pages/archive.html">Archiv</a></li>
+    <li data-show="retail"><a href="pages/anleitung.html">Anleitung</a></li>
+    <li data-show="retail"><a href="pages/archive.html">Archiv</a></li>
     <li><a href="pages/pricing.html">Preise</a></li>
     <li><a href="pages/about.html">Über uns</a></li>
   </ul>
@@ -32,6 +33,9 @@
     <div class="mode-toggle">
       <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
       <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+    </div>
+    <div id="nav-auth-inst" class="nav-auth" data-show="institutional">
+      <a href="pages/contact.html" class="btn btn-primary nav-cta">Kontakt aufnehmen</a>
     </div>
     <div id="nav-auth-out" class="nav-auth">
       <a href="pages/members/login.html" class="nav-login-link">Login</a>
@@ -48,16 +52,20 @@
 </nav>
 
 <nav class="nav-mobile">
+  <a href="pages/auftragsfertigung.html" data-show="institutional">Auftragsfertigung</a>
   <a href="pages/methodik.html">Methodik</a>
   <a href="pages/performance.html">Performance</a>
-  <a href="pages/anleitung.html">Anleitung</a>
-  <a href="pages/archive.html">Archiv</a>
+  <a href="pages/anleitung.html" data-show="retail">Anleitung</a>
+  <a href="pages/archive.html" data-show="retail">Archiv</a>
   <a href="pages/pricing.html">Preise</a>
   <a href="pages/about.html">Über uns</a>
   <a href="pages/contact.html">Kontakt</a>
-  <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
+  <div data-show="retail" style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
     <a href="pages/members/login.html" style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);">Login</a>
     <a href="pages/members/register.html" style="font-size:13px;font-weight:600;color:var(--accent);">Konto erstellen</a>
+  </div>
+  <div data-show="institutional" style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;">
+    <a href="pages/contact.html" class="btn btn-primary" style="width:100%;justify-content:center;font-size:13px;">Kontakt aufnehmen</a>
   </div>
   <div class="mode-toggle" style="margin-top:16px;width:100%;">
     <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
@@ -83,7 +91,7 @@
     <div class="hbg-slide" style="position:absolute;inset:0;background-image:url('Website Bilder/Newspaper.webp');background-size:cover;background-position:50% 50%;filter:grayscale(20%) contrast(1.05);transition:opacity 2.2s ease;opacity:0;"></div>
     <div class="hbg-slide" style="position:absolute;inset:0;background-image:url('Website Bilder/WallStreet Empty.webp');background-size:cover;background-position:50% 50%;filter:grayscale(20%) contrast(1.05);transition:opacity 2.2s ease;opacity:0;"></div>
   </div>
-  <!-- Dark overlay — keeps text legible -->
+  <!-- Dark overlay, keeps text legible -->
   <div style="position:absolute;inset:0;z-index:1;background:rgba(8,8,8,0.72);"></div>
 
   <div class="hero-bg-lines" style="position:relative;z-index:2;"></div>
@@ -92,16 +100,17 @@
 
     <!-- ── Left: Headline + CTAs ──────────────────────────────── -->
     <div class="hero-content">
-      <p class="hero-label">Scherbius Analytics — Quantitatives Portfolio Management</p>
+      <p class="hero-label" data-show="institutional">Scherbius Analytics: Auftragsfertiger für quantitative Modelle</p>
+      <p class="hero-label" data-show="retail">Scherbius Analytics | Quantitatives Portfolio Management</p>
 
       <h1 class="hero-title">
-        <span data-show="institutional">Marktunabhängige<br><span class="hero-title-em">Überrendite</span></span>
+        <span data-show="institutional">Quantitative Modelle<br><span class="hero-title-em">nach Maß</span></span>
         <span data-show="retail">Marktunabhängige<br><span class="hero-title-em">Überrendite</span></span>
       </h1>
 
       <p class="hero-subtitle" data-show="institutional">
-        Multi-Strategie-Portfolios. Statistisch robustes Alpha.<br>
-        Unkorreliert mit Aktien- und Rentenmärkten.
+        Auftragsfertigung quantitativer Handelsmodelle.<br>
+        Von der Datenpipeline bis zur täglichen Portfolio-Allokation, vollständig in Ihrem Eigentum.
       </p>
       <p class="hero-subtitle" data-show="retail">
         Risikomanagement für Privatanleger.<br>
@@ -109,7 +118,7 @@
       </p>
 
       <div class="hero-actions">
-        <a href="pages/contact.html" class="btn btn-primary" data-show="institutional">Kontakt aufnehmen</a>
+        <a href="pages/auftragsfertigung.html" class="btn btn-primary" data-show="institutional">Auftragsfertigung ansehen</a>
         <a href="pages/members/register.html" class="btn btn-primary" data-show="retail">14 Tage kostenlos testen</a>
         <a href="pages/performance.html" class="btn-outline-white">Track Record ansehen</a>
       </div>
@@ -192,24 +201,23 @@
   <div class="section-inner">
 
     <div class="section-header" data-reveal>
-      <p class="section-label">Track Record</p>
+      <p class="section-label"><span data-show="institutional">Referenzmodell</span><span data-show="retail">Track Record</span></p>
       <h2 class="section-title">
-        <span data-show="institutional">Quantitative Multi-Strategie-Portfolios,<br><em>für etablierte Institutionen</em></span>
-        <span data-show="retail">Quantitatives Risikomanagement ,<br><em>für ambitionierte Privatanleger</em></span>
+        <span data-show="institutional">Scherbius 1.0<br><em>das Referenzmodell</em></span>
+        <span data-show="retail">Quantitatives Risikomanagement,<br><em>für ambitionierte Privatanleger</em></span>
       </h2>
       <p class="section-desc" data-show="institutional">
-        Scherbius 1.0 Institutionell: CAGR 14,9 % bei Sharpe Ratio 1,68.
-        Jensen Alpha von +10,71 % p.a. (p&lt;0,0001). Backtest Januar 2015 bis Dezember 2025.
+        Dies ist unser Grundmodell, der Ausgangspunkt jeder Auftragsfertigung. CAGR 14,9 % bei Sharpe Ratio 1,68, Jensen Alpha +10,71 % p.a. (p&lt;0,0001). Backtest Januar 2015 bis Dezember 2025. Jedes Kundenmodell beginnt hier und wird von Grund auf nach Ihren Anforderungen erweitert oder neu entwickelt.
         <span style="display:block;margin-top:8px;font-size:11px;color:var(--text-dim);">Alle Angaben netto nach Transaktionskosten.</span>
       </p>
       <p class="section-desc" data-show="retail">
-        Scherbius 1.0 Privatanleger: +1.445 % Gesamtrendite bei CAGR 27,8 % — mehr als dreifach besser
+        Scherbius 1.0 Privatanleger: +1.445 % Gesamtrendite bei CAGR 27,8 %, mehr als dreifach besser
         als der NASDAQ-100 (+490 %). Backtest Januar 2015 bis Dezember 2025.
         <span style="display:block;margin-top:8px;font-size:11px;color:var(--text-dim);">Alle Angaben netto nach Transaktionskosten und Steuern (Kapitalertragsteuer 25 % + Solidaritätszuschlag 5,5 %).</span>
       </p>
     </div>
 
-    <!-- KPI Grid — Institutional -->
+    <!-- KPI Grid, Institutional -->
     <div class="perf-kpi-grid" data-show="institutional" data-reveal>
       <div class="kpi-card">
         <p class="kpi-label">CAGR (netto)</p>
@@ -238,7 +246,7 @@
       </div>
     </div>
 
-    <!-- KPI Grid — Retail -->
+    <!-- KPI Grid, Retail -->
     <div class="perf-kpi-grid" data-show="retail" data-reveal>
       <div class="kpi-card">
         <p class="kpi-label">CAGR (netto)</p>
@@ -310,6 +318,141 @@
 
 
 <!-- ════════════════════════════════════════════════════════════
+     Pricing Preview (Dark)
+     ════════════════════════════════════════════════════════════ -->
+<div class="section-full section-dark">
+  <div class="section-inner">
+
+    <div class="section-header" data-reveal>
+      <p class="section-label" style="color:var(--accent)"><span data-show="institutional">Auftragsfertigung</span><span data-show="retail">Zugang</span></p>
+      <h2 class="section-title" style="color:#fff" data-show="institutional">
+        Zwei Leistungen.<br><em style="color:rgba(255,255,255,0.4)">Eine Methodik.</em>
+      </h2>
+      <h2 class="section-title" style="color:#fff" data-show="retail">
+        Für informierte<br><em style="color:rgba(255,255,255,0.4)">Privatanleger</em>
+      </h2>
+    </div>
+
+    <!-- Institutional: 2-product overview -->
+    <div data-show="institutional" data-reveal>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px;">
+        <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(185,28,28,0.35);border-radius:4px;padding:28px;position:relative;">
+          <div style="position:absolute;top:-1px;left:28px;background:var(--accent);color:#fff;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:0 0 4px 4px;">Kernleistung</div>
+          <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(185,28,28,0.9);margin-bottom:12px;margin-top:12px;">Maßanfertigung</p>
+          <h3 style="font-family:'EB Garamond',serif;font-size:18px;font-weight:600;color:#fff;margin-bottom:8px;">Vollständiges Quant-Modell nach Maß</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.65;margin-bottom:20px;">Von der Dateninfrastruktur bis zum risikoadjustierten Portfolio. Volle Lizenzeigentümerschaft nach Fertigstellung.</p>
+          <p style="font-family:'EB Garamond',serif;font-size:22px;color:#fff;font-weight:500;">€ 15.000 – 50.000</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:4px;">Einmalig · Festpreis nach Bedarfsanalyse</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:28px;">
+          <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:12px;">Server-Betrieb &amp; Wartung</p>
+          <h3 style="font-family:'EB Garamond',serif;font-size:18px;font-weight:600;color:#fff;margin-bottom:8px;">Optionaler Managed-Betrieb</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.65;margin-bottom:20px;">Täglicher Betrieb, Stabilitätspflege, Kompatibilitätsupdates. Lizenz &amp; Verfügungsmacht bleiben jederzeit beim Kunden.</p>
+          <p style="font-family:'EB Garamond',serif;font-size:22px;color:#fff;font-weight:500;">€ 300 / Monat</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:4px;">Optional · Weiterentwicklung auf Verhandlungsbasis</p>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <a href="pages/auftragsfertigung.html" class="btn btn-primary" style="margin-right:12px;">Details ansehen</a>
+        <a href="pages/contact.html" class="btn-outline-white">Erstgespräch anfragen</a>
+      </div>
+    </div>
+
+    <!-- Retail: €39.99 + free trial -->
+    <div data-show="retail" data-reveal>
+      <div class="pricing-cards">
+        <div class="pricing-card">
+          <p class="pricing-tier">Privatanleger</p>
+          <div class="pricing-price">
+            <span class="pricing-currency">€</span>
+            <span class="pricing-amount">39</span>
+            <span class="pricing-period">,99 / Monat</span>
+          </div>
+          <p class="pricing-desc">Tägliche Portfolio-Updates mit klaren Handlungsempfehlungen für ambitionierte Privatanleger.</p>
+          <ul class="pricing-features">
+            <li>Tägliches Portfolio-Update (PDF)</li>
+            <li>Positionsgrößen und Signale</li>
+            <li>Monatlicher Performancebericht</li>
+            <li>Zugang zum öffentlichen Archiv</li>
+          </ul>
+          <a href="pages/members/register.html" class="btn btn-ghost" style="width:100%;justify-content:center;">
+            Jetzt abonnieren
+          </a>
+        </div>
+        <div class="pricing-card pricing-card-featured">
+          <div class="pricing-badge-top">Empfohlen</div>
+          <p class="pricing-tier">14 Tage Testzugang</p>
+          <div class="pricing-price">
+            <span class="pricing-currency" style="font-size:16px;">€</span>
+            <span class="pricing-amount" style="font-size:44px;">0</span>
+            <span class="pricing-period">für 14 Tage</span>
+          </div>
+          <p class="pricing-desc">Kreditkarte erforderlich, du wirst erst nach Ablauf des Testzeitraums belastet.</p>
+          <ul class="pricing-features">
+            <li>14 Tage vollständiger Zugang</li>
+            <li>Kreditkarte hinterlegen (jetzt 0,00 €)</li>
+            <li>Danach automatisch €39,99/Monat</li>
+            <li>Monatlich kündbar</li>
+          </ul>
+          <a href="pages/members/register.html" class="btn btn-primary" style="width:100%;justify-content:center;">
+            Kostenlos testen
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:24px;" data-reveal>
+      <a href="pages/pricing.html" style="color:rgba(255,255,255,0.35);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;">
+        Alle Leistungen im Überblick →
+      </a>
+    </p>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     Auftragsfertigung Teaser (Institutionell)
+     ════════════════════════════════════════════════════════════ -->
+<div class="section-full" data-show="institutional" style="background:#F7F5F2;">
+  <div class="section-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" data-reveal>
+      <div>
+        <p class="section-label">B2B · Institutionell</p>
+        <h2 class="section-title" style="margin-bottom:16px;">Auftragsfertigung<br><em>Ihr eigenes Quant-Modell</em></h2>
+        <p style="font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:28px;">
+          Wir entwickeln maßgeschneiderte quantitative Modelle in enger Absprache mit Ihnen, von Data Engineering über statistisch robuste Modellierung bis zum vollständig risikoadjustierten Portfolio. Nach Fertigstellung werden Sie voller Eigentümer der Lizenz. Auf Wunsch betreiben wir das Modell für Sie.
+        </p>
+        <a href="pages/auftragsfertigung.html" class="btn btn-secondary">Mehr erfahren</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:24px 28px;display:flex;gap:20px;align-items:flex-start;">
+          <div style="width:8px;height:8px;background:var(--accent);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+          <div>
+            <p style="font-size:13px;font-weight:600;color:var(--dark);margin-bottom:4px;">Komplettlösung aus einer Hand</p>
+            <p style="font-size:12px;color:var(--text-muted);line-height:1.65;">Data Engineering, Modellierung, Risikomanagement, alles in einem Auftrag.</p>
+          </div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:24px 28px;display:flex;gap:20px;align-items:flex-start;">
+          <div style="width:8px;height:8px;background:var(--accent);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+          <div>
+            <p style="font-size:13px;font-weight:600;color:var(--dark);margin-bottom:4px;">Volle Lizenzeigentümerschaft</p>
+            <p style="font-size:12px;color:var(--text-muted);line-height:1.65;">Das fertige Modell gehört Ihnen, kein Abo, keine laufenden Lizenzgebühren.</p>
+          </div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:24px 28px;display:flex;gap:20px;align-items:flex-start;">
+          <div style="width:8px;height:8px;background:var(--accent);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+          <div>
+            <p style="font-size:13px;font-weight:600;color:var(--dark);margin-bottom:4px;">Konditionen auf Anfrage</p>
+            <p style="font-size:12px;color:var(--text-muted);line-height:1.65;">Persönliches Erstgespräch erforderlich. Kein Self-Service.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
      Fact Sheets
      ════════════════════════════════════════════════════════════ -->
 <div class="section-full" style="background:#F7F5F2;">
@@ -328,7 +471,7 @@
       <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:space-between;gap:40px;padding:28px 36px;">
         <div>
           <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Scherbius Analytics Inst 1.0</p>
-          <h3 style="font-family:'EB Garamond',serif;font-size:20px;font-weight:600;color:var(--dark);margin-bottom:6px;">Fact Sheet — Institutionell</h3>
+          <h3 style="font-family:'EB Garamond',serif;font-size:20px;font-weight:600;color:var(--dark);margin-bottom:6px;">Scherbius 1.0 Referenzmodell</h3>
           <p style="font-size:12px;color:var(--text-muted);">Strategie, Performance-Kennzahlen und Risikoparameter · Stand März 2026 · Version 1.0</p>
         </div>
         <div style="flex-shrink:0;">
@@ -342,7 +485,7 @@
       <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:space-between;gap:40px;padding:28px 36px;">
         <div>
           <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Scherbius Analytics Privatanleger 1.0</p>
-          <h3 style="font-family:'EB Garamond',serif;font-size:20px;font-weight:600;color:var(--dark);margin-bottom:6px;">Fact Sheet — Privatanleger</h3>
+          <h3 style="font-family:'EB Garamond',serif;font-size:20px;font-weight:600;color:var(--dark);margin-bottom:6px;">Scherbius 1.0 Privatanleger Factsheet</h3>
           <p style="font-size:12px;color:var(--text-muted);">Strategie, Performance-Kennzahlen und Zertifikate-Informationen · <span id="home-retail-factsheet-date">Stand Dez 2025</span> · Version 1.0</p>
         </div>
         <div style="flex-shrink:0;">
@@ -356,68 +499,7 @@
 
 
 <!-- ════════════════════════════════════════════════════════════
-     Solution (Dark)
-     ════════════════════════════════════════════════════════════ -->
-<div class="section-full section-dark">
-  <div class="section-inner">
-
-    <div class="section-header" data-reveal>
-      <p class="section-label" style="color:var(--accent)">Die Methode</p>
-      <h2 class="section-title" style="color:#fff">Nicht Assets — sondern<br><em style="color:rgba(255,255,255,0.4)">unkorrelierte Return Streams</em></h2>
-      <p class="section-desc" style="color:rgba(255,255,255,0.5)">
-        Scherbius diversifiziert nicht zwischen klassischen Assetklassen, sondern zwischen Renditequellen. Die entscheidende Frage lautet nicht welches Asset, sondern welche Strategie wird wie hoch gewichtet.
-      </p>
-    </div>
-
-    <!-- Kernidee: 3 Karten -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px;" data-reveal>
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:32px;">
-        <h3 style="font-family:'EB Garamond',serif;font-size:19px;font-weight:600;color:#fff;margin-bottom:12px;line-height:1.3;">Unkorrelierter Return Stream</h3>
-        <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75;">Gesucht wird nicht das beste Instrument, sondern ein Portfolio aus vielen Renditequellen, die sich gegenseitig nicht beeinflussen.</p>
-      </div>
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:32px;">
-        <h3 style="font-family:'EB Garamond',serif;font-size:19px;font-weight:600;color:#fff;margin-bottom:12px;line-height:1.3;">Portfolio aus vielen Strategien</h3>
-        <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75;">Jede einzelne Strategie hat Schwächen, aber diversifiziert als Bündel verhalten sie sich statistisch robust und stabil über alle Marktregime.</p>
-      </div>
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:32px;">
-        <h3 style="font-family:'EB Garamond',serif;font-size:19px;font-weight:600;color:#fff;margin-bottom:12px;line-height:1.3;">Reines Alpha durch Diversifikation</h3>
-        <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75;">Viele unkorrelierte Strategien in einem Portfolio zusammengelegt produzieren reines Alpha, unabhängig vom Marktgeschehen.</p>
-      </div>
-    </div>
-
-    <!-- Zwei-Ebenen-Ansatz -->
-    <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:48px;" data-reveal>
-      <p class="section-label" style="color:var(--accent);margin-bottom:28px;">Zwei-Ebenen-Ansatz</p>
-      <div style="display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr;align-items:center;gap:0;">
-        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:28px 32px;">
-          <div style="display:inline-block;background:var(--accent);color:#fff;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:14px;">1. Ebene</div>
-          <p style="font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:#fff;margin-bottom:8px;">5 Strategien pro Markt</p>
-          <p style="font-size:12px;color:rgba(255,255,255,0.4);line-height:1.65;">Mean Reversion · Momentum</p>
-        </div>
-        <div style="text-align:center;color:rgba(255,255,255,0.2);font-size:22px;">→</div>
-        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:28px 32px;">
-          <div style="display:inline-block;background:var(--accent);color:#fff;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:14px;">2. Ebene</div>
-          <p style="font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:#fff;margin-bottom:8px;">ML Eintrittswahrscheinlichkeit</p>
-          <p style="font-size:12px;color:rgba(255,255,255,0.4);line-height:1.65;">XGBoost · Hidden Markov Models</p>
-        </div>
-        <div style="text-align:center;color:rgba(255,255,255,0.2);font-size:22px;">→</div>
-        <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.18);border-radius:4px;padding:28px 32px;">
-          <div style="display:inline-block;background:#2d6a4f;color:#fff;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:14px;">Endprodukt</div>
-          <p style="font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:#fff;margin-bottom:8px;">Marktunabhängiges Portfolio</p>
-          <p style="font-size:12px;color:rgba(255,255,255,0.4);line-height:1.65;">Kelly gewichtet · β = 0,127</p>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:48px;text-align:center;" data-reveal>
-      <a href="pages/methodik.html" class="btn btn-ghost">Vollständige Methodik Dokumentation</a>
-    </div>
-  </div>
-</div>
-
-
-<!-- ════════════════════════════════════════════════════════════
-     Inspiration — Zitate
+     Inspiration, Zitate
      ════════════════════════════════════════════════════════════ -->
 <div id="qc-section" style="background:#0b0b0b;overflow:hidden;">
 
@@ -725,9 +807,70 @@
 
 
 <!-- ════════════════════════════════════════════════════════════
+     Solution (Dark)
+     ════════════════════════════════════════════════════════════ -->
+<div class="section-full section-dark">
+  <div class="section-inner">
+
+    <div class="section-header" data-reveal>
+      <p class="section-label" style="color:var(--accent)">Die Methode</p>
+      <h2 class="section-title" style="color:#fff">Nicht Assets, sondern<br><em style="color:rgba(255,255,255,0.4)">unkorrelierte Return Streams</em></h2>
+      <p class="section-desc" style="color:rgba(255,255,255,0.5)">
+        Scherbius diversifiziert nicht zwischen klassischen Assetklassen, sondern zwischen Renditequellen. Die entscheidende Frage lautet nicht welches Asset, sondern welche Strategie wird wie hoch gewichtet.
+      </p>
+    </div>
+
+    <!-- Kernidee: 3 Karten -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px;" data-reveal>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:32px;">
+        <h3 style="font-family:'EB Garamond',serif;font-size:19px;font-weight:600;color:#fff;margin-bottom:12px;line-height:1.3;">Unkorrelierter Return Stream</h3>
+        <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75;">Gesucht wird nicht das beste Instrument, sondern ein Portfolio aus vielen Renditequellen, die sich gegenseitig nicht beeinflussen.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:32px;">
+        <h3 style="font-family:'EB Garamond',serif;font-size:19px;font-weight:600;color:#fff;margin-bottom:12px;line-height:1.3;">Portfolio aus vielen Strategien</h3>
+        <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75;">Jede einzelne Strategie hat Schwächen, aber diversifiziert als Bündel verhalten sie sich statistisch robust und stabil über alle Marktregime.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:32px;">
+        <h3 style="font-family:'EB Garamond',serif;font-size:19px;font-weight:600;color:#fff;margin-bottom:12px;line-height:1.3;">Reines Alpha durch Diversifikation</h3>
+        <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75;">Viele unkorrelierte Strategien in einem Portfolio zusammengelegt produzieren reines Alpha, unabhängig vom Marktgeschehen.</p>
+      </div>
+    </div>
+
+    <!-- Zwei-Ebenen-Ansatz -->
+    <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:48px;" data-reveal>
+      <p class="section-label" style="color:var(--accent);margin-bottom:28px;">Zwei-Ebenen-Ansatz</p>
+      <div style="display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr;align-items:center;gap:0;">
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:28px 32px;">
+          <div style="display:inline-block;background:var(--accent);color:#fff;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:14px;">1. Ebene</div>
+          <p style="font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:#fff;margin-bottom:8px;">5 Strategien pro Markt</p>
+          <p style="font-size:12px;color:rgba(255,255,255,0.4);line-height:1.65;">Mean Reversion · Momentum</p>
+        </div>
+        <div style="text-align:center;color:rgba(255,255,255,0.2);font-size:22px;">→</div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:28px 32px;">
+          <div style="display:inline-block;background:var(--accent);color:#fff;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:14px;">2. Ebene</div>
+          <p style="font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:#fff;margin-bottom:8px;">ML Eintrittswahrscheinlichkeit</p>
+          <p style="font-size:12px;color:rgba(255,255,255,0.4);line-height:1.65;">XGBoost · Hidden Markov Models</p>
+        </div>
+        <div style="text-align:center;color:rgba(255,255,255,0.2);font-size:22px;">→</div>
+        <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.18);border-radius:4px;padding:28px 32px;">
+          <div style="display:inline-block;background:#2d6a4f;color:#fff;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:14px;">Endprodukt</div>
+          <p style="font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:#fff;margin-bottom:8px;">Marktunabhängiges Portfolio</p>
+          <p style="font-size:12px;color:rgba(255,255,255,0.4);line-height:1.65;">Kelly gewichtet · β = 0,127</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;text-align:center;" data-reveal>
+      <a href="pages/methodik.html" class="btn btn-ghost">Vollständige Methodik Dokumentation</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
      How It Works
      ════════════════════════════════════════════════════════════ -->
-<div class="section-full section-warm">
+<div class="section-full section-warm" data-show="retail">
   <div class="section-inner">
 
     <div class="section-header" data-reveal>
@@ -753,7 +896,7 @@
       <div class="how-step-arrow">→</div>
       <div class="how-step">
         <p class="how-step-title">Disziplin halten</p>
-        <p class="how-step-desc">Das System entscheidet regelbasiert, ohne diskretionäre Eingriffe. Vertrauen Sie dem Prozess, auch in herausfordernden Marktphasen.</p>
+        <p class="how-step-desc">Das Modell entscheidet regelbasiert, ohne diskretionäre Eingriffe. Vertrauen Sie dem Prozess, auch in herausfordernden Marktphasen.</p>
       </div>
     </div>
 
@@ -761,100 +904,6 @@
       <a href="pages/anleitung.html" class="btn btn-secondary">Vollständige Anleitung lesen</a>
     </div>
 
-  </div>
-</div>
-
-
-<!-- ════════════════════════════════════════════════════════════
-     Pricing Preview (Dark)
-     ════════════════════════════════════════════════════════════ -->
-<div class="section-full section-dark">
-  <div class="section-inner">
-
-    <div class="section-header" data-reveal>
-      <p class="section-label" style="color:var(--accent)">Zugang</p>
-      <h2 class="section-title" style="color:#fff" data-show="institutional">
-        Für institutionelle<br><em style="color:rgba(255,255,255,0.4)">Investoren</em>
-      </h2>
-      <h2 class="section-title" style="color:#fff" data-show="retail">
-        Für informierte<br><em style="color:rgba(255,255,255,0.4)">Privatanleger</em>
-      </h2>
-    </div>
-
-    <!-- Institutional: contact only -->
-    <div data-show="institutional" data-reveal>
-      <div style="max-width:560px;margin:0 auto;">
-        <div class="pricing-card" style="background:rgba(185,28,28,0.06);border-color:rgba(185,28,28,0.25);">
-          <p class="pricing-tier">Institutionell</p>
-          <p class="pricing-desc">
-            Institutionelle Kunden erhalten persönliche Beratung, individuelle Konditionen und direkten Support.
-            Bitte nehmen Sie Kontakt auf.
-          </p>
-          <ul class="pricing-features">
-            <li>Tägliche Portfolio-Updates (PDF)</li>
-            <li>Vollständige Strategie-Dokumentation</li>
-            <li>Persönlicher Ansprechpartner</li>
-            <li>Individuelle Konditionen nach Absprache</li>
-            <li>Due-Diligence-Unterlagen auf Anfrage</li>
-          </ul>
-          <a href="pages/contact.html" class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:16px;">
-            Kontakt aufnehmen
-          </a>
-          <p style="text-align:center;font-size:12px;color:rgba(255,255,255,0.3);">
-            Oder direkt: <a href="tel:+4915208755758" style="color:rgba(255,255,255,0.45);">+49 152 08755758</a>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Retail: €39.99 + free trial -->
-    <div data-show="retail" data-reveal>
-      <div class="pricing-cards">
-        <div class="pricing-card">
-          <p class="pricing-tier">Privatanleger</p>
-          <div class="pricing-price">
-            <span class="pricing-currency">€</span>
-            <span class="pricing-amount">39</span>
-            <span class="pricing-period">,99 / Monat</span>
-          </div>
-          <p class="pricing-desc">Tägliche Portfolio-Updates mit klaren Handlungsempfehlungen für ambitionierte Privatanleger.</p>
-          <ul class="pricing-features">
-            <li>Tägliches Portfolio-Update (PDF)</li>
-            <li>Positionsgrößen und Signale</li>
-            <li>Monatlicher Performancebericht</li>
-            <li>Zugang zum öffentlichen Archiv</li>
-          </ul>
-          <a href="pages/members/register.html" class="btn btn-ghost" style="width:100%;justify-content:center;">
-            Jetzt abonnieren
-          </a>
-        </div>
-        <div class="pricing-card pricing-card-featured">
-          <div class="pricing-badge-top">Empfohlen</div>
-          <p class="pricing-tier">14 Tage Testzugang</p>
-          <div class="pricing-price">
-            <span class="pricing-currency" style="font-size:16px;">€</span>
-            <span class="pricing-amount" style="font-size:44px;">0</span>
-            <span class="pricing-period">für 14 Tage</span>
-          </div>
-          <p class="pricing-desc">Kreditkarte erforderlich — du wirst erst nach Ablauf des Testzeitraums belastet.</p>
-          <ul class="pricing-features">
-            <li>14 Tage vollständiger Zugang</li>
-            <li>Kreditkarte hinterlegen (jetzt 0,00 €)</li>
-            <li>Danach automatisch €39,99/Monat</li>
-            <li>Monatlich kündbar</li>
-          </ul>
-          <a href="pages/members/register.html" class="btn btn-primary" style="width:100%;justify-content:center;">
-            Kostenlos testen
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <p style="text-align:center;margin-top:24px;" data-reveal>
-      <a href="pages/pricing.html" style="color:rgba(255,255,255,0.35);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;">
-        Alle Leistungen im Überblick →
-      </a>
-    </p>
   </div>
 </div>
 
@@ -871,8 +920,7 @@
     <h2 class="cta-title" data-show="retail">14 Tage kostenlos<br>testen</h2>
 
     <p class="cta-desc" data-show="institutional">
-      Wir erläutern unsere Strategie, beantworten Ihre Fragen und besprechen
-      individuelle Konditionen in einem persönlichen Gespräch.
+      Schildern Sie uns Ihre Anforderungen. Wir besprechen Machbarkeit, Umfang und Preis in einem vertraulichen Erstgespräch.
     </p>
     <p class="cta-desc" data-show="retail">
       Keine Kreditkartendaten. Kein automatisches Abonnement.
@@ -897,7 +945,10 @@
       <div class="logo-pill" style="margin-bottom:20px;">
         <img src="brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="28">
       </div>
-      <p class="footer-brand-tagline">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</p>
+      <p class="footer-brand-tagline">
+        <span data-show="institutional">Auftragsfertiger für quantitative Modelle.<br>Entwicklung. Validierung. Übergabe.</span>
+        <span data-show="retail">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</span>
+      </p>
       <a href="https://linkedin.com/company/scherbius-analytics/" target="_blank" rel="noopener noreferrer"
          style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;">
         LinkedIn
@@ -910,6 +961,7 @@
         <li><a href="pages/performance.html">Performance</a></li>
         <li><a href="pages/anleitung.html">Anleitung</a></li>
         <li><a href="pages/pricing.html">Preise</a></li>
+        <li><a href="pages/auftragsfertigung.html">Auftragsfertigung</a></li>
         <li><a href="pages/about.html">Über uns</a></li>
         <li><a href="pages/contact.html">Kontakt</a></li>
       </ul>

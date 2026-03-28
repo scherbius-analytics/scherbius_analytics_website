@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontakt — Scherbius Analytics</title>
-  <meta name="description" content="Kontaktieren Sie Scherbius Analytics — Kontakt aufnehmen oder Privatanleger-Testzugang starten.">
+  <title>Kontakt | Scherbius Analytics</title>
+  <meta name="description" content="Kontaktieren Sie Scherbius Analytics, Kontakt aufnehmen oder Privatanleger-Testzugang starten.">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../css/reveal.css">
@@ -31,10 +31,11 @@
     <img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="32">
   </a>
   <ul class="nav-links">
+    <li data-show="institutional"><a href="auftragsfertigung.html">Auftragsfertigung</a></li>
     <li><a href="methodik.html">Methodik</a></li>
     <li><a href="performance.html">Performance</a></li>
-    <li><a href="anleitung.html">Anleitung</a></li>
-    <li><a href="archive.html">Archiv</a></li>
+    <li data-show="retail"><a href="anleitung.html">Anleitung</a></li>
+    <li data-show="retail"><a href="archive.html">Archiv</a></li>
     <li><a href="pricing.html">Preise</a></li>
     <li><a href="about.html">Über uns</a></li>
   </ul>
@@ -42,6 +43,9 @@
     <div class="mode-toggle">
       <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
       <button class="mode-btn" data-mode-btn="retail">Privatanleger</button>
+    </div>
+    <div id="nav-auth-inst" class="nav-auth" data-show="institutional">
+      <a href="contact.html" class="btn btn-primary nav-cta">Kontakt aufnehmen</a>
     </div>
     <div id="nav-auth-out" class="nav-auth">
       <a href="members/login.html" class="nav-login-link">Login</a>
@@ -57,16 +61,20 @@
   </div>
 </nav>
 <nav class="nav-mobile">
+  <a href="auftragsfertigung.html" data-show="institutional">Auftragsfertigung</a>
   <a href="methodik.html">Methodik</a>
   <a href="performance.html">Performance</a>
-  <a href="anleitung.html">Anleitung</a>
-  <a href="archive.html">Archiv</a>
+  <a href="anleitung.html" data-show="retail">Anleitung</a>
+  <a href="archive.html" data-show="retail">Archiv</a>
   <a href="pricing.html">Preise</a>
   <a href="about.html">Über uns</a>
   <a href="contact.html">Kontakt</a>
-  <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
+  <div data-show="retail" style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;display:flex;gap:16px;">
     <a href="members/login.html" style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);">Login</a>
     <a href="members/register.html" style="font-size:13px;font-weight:600;color:var(--accent);">Konto erstellen</a>
+  </div>
+  <div data-show="institutional" style="border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;padding-top:16px;">
+    <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;font-size:13px;">Kontakt aufnehmen</a>
   </div>
   <div class="mode-toggle" style="margin-top:16px;width:100%;">
     <button class="mode-btn" data-mode-btn="institutional">Institutionell</button>
@@ -87,7 +95,7 @@
       Wir erläutern unsere Strategie, beantworten Ihre Fragen und besprechen individuelle Konditionen.
     </p>
     <p style="font-size:15px;color:rgba(255,255,255,0.4);max-width:480px;line-height:1.75;" data-show="retail">
-      Für den 14-Tage-Testzugang oder allgemeine Fragen — wir antworten schnell und persönlich.
+      Für den 14-Tage-Testzugang oder allgemeine Fragen, wir antworten schnell und persönlich.
     </p>
   </div>
 </div>
@@ -102,12 +110,12 @@
         <p class="section-label" style="margin-bottom:24px;">Direktkontakt</p>
         <div style="display:flex;flex-direction:column;gap:24px;">
           <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:28px;">
-            <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;">Florian Kaya — Gründer &amp; Geschäftsführer</p>
+            <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;">Florian Kaya, Gründer &amp; Geschäftsführer</p>
             <a href="mailto:kaya@scherbius.de" style="font-size:14px;font-weight:600;color:var(--dark);display:block;margin-bottom:6px;">kaya@scherbius.de</a>
             <a href="tel:+4915208755758" style="font-size:13px;color:var(--text-muted);">+49 152 08755758</a>
           </div>
           <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:28px;">
-            <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;">Erik Richter — Co-Gründer</p>
+            <p style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;">Erik Richter, Co-Gründer</p>
             <a href="mailto:richter@scherbius.de" style="font-size:14px;font-weight:600;color:var(--dark);display:block;margin-bottom:6px;">richter@scherbius.de</a>
             <a href="tel:+4915170854496" style="font-size:13px;color:var(--text-muted);">+49 151 70854496</a>
           </div>
@@ -180,7 +188,10 @@
   <div class="footer-top">
     <div class="footer-brand">
       <div class="logo-pill" style="margin-bottom:20px;"><img src="../brand_assets/Scherbius_Analytics_Logo.png" alt="Scherbius Analytics" height="28"></div>
-      <p class="footer-brand-tagline">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</p>
+      <p class="footer-brand-tagline">
+        <span data-show="institutional">Auftragsfertiger für quantitative Modelle.<br>Entwicklung. Validierung. Übergabe.</span>
+        <span data-show="retail">Quantitatives Portfoliomanagement.<br>Täglich. Präzise. Diszipliniert.</span>
+      </p>
       <a href="https://linkedin.com/company/scherbius-analytics/" target="_blank" rel="noopener noreferrer" style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;">LinkedIn</a>
     </div>
     <div>
