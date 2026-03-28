@@ -87,26 +87,57 @@ serve(async (req: Request) => {
           console.log(`User identified via client_reference_id: ${userId}`);
         }
 
-        const stripeSub = await stripe.subscriptions.retrieve(subscriptionId);
-        const trialEnd  = stripeSub.trial_end
-          ? new Date(stripeSub.trial_end * 1000).toISOString()
-          : null;
+        // Subscription-Details von Stripe holen (mit Fallback falls API-Call fehlschlägt)
+        let subStatus = 'trialing';
+        let trialEnd: string | null = null;
+        let periodEnd: string | null = null;
 
-        const { error } = await supabase
+        try {
+          const stripeSub = await stripe.subscriptions.retrieve(subscriptionId);
+          subStatus = stripeSub.status;
+          trialEnd  = stripeSub.trial_end
+            ? new Date(stripeSub.trial_end * 1000).toISOString()
+            : null;
+          periodEnd = stripeSub.current_period_end
+            ? new Date(stripeSub.current_period_end * 1000).toISOString()
+            : null;
+        } catch (stripeErr) {
+          // Bei Fehler: Defaults verwenden — customer.subscription.updated synct den Rest
+          console.warn('stripe.subscriptions.retrieve failed, using defaults:', stripeErr);
+        }
+
+        const updateData: Record<string, unknown> = {
+          stripe_customer_id:     customerId,
+          stripe_subscription_id: subscriptionId,
+          status:                 subStatus,
+          plan:                   'retail',
+          updated_at:             new Date().toISOString(),
+        };
+        if (trialEnd)  updateData.trial_ends_at      = trialEnd;
+        if (periodEnd) updateData.current_period_end = periodEnd;
+
+        // DB-Trigger erstellt immer eine Zeile bei Registrierung → update bevorzugen
+        const { error: updateErr, count } = await supabase
           .from('subscriptions')
-          .upsert({
-            user_id: userId,
-            stripe_customer_id: customerId,
-            stripe_subscription_id: subscriptionId,
-            status: stripeSub.status,
-            plan: 'retail',
-            trial_ends_at: trialEnd,
-            current_period_end: new Date(stripeSub.current_period_end * 1000).toISOString(),
-            updated_at: new Date().toISOString(),
-          }, { onConflict: 'user_id' });
+          .update(updateData)
+          .eq('user_id', userId)
+          .select('user_id', { count: 'exact', head: true });
 
-        if (error) throw error;
-        console.log(`Subscription activated — user: ${userId}, status: ${stripeSub.status}`);
+        if (updateErr || count === 0) {
+          // Fallback: kein bestehender Eintrag → neu anlegen
+          const { error: insertErr } = await supabase
+            .from('subscriptions')
+            .insert({ user_id: userId, ...updateData });
+          if (insertErr) {
+            console.error(`Insert error for user ${userId}:`, JSON.stringify(insertErr));
+            throw insertErr;
+          }
+        } else if (updateErr) {
+          console.error(`Update error for user ${userId}:`, JSON.stringify(updateErr));
+          throw updateErr;
+        }
+
+        console.log(`Subscription activated — user: ${userId}, status: ${subStatus}`);
         break;
       }
 
@@ -152,15 +183,28 @@ serve(async (req: Request) => {
         const subId = invoice.subscription as string | null;
         if (!subId) break;
 
-        const stripeSub = await stripe.subscriptions.retrieve(subId);
+        let invStatus = 'active';
+        let invPeriodEnd: string | null = null;
+
+        try {
+          const stripeSub = await stripe.subscriptions.retrieve(subId);
+          invStatus    = stripeSub.status;
+          invPeriodEnd = stripeSub.current_period_end
+            ? new Date(stripeSub.current_period_end * 1000).toISOString()
+            : null;
+        } catch (stripeErr) {
+          console.warn('stripe.subscriptions.retrieve failed for invoice:', stripeErr);
+        }
+
+        const updateData: Record<string, unknown> = {
+          status:     invStatus,
+          updated_at: new Date().toISOString(),
+        };
+        if (invPeriodEnd) updateData.current_period_end = invPeriodEnd;
 
         const { error } = await supabase
           .from('subscriptions')
-          .update({
-            status: stripeSub.status,
-            current_period_end: new Date(stripeSub.current_period_end * 1000).toISOString(),
-            updated_at: new Date().toISOString(),
-          })
+          .update(updateData)
           .eq('stripe_subscription_id', subId);
 
         if (error) throw error;
