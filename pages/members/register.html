@@ -341,30 +341,12 @@
       } else if (plan === 'monthly') {
         window.location.href = 'dashboard.html?notice=payment_pending';
       } else {
-        // Trial: zeige Bestätigungsschirm (kein Redirect zum Dashboard)
-        if (data.user && data.user.email_confirmed_at) {
-          // Auto-confirmed (z.B. lokale Umgebung)
-          window.location.href = 'dashboard.html?welcome=1';
-        } else {
-          document.getElementById('reg-form-wrap').style.display = 'none';
-          document.getElementById('reg-success-email').textContent = email;
-          document.getElementById('reg-success').style.display = 'block';
-          window._regEmail = email;
-          // Resend button
-          document.getElementById('reg-resend-btn').addEventListener('click', async function () {
-            var resendBtn = this;
-            resendBtn.disabled = true;
-            resendBtn.textContent = 'Sende…';
-            try {
-              await SA_Auth.resendConfirmation(email);
-              resendBtn.textContent = 'Mail gesendet ✓';
-              setTimeout(function () { resendBtn.disabled = false; resendBtn.textContent = 'Bestätigungsmail erneut senden'; }, 4000);
-            } catch (e) {
-              resendBtn.disabled = false;
-              resendBtn.textContent = 'Fehler — erneut versuchen';
-            }
-          });
-        }
+        // Trial: direkt zu Stripe — Karte hinterlegen, dann startet der 14-tägige Testzeitraum
+        var userId = data.user ? data.user.id : '';
+        var stripeUrl = SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY
+          + '?prefilled_email=' + encodeURIComponent(email)
+          + (userId ? '&client_reference_id=' + encodeURIComponent(userId) : '');
+        window.location.href = stripeUrl;
       }
     } catch (err) {
       var msgs = {

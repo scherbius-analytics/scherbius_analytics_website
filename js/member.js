@@ -23,7 +23,8 @@ var SA_Member = (function () {
     _bindTabs();
     _bindSignout();
     // Wenn kein aktives Abo: direkt zum Abonnement-Tab, nicht Updates
-    var hasAccess = _subscription && (_subscription.status === 'active' || _subscription.status === 'trialing' || (_subscription.status === 'canceled' && _subscription.current_period_end && new Date(_subscription.current_period_end) > new Date()));
+    // stripe_subscription_id muss gesetzt sein — verhindert Zugang ohne Stripe-Checkout
+    var hasAccess = _subscription && _subscription.stripe_subscription_id && (_subscription.status === 'active' || _subscription.status === 'trialing' || (_subscription.status === 'canceled' && _subscription.current_period_end && new Date(_subscription.current_period_end) > new Date()));
     _loadTab(hasAccess ? 'updates' : 'subscription');
     _bindCancelButton();
     if (typeof window._fillSettings === 'function') window._fillSettings(_session);
@@ -119,7 +120,7 @@ var SA_Member = (function () {
   // ── Tab Lock (kein Abo) ───────────────────────────────────────────────────
 
   function _lockUpdatesTab() {
-    var hasAccess = _subscription && (_subscription.status === 'active' || _subscription.status === 'trialing' || (_subscription.status === 'canceled' && _subscription.current_period_end && new Date(_subscription.current_period_end) > new Date()));
+    var hasAccess = _subscription && _subscription.stripe_subscription_id && (_subscription.status === 'active' || _subscription.status === 'trialing' || (_subscription.status === 'canceled' && _subscription.current_period_end && new Date(_subscription.current_period_end) > new Date()));
     if (hasAccess) return;
 
     var tab = document.querySelector('.member-tab[data-tab="updates"]');
@@ -160,7 +161,7 @@ var SA_Member = (function () {
     var container = document.getElementById('updates-list');
     if (!container || container.dataset.loaded) return;
 
-    var hasAccess = _subscription && (_subscription.status === 'active' || _subscription.status === 'trialing' || (_subscription.status === 'canceled' && _subscription.current_period_end && new Date(_subscription.current_period_end) > new Date()));
+    var hasAccess = _subscription && _subscription.stripe_subscription_id && (_subscription.status === 'active' || _subscription.status === 'trialing' || (_subscription.status === 'canceled' && _subscription.current_period_end && new Date(_subscription.current_period_end) > new Date()));
     if (!hasAccess) {
       var payLink = (window.SA_CONFIG && SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY) ? SA_CONFIG.STRIPE_PAYMENT_LINK_MONTHLY : '../../pages/pricing.html';
       container.innerHTML =
